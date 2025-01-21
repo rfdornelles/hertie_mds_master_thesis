@@ -1,0 +1,40 @@
+---
+title: "Pre-Analysis Plan"
+author: "Rodrigo Dornelles"
+date: "2025-01-28"
+format: pdf
+---
+
+# Pre-analysis Plan
+
+## LLM in Court: Leveraging Open-Source Language Models to Enhance Empirical Legal Research in Brazil
+
+### 1. Summary
+
+<!-- 1\. Summary: Describe the main goals of the project, what is the scientific question you are trying to answer, and how will you go about it in no more than 300 words. -->
+
+# 2. Motivation and background
+
+<!--  2.  Motivation and background: Why is this research question interesting to you, how does your background align with the topic, and what skills or knowledge do you want to acquire by doing the work that is valuable for your future career? -->
+
+# 3. Introduction
+
+<!--  3.  Introduction: Discuss what is the context for the research question and what previous work has been conducted in this area. Please discuss 1-3 key academic papers that are most relevant to your project. You should summarise the papers, the goal and achievement of the papers, data and methods used in the papers, and how they relate to your proposed topic. Also include references to other relevant papers in the introduction as needed. -->
+
+# 4. Research question
+
+<!-- 4.  Research question: What research question will you try to answer with the thesis and what is the main approach to address the question? --> 
+
+How can open-source language models be optimally deployed in the Brazilian legal context to accurately extract information, recognize entities, and summarize complex legal documents, considering factors such as cost, computational efficiency, and the specific challenges of legal language and document structure?
+
+# 5. Data and methods
+
+<!--  5.  Data and methods: What data and methods are you planning to use? Please be as specific as possible in what you want to approach to achieve to facilitate further discussion whether it is appropriate for answering the research question. Also mention alternative methods, especially if you are unsure about which method is best. -->
+
+# 6. Expected results
+
+<!--  Expected results: Describe what a successful outcome of your project would look like. -->
+
+# 7. Timeline of the project
+
+<!--  Timeline of the project: A Gannt chart or a table that indicates key milestones. -->
