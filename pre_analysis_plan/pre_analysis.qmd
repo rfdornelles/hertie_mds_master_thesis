@@ -227,7 +227,6 @@ By achieving these milestones, the project not only demonstrates the practical b
 # 7. Timeline of the project
 
 <!--  Timeline of the project: A Gannt chart or a table that indicates key milestones. -->
-
 <!--
 -   [x] 1. Data collection and annotation: from October to November 2024
 -   [x] 2. Gathering labeled data: from November to January 2025
@@ -243,86 +242,51 @@ By achieving these milestones, the project not only demonstrates the practical b
 -   [ ] 12. Final review: until 15th April 2025
 -   [ ] 13. Submission: until 20th April 2025
 -   [ ] 14. Poster presentation: until 12th May 2025
+
 -->
 
-```{r gantt, echo=FALSE,  fig.width=12, fig.height=8, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(lubridate)
-library(emoGG)
+Below is the updated project timeline, reflecting the current status of each milestone. Notably, the dataset collection and gold-standard annotations have already been successfully completed, making the fallback strategy of self-annotation and synthetic data generation unnecessary for now. I am still pursuing additional partnerships for broader data access, but as it stands, the existing corpora are robust enough to proceed with model training and evaluation.
 
-# 1) Create data
-gantt_data <- tribble(
-  ~Task,                            ~Start,         ~End,           ~Status,
-  "Data collection and annotation", "2024-10-01",   "2024-11-30",   "Completed",
-  "Gathering labeled data",         "2024-11-01",   "2025-01-31",   "In Progress",
-  "Backup strategy (not required)", "2025-02-01",   "2025-02-28",   "Completed",
-  "Literature review",              "2025-01-01",   "2025-03-31",   "In Progress",
-  "Research plan presentation",     "2025-01-01",   "2025-02-28",   "In Progress",
-  "Model selection & fine-tuning",  "2025-02-01",   "2025-03-31",   "Awaiting",
-  "Midterm Milestone: Analysis",    "2025-02-20",   "2025-02-20",   "Awaiting",
-  "Model testing & evaluation",     "2025-03-01",   "2025-03-31",   "Awaiting",
-  "Preliminary results",            "2025-03-15",   "2025-03-15",   "Awaiting",
-  "Model optimization",             "2025-03-01",   "2025-04-30",   "Awaiting",
-  "Writing the thesis",             "2025-02-01",   "2025-03-31",   "Awaiting",
-  "Final review",                   "2025-04-01",   "2025-04-15",   "Awaiting",
-  "Submission",                     "2025-04-20",   "2025-04-20",   "Awaiting",
-  "Poster presentation",            "2025-05-12",   "2025-05-12",   "Awaiting"
-) %>%
-  mutate(
-    Start = as.Date(Start),
-    End   = as.Date(End),
-    # Include dates in the Task name for the y-axis with a line break
-    Task = paste0(
-      Task, "\n(",
-      format(Start, "%b %d, %Y"), " – ",
-      format(End, "%b %d, %Y"), ")"
-    ),
-    # Keep tasks in the same order they appear in the tribble
-    Task = factor(Task, levels = unique(Task))
-  )
+- [x] 1. Data collection and annotation: from October to November 2024
+- [x] 2. Gathering labeled data: from November to January 2025
+- [x] 3. Backup strategy: annotating data and using GPT-o1 to generate synthetic data (February 2025) — no longer required
+- [ ] 4. Literature review: from January to March 2025
+- [ ] 5. Research plan presentation: until February 2025
+- [ ] 6. Model selection and fine-tuning: from February to March 2025
+- [ ] 7. Midterm Milestone: Analysis: until 20 February 2025
+- [ ] 8. Model testing and performance evaluation: March 2025
+- [ ] 9. Preliminary results: until 15 March 2025
+- [ ] 10. Model optimization: from March to April 2025
+- [ ] 11. Writing the thesis: from February to March 2025
+- [ ] 12. Final review: until 15th April 2025
+- [ ] 13. Submission: until 20th April 2025
+- [ ] 14. Poster presentation: until 12th May 2025
 
-# 2) Build the Gantt chart
-ggplot(gantt_data, aes(x = Start, xend = End, y = Task, yend = Task)) +
-  # Bars for each task
-  geom_segment(aes(color = Status), linewidth = 8, lineend = "round") +
-  
-  # Status text inside each bar
-  geom_text(
-    aes(x = Start + (End - Start)/2, label = Status),
-    color = "white",
-    size = 4, # Increased font size for better readability
-    fontface = "bold",
-    vjust = 0.5
-  ) +
-  
-  # Manual colors for each status
-  scale_color_manual(values = c(
-    "Completed"   = "darkgreen",
-    "In Progress" = "blue",
-    "Awaiting"    = "gray"
-  )) +
-  
-  # Reverse y-axis so the first task is at the top
-  scale_y_discrete(limits = rev(levels(gantt_data$Task))) +
-  
-  theme_minimal(base_size = 12) +
-  labs(
-    title = "Project Timeline (Gantt Chart)",
-    x = "Date",
-    y = "Tasks"
-  ) +
-  # Remove color legend and adjust theme
-  theme(
-    panel.grid.minor = element_blank(),
-    panel.grid.major.y = element_blank(),
-    legend.position = "none",
-    plot.margin = margin(20, 20, 20, 20),  # Increase plot margins
-    axis.text.y = element_text(size = 10)  # Larger font size for task labels
-  ) +
-  coord_cartesian(clip = "off")  # Ensures tasks and emojis aren't clipped
-
-
+```{mermaid}
+gantt
+    title Project Timeline
+    dateFormat  YYYY-MM-DD
+    section Data Preparation
+    Data collection         :active, col1, 2024-10-01, 2w
+    Gathering labeled data  :col2, 2024-11-01, 12w
+    Backup strategy         :col3, 2025-02-01, 2w
+    section Research Activities
+    Literature review       :col4, 2025-01-01, 12w
+    Research plan presentation:milestone, 2025-02-28, 1d
+    Midterm Milestone: Analysis :milestone, 2025-02-20, 1d
+    section Model Development
+    Model selection & tuning:col5, 2025-02-01, 6w
+    Model testing           :col6, 2025-03-01, 4w
+    Model optimization      :col7, 2025-03-15, 6w
+    section Results and Writing
+    Preliminary results     :milestone, 2025-03-15, 1d
+    Writing thesis          :col8, 2025-02-01, 8w
+    Final review            :col9, 2025-04-01, 2w
+    Submission              :milestone, 2025-04-20, 1d
+    Poster presentation     :milestone, 2025-05-12, 1d
 ```
+
+
 
 # 8. References
 
