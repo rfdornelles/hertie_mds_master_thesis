@@ -13,17 +13,167 @@ format: pdf
 
 <!-- 1\. Summary: Describe the main goals of the project, what is the scientific question you are trying to answer, and how will you go about it in no more than 300 words. -->
 
+This study aims to harness open-source language models to advance empirical and quantitative research in Brazilian courts and other Portuguese-speaking jurisdictions. The dataset—already collected through publicly available repositories and direct court websites—contains a broad range of judicial decisions, primarily from the São Paulo Court of Justice. The central objective is to examine how these models can effectively perform information extraction, entity recognition, and summarization tasks, while maintaining high accuracy, computational efficiency, and the ability to navigate the complexities of legal language.
+
+Leveraging previously conducted empirical research (as a strategy for resource and emission savings), we will use datasets already annotated by experts. Decisions related to the cases used will be collected via web scraping, and new decisions will be gathered for subsequent model application. Following this, a selection of open-source language models—including LLaMA, LOLA, Mistral, GPT-2, Phi, Gemma, and DeepSearch—will be evaluated and fine-tuned within a consistent prompt framework tailored to legal analysis. Baseline performance metrics will guide potential optimization techniques, such as pruning or distillation, aimed at reducing computational overhead.
+
+Finally, both the curated dataset and a cost-effective fine-tuned model will be made available on platforms such as HuggingFace, enabling large-scale, data-driven analyses of legal texts. By broadening access to empirical legal tools, this initiative seeks to provide a stronger, evidence-based foundation for public policy and legal research, thereby reinforcing the quantitative dimension of legal studies.
+
 # 2. Motivation and background
 
 <!--  2.  Motivation and background: Why is this research question interesting to you, how does your background align with the topic, and what skills or knowledge do you want to acquire by doing the work that is valuable for your future career? -->
+
+Empirical legal research plays a crucial role in shaping effective public policies, ensuring that legislative and judicial decisions are informed by rigorous, data-driven analysis rather than intuition, ideology, or anecdotal evidence. However, in Brazil and many other jurisdictions, legal scholarship has traditionally relied on qualitative, doctrinal, and theoretical approaches. While these methods provide valuable insights, they often lack the empirical foundation necessary to identify patterns, assess systemic biases, and evaluate the real-world impact of legal decisions. This gap in empirical legal research hinders the development of policies that are both evidence-based and effective in addressing social and judicial inequalities.
+
+In the Brazilian legal landscape, issues such as judicial bias, sentencing disparities, and the impact of legal reforms remain largely underexplored due to the absence of systematic data analysis. Without a strong empirical foundation, policymakers and legal practitioners struggle to craft solutions that address underlying injustices or inefficiencies in the justice system. This deficiency has significant implications, particularly in areas such as drug policy, criminal sentencing, and gender and racial disparities in legal outcomes. Without reliable data, reform efforts risk being misdirected, ineffective, or even counterproductive.
+
+Open-source language models and computational legal research offer a transformative opportunity to bridge this gap. By leveraging large-scale datasets of judicial decisions, natural language processing (NLP) techniques, and advanced statistical methods, this research seeks to provide an empirical foundation for legal discussions that were previously dominated by theoretical arguments. The application of machine learning and artificial intelligence to legal texts enables a systematic analysis of judicial trends, bias detection, and policy evaluation at a scale that traditional legal research cannot achieve.
+
+This project aligns with a broader movement toward the quantification and systematization of legal studies, aiming to make legal research more transparent, replicable, and policy-relevant. By developing cost-effective, open-source tools for analyzing judicial decisions, this research will empower scholars, policymakers, and practitioners to engage with legal data in new ways, fostering a more robust, evidence-based approach to legal scholarship and policy reform.
+
+My background in law, data science, and public policy provides a unique vantage point for tackling these challenges. Throughout my academic and professional trajectory, I have worked at the intersection of law and technology, exploring how computational tools can enhance legal analysis. Through this project, I seek to deepen my expertise in NLP, empirical research methodologies, and legal informatics, skills that will be invaluable for a career dedicated to legal innovation and policy analysis.
+
+Ultimately, this research aims to contribute to a more just and effective legal system by ensuring that judicial and legislative decision-making is guided by empirical evidence rather than assumptions. By demonstrating how open-source language models can enhance legal research, this project will not only advance academic inquiry but also provide practical tools for policymakers and legal professionals committed to evidence-based governance.
+
+
 
 # 3. Introduction
 
 <!--  3.  Introduction: Discuss what is the context for the research question and what previous work has been conducted in this area. Please discuss 1-3 key academic papers that are most relevant to your project. You should summarise the papers, the goal and achievement of the papers, data and methods used in the papers, and how they relate to your proposed topic. Also include references to other relevant papers in the introduction as needed. -->
 
+## 3. Introduction
+
+The ability to use machine learning tools for extracting key information from legal documents has grown in strategic importance. Courts produce vast amounts of textual data that demand specialized, efficient, and transparent methods for annotation, classification, summarization, and analysis. Recent studies on large language models (LLMs) emphasize that simple off-the-shelf prompting is often insufficient for complex, domain-specific tasks, such as interpreting legal statutes or synthesizing intricate court rulings. Specialized fine-tuning offers a promising route to address these gaps in a cost-effective manner, enabling targeted legal tasks with relatively modest datasets.
+
+Against this backdrop, a number of recent papers have explored domain-adapted LLMs, focusing on areas such as U.S. Supreme Court judgments, multi-jurisdictional summarization datasets, low-resource annotation strategies, specialized Portuguese LLMs, and local legal sentencing data. This section summarizes six central works that form the basis for the proposed research in Brazilian empirical legal studies, each subtopic highlighting their goals, data, methods, achievements, and relevance.
+
+---
+
+### 3.1 Dominguez-Olmedo et al. (2024): "Lawma: The Power of Specialization for Legal Tasks"
+
+**Summary and Goals**  
+Dominguez-Olmedo et al. (2024) set out to determine whether fine-tuning open-source language models on domain-specific legal data could surpass commercial, general-purpose models. Their work focused on 260 real-world classification tasks derived from both the U.S. Supreme Court Database (Spaeth et al. 2023) and U.S. Courts of Appeals, aiming to measure improvements in legal text classification.
+
+**Data and Methods**  
+- **Data**: An extensive range of U.S. legal texts, featuring Supreme Court opinions and Courts of Appeals decisions.
+- **Models**: A lightly fine-tuned LLaMA 3-based model (Lawma), benchmarked against GPT-4 in zero-shot mode.
+- **Approach**: A consistent prompt framework for classification tasks, needing minimal labeled data.
+
+**Achievements**  
+Their specialized model outperformed GPT-4 with double-digit improvements, despite using comparatively fewer labeled samples. This underscores that well-chosen domain data, coupled with prompt engineering, can yield strong outcomes with lower overhead.
+
+**Relevance to Proposed Work**  
+Lawma’s success hints that carefully curated corpora of Brazilian judicial decisions may similarly enable robust legal analytics, especially where localized data is appropriately integrated.
+
+---
+
+### 3.2 Santosh et al. (2024): LexSumm and LexT5 for Summarization
+
+**Summary and Goals**  
+Santosh et al. (2024) introduced **LexSumm**, a specialized benchmark for legal summarization, along with **LexT5**, a sequence-to-sequence model tailored for handling generative tasks in legal contexts. Their aim was to address the shortfalls of purely predictive benchmarks by demonstrating how generative frameworks can synthesize complex legal content more effectively.
+
+**Data and Methods**  
+- **Data**: Summarization datasets spanning legal texts from the U.S., UK, EU, and India, capturing diverse legal traditions.
+- **Models**: A T5-based approach (LexT5) specifically adjusted for summarization.
+- **Approach**: Detailed evaluations highlight how generative models capture deeper interpretative cues in legal discourse—content that classification approaches often ignore.
+
+**Achievements**  
+LexSumm provides a clear path for evaluating legal summarization models, while LexT5 underscores how domain adaptation substantially enhances output quality and interpretability of long, text-heavy legal documents.
+
+**Relevance to Proposed Work**  
+Brazilian courts can benefit from domain-tuned summarization to condense extensive rulings. LexT5 demonstrates how generative approaches clarify multi-faceted legal arguments—an approach readily transferable to a Brazilian corpus.
+
+---
+
+### 3.3 Adhikary et al. (2024): Weakly Supervised Attribute Extraction
+
+**Summary and Goals**  
+Adhikary et al. (2024) tackled the cost-intensive process of labeling large legal corpora by proposing a weakly supervised sequence labeling framework. Their main use case involved criminal case documents, focusing on extracting structured attributes like defendant information and case status with minimal labeled data.
+
+**Data and Methods**  
+- **Data**: A collection of criminal court documents containing repeated textual patterns (entities, judgments, statutes).
+- **Models**: A synergy between pseudo-relevance feedback and large language models such as GPT-2, Llama-2, and GPT-3.5.
+- **Approach**: Automating data augmentation strategies to enhance classification accuracy for tasks like statute identification and judicial outcome prediction.
+
+**Achievements**  
+They substantially reduced the annotation burden by generating synthetic samples, demonstrating that a lean set of gold-standard examples can be expanded efficiently for improved attribute extraction.
+
+**Relevance to Proposed Work**  
+Brazil’s massive judicial output similarly requires minimal annotation solutions. Their methodology points to how synthetic or weakly supervised expansions of a labeled set could optimize training for specialized tasks like drug sentencing or appellate reviews.
+
+---
+
+### 3.4 Corrêa et al. (2024): Tucano and GigaVerbo
+
+**Summary and Goals**  
+Corrêa et al. (2024) honed in on Portuguese NLP specifically, unveiling **Tucano**—open-source large language models—and **GigaVerbo**, a 200-billion-token corpus spanning multiple Portuguese text domains. Their guiding principle was reproducibility, aiming to bolster research in low-resource settings.
+
+**Data and Methods**  
+- **Data**: The GigaVerbo corpus, one of the largest compiled Portuguese repositories, covering journalism, academic texts, and more.
+- **Models**: Multiple sizes of the Tucano architecture, systematically documented and released.
+- **Approach**: Transparent code, data cleaning, and checkpoint releases, enabling others to replicate or refine the pipeline for specialized tasks.
+
+**Achievements**  
+They support deeper Portuguese NLP, providing both a robust baseline and a methodological template. While their scope extends beyond law, the clarity of their pipeline stands as a roadmap for domain-specific adaptation in Brazilian courts.
+
+**Relevance to Proposed Work**  
+Because Brazilian judicial documents rely on particular Portuguese idioms and formatting, Tucano’s custom tokenizers and extensive language models offer a springboard for more effective entity extraction and summarization.
+
+---
+
+### 3.5 Junior et al. (2024): Juru for Brazilian Legal Specialization
+
+**Summary and Goals**  
+Junior et al. (2024) introduced **Juru**, a domain-driven large language model for Brazilian legal texts. They curated a 1.9-billion-token corpus from academic literature, federal laws, and other reputable sources, aiming to boost performance on local legal tasks.
+
+**Data and Methods**  
+- **Data**: Brazilian legal scholarship and regulatory texts, gleaned from recognized sources.
+- **Models**: A specialized pretraining approach, focusing on classification tasks like sentencing.
+- **Approach**: Tested improvements on multiple-choice law exams, noting the inherent trade-off between domain and general-language capabilities.
+
+**Achievements**  
+Juru outperformed its base model on law-specific benchmarks, though it showed some decline in broader competencies—a known compromise in domain adaptation.
+
+**Relevance to Proposed Work**  
+By centering on smaller, more authoritative data, Juru exemplifies how specialized knowledge can improve classification and QA in Brazilian legal contexts, paralleling the drive to handle local sub-domains like drug decriminalization or gender bias.
+
+---
+
+### 3.6 Lacerda e Silva (2019): *Sentencing Disparities ("Punindo as Diferenças")*
+
+**Summary and Goals**  
+Lacerda e Silva (2019) investigates disparities in drug-related sentencing in São Paulo, examining how gender, race, and age intersect to influence judicial decisions. Drawing on Black feminist criminology and critical criminological approaches, she asks whether extralegal stereotypes lead to discriminatory sentencing patterns.
+
+**Data and Methods**  
+- **Data**: A high-quality, tabulated dataset of 352 criminal sentences from 2017 in the Barra Funda district of São Paulo’s Court of Justice, focusing on drug offenses.
+- **Approach**: Statistical jurimetrics, including descriptive analysis and regression, to test whether demographic attributes correlate with sentencing outcomes.
+
+**Achievements**  
+Beyond uncovering evidence of potential systemic biases—e.g., more severe sentences for older Black male defendants—the study contributed a valuable coded corpus linking case features and sentencing metrics.
+
+**Relevance to Proposed Work**  
+Her curated dataset of judgments offers a gold mine for testing or training NLP-based classification or extraction frameworks in a Brazilian legal context. By demonstrating how non-legal factors might shape sentencing, it underscores the importance of applying domain-adapted LLMs to reveal or mitigate discrimination.
+
+---
+
+## Connection to the Proposed Research
+
+All six lines of inquiry converge on the value of specialized, domain-focused fine-tuning. They collectively argue that curated data and methodical adaptation substantially outperform generic prompting in legal tasks, even when only moderate-sized labeled sets are available. This lesson is critical for empirical legal studies in Brazil, where massive volumes of text—from criminal decisions to appellate rulings—remain largely untapped.
+
+Specifically:
+- **Efficiency Gains**: Dominguez-Olmedo et al. (2024) show that moderate domain data can yield strong results.
+- **Generative Summaries**: Santosh et al. (2024) highlight advanced summarization frameworks that can parse dense decisions.
+- **Cost-Effective Annotation**: Adhikary et al. (2024) demonstrate expansions of small labeled sets for improved extraction.
+- **Portuguese Domain**: Corrêa et al. (2024) emphasize replicable pipelines in a low-resource language, crucial for Brazil.
+- **Law-Focused Tuning**: Junior et al. (2024) show a direct performance boost when tailoring LLMs to local legal corpora.
+- **Sentencing Disparities**: Lacerda e Silva (2019) underlines the real-world stakes of analyzing extralegal factors, offering a coded dataset that can strengthen or evaluate new NLP tools.
+
+By weaving together these approaches—focusing on minimal but high-quality annotation, generative frameworks, and careful domain tuning—this project seeks to empower large-scale empirical research on Brazilian judicial decisions. The synergy of specialized corpora, generative modeling, and domain expertise paves the way for deeper, data-driven insights into judicial processes, from drug-related sentencing to potential gender and racial bias in the courts.
+
+
 # 4. Research question
 
-<!-- 4.  Research question: What research question will you try to answer with the thesis and what is the main approach to address the question? --> 
+<!-- 4.  Research question: What research question will you try to answer with the thesis and what is the main approach to address the question? -->
 
 How can open-source language models be optimally deployed in the Brazilian legal context to accurately extract information, recognize entities, and summarize complex legal documents, considering factors such as cost, computational efficiency, and the specific challenges of legal language and document structure?
 
@@ -31,10 +181,124 @@ How can open-source language models be optimally deployed in the Brazilian legal
 
 <!--  5.  Data and methods: What data and methods are you planning to use? Please be as specific as possible in what you want to approach to achieve to facilitate further discussion whether it is appropriate for answering the research question. Also mention alternative methods, especially if you are unsure about which method is best. -->
 
+-   Data: I will use judicial sentences from Brazilian courts, with two primary methods for data access. The first is web scraping from court websites, using tools like the R package {tjsp}, with which I have experience. If I choose the drug possession topic, I already have a dataset of 24,000 decisions from the São Paulo Court of Justice. For the gender bias study, I have access to Benatti's research dataset. Other topics would require further data collection, but this is manageable.
+
+-   I already have a 3 million dataset with decisions from the São Paulo's State Court in different fields. It's in a Google Cloud BigQuery dataset, publicly available.
+
+-   I already have 2 datasets to be used as fine-tuning and test:
+  - Lacerda's with +300 decisions on drug possession tabulated in more than 20 variables
+  - Benatti's with +1,600 decisions on domestic-violence related criminal cases and plus 49 decisions in civil and criminal parental alienation-related causes.
+
+- I might have access to also annotated data on tax law and comercial law, but the negotiations to reach those are still in progress. They are not a priority but might be a good way to test the ability to generalize on different fields.
+
+-   Methods: will collect representative data and create golden datasets with labeled cases for training, validation, performance testing, and fine-tuning. I will then choose several open-source models, including those from the LLaMA 3.1/3.2, LOLA, Mistral, GPT-2, Phi, and Gemma families, and compare their performance using a consistent prompt. Following this, I will fine-tune the models and retest to assess the impact of the fine-tuning. If time permits and the results are promising, I aim to analyze the outcomes more substantively and explore model optimization through pruning or distillation to reduce computational costs for large-scale extraction. 
+
 # 6. Expected results
 
 <!--  Expected results: Describe what a successful outcome of your project would look like. -->
 
+-   A small and cost-effective LLLM finetunned to the Brazilian legal context, ready to be used from HuggingFace by other researchers in academic and public policy fields
+-   Being able to build a useful dataset to replicate the methods in other legal issues
+-   Use the model to generate a report on the legal issue decided
+
 # 7. Timeline of the project
 
 <!--  Timeline of the project: A Gannt chart or a table that indicates key milestones. -->
+
+-   [ ] 1. Data collection and annotation: from October to November 2024
+-   [ ] 2. Gathering labaled data: fromm November to February 2025
+-   [ ] 3. Backup strategy: annoting data and using GPT-o1 to generate synthetic data: February 2025
+-   [ ] 4. Literature review: from January to March 2025
+-   [ ] 5. Research plan presentation: until February 2025
+-   [ ] 6. Model selection and fine-tunning: from February to March 2025
+-   [ ] 7. Midterm Milestone: Analysis: until 20 February 2025
+-   [ ] 8. Model testing and performance evaluation: March 2025
+-   [ ] 9. Preliminary results: until 15 March 2025
+-   [ ] 10. Model optimization: from March to April 2025
+-   [ ] 11. Writing the thesis: from February to March 2025
+-   [ ] 12. Final review: until 15th April 2025
+-   [ ] 13. Submission: until 20th April 2025
+-   [ ] 14. Poster presentation: until 12th May 2025
+
+```{mermaid}
+gantt
+    title Project Timeline
+    dateFormat  YYYY-MM-DD
+    section Data Preparation
+    Data collection         :active, col1, 2024-10-01, 2w
+    Gathering labeled data  :col2, 2024-11-01, 12w
+    Backup strategy         :col3, 2025-02-01, 2w
+    section Research Activities
+    Literature review       :col4, 2025-01-01, 12w
+    Research plan presentation:milestone, 2025-02-28, 1d
+    Midterm Milestone: Analysis :milestone, 2025-02-20, 1d
+    section Model Development
+    Model selection & tuning:col5, 2025-02-01, 6w
+    Model testing           :col6, 2025-03-01, 4w
+    Model optimization      :col7, 2025-03-15, 6w
+    section Results and Writing
+    Preliminary results     :milestone, 2025-03-15, 1d
+    Writing thesis          :col8, 2025-02-01, 8w
+    Final review            :col9, 2025-04-01, 2w
+    Submission              :milestone, 2025-04-20, 1d
+    Poster presentation     :milestone, 2025-05-12, 1d
+
+```
+
+````{=html}
+<!-- 
+```{dot}
+digraph gantt {
+  rankdir=LR;
+  node [shape=box, fontname=Helvetica, fontsize=10, style=filled];
+
+  subgraph cluster_0 {
+    label = "Data Preparation";
+    color = lightblue;
+    "Data collection (Oct-Nov 2024)" [style=filled, fillcolor=lightblue];
+    "Gathering labeled data (Nov 2024-Feb 2025)" [style=filled, fillcolor=lightblue];
+    "Backup strategy (Feb 2025)" [style=filled, fillcolor=lightblue];
+  }
+
+  subgraph cluster_1 {
+    label = "Research Activities";
+    color = lightgreen;
+    "Literature review (Jan-Mar 2025)" [style=filled, fillcolor=lightgreen];
+    "Research plan presentation (Feb 2025)" [style=filled, fillcolor=yellow];
+    "Midterm Milestone: Analysis (Feb 20, 2025)" [style=filled, fillcolor=yellow];
+  }
+
+  subgraph cluster_2 {
+    label = "Model Development";
+    color = lightpink;
+    "Model selection (Feb-Mar 2025)" [style=filled, fillcolor=lightpink];
+    "Model testing (Mar 2025)" [style=filled, fillcolor=lightpink];
+    "Model optimization (Mar-Apr 2025)" [style=filled, fillcolor=lightpink];
+  }
+
+  subgraph cluster_3 {
+    label = "Results and Writing";
+    color = orange;
+    "Preliminary results (Mar 15, 2025)" [style=filled, fillcolor=orange];
+    "Writing thesis (Feb-Mar 2025)" [style=filled, fillcolor=orange];
+    "Final review (Apr 2025)" [style=filled, fillcolor=orange];
+    "Submission (Apr 20, 2025)" [style=filled, fillcolor=orange];
+    "Poster presentation (May 12, 2025)" [style=filled, fillcolor=pink];
+  }
+
+  // Task dependencies
+  "Data collection (Oct-Nov 2024)" -> "Gathering labeled data (Nov 2024-Feb 2025)";
+  "Gathering labeled data (Nov 2024-Feb 2025)" -> "Backup strategy (Feb 2025)";
+  "Literature review (Jan-Mar 2025)" -> "Research plan presentation (Feb 2025)";
+  "Research plan presentation (Feb 2025)" -> "Midterm Milestone: Analysis (Feb 20, 2025)";
+  "Model selection (Feb-Mar 2025)" -> "Model testing (Mar 2025)";
+  "Model testing (Mar 2025)" -> "Model optimization (Mar-Apr 2025)";
+  "Model optimization (Mar-Apr 2025)" -> "Preliminary results (Mar 15, 2025)";
+  "Preliminary results (Mar 15, 2025)" -> "Writing thesis (Feb-Mar 2025)";
+  "Final review (Apr 2025)" -> "Submission (Apr 20, 2025)";
+  "Submission (Apr 20, 2025)" -> "Poster presentation (May 12, 2025)";
+}
+```
+
+--->
+````
