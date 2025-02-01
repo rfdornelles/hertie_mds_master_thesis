@@ -7,10 +7,8 @@ date: "2025-01-31"
 format: pdf
 ---
 
-### 1. Summary
-
+# 1. Summary
 <!-- 1\. Summary: Describe the main goals of the project, what is the scientific question you are trying to answer, and how will you go about it in no more than 300 words. -->
-
 This study aims to harness open-source language models to advance empirical and quantitative research in Brazilian courts and other Portuguese-speaking jurisdictions. The dataset—already collected through publicly available repositories and direct court websites—contains a broad range of judicial decisions, primarily from the São Paulo Court of Justice. The central objective is to examine how these models can effectively perform information extraction, entity recognition, and summarization tasks, while maintaining high accuracy, computational efficiency, and the ability to navigate the complexities of legal language.
 
 Leveraging previously conducted empirical research (as a strategy for resource and emission savings), we will use datasets already annotated by experts. Decisions related to the cases used will be collected via web scraping, and new decisions will be gathered for subsequent model application. Following this, a selection of open-source language models—including LLaMA, LOLA, Mistral, GPT-2, Phi, Gemma, and DeepSearch—will be evaluated and fine-tuned within a consistent prompt framework tailored to legal analysis. Baseline performance metrics will guide potential optimization techniques, such as pruning or distillation, aimed at reducing computational overhead.
@@ -20,212 +18,64 @@ Finally, both the curated dataset and a cost-effective fine-tuned model will be 
 # 2. Motivation and background
 
 <!--  2.  Motivation and background: Why is this research question interesting to you, how does your background align with the topic, and what skills or knowledge do you want to acquire by doing the work that is valuable for your future career? -->
-
-Empirical legal research plays a crucial role in shaping effective public policies, ensuring that legislative and judicial decisions are informed by rigorous, data-driven analysis rather than intuition, ideology, or anecdotal evidence. However, in Brazil and many other jurisdictions, legal scholarship has traditionally relied on qualitative, doctrinal, and theoretical approaches. While these methods provide valuable insights, they often lack the empirical foundation necessary to identify patterns, assess systemic biases, and evaluate the real-world impact of legal decisions. This gap in empirical legal research hinders the development of policies that are both evidence-based and effective in addressing social and judicial inequalities.
+<!-- Empirical legal research plays a crucial role in shaping effective public policies, ensuring that legislative and judicial decisions are informed by rigorous, data-driven analysis rather than intuition, ideology, or anecdotal evidence. However, in Brazil and many other jurisdictions, legal scholarship has traditionally relied on qualitative, doctrinal, and theoretical approaches. While these methods provide valuable insights, they often lack the empirical foundation necessary to identify patterns, assess systemic biases, and evaluate the real-world impact of legal decisions. This gap in empirical legal research hinders the development of policies that are both evidence-based and effective in addressing social and judicial inequalities.
 
 In the Brazilian legal landscape, issues such as judicial bias, sentencing disparities, and the impact of legal reforms remain largely underexplored due to the absence of systematic data analysis. Without a strong empirical foundation, policymakers and legal practitioners struggle to craft solutions that address underlying injustices or inefficiencies in the justice system. This deficiency has significant implications, particularly in areas such as drug policy, criminal sentencing, and gender and racial disparities in legal outcomes. Without reliable data, reform efforts risk being misdirected, ineffective, or even counterproductive.
 
-Open-source language models and computational legal research offer a transformative opportunity to bridge this gap. By leveraging large-scale datasets of judicial decisions, natural language processing (NLP) techniques, and advanced statistical methods, this research seeks to provide an empirical foundation for legal discussions that were previously dominated by theoretical arguments. The application of machine learning and artificial intelligence to legal texts enables a systematic analysis of judicial trends, bias detection, and policy evaluation at a scale that traditional legal research cannot achieve.
-
-This project aligns with a broader movement toward the quantification and systematization of legal studies, aiming to make legal research more transparent, replicable, and policy-relevant. By developing cost-effective, open-source tools for analyzing judicial decisions, this research will empower scholars, policymakers, and practitioners to engage with legal data in new ways, fostering a more robust, evidence-based approach to legal scholarship and policy reform.
+Open-source language models and computational legal research offer a transformative opportunity to bridge this gap. This research seeks to provide an empirical foundation for legal discussions that were previously dominated by theoretical arguments. The application of machine learning and artificial intelligence to legal texts enables a systematic analysis of judicial trends, bias detection, and policy evaluation at a scale that traditional legal research cannot achieve.
 
 My background in law, data science, and public policy provides a unique vantage point for tackling these challenges. Throughout my academic and professional trajectory, I have worked at the intersection of law and technology, exploring how computational tools can enhance legal analysis. Through this project, I seek to deepen my expertise in NLP, empirical research methodologies, and legal informatics, skills that will be invaluable for a career dedicated to legal innovation and policy analysis.
 
 Ultimately, this research aims to contribute to a more just and effective legal system by ensuring that judicial and legislative decision-making is guided by empirical evidence rather than assumptions. By demonstrating how open-source language models can enhance legal research, this project will not only advance academic inquiry but also provide practical tools for policymakers and legal professionals committed to evidence-based governance.
+-->
+
+Empirical legal research is essential for shaping effective public policies by ensuring that judicial and legislative decisions are grounded in rigorous, data-driven analysis rather than intuition or anecdote. In Brazil and many other jurisdictions, legal scholarship has traditionally relied on qualitative and doctrinal approaches, which, while insightful, often fail to capture systemic biases or the real-world impact of legal decisions. This gap hinders the development of evidence-based policies that address social and judicial inequalities, especially in critical areas such as drug policy, criminal sentencing, and disparities in treatment based on gender and race.
+
+The Brazilian legal landscape, characterized by underexplored issues like judicial bias and sentencing disparities, urgently needs empirical research to support policy reform. Without systematic data analysis, policymakers and legal practitioners lack the reliable evidence needed to craft interventions that effectively address injustices in the justice system. This shortfall not only limits the capacity for meaningful reform but also risks misdirecting policy efforts, thereby perpetuating inefficiencies and inequities.
+
+Open-source language models and advanced computational legal research offer a transformative solution by enabling large-scale, systematic analysis of judicial trends and biases. By integrating machine learning, natural language processing, and empirical methods, this research will develop cost-effective, domain-specific models that provide deep insights into Brazilian court decisions. This approach not only strengthens academic inquiry but also equips policymakers and legal professionals with practical tools for fostering a more transparent and evidence-based legal system.
+
 
 # 3. Introduction
-
 <!--  3.  Introduction: Discuss what is the context for the research question and what previous work has been conducted in this area. Please discuss 1-3 key academic papers that are most relevant to your project. You should summarise the papers, the goal and achievement of the papers, data and methods used in the papers, and how they relate to your proposed topic. Also include references to other relevant papers in the introduction as needed. -->
-
-## 3. Introduction
-
 The ability to use machine learning tools for extracting key information from legal documents has grown in strategic importance. Courts produce vast amounts of textual data that demand specialized, efficient, and transparent methods for annotation, classification, summarization, and analysis. Recent studies on large language models (LLMs) emphasize that simple off-the-shelf prompting is often insufficient for complex, domain-specific tasks, such as interpreting legal statutes or synthesizing intricate court rulings. Specialized fine-tuning offers a promising route to address these gaps in a cost-effective manner, enabling targeted legal tasks with relatively modest datasets.
 
 Against this backdrop, a number of recent papers have explored domain-adapted LLMs, focusing on areas such as U.S. Supreme Court judgments, multi-jurisdictional summarization datasets, low-resource annotation strategies, specialized Portuguese LLMs, and local legal sentencing data. This section summarizes six central works that form the basis for the proposed research in Brazilian empirical legal studies, each subtopic highlighting their goals, data, methods, achievements, and relevance.
 
-### 3.1 Dominguez-Olmedo et al. (2024): "Lawma: The Power of Specialization for Legal Tasks"
+Dominguez-Olmedo et al. (2024) "Lawma: The Power of Specialization for Legal Tasks" evaluated whether fine-tuning an open-source LLaMA 3-based model on legal corpora could match or surpass GPT-4 for classification tasks covering the U.S. Supreme Court Database and Courts of Appeals. Their approach involved a consistent prompt framework with limited labeled data, showing double-digit accuracy gains over GPT-4. This underscores how specialized domain adaptation can outperform commercial black-box APIs, an insight especially pertinent to jurisdictions (like Brazil) seeking robust, open-source solutions to handle large volumes of judicial decisions. Also, they have showed that a relatively small amount of labeled data (about 100 cases) can yield strong results, which is particularly relevant for resource-constrained settings like Brazilian legal research.
 
-**Summary and Goals** Dominguez-Olmedo et al. (2024) set out to determine whether fine-tuning open-source language models on domain-specific legal data could surpass commercial, general-purpose models. Their work focused on 260 real-world classification tasks derived from both the U.S. Supreme Court Database (Spaeth et al. 2023) and U.S. Courts of Appeals, aiming to measure improvements in legal text classification.
+Corrêa et al. (2024) "Tucano and GigaVerbo" focus on Portuguese NLP by releasing Tucano, a series of open-source language models, and GigaVerbo, a 200-billion-token corpus that spans journalism, academic texts, and more. By thoroughly documenting training code, data-cleaning protocols, and model checkpoints, they enable easy replication and fine-tuning for domain-specific tasks. These transparent workflows exemplify a scalable blueprint for model adaptation, highlighting the significance of reproducibility and language-specific tokenization for Portuguese texts.  In terms of achievements, Tucano demonstrated substantial improvements over generic multilingual models for Portuguese, proving the value of custom tokenizers, large corpora, and publicly available checkpoints. This is highly relevant to Brazilian judicial contexts, where specialized legal language and local idiomatic usage require domain-adapted text representations. Tucano thus offers a robust starting point for fine-tuning on legal corpora, facilitating more accurate document classification, entity extraction, and summarization in low-resource language scenarios.
 
-**Data and Methods** - **Data**: An extensive range of U.S. legal texts, featuring Supreme Court opinions and Courts of Appeals decisions. - **Models**: A lightly fine-tuned LLaMA 3-based model (Lawma), benchmarked against GPT-4 in zero-shot mode. - **Approach**: A consistent prompt framework for classification tasks, needing minimal labeled data.
+Junior et al. (2024) introduced Juru, a large language model pre-trained on 1.9 billion tokens from authoritative Brazilian legal sources—federal laws, academic papers, and court rulings. Focusing on classification tasks for multiple-choice law exams, Juru showed a notable boost in domain-specific performance, albeit with some trade-off in general-language tasks. Its main achievement is demonstrating that smaller, high-quality corpora can significantly boost legal reasoning. For Brazilian empirical studies, Juru highlights a direct route to develop domain knowledge while keeping computational footprints manageable.
 
-**Achievements** Their specialized model outperformed GPT-4 with double-digit improvements, despite using comparatively fewer labeled samples. This underscores that well-chosen domain data, coupled with prompt engineering, can yield strong outcomes with lower overhead.
+Lacerda e Silva (2019) investigates disparities in drug-related sentencing in São Paulo, examining how gender, race, and age intersect to influence judicial decisions. In Punindo as Diferenças, Lacerda e Silva (2019) collected 352 drug-related sentencing decisions, systematically tabulating variables (race, gender, age, drug quantity, and so on) and applying jurimetric methods. The main achievement lies in uncovering potential extralegal biases—e.g., older Black men often receiving harsher sentences—offering a critical empirical window into structural discrimination. This highlights the urgency of domain-focused NLP tools: accurate extraction of sentencing patterns can lead to data-driven reforms, crucial for bridging racial and gender inequities in the Brazilian justice system. Also, this work is very important because it offers a high-quality dataset that can be used to train and test NLP models in the Brazilian legal context, specially in drug-related research.
 
-**Relevance to Proposed Work** Lawma’s success hints that carefully curated corpora of Brazilian judicial decisions may similarly enable robust legal analytics, especially where localized data is appropriately integrated.
-
-------------------------------------------------------------------------
-
-### 3.2 Santosh et al. (2024): LexSumm and LexT5 for Summarization
-
-**Summary and Goals** Santosh et al. (2024) introduced **LexSumm**, a specialized benchmark for legal summarization, along with **LexT5**, a sequence-to-sequence model tailored for handling generative tasks in legal contexts. Their aim was to address the shortfalls of purely predictive benchmarks by demonstrating how generative frameworks can synthesize complex legal content more effectively.
-
-**Data and Methods** - **Data**: Summarization datasets spanning legal texts from the U.S., UK, EU, and India, capturing diverse legal traditions. - **Models**: A T5-based approach (LexT5) specifically adjusted for summarization. - **Approach**: Detailed evaluations highlight how generative models capture deeper interpretative cues in legal discourse—content that classification approaches often ignore.
-
-**Achievements** LexSumm provides a clear path for evaluating legal summarization models, while LexT5 underscores how domain adaptation substantially enhances output quality and interpretability of long, text-heavy legal documents.
-
-**Relevance to Proposed Work** Brazilian courts can benefit from domain-tuned summarization to condense extensive rulings. LexT5 demonstrates how generative approaches clarify multi-faceted legal arguments—an approach readily transferable to a Brazilian corpus.
-
-------------------------------------------------------------------------
-
-### 3.3 Adhikary et al. (2024): Weakly Supervised Attribute Extraction
-
-**Summary and Goals** Adhikary et al. (2024) tackled the cost-intensive process of labeling large legal corpora by proposing a weakly supervised sequence labeling framework. Their main use case involved criminal case documents, focusing on extracting structured attributes like defendant information and case status with minimal labeled data.
-
-**Data and Methods** - **Data**: A collection of criminal court documents containing repeated textual patterns (entities, judgments, statutes). - **Models**: A synergy between pseudo-relevance feedback and large language models such as GPT-2, Llama-2, and GPT-3.5. - **Approach**: Automating data augmentation strategies to enhance classification accuracy for tasks like statute identification and judicial outcome prediction.
-
-**Achievements** They substantially reduced the annotation burden by generating synthetic samples, demonstrating that a lean set of gold-standard examples can be expanded efficiently for improved attribute extraction.
-
-**Relevance to Proposed Work** Brazil’s massive judicial output similarly requires minimal annotation solutions. Their methodology points to how synthetic or weakly supervised expansions of a labeled set could optimize training for specialized tasks like drug sentencing or appellate reviews.
-
-------------------------------------------------------------------------
-
-### 3.4 Corrêa et al. (2024): Tucano and GigaVerbo
-
-**Summary and Goals** Corrêa et al. (2024) honed in on Portuguese NLP specifically, unveiling **Tucano**—open-source large language models—and **GigaVerbo**, a 200-billion-token corpus spanning multiple Portuguese text domains. Their guiding principle was reproducibility, aiming to bolster research in low-resource settings.
-
-**Data and Methods** - **Data**: The GigaVerbo corpus, one of the largest compiled Portuguese repositories, covering journalism, academic texts, and more. - **Models**: Multiple sizes of the Tucano architecture, systematically documented and released. - **Approach**: Transparent code, data cleaning, and checkpoint releases, enabling others to replicate or refine the pipeline for specialized tasks.
-
-**Achievements** They support deeper Portuguese NLP, providing both a robust baseline and a methodological template. While their scope extends beyond law, the clarity of their pipeline stands as a roadmap for domain-specific adaptation in Brazilian courts.
-
-**Relevance to Proposed Work** Because Brazilian judicial documents rely on particular Portuguese idioms and formatting, Tucano’s custom tokenizers and extensive language models offer a springboard for more effective entity extraction and summarization.
-
-------------------------------------------------------------------------
-
-### 3.5 Junior et al. (2024): Juru for Brazilian Legal Specialization
-
-**Summary and Goals** Junior et al. (2024) introduced **Juru**, a domain-driven large language model for Brazilian legal texts. They curated a 1.9-billion-token corpus from academic literature, federal laws, and other reputable sources, aiming to boost performance on local legal tasks.
-
-**Data and Methods** - **Data**: Brazilian legal scholarship and regulatory texts, gleaned from recognized sources. - **Models**: A specialized pretraining approach, focusing on classification tasks like sentencing. - **Approach**: Tested improvements on multiple-choice law exams, noting the inherent trade-off between domain and general-language capabilities.
-
-**Achievements** Juru outperformed its base model on law-specific benchmarks, though it showed some decline in broader competencies—a known compromise in domain adaptation.
-
-**Relevance to Proposed Work** By centering on smaller, more authoritative data, Juru exemplifies how specialized knowledge can improve classification and QA in Brazilian legal contexts, paralleling the drive to handle local sub-domains like drug decriminalization or gender bias.
-
-------------------------------------------------------------------------
-
-### 3.6 Lacerda e Silva (2019): *Sentencing Disparities ("Punindo as Diferenças")*
-
-**Summary and Goals** Lacerda e Silva (2019) investigates disparities in drug-related sentencing in São Paulo, examining how gender, race, and age intersect to influence judicial decisions. Drawing on Black feminist criminology and critical criminological approaches, she asks whether extralegal stereotypes lead to discriminatory sentencing patterns.
-
-**Data and Methods** - **Data**: A high-quality, tabulated dataset of 352 criminal sentences from 2017 in the Barra Funda district of São Paulo’s Court of Justice, focusing on drug offenses. - **Approach**: Statistical jurimetrics, including descriptive analysis and regression, to test whether demographic attributes correlate with sentencing outcomes.
-
-**Achievements** Beyond uncovering evidence of potential systemic biases—e.g., more severe sentences for older Black male defendants—the study contributed a valuable coded corpus linking case features and sentencing metrics.
-
-**Relevance to Proposed Work** Her curated dataset of judgments offers a gold mine for testing or training NLP-based classification or extraction frameworks in a Brazilian legal context. By demonstrating how non-legal factors might shape sentencing, it underscores the importance of applying domain-adapted LLMs to reveal or mitigate discrimination.
-
-------------------------------------------------------------------------
-
-## Connection to the Proposed Research
+It is also noteworthy: Santosh et al. (2024) introduced a specialized legal summarization benchmark, demonstrating that generative methods significantly enhance the clarity of judicial text summaries, which can condense multi-page opinions into concise briefs for efficient large-scale analysis. Similarly, Adhikary et al. (2024) showcased a weakly supervised strategy to expand small annotated datasets for attribute extraction, reducing the human annotation burden and improving classification accuracy—an approach particularly relevant for scaling analysis in Brazilian courts where manual labeling is impractical.
 
 All six lines of inquiry converge on the value of specialized, domain-focused fine-tuning. They collectively argue that curated data and methodical adaptation substantially outperform generic prompting in legal tasks, even when only moderate-sized labeled sets are available. This lesson is critical for empirical legal studies in Brazil, where massive volumes of text—from criminal decisions to appellate rulings—remain largely untapped.
 
-Specifically: - **Efficiency Gains**: Dominguez-Olmedo et al. (2024) show that moderate domain data can yield strong results. - **Generative Summaries**: Santosh et al. (2024) highlight advanced summarization frameworks that can parse dense decisions. - **Cost-Effective Annotation**: Adhikary et al. (2024) demonstrate expansions of small labeled sets for improved extraction. - **Portuguese Domain**: Corrêa et al. (2024) emphasize replicable pipelines in a low-resource language, crucial for Brazil. - **Law-Focused Tuning**: Junior et al. (2024) show a direct performance boost when tailoring LLMs to local legal corpora. - **Sentencing Disparities**: Lacerda e Silva (2019) underlines the real-world stakes of analyzing extralegal factors, offering a coded dataset that can strengthen or evaluate new NLP tools.
-
-By weaving together these approaches—focusing on minimal but high-quality annotation, generative frameworks, and careful domain tuning—this project seeks to empower large-scale empirical research on Brazilian judicial decisions. The synergy of specialized corpora, generative modeling, and domain expertise paves the way for deeper, data-driven insights into judicial processes, from drug-related sentencing to potential gender and racial bias in the courts.
-
 # 4. Research question
-
 <!-- 4.  Research question: What research question will you try to answer with the thesis and what is the main approach to address the question? -->
-
 How can open-source language models be optimally deployed in the Brazilian legal context to accurately extract information, recognize entities, and summarize complex legal documents, considering factors such as cost, computational efficiency, and the specific challenges of legal language and document structure?
 
-# 5. Data and methods
+# 5. Data and Methods
+This project integrates multiple publicly available and curated datasets of Brazilian judicial decisions to develop an empirically grounded approach. From the São Paulo Court (TJ-SP), I have 3 million decisions containing structured metadata (e.g., case ID, court, magistrate), all hosted on Google Cloud BigQuery and suitable for large-scale text processing. Additionally, I have acquired two high-quality labeled datasets: Benatti’s domestic violence dataset provides 160 expertly annotated rulings with insights into gender biases, while Lacerda e Silva’s (2019) drug sentencing corpus includes 300+ decisions rich in demographic and sentencing variables. Together, these sources ensure coverage across diverse legal domains, from family law to criminal drug offenses.
 
-<!--  5.  Data and methods: What data and methods are you planning to use? Please be as specific as possible in what you want to approach to achieve to facilitate further discussion whether it is appropriate for answering the research question. Also mention alternative methods, especially if you are unsure about which method is best. -->
+For methods, I will combine NLP pipelines and statistical analyses. First, I will clean and tokenize the textsfocusing on removing boilerplate elements and capturing essential named entities (judges, parties, legislative references). Pretrained open-source LLMs (e.g., LLaMA 3, Mistral, Gemma) form the baseline. Each will be assessed zero-shot on extracting key attributes (like charges, defendant demographics) before fine-tuning.
 
-### 5. Data and Methods
+Fine-tuning centers on verifying model accuracy against gold-standard references, particularly in attribute extraction and possibly classification and summarization if time allows. LoRA or full fine-tuning will be employed on TPU/GPU infrastructure, balancing resource constraints with performance needs. Core metrics include accuracy, F1, and perplexity for generation tasks. If improvements are strong, I may compress the resulting models via pruning or distillation to lower computational demands.
 
-A robust empirical legal analysis requires high-quality, structured datasets and carefully selected computational methods. This study leverages extensive judicial decision data, applying machine learning and natural language processing (NLP) techniques to extract insights, detect patterns, and assess systemic biases in legal decision-making. Below, I outline the data sources, collection strategies, preprocessing steps, and analytical methods that will be used to achieve these objectives.
+A successful outcome involves producing an open-source, domain-tuned model on Hugging Face, plus a robust annotated dataset for replicable experimentation. Ideally, this model can auto-extract sentencing details and party attributes, generating concise legal summaries. Lastly, if data permits, I will assess how partial marijuana decriminalization (post mid-2024 STF ruling) shifted judicial sentencing, demonstrating the model’s capacity to track policy changes.
 
-#### **5.1 Data Sources and Collection Strategy**
-
-This research will utilize a combination of publicly available judicial records, curated datasets from prior studies, and potentially newly annotated corpora—ensuring a diverse and representative sample of Brazilian court decisions.
-
-##### **TJ-SP Dataset (3 Million Decisions)**
-
-This dataset was collected and made publicly available by me, using web scraping and official court portals. It contains over 3 million judicial decisions from the São Paulo State Court across various legal fields. Each record includes structured fields such as case identification (\`processo\`), court/jurisdiction (\`vara\`, \`foro\`), magistrate (\`magistrado\`), legal classification (\`classe\`, \`assunto\`), and metadata like the date of publication (\`disponibilizacao\`) and the time of collection (\`hora_coleta\`).
-
-**Relevance**: - Provides a broad view of judicial practices at scale. - Useful for cross-domain comparisons (criminal, civil, family, etc.). - Facilitates large-scale text processing and classification tasks.
-
-**Availability**: Hosted on Google Cloud BigQuery, publicly accessible for academic research, ensuring reproducibility and transparency.
-
-##### **Benatti’s Domestic Violence and Parental Alienation Dataset**
-
-This dataset consists of approximately **160 annotated decisions** related to domestic violence and parental alienation in São Paulo, curated by Benatti et al. ([Zenodo link](https://zenodo.org/records/7794781)). It includes attributes such as party gender, main and subsidiary requests, legal codes under dispute, and potentially biased statements.
-
-**Relevance**: - Enables a focused analysis of gender bias and domestic violence jurisprudence. - High-quality annotations on biased judicial language.
-
-**Availability**: Restricted access, but I have obtained explicit authorization for use, ensuring compliance with data-sharing policies.
-
-------------------------------------------------------------------------
-
-##### **Lacerda’s Drug Sentencing Dataset**
-
-Developed by Lacerda e Silva (2019), this dataset comprises **300+ judicial decisions** on drug trafficking in São Paulo’s Barra Funda jurisdiction. It contains 20+ variables spanning demographic attributes (e.g., gender, race, age), sentencing factors (regime, aggravations, final penalty), and textual elements (e.g., judicial reasoning).
-
-**Relevance**: - Ideal for examining sentencing disparities in drug cases, including racial and gender biases. - Offers detailed insight into judges’ reasoning and the role of extralegal factors.
-
-**Availability**: Not publicly available; acquired through direct agreement with the researcher.
-
-#### Data Representation and Labeling
-
-Each judicial decision is parsed, cleaned, and annotated for various attributes (e.g., party relationships, outcomes, or biased statements). This structured approach enables both systematic statistical analysis and robust machine learning tasks. Combining these three datasets provides a complementary, in-depth view of different legal domains, from domestic violence to drug offenses, strengthening the empirical foundation of this research.
-
-#### **5.2 Methods and Analytical Approach**
-
-This study will employ **machine learning**, **natural language processing (NLP)**, and **statistical analysis** to extract insights from judicial texts and assess the impact of fine-tuning legal language models. The methodological framework consists of the following steps:
-
-##### **1. Preprocessing and Feature Engineering**
-
--   **Text Cleaning:** Removing boilerplate text, citations, and metadata to ensure clean inputs for NLP models.
--   **Tokenization & Embeddings:** Utilizing **Byte-Pair Encoding (BPE)** or **SentencePiece tokenization** (depending on the selected models).
--   **Legal-Specific Feature Extraction:** Identifying named entities (e.g., **judges, parties, legal references**) and structuring decision-making patterns.
-
-##### **2. Baseline Model Evaluation**
-
--   A diverse set of **pretrained open-source LLMs** will be tested on legal tasks before fine-tuning.\
--   **Candidate models**:
-    -   **LLaMA 3.1/3.2** (Meta’s latest open-source LLM)
-    -   **LOLA** (Multi-language oriented LLMs)
-    -   **Mistral-7B**
-    -   **GPT-2 and Phi models**
-    -   **Gemma** (Google's lightweight alternative to GPT)\
--   These models will be evaluated using consistent prompting strategies to establish baseline performance.
-
-##### **3. Fine-Tuning and Legal Task Evaluation**
-
--   The primary goal is to assess how accurately the model can extract relevant information from judicial texts (e.g., the type of offense, defendant attributes, and sentencing factors) against a gold-standard, human-annotated reference.
--   If time permits, I may also evaluate additional tasks such as **classification** (e.g., distinguishing drug-related from non-drug cases), **named entity recognition** (NER) for legal references (e.g., laws, parties, or docket numbers), and **legal summarization** (producing concise case summaries).
--   Fine-tuning will be carried out on **TPU or GPU-based infrastructure**, using either **low-rank adaptation (LoRA)** or full fine-tuning, depending on computational constraints and performance goals. We are relying heavly on Hertie School's GPU server.
-
-##### **4. Performance Testing and Model Optimization**
-
--   After fine-tuning, models will be **retested using held-out validation datasets** to assess improvements.
--   Metrics used:
-    -   **Accuracy, F1-score, and AUC-ROC** for classification tasks.
-    -   **ROUGE and BERTScore** for summarization.
-    -   **Perplexity and log-likelihood** for general text generation quality.
--   If promising, I will explore **model compression techniques** such as **pruning and knowledge distillation** to reduce computational costs, making legal AI more accessible.
-
-<!--  Expected results: Describe what a successful outcome of your project would look like. -->
+This streamlined approach—coupling curated legal corpora with targeted LLM fine-tuning—will deliver both practical analysis tools and a demonstration of how specialized NLP pipelines can inform policy by highlighting hidden biases or systemic trends in Brazilian court decisions.
 
 ## 6. Expected Results
+<!--  Expected results: Describe what a successful outcome of your project would look like. -->
+By the conclusion of this research, the project is expected to yield a cost-effective, domain-tuned legal LLM that is specialized for the Brazilian judicial context and openly available on platforms such as Hugging Face. This model will be optimized to extract key information from judicial texts—ranging from sentencing details and party demographics to legal summarizations—using curated datasets of Brazilian court decisions. The high-quality, annotated corpora assembled (including the TJ-SP dataset, Benatti’s domestic violence cases, and Lacerda e Silva’s drug sentencing records) will enable reproducible evaluations and facilitate cross-jurisdiction comparisons, ultimately serving as a robust foundation for further legal AI research.
 
-By the conclusion of this research, a successful outcome would include:
-
-1.  **Domain-Tuned and Cost-Effective Legal LLM**
-    -   Development of a small, open-source language model specialized for the Brazilian legal context, optimized to run at reduced computational cost. Hosted on Hugging Face, it will allow other researchers and policymakers to replicate or adapt the model for various legal tasks.
-2.  **High-Quality Dataset for Replicable Methods**
-    -   Curated corpora and gold-standard annotations for drug-related offenses, domestic violence cases, and potentially commercial or tax law. This dataset will enable reproducible evaluations of legal AI techniques and facilitate cross-jurisdiction comparisons.
-3.  **Automated Reporting on Legal Issues**
-    -   Demonstration that the fine-tuned model can generate coherent, data-backed summaries and analyses of relevant legal topics. Specifically, the research will showcase how the model can produce a short report on a chosen case or legal domain—e.g., summarizing major arguments, pointing to potential biases, or highlighting frequently cited precedents.
-4.  **Preliminary Analysis of Marijuana Decriminalization Impact**
-    -   If time and data permit, a pilot study examining the immediate judicial impacts of the Supreme Federal Court (STF) decision on the partial decriminalization of marijuana, slated for June 2024. Using the model to extract sentencing changes, trends, and any emergent biases will underline how quickly and systematically AI tools can capture policy shifts.
-
-By achieving these milestones, the project not only demonstrates the practical benefits of domain-specific legal language models but also underscores their potential to inform data-driven policy discussions in Brazil. Researchers and practitioners will gain accessible tools for large-scale judicial text analysis, ultimately fostering a more empirical, transparent, and evidence-based framework for legal decision-making.
+Additionally, the project aims to demonstrate the practical utility of the model in generating automated, data-backed legal reports. As a preliminary application, the model may be used to analyze the impact of the Supreme Federal Court’s June 2024 decision on partial marijuana decriminalization by extracting and summarizing sentencing trends and emergent biases. Overall, these achievements will contribute to a more transparent, empirical, and evidence-based framework for legal decision-making in Brazil, thereby informing policy discussions and reducing reliance on expensive commercial APIs or labor-intensive human annotation.
 
 # 7. Timeline of the project
-
 <!--  Timeline of the project: A Gannt chart or a table that indicates key milestones. -->
 <!--
 -   [x] 1. Data collection and annotation: from October to November 2024
@@ -243,7 +93,6 @@ By achieving these milestones, the project not only demonstrates the practical b
 -   [ ] 13. Submission: until 20th April 2025
 -   [ ] 14. Poster presentation: until 12th May 2025
 -->
-
 ```{r gantt, echo=FALSE,  fig.width=12, fig.height=8, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(lubridate)
@@ -326,26 +175,14 @@ ggplot(gantt_data, aes(x = Start, xend = End, y = Task, yend = Task)) +
 # 8. References
 
 1.  **Adhikary, Subinay, Procheta Sen, Dwaipayan Roy, and Kripabandhu Ghosh.** 2024. “A Case Study for Automated Attribute Extraction from Legal Documents Using Large Language Models.” *Artificial Intelligence and Law*, November 11. <https://doi.org/10.1007/s10506-024-09425-7>.
-
 2.  **Corrêa, Nicholas Kluge, Aniket Sen, Sophia Falk, and Shiza Fatimah.** 2024. “Tucano: Advancing Neural Text Generation for Portuguese.” *arXiv*, November 12. <https://doi.org/10.48550/arXiv.2411.07854>.
-
 3.  **Dominguez-Olmedo, Ricardo, Vedant Nanda, Rediet Abebe, Stefan Bechtold, Christoph Engel, Jens Frankenreiter, Krishna Gummadi, Moritz Hardt, and Michael Livermore.** 2024. “Lawma: The Power of Specialization for Legal Tasks.” *arXiv*, July 23. <http://arxiv.org/abs/2407.16615>.
-
 4.  **Goebel, Randy, Yoshinobu Kano, Mi-Young Kim, Juliano Rabelo, Ken Satoh, and Masaharu Yoshioka.** 2023. “Summary of the Competition on Legal Information, Extraction/Entailment (COLIEE) 2023.” In *Proceedings of the Nineteenth International Conference on Artificial Intelligence and Law*, 472–80. Braga, Portugal: ACM. <https://doi.org/10.1145/3594536.3595176>.
-
 5.  **Junior, Roseval Malaquias, Ramon Pires, Roseli Romero, and Rodrigo Nogueira.** 2024. “Juru: Legal Brazilian Large Language Model from Reputable Sources.” *arXiv*, March 26. <https://doi.org/10.48550/arXiv.2403.18140>.
-
 6.  **Niklaus, Joel, Veton Matoshi, Pooja Rani, Andrea Galassi, Matthias Stürmer, and Ilias Chalkidis.** 2023. “LEXTREME: A Multi-Lingual and Multi-Task Benchmark for the Legal Domain.” In *Findings of the Association for Computational Linguistics: EMNLP 2023*, 3016–54. <https://doi.org/10.18653/v1/2023.findings-emnlp.200>.
-
 7.  **Santosh, T. Y. S. S., Cornelius Weiss, and Matthias Grabmair.** 2024. “LexSumm and LexT5: Benchmarking and Modeling Legal Summarization Tasks in English.” *arXiv*. <https://doi.org/10.48550/ARXIV.2410.09527>.
-
 8.  **Saphra, Naomi, Eve Fleisig, Kyunghyun Cho, and Adam Lopez.** 2024. “First Tragedy, Then Parse: History Repeats Itself in the New Era of Large Language Models.” *arXiv*, March 25. <http://arxiv.org/abs/2311.05020>.
-
 9.  **Silva, Marina Lacerda.** 2021. “Punindo as Diferenças: Gênero, Raça e Geração No Sentenciamento de Tráfico de Drogas Na Cidade de São Paulo.” Master’s Thesis, Universidade de Brasília. <http://www.rlbea.unb.br/jspui/handle/10482/41413>.
-
 10. **Srivastava, Nikit, Denis Kuchelev, Tatiana Moteu Ngoli, Kshitij Shetty, Michael Röder, Diego Moussallem, Hamada Zahera, and Axel-Cyrille Ngonga Ngomo.** 2024. “LOLA – An Open-Source Massively Multilingual Large Language Model.” *arXiv*, September 19. <http://arxiv.org/abs/2409.11272>.
-
 11. **Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, and Illia Polosukhin.** 2023. “Attention Is All You Need.” *arXiv*, August 2. <https://doi.org/10.48550/arXiv.1706.03762>.
-
-12. **Benatti, M. R.** (2023). *Revealing Gender Biases in (TJSP) Court Decisions with Natural Language Processing (1.0.0) \[Data set\]*. Zenodo.\
-    <https://doi.org/10.5281/zenodo.7794781> \`\`\`
+12. **Benatti, M. R.** (2023). *Revealing Gender Biases in (TJSP) Court Decisions with Natural Language Processing (1.0.0) \[Data set\]*. Zenodo. <https://doi.org/10.5281/zenodo.7794781>.xw
