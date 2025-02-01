@@ -1,1 +1,8 @@
 data/lacerda/Pesquisa Empírica
+.Rproj.user
+data/lacerda/tjsp_drugs/sentences/*.html
+data/lacerda/tjsp_drugs/sentences/pdf/*.pdf
+*.Rproj
+*.Rproj.user
+*.Rproj.session
+*.Rhistory
