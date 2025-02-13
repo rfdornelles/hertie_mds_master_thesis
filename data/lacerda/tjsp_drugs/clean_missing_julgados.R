@@ -69,4 +69,17 @@ read_pdf_tibble <- function(file) {
 tbl_new_pdf <- pdf_files |> 
   purrr::map_dfr(read_pdf_tibble, .progress = TRUE)
 
-tbl_new_pdf
+tbl_new_pdf |> 
+  dplyr::mutate(
+    julgado = stringr::str_remove(julgado, '^fls. [0-9]* TRIBUNAL DE JUSTIÇA DO ESTADO DE SÃO PAULO COMARCA DE SÃO PAULO FORO CENTRAL CRIMINAL BARRA FUNDA '),
+    julgado = stringr::str_remove_all(julgado, "Este documento é cópia do original, assinado digitalmente por (.+?), liberado nos autos em [0-9]{1,2}/[0-9]{1,2}/[0-9]{4} às [0-9]{1,2}:[0-9]{1,2}")
+)
+
+tbl_tjsp <- tbl_tjsp |> 
+  dplyr::mutate(
+    classificacao = tjsp::tjsp_classificar_sentenca(julgado)
+)
+
+tbl_tjsp |>  
+  dplyr::filter(is.na(classificacao)) |> 
+  dplyr::pull(processo)
