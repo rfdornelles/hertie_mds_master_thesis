@@ -29,9 +29,9 @@ tbl_lacerda <- db_lacerda |>
     -sentenca_agrup,
     -aumento33,
     -regime_inicial_agrupado,
+    -x4o,
   ) |> 
   dplyr::rename(
-   paragrafo_4o =  x4o,
    paragrafo_4o_agrupado = x4o_agrupado,
    concurso_formal = conc_form,
   )
