@@ -2,7 +2,7 @@
 
 ## dataset: 
 dados_sentencas <- nanoparquet::read_parquet(
-  "../dados_sentencas.parquet") |> 
+  "../dados_sentencas_bd.parquet") |> 
   tibble::as_tibble()
 
 dados_sentencas 
@@ -100,7 +100,7 @@ empty_sentences <- tbl_tjsp |>
 dir <- "sentences/manual_download/empty_files"
 dir.create(dir, showWarnings = FALSE)
 
-tjsp::autenticar()
+#tjsp::autenticar()
 
 tbl_manual_empty <- tbl_tjsp |> 
   dplyr::filter(processo %in% empty_sentences) |> 
@@ -145,12 +145,32 @@ tbl_tjsp <- tbl_tjsp |>
   dplyr::mutate(
     julgado = dplyr::coalesce(julgado.x, julgado.y)
   ) |> 
-  dplyr::select(-starts_with("julgado."), -sentenca, -cd_doc)
+  # dplyr::select(-starts_with("julgado."), -sentenca, -cd_doc, 
+  #               -pagina, -hora_coleta, -duplicado)
+  dplyr::select(processo, julgado)
 
 tbl_tjsp |> 
   dplyr::distinct(processo)
 
+## those will need to be substituted
 dados_sentencas |> 
   dplyr::select(processo) |>
   dplyr::left_join(tbl_tjsp, by = "processo", relationship = 'many-to-many') |> 
-  dplyr::filter(is.na(julgado))
+  dplyr::filter(is.na(julgado) | stringr::str_length(julgado) < 3000) |> 
+  tibble::view()
+
+## TODO: substitute bad julgados
+
+### join the data with the original dataset
+dados_sentencas <- dados_sentencas |> 
+  dplyr::left_join(tbl_tjsp, by = "processo") |> 
+  dplyr::relocate(julgado, .after = processo)
+
+
+# dados_sentencas[1,] |> str()
+# dados_sentencas[1,'julgado'] |> dplyr::pull()
+
+
+### export results
+dados_sentencas |> 
+  nanoparquet::write_parquet("dados_sentencas_bd_clean.parquet")
