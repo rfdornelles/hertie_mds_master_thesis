@@ -55,9 +55,20 @@ tbl_lacerda <- tbl_lacerda |>
     flag_interceptacao = stringr::str_detect(aspectos, stringr::fixed("Interceptação")),
     flag_mandado = stringr::str_detect(aspectos, stringr::fixed("Mandado")),
     flag_nacionalidade = stringr::str_detect(aspectos, stringr::fixed("Nacionalidade")),
-    flag_revista_vexatoria = stringr::str_detect(aspectos, stringr::fixed("Revista Vexatória"))
-  ) |> 
-  dplyr::select(-aspectos)
+    flag_revista_vexatoria = stringr::str_detect(aspectos, stringr::fixed("Revista Vexatória")),
+    ## outros aspectos avaliados
+    aval_antecedentes     = stringr::str_detect(aval_neg_pb, stringr::fixed("Antecedentes")),
+    aval_conduta          = stringr::str_detect(aval_neg_pb, stringr::fixed("Conduta")),
+    aval_personalidade    = stringr::str_detect(aval_neg_pb, stringr::fixed("Personalidade")),
+    aval_natureza         = stringr::str_detect(aval_neg_pb, stringr::fixed("Natureza")),
+    aval_quantidade       = stringr::str_detect(aval_neg_pb, stringr::fixed("Quantidade")),
+    aval_variedade        = stringr::str_detect(aval_neg_pb, stringr::fixed("Variedade")),
+    aval_circunstancias   = stringr::str_detect(aval_neg_pb, stringr::fixed("Circunstâncias")),
+    aval_consequencias    = stringr::str_detect(aval_neg_pb, stringr::fixed("Consequências")),
+    aval_culpabilidade    = stringr::str_detect(aval_neg_pb, stringr::fixed("Culpabilidade"))
+    
+     ) |> 
+  dplyr::select(-aspectos, -aval_neg_pb)
 
 ## split in train, validation and test
 set.seed(55)
