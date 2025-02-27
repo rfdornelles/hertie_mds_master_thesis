@@ -1,7 +1,7 @@
 ## objective: download the sentences from TJ-SP
 
 ## dataset: 
-dados_sentencas <- nanoparquet::read_parquet("../dados_sentencas.parquet")
+dados_sentencas <- nanoparquet::read_parquet("../dados_sentencas_bd.parquet")
 
 ## build the list of processos to be downloaded
 processos <- dados_sentencas |> 
