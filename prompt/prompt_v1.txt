@@ -1,6 +1,6 @@
 
 Objetivo:
-Você deverá extrair informações de sentenças judiciais de processos criminais brasileiros, com foco em delitos relacionados a tráfico de drogas e correlatos, preenchendo os dados de um dataset estruturado com 64 colunas. Cada resposta deve ser produzida para cada par processo/reu – isto é, se na sentença houver mais de um réu, gere uma resposta separada (um objeto JSON para cada par), mantendo o mesmo número de processo para todos, mas com as informações específicas de cada réu.
+Você deverá extrair informações de sentenças judiciais de processos criminais brasileiros, com foco em delitos relacionados a tráfico de drogas e correlatos, preenchendo os dados de um dataset estruturado com diversas. Cada resposta deve ser produzida para cada par processo/reu – isto é, se na sentença houver mais de um réu, gere uma resposta separada (um objeto JSON para cada par), mantendo o mesmo número de processo para todos, mas com as informações específicas de cada réu.
 
 Contexto:
 Você receberá a íntegra de uma sentença judicial (ou de uma ata de audiência contendo a sentença) de um processo criminal no Brasil. O documento pode conter diversas seções: o início com “Vistos” ou “SENTENÇA”, o relatório dos fatos, a fundamentação, a parte dispositiva (decisória) e demais informações (como depoimentos, declarações, referências a denúncias, fundamentos legais, e menções à apreensão de drogas). Também podem constar dados sobre o réu, o juiz, a vara, as penas, e flags que indicam aspectos processuais específicos.
@@ -14,10 +14,9 @@ Instruções de Extração:
 Campos a serem extraídos:
 
 - **processo**: Número do processo, composto por 20 dígitos (ex.: "00316684320178260050").
-- **julgado**: Texto integral ou trecho principal da sentença judicial.
 - **juiz**: Nome do juiz responsável.
 - **sexo_juiz**: Gênero do juiz (ex.: "Masculino" ou "Feminino").
-- **vara**: Vara criminal responsável (ex.: "3ª Vara Criminal").
+- **vara**: Vara criminal responsável (ex.: "Xª Vara Criminal").
 - **nome**: Nome completo do réu.
 - **local**: Indicação do local relacionado ao réu ou à ocorrência (ex.: "Comércio e serviços", "Via Pública", "Residência", etc.).
 - **maconha**: Informação textual sobre a maconha apreendida (ex.: "80 porções. 148,5 g"). Se não houver, utilize "0" ou "None".
@@ -42,8 +41,8 @@ Campos a serem extraídos:
 - **sentenca**: Resultado final da sentença (ex.: "Procedente", "Parcialmente procedente").
 - **res_drogas**: Resultado relacionado aos aspectos de drogas, conforme mencionado (ex.: "Art. 33").
 - **res_outros**: Resultado relacionado a outros aspectos (se aplicável; ex.: "NA", "Não"). Se não houver, utilize "None".
-- **aval_neg_pb**: Avaliação textual referente a antecedentes, natureza, quantidade, etc.
-- **pena_base**: Posição da pena base (ex.: "8a", "7a").
+- **aval_neg_pb**: Avaliação textual referente a aspectos do caso como antecedentes, natureza, quantidade, etc. Se ausentes indique "Não"
+- **pena_base**: Tempo definido como da pena base (ex.: "8a", "7a").
 - **agravantes33_agrup**: Informação sobre agravantes (valor "Sim" ou "Não").
 - **confissao**: Indicação se houve confissão do réu ("Sim" ou "Não").
 - **menoridade**: Indicação se o réu é menor ("Sim" ou "Não").
@@ -89,69 +88,68 @@ Formato da Resposta:
 Exemplo de Objeto JSON (simplificado):
 
 {
-  "processo": "00316684320178260050",
-  "julgado": "SENTENÇA Vistos, etc. ...",
-  "juiz": "Carlos Eduardo Lora Franco",
-  "sexo_juiz": "Masculino",
-  "vara": "3ª Vara Criminal",
-  "nome": "Milton Teixeira da Silva",
-  "local": "Comércio e serviços",
-  "maconha": "80 porções. 148,5 g",
-  "maconha_g": 148.5,
-  "cocaina": "3 pacotes. 1971,3 g",
-  "cocaina_g": 1971.3,
-  "crack": "7 porções. 1,1 g",
-  "crack_g": 1.1,
-  "ecstasy": "0",
-  "ecstasy_g": 0,
-  "lsd": "0",
-  "lsd_g": 0,
-  "outras": "0",
-  "anabolizantes": "Não",
-  "anorexigenos": "Não",
-  "haxixe": "Não",
-  "skank": "Não",
-  "lanca_perfume": "Não",
-  "tolueno": "Não",
-  "den_drog": "Art. 33",
-  "den_outros": "None",
-  "sentenca": "Procedente",
-  "res_drogas": "Art. 33",
-  "res_outros": "None",
-  "aval_neg_pb": "Sim. Antecedentes. Natureza. Quantidade",
-  "pena_base": "8a",
-  "agravantes33_agrup": "Sim",
-  "confissao": "Não",
-  "menoridade": "Não",
-  "atenuantes33_agrup": "Não",
-  "adolescente": "Não",
-  "arma_de_fogo": "Não",
-  "interestadual": "Não",
-  "concurso_formal": "Não",
-  "estabelecimento": "Não",
-  "aumento33_agrup": "Não",
-  "paragrafo_4o_agrupado": "Não cabimento / Não informado",
-  "pena33": "10a 2m 15d",
-  "pena33_meses": 122,
-  "pena_drogas": "NA",
-  "pena_outros": "NA",
-  "tot_pen": "10a 2m 15d",
-  "tot_pen_meses": 122,
-  "substituicao_da_pena": "NA",
-  "regime_inicial": "Fechado",
-  "flag_local_de_trafico": true,
-  "flag_preso_no_momento_da_sentenca": true,
-  "flag_confissao_informal": false,
-  "flag_confissao": false,
-  "flag_denuncia_anonima": false,
-  "flag_denuncia": false,
-  "flag_atitude_suspeita": false,
-  "flag_divergencias_nos_relatos_dos_policiais": false,
-  "flag_investigacao": false,
-  "flag_interceptacao": false,
-  "flag_mandado": false,
-  "flag_nacionalidade": false,
-  "flag_revista_vexatoria": false
+  "processo": ...,
+  "juiz":  ...,
+  "sexo_juiz":  ...,
+  "vara": ...,
+  "nome":  ...,
+  "local":  ...,
+  "maconha":  ...,
+  "maconha_g":  ...,
+  "cocaina":  ...,,
+  "cocaina_g":  ...,
+  "crack":  ...,
+  "crack_g": ...,
+  "ecstasy": ...,
+  "ecstasy_g":  ...,
+  "lsd":  ...,
+  "lsd_g": ...,
+  "outras":  ...,
+  "anabolizantes":  ...,
+  "anorexigenos":  ...,
+  "haxixe":  ...,
+  "skank":  ...,
+  "lanca_perfume":  ...,
+  "tolueno":  ...,
+  "den_drog":  ...,
+  "den_outros":  ...,
+  "sentenca":  ...,
+  "res_drogas":  ...,
+  "res_outros":  ...,
+  "aval_neg_pb":  ...,
+  "pena_base":  ...,
+  "agravantes33_agrup":  ...,
+  "confissao":  ...,
+  "menoridade":  ...,
+  "atenuantes33_agrup":  ...,
+  "adolescente":  ...,
+  "arma_de_fogo":  ...,
+  "interestadual":  ...,
+  "concurso_formal":  ...,
+  "estabelecimento":  ...,
+  "aumento33_agrup":  ...,
+  "paragrafo_4o_agrupado":  ...,
+  "pena33":  ...,
+  "pena33_meses":  ...,
+  "pena_drogas": ...,
+  "pena_outros":  ...,
+  "tot_pen":  ...,
+  "tot_pen_meses":  ...,
+  "substituicao_da_pena": ...,
+  "regime_inicial":  ...,
+  "flag_local_de_trafico":  ...,
+  "flag_preso_no_momento_da_sentenca":  ...,
+  "flag_confissao_informal":  ...,
+  "flag_confissao":  ...,
+  "flag_denuncia_anonima":  ...,
+  "flag_denuncia":  ...,
+  "flag_atitude_suspeita":  ...,
+  "flag_divergencias_nos_relatos_dos_policiais":  ...,
+  "flag_investigacao":  ...,
+  "flag_interceptacao":  ...,
+  "flag_mandado":  ...,
+  "flag_nacionalidade":  ...,
+  "flag_revista_vexatoria":  ...,
 }
 
 Certifique-se de seguir todas as instruções e de gerar a resposta para cada par processo/reu encontrado na sentença. A saída final deverá ser um array contendo todos os objetos JSON extraídos, sem omitir ou resumir nenhum campo ou detalhe.
