@@ -1,0 +1,174 @@
+Objetivo:
+Você deverá extrair informações de sentenças judiciais de processos criminais brasileiros, com foco em delitos relacionados a tráfico de drogas e correlatos, preenchendo os dados de um dataset estruturado com diversas colunas. Cada resposta deve ser produzida para cada par processo/reu – isto é, se na sentença houver mais de um réu, gere um objeto JSON separado para cada par, mantendo o mesmo número de processo para todos, mas com as informações específicas de cada réu.
+
+Contexto:
+Você receberá a íntegra de uma sentença judicial (ou de uma ata de audiência contendo a sentença) de um processo criminal no Brasil. O documento pode conter diversas seções: início com “Vistos” ou “SENTENÇA”, o relatório dos fatos, a fundamentação, a parte dispositiva (decisória) e demais informações (como depoimentos, declarações, referências a denúncias, fundamentos legais e menções à apreensão de drogas). O único insumo para a extração será o texto completo da sentença.
+
+Instruções de Extração:
+1. Para cada par processo/reu identificado no texto da sentença, extraia as informações solicitadas e gere um objeto JSON. Se houver mais de um réu, cada par deverá resultar em um objeto JSON separado.
+2. Se alguma informação não estiver presente ou não se aplicar, utilize o valor "None" (ou null) para esse campo.
+3. Preencha os campos com os dados extraídos, respeitando os seguintes formatos:
+   - Valores numéricos para quantidades (ex.: gramas, meses, idade);
+   - Strings textuais para descrições, justificativas e referências legais;
+   - Booleanos (true/false) para os campos de flags.
+   
+Campos a serem extraídos:
+- **processo**: Número do processo, composto por 20 dígitos. Placeholder: "<processo>".
+- **juiz**: Nome do juiz responsável. Placeholder: "<juiz>".
+- **sexo_juiz**: Gênero do juiz ("Masculino" ou "Feminino"). Placeholder: "<sexo_juiz>".
+- **vara**: Vara criminal responsável (ex.: "Xª Vara Criminal"). Placeholder: "<vara>".
+- **nome**: Nome completo do réu. Placeholder: "<nome>".
+- **local**: Local relacionado ao réu ou à ocorrência (ex.: "Comércio e serviços", "Via Pública", "Residência"). Placeholder: "<local>".
+- **maconha**: Informação textual sobre a maconha apreendida. Placeholder: "<maconha>".
+- **maconha_g**: Quantidade de maconha apreendida em gramas (numérico). Placeholder: <maconha_g>.
+- **cocaina**: Informação textual sobre a cocaína apreendida. Placeholder: "<cocaina>".
+- **cocaina_g**: Quantidade de cocaína apreendida em gramas (numérico). Placeholder: <cocaina_g>.
+- **crack**: Informação textual sobre o crack apreendido. Placeholder: "<crack>".
+- **crack_g**: Quantidade de crack apreendida em gramas (numérico). Placeholder: <crack_g>.
+- **ecstasy**: Informação textual sobre o ecstasy apreendido. Placeholder: "<ecstasy>".
+- **ecstasy_g**: Quantidade de ecstasy apreendida em gramas (numérico). Placeholder: <ecstasy_g>.
+- **lsd**: Informação textual sobre o LSD apreendido. Placeholder: "<lsd>".
+- **lsd_g**: Quantidade de LSD apreendida em gramas (numérico). Placeholder: <lsd_g>.
+- **outras**: Outras drogas ou informações relacionadas. Placeholder: "<outras>".
+- **anabolizantes**: Se houve apreensão de anabolizantes ("Sim" ou "Não"). Placeholder: "<anabolizantes>".
+- **anorexigenos**: Se houve apreensão de anorexígenos ("Sim" ou "Não"). Placeholder: "<anorexigenos>".
+- **haxixe**: Se houve apreensão de haxixe ("Sim" ou "Não"). Placeholder: "<haxixe>".
+- **skank**: Se houve apreensão de skank ("Sim" ou "Não"). Placeholder: "<skank>".
+- **lanca_perfume**: Se houve apreensão de lança-perfume ("Sim" ou "Não"). Placeholder: "<lanca_perfume>".
+- **tolueno**: Se houve apreensão de tolueno ("Sim" ou "Não"). Placeholder: "<tolueno>".
+- **den_drog**: Trecho referente à denúncia baseada em artigos da Lei de Drogas (ex.: "Art. 33"). Placeholder: "<den_drog>".
+- **den_outros**: Trecho referente à denúncia por outros artigos (ex.: "Art. 244-B ECA" ou "Não"). Caso não haja, utilize "None". Placeholder: "<den_outros>".
+- **sentenca**: Resultado final da sentença (ex.: "Procedente", "Parcialmente procedente"). Placeholder: "<sentenca>".
+- **res_drogas**: Resultado relacionado aos aspectos de drogas (ex.: "Art. 33"). Placeholder: "<res_drogas>".
+- **res_outros**: Resultado relacionado a outros aspectos (ex.: "NA" ou "Não"). Caso não haja, utilize "None". Placeholder: "<res_outros>".
+- **pena_base**: Tempo definido como pena base (ex.: "8a", "7a"). Placeholder: "<pena_base>".
+- **agravantes33_agrup**: Informação sobre agravantes ("Sim" ou "Não"). Placeholder: "<agravantes33_agrup>".
+- **confissao**: Indicação se houve confissão do réu ("Sim" ou "Não"). Placeholder: "<confissao>".
+- **menoridade**: Indicação se o réu é menor ("Sim" ou "Não"). Placeholder: "<menoridade>".
+- **atenuantes33_agrup**: Informação sobre atenuantes ("Sim" ou "Não"). Placeholder: "<atenuantes33_agrup>".
+- **adolescente**: Indicação se o réu é adolescente ("Sim" ou "Não"). Placeholder: "<adolescente>".
+- **arma_de_fogo**: Se houve apreensão de arma de fogo ("Sim" ou "Não"). Placeholder: "<arma_de_fogo>".
+- **interestadual**: Se o processo possui caráter interestadual ("Sim" ou "Não"). Placeholder: "<interestadual>".
+- **concurso_formal**: Se há concurso formal de crimes ("Sim" ou "Não"). Placeholder: "<concurso_formal>".
+- **estabelecimento**: Se houve apreensão em estabelecimento comercial ("Sim" ou "Não"). Placeholder: "<estabelecimento>".
+- **aumento33_agrup**: Informação sobre aumento de pena ("Sim" ou "Não"). Placeholder: "<aumento33_agrup>".
+- **paragrafo_4o_agrupado**: Informação agregada do parágrafo 4º (ex.: "Não cabimento / Não informado"). Placeholder: "<paragrafo_4o_agrupado>".
+- **pena33**: Texto referente à pena (ex.: "10a" ou "10a 2m 15d"). Placeholder: "<pena33>".
+- **pena33_meses**: Pena convertida em meses (numérico). Placeholder: <pena33_meses>.
+- **pena_drogas**: Informação textual sobre pena relacionada a drogas (use "NA" ou "None" se não houver). Placeholder: "<pena_drogas>".
+- **pena_outros**: Informação textual sobre pena relacionada a outros delitos (use "NA" ou "None" se não houver). Placeholder: "<pena_outros>".
+- **tot_pen**: Pena total em texto (ex.: "10a" ou "10a 2m 15d"). Placeholder: "<tot_pen>".
+- **tot_pen_meses**: Pena total convertida em meses (numérico). Placeholder: <tot_pen_meses>.
+- **substituicao_da_pena**: Informação sobre eventual substituição da pena (use "NA" ou "None" se não houver). Placeholder: "<substituicao_da_pena>".
+- **regime_inicial**: Regime inicial da pena (ex.: "Fechado", "Semi-aberto", "Aberto" ou "None"). Placeholder: "<regime_inicial>".
+
+Campos de Flags (Booleanos):
+Estes campos devem ser preenchidos com **true** se o texto da sentença contiver a expressão exata indicada, e **false** caso contrário:
+- **flag_local_de_trafico**: "Local de tráfico" – preencha com true se a sentença contiver essa expressão exata.
+- **flag_preso_no_momento_da_sentenca**: "Preso no momento da sentença" – preencha com true se a sentença contiver essa expressão exata.
+- **flag_confissao_informal**: "Confissão informal" – preencha com true se a sentença contiver essa expressão exata.
+- **flag_confissao**: "Confissão" – preencha com true se a sentença contiver a palavra "Confissão", excetuando as ocorrências de "Confissão informal".
+- **flag_denuncia_anonima**: "Denúncia anônima" – preencha com true se a sentença contiver essa expressão exata.
+- **flag_denuncia**: "Denúncia" – preencha com true se a sentença contiver a palavra "Denúncia", excetuando as ocorrências de "Denúncia anônima".
+- **flag_atitude_suspeita**: "Atitude suspeita" – preencha com true se a sentença contiver essa expressão exata.
+- **flag_divergencias_nos_relatos_dos_policiais**: "Divergências nos relatos dos policiais" – preencha com true se a sentença contiver essa expressão exata.
+- **flag_investigacao**: "Investigação" – preencha com true se a sentença contiver essa expressão exata.
+- **flag_interceptacao**: "Interceptação" – preencha com true se a sentença contiver essa expressão exata.
+- **flag_mandado**: "Mandado" – preencha com true se a sentença contiver essa expressão exata.
+- **flag_nacionalidade**: "Nacionalidade" – preencha com true se a sentença contiver essa expressão exata.
+- **flag_revista_vexatoria**: "Revista Vexatória" – preencha com true se a sentença contiver essa expressão exata.
+
+Campos de Avaliação (Aval):
+Estes campos indicam a presença de termos específicos que abordam aspectos do caso. Para cada um, preencha com **true** se o texto da sentença mencionar o termo correspondente e **false** caso contrário:
+- **aval_antecedentes**: "Antecedentes" – Refere-se à menção de antecedentes criminais ou antecedentes do réu.
+- **aval_conduta**: "Conduta" – Refere-se à menção de aspectos da conduta do réu.
+- **aval_personalidade**: "Personalidade" – Refere-se à menção de traços ou aspectos da personalidade do réu.
+- **aval_natureza**: "Natureza" – Refere-se à menção da natureza do crime ou da conduta.
+- **aval_quantidade**: "Quantidade" – Refere-se à menção da quantidade envolvida (de drogas ou outros elementos).
+- **aval_variedade**: "Variedade" – Refere-se à menção da diversidade ou variedade de elementos, como diferentes drogas.
+- **aval_circunstancias**: "Circunstâncias" – Refere-se à menção das circunstâncias em que o fato ocorreu.
+- **aval_consequencias**: "Consequências" – Refere-se à menção das consequências decorrentes dos fatos.
+- **aval_culpabilidade**: "Culpabilidade" – Refere-se à menção da responsabilidade ou culpa do réu.
+
+Formato da Resposta:
+- A saída deve ser um array de objetos JSON. Cada objeto deve representar um par processo/reu contendo todos os campos listados acima.
+- Se alguma informação não estiver disponível no texto, preencha com "None" (ou null) conforme apropriado.
+- Mantenha os formatos exatos para cada campo: valores numéricos para quantidades, strings textuais para descrições e referências legais, e booleanos para flags e campos de avaliação.
+- Não forneça exemplos de valores reais; utilize apenas placeholders (ex.: "<processo>", "<juiz>", "<nome>", etc.) para indicar o formato esperado.
+
+Exemplo de Objeto JSON (estrutura com placeholders):
+
+{
+  "processo": "<processo>",
+  "juiz": "<juiz>",
+  "sexo_juiz": "<sexo_juiz>",
+  "vara": "<vara>",
+  "nome": "<nome>",
+  "local": "<local>",
+  "maconha": "<maconha>",
+  "maconha_g": <maconha_g>,
+  "cocaina": "<cocaina>",
+  "cocaina_g": <cocaina_g>,
+  "crack": "<crack>",
+  "crack_g": <crack_g>,
+  "ecstasy": "<ecstasy>",
+  "ecstasy_g": <ecstasy_g>,
+  "lsd": "<lsd>",
+  "lsd_g": <lsd_g>,
+  "outras": "<outras>",
+  "anabolizantes": "<anabolizantes>",
+  "anorexigenos": "<anorexigenos>",
+  "haxixe": "<haxixe>",
+  "skank": "<skank>",
+  "lanca_perfume": "<lanca_perfume>",
+  "tolueno": "<tolueno>",
+  "den_drog": "<den_drog>",
+  "den_outros": "<den_outros>",
+  "sentenca": "<sentenca>",
+  "res_drogas": "<res_drogas>",
+  "res_outros": "<res_outros>",
+  "pena_base": "<pena_base>",
+  "agravantes33_agrup": "<agravantes33_agrup>",
+  "confissao": "<confissao>",
+  "menoridade": "<menoridade>",
+  "atenuantes33_agrup": "<atenuantes33_agrup>",
+  "adolescente": "<adolescente>",
+  "arma_de_fogo": "<arma_de_fogo>",
+  "interestadual": "<interestadual>",
+  "concurso_formal": "<concurso_formal>",
+  "estabelecimento": "<estabelecimento>",
+  "aumento33_agrup": "<aumento33_agrup>",
+  "paragrafo_4o_agrupado": "<paragrafo_4o_agrupado>",
+  "pena33": "<pena33>",
+  "pena33_meses": <pena33_meses>,
+  "pena_drogas": "<pena_drogas>",
+  "pena_outros": "<pena_outros>",
+  "tot_pen": "<tot_pen>",
+  "tot_pen_meses": <tot_pen_meses>,
+  "substituicao_da_pena": "<substituicao_da_pena>",
+  "regime_inicial": "<regime_inicial>",
+  "flag_local_de_trafico": <flag_local_de_trafico>,
+  "flag_preso_no_momento_da_sentenca": <flag_preso_no_momento_da_sentenca>,
+  "flag_confissao_informal": <flag_confissao_informal>,
+  "flag_confissao": <flag_confissao>,
+  "flag_denuncia_anonima": <flag_denuncia_anonima>,
+  "flag_denuncia": <flag_denuncia>,
+  "flag_atitude_suspeita": <flag_atitude_suspeita>,
+  "flag_divergencias_nos_relatos_dos_policiais": <flag_divergencias_nos_relatos_dos_policiais>,
+  "flag_investigacao": <flag_investigacao>,
+  "flag_interceptacao": <flag_interceptacao>,
+  "flag_mandado": <flag_mandado>,
+  "flag_nacionalidade": <flag_nacionalidade>,
+  "flag_revista_vexatoria": <flag_revista_vexatoria>,
+  "aval_antecedentes": <aval_antecedentes>,
+  "aval_conduta": <aval_conduta>,
+  "aval_personalidade": <aval_personalidade>,
+  "aval_natureza": <aval_natureza>,
+  "aval_quantidade": <aval_quantidade>,
+  "aval_variedade": <aval_variedade>,
+  "aval_circunstancias": <aval_circunstancias>,
+  "aval_consequencias": <aval_consequencias>,
+  "aval_culpabilidade": <aval_culpabilidade>
+}
+
+Certifique-se de seguir todas as instruções e de gerar a resposta para cada par processo/reu encontrado na sentença. A saída final deverá ser um array contendo todos os objetos JSON extraídos, sem omitir ou resumir nenhum campo ou detalhe.
