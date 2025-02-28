@@ -70,6 +70,26 @@ tbl_lacerda <- tbl_lacerda |>
      ) |> 
   dplyr::select(-aspectos, -aval_neg_pb)
 
+### normalize names
+
+# function to upper and remove special chars
+normalize_names <- function(x) {
+  x |> 
+    stringr::str_to_upper() |> 
+    stringr::str_squish() |> 
+    abjutils::rm_accent()
+}
+
+tbl_lacerda <- tbl_lacerda |> 
+  dplyr::mutate(
+    dplyr::across(
+      .cols = c("juiz", "nome"),
+      .fns = ~ normalize_names(.x)
+    )
+  )
+
+
+
 ## split in train, validation and test
 set.seed(55)
 
