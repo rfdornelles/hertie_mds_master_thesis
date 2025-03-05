@@ -1,0 +1,155 @@
+
+Objetivo:
+Você deverá extrair informações de sentenças judiciais de processos criminais brasileiros, com foco em delitos relacionados a tráfico de drogas e correlatos, preenchendo os dados de um dataset estruturado com diversas. Cada resposta deve ser produzida para cada par processo/reu – isto é, se na sentença houver mais de um réu, gere uma resposta separada (um objeto JSON para cada par), mantendo o mesmo número de processo para todos, mas com as informações específicas de cada réu.
+
+Contexto:
+Você receberá a íntegra de uma sentença judicial (ou de uma ata de audiência contendo a sentença) de um processo criminal no Brasil. O documento pode conter diversas seções: o início com “Vistos” ou “SENTENÇA”, o relatório dos fatos, a fundamentação, a parte dispositiva (decisória) e demais informações (como depoimentos, declarações, referências a denúncias, fundamentos legais, e menções à apreensão de drogas). Também podem constar dados sobre o réu, o juiz, a vara, as penas, e flags que indicam aspectos processuais específicos.
+
+Instruções de Extração:
+1. Extraia os dados para cada par processo/reu. Se na sentença houver mais de um réu, produza um objeto JSON separado para cada par, contendo todas as informações relevantes.
+2. Se alguma informação não estiver presente ou não se aplicar, utilize o valor "None" (ou null) para esse campo.
+3. Respeite os formatos indicados para cada campo, especialmente para quantidades numéricas, datas, e textos jurídicos.
+4. Extraia exatamente os campos descritos abaixo, sem omitir ou resumir nenhum detalhe.
+
+Campos a serem extraídos:
+
+- **processo**: Número do processo, composto por 20 dígitos (ex.: "00316684320178260050").
+- **juiz**: Nome do juiz responsável.
+- **sexo_juiz**: Gênero do juiz (ex.: "Masculino" ou "Feminino").
+- **vara**: Vara criminal responsável (ex.: "Xª Vara Criminal").
+- **nome**: Nome completo do réu.
+- **local**: Indicação do local relacionado ao réu ou à ocorrência (ex.: "Comércio e serviços", "Via Pública", "Residência", etc.).
+- **maconha**: Informação textual sobre a maconha apreendida (ex.: "80 porções. 148,5 g"). Se não houver, utilize "0" ou "None".
+- **maconha_g**: Quantidade de maconha apreendida em gramas (numérico).
+- **cocaina**: Informação textual sobre a cocaína apreendida (ex.: "3 pacotes. 1971,3 g"). Se não houver, utilize "0" ou "None".
+- **cocaina_g**: Quantidade de cocaína apreendida em gramas (numérico).
+- **crack**: Informação textual sobre o crack apreendido (ex.: "7 porções. 1,1 g"). Se não houver, utilize "0" ou "None".
+- **crack_g**: Quantidade de crack apreendida em gramas (numérico).
+- **ecstasy**: Informação textual sobre o ecstasy apreendido.
+- **ecstasy_g**: Quantidade de ecstasy apreendida em gramas (numérico).
+- **lsd**: Informação textual sobre o LSD apreendido.
+- **lsd_g**: Quantidade de LSD apreendida em gramas (numérico).
+- **outras**: Outras drogas ou informações relacionadas (texto). Se não houver, utilize "0" ou "None".
+- **anabolizantes**: Indicação se houve apreensão de anabolizantes ("Sim" ou "Não").
+- **anorexigenos**: Indicação se houve apreensão de anorexígenos ("Sim" ou "Não").
+- **haxixe**: Indicação se houve apreensão de haxixe ("Sim" ou "Não").
+- **skank**: Indicação se houve apreensão de skank ("Sim" ou "Não").
+- **lanca_perfume**: Indicação se houve apreensão de lança-perfume ("Sim" ou "Não").
+- **tolueno**: Indicação se houve apreensão de tolueno ("Sim" ou "Não").
+- **den_drog**: Trecho referente à denúncia baseada em artigos da Lei de Drogas (ex.: "Art. 33").
+- **den_outros**: Trecho referente à denúncia por outros artigos (ex.: "Art. 244-B ECA" ou "Não"). Se não houver, utilize "None".
+- **sentenca**: Resultado final da sentença (ex.: "Procedente", "Parcialmente procedente").
+- **res_drogas**: Resultado relacionado aos aspectos de drogas, conforme mencionado (ex.: "Art. 33").
+- **res_outros**: Resultado relacionado a outros aspectos (se aplicável; ex.: "NA", "Não"). Se não houver, utilize "None".
+- **aval_neg_pb**: Avaliação textual referente a aspectos do caso como antecedentes, natureza, quantidade, etc. Se ausentes indique "Não"
+- **pena_base**: Tempo definido como da pena base (ex.: "8a", "7a").
+- **agravantes33_agrup**: Informação sobre agravantes (valor "Sim" ou "Não").
+- **confissao**: Indicação se houve confissão do réu ("Sim" ou "Não").
+- **menoridade**: Indicação se o réu é menor ("Sim" ou "Não").
+- **atenuantes33_agrup**: Informação sobre atenuantes (valor "Sim" ou "Não").
+- **adolescente**: Indicação se o réu é adolescente ("Sim" ou "Não").
+- **arma_de_fogo**: Indicação se houve apreensão de arma de fogo ("Sim" ou "Não").
+- **interestadual**: Indicação se o processo possui caráter interestadual ("Sim" ou "Não").
+- **concurso_formal**: Indicação se há concurso formal de crimes ("Sim" ou "Não").
+- **estabelecimento**: Indicação se houve apreensão em estabelecimento comercial ("Sim" ou "Não").
+- **aumento33_agrup**: Informação sobre aumento de pena (valor "Sim" ou "Não").
+- **paragrafo_4o_agrupado**: Informação agregada do parágrafo 4º (ex.: "Não cabimento / Não informado").
+- **pena33**: Texto referente à pena (ex.: "10a", "10a 2m 15d").
+- **pena33_meses**: Pena convertida em meses (numérico).
+- **pena_drogas**: Informação textual sobre pena relacionada a drogas (se não houver, utilize "NA" ou "None").
+- **pena_outros**: Informação textual sobre pena relacionada a outros delitos (se não houver, utilize "NA" ou "None").
+- **tot_pen**: Pena total em texto (ex.: "10a", "10a 2m 15d").
+- **tot_pen_meses**: Pena total convertida em meses (numérico).
+- **substituicao_da_pena**: Informação sobre eventual substituição da pena (se não houver, utilize "NA" ou "None").
+- **regime_inicial**: Regime inicial da pena (ex.: "Fechado", "Semi-aberto", "Aberto", ou "None").
+- **flag_local_de_trafico**: Booleano indicando a presença da flag "Local de tráfico" (true/false).
+- **flag_preso_no_momento_da_sentenca**: Booleano indicando a presença da flag "Preso no momento da sentença" (true/false).
+- **flag_confissao_informal**: Booleano indicando a presença da flag "Confissão informal" (true/false).
+- **flag_confissao**: Booleano indicando a presença da flag "Confissão" (true/false).
+- **flag_denuncia_anonima**: Booleano indicando a presença da flag "Denúncia anônima" (true/false).
+- **flag_denuncia**: Booleano indicando a presença da flag "Denúncia" (true/false).
+- **flag_atitude_suspeita**: Booleano indicando a presença da flag "Atitude suspeita" (true/false).
+- **flag_divergencias_nos_relatos_dos_policiais**: Booleano indicando a presença da flag "Divergências nos relatos dos policiais" (true/false).
+- **flag_investigacao**: Booleano indicando a presença da flag "Investigação" (true/false).
+- **flag_interceptacao**: Booleano indicando a presença da flag "Interceptação" (true/false).
+- **flag_mandado**: Booleano indicando a presença da flag "Mandado" (true/false).
+- **flag_nacionalidade**: Booleano indicando a presença da flag "Nacionalidade" (true/false).
+- **flag_revista_vexatoria**: Booleano indicando a presença da flag "Revista Vexatória" (true/false).
+
+Formato da Resposta:
+- A saída deve ser um array de objetos JSON. Cada objeto deve representar um par processo/reu contendo todos os campos listados acima.
+- Se alguma informação não estiver disponível no texto, preencha com "None" (ou null) conforme apropriado.
+- Mantenha os formatos exatos para cada campo:
+  - Valores numéricos para quantidades (ex.: gramas, meses, idade);
+  - Strings textuais para descrições, justificativas e referências legais;
+  - Booleanos (true/false) para flags.
+- Não resuma nem omita nenhuma instrução ou campo. Siga rigorosamente a estrutura e as especificações fornecidas.
+
+Exemplo de Objeto JSON (simplificado):
+
+{
+  "processo": ...,
+  "juiz":  ...,
+  "sexo_juiz":  ...,
+  "vara": ...,
+  "nome":  ...,
+  "local":  ...,
+  "maconha":  ...,
+  "maconha_g":  ...,
+  "cocaina":  ...,,
+  "cocaina_g":  ...,
+  "crack":  ...,
+  "crack_g": ...,
+  "ecstasy": ...,
+  "ecstasy_g":  ...,
+  "lsd":  ...,
+  "lsd_g": ...,
+  "outras":  ...,
+  "anabolizantes":  ...,
+  "anorexigenos":  ...,
+  "haxixe":  ...,
+  "skank":  ...,
+  "lanca_perfume":  ...,
+  "tolueno":  ...,
+  "den_drog":  ...,
+  "den_outros":  ...,
+  "sentenca":  ...,
+  "res_drogas":  ...,
+  "res_outros":  ...,
+  "aval_neg_pb":  ...,
+  "pena_base":  ...,
+  "agravantes33_agrup":  ...,
+  "confissao":  ...,
+  "menoridade":  ...,
+  "atenuantes33_agrup":  ...,
+  "adolescente":  ...,
+  "arma_de_fogo":  ...,
+  "interestadual":  ...,
+  "concurso_formal":  ...,
+  "estabelecimento":  ...,
+  "aumento33_agrup":  ...,
+  "paragrafo_4o_agrupado":  ...,
+  "pena33":  ...,
+  "pena33_meses":  ...,
+  "pena_drogas": ...,
+  "pena_outros":  ...,
+  "tot_pen":  ...,
+  "tot_pen_meses":  ...,
+  "substituicao_da_pena": ...,
+  "regime_inicial":  ...,
+  "flag_local_de_trafico":  ...,
+  "flag_preso_no_momento_da_sentenca":  ...,
+  "flag_confissao_informal":  ...,
+  "flag_confissao":  ...,
+  "flag_denuncia_anonima":  ...,
+  "flag_denuncia":  ...,
+  "flag_atitude_suspeita":  ...,
+  "flag_divergencias_nos_relatos_dos_policiais":  ...,
+  "flag_investigacao":  ...,
+  "flag_interceptacao":  ...,
+  "flag_mandado":  ...,
+  "flag_nacionalidade":  ...,
+  "flag_revista_vexatoria":  ...,
+}
+
+Certifique-se de seguir todas as instruções e de gerar a resposta para cada par processo/reu encontrado na sentença. A saída final deverá ser um array contendo todos os objetos JSON extraídos, sem omitir ou resumir nenhum campo ou detalhe.
