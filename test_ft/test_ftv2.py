@@ -256,3 +256,27 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+def plot_progress():
+    import matplotlib.pyplot as plt
+    with open(os.path.join(OUTPUT_DIR, "training_logs.txt")) as f:
+        lines = f.readlines()
+    
+    steps, train_loss, eval_loss = [], [], []
+    for line in lines:
+        if "Treino" in line:
+            parts = line.split("Loss: ")
+            steps.append(int(parts[0].split("Step ")[1].split(" -")[0]))
+            train_loss.append(float(parts[1]))
+        elif "Validação" in line:
+            parts = line.split("Loss: ")
+            eval_loss.append(float(parts[1]))
+    
+    plt.figure(figsize=(10,5))
+    plt.plot(steps, train_loss, label='Train Loss')
+    plt.plot(steps[:len(eval_loss)], eval_loss, label='Eval Loss')
+    plt.xlabel('Steps')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.savefig(os.path.join(OUTPUT_DIR, "progresso.png"))
+    plt.show()
