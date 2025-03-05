@@ -5,7 +5,7 @@ Autor: Seu Nome
 Data: [Data]
 Descrição: Fine-tuning do modelo Llama para transformar sentenças judiciais em JSON estruturado
 """
-
+import time
 import os
 import json
 import time
@@ -20,11 +20,24 @@ from transformers import (
     TrainerCallback
 )
 
+torch.cuda.empty_cache()
+torch.backends.cuda.matmul.allow_tf32 = True
+torch.backends.cudnn.allow_tf32 = True
+
 # Configurações Globais
 MODEL_NAME = "meta-llama/Llama-3.2-1B-Instruct"
+nickname = MODEL_NAME.split("/")[-1]
+today = time.strftime("%Y-%m-%d_%H_%M", time.localtime())
 CONTEXT_WINDOW = 4096  # Ajustar conforme o modelo
 DATASET_PATH = 'validation.parquet'
-OUTPUT_DIR = "./results"
+OUTPUT_DIR = f"./results/results-{nickname}-{today}"
+
+print("Configurações:")
+print(f"Modelo: {MODEL_NAME}")
+print(f"Janela de Contexto: {CONTEXT_WINDOW}")
+print(f"Dataset: {DATASET_PATH}")
+print(f"Output: {OUTPUT_DIR}")
+
 
 # Helper Functions
 def carregar_dados():
@@ -85,6 +98,13 @@ class LegalJSONProcessor:
             labels[idx, :answer_start] = -100
             labels[idx][tokenized["attention_mask"][idx] == 0] = -100
         
+        # Dentro de LegalJSONProcessor.preprocess
+        sample_idx = 0
+        # print("\nVerificação de pré-processamento:")
+        # print("Texto original:", examples["julgado"][sample_idx])
+        # print("JSON esperado:", examples["data"][sample_idx])
+        # print("Labels tokenizados:", labels[sample_idx][labels[sample_idx] != -100])
+        
         return {
             "input_ids": tokenized["input_ids"],
             "attention_mask": tokenized["attention_mask"],
@@ -94,6 +114,12 @@ class LegalJSONProcessor:
 
 # Classe de Treino Customizada
 class LegalTrainer(Trainer):
+    def __init__(self, processing_class=None, **kwargs):  # Tornado opcional
+        super().__init__(**kwargs)
+        if processing_class is None:
+            raise ValueError("Tokenizador deve ser fornecido")
+        self.processing_class = processing_class
+        
     def compute_loss(self, model, inputs, return_outputs=False, **kwargs):
         """Calcula loss com pesos para elementos JSON"""
         outputs = model(
@@ -106,15 +132,24 @@ class LegalTrainer(Trainer):
         device = outputs.logits.device
         weights = torch.ones_like(inputs["labels"], dtype=torch.float32).to(device)
         
-        # Tokens importantes do JSON
-        tokens_especiais = {
-            '{', '}', ':', ',', '[', ']', '"'
-        }
-        for token in tokens_especiais:
-            token_id = self.tokenizer.convert_tokens_to_ids(token)
-            if token_id != self.tokenizer.unk_token_id:
-                weights[inputs["labels"] == token_id] = 2.0
+        # Tokens importantes do JSON (modificado)
+        tokens_especiais = [
+            self.processing_class.bos_token,
+            self.processing_class.eos_token,
+            "{", "}", ":", ","
+        ]
         
+        # Dentro do loop for na função compute_loss:
+        for token in tokens_especiais:
+            # Converter símbolos para IDs
+            if token in ["{", "}", ":", ","]:
+                token_id = self.processing_class.convert_tokens_to_ids(token)
+            else:
+                token_id = getattr(self.processing_class, f"{token}_token_id", None)
+            
+            if token_id is not None and token_id != self.processing_class.unk_token_id:
+                weights[inputs["labels"] == token_id] = 2.0
+                
         # Cálculo manual da loss
         shift_logits = outputs.logits[..., :-1, :].contiguous()
         shift_labels = inputs["labels"][..., 1:].contiguous()
@@ -199,8 +234,8 @@ def main():
     
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
-        torch_dtype=torch.bfloat16,
-        device_map="auto",
+        # torch_dtype=torch.bfloat16,
+        # device_map="auto",
         use_cache=False  # Necessário para gradient checkpointing
     )
     model.resize_token_embeddings(len(tokenizer))
@@ -217,30 +252,34 @@ def main():
     # Configuração do Treino
     training_args = TrainingArguments(
         output_dir=OUTPUT_DIR,
-        learning_rate=2e-5,
-        per_device_train_batch_size=2,
+        learning_rate=1e-5,
+        per_device_train_batch_size=1,
         gradient_accumulation_steps=4,
-        num_train_epochs=3,
+        num_train_epochs=20,
         weight_decay=0.01,
+        warmup_steps=10,
         fp16=True,
-        logging_steps=20,
-        evaluation_strategy="steps",
-        eval_steps=50,
+        bf16=False, # torch.cuda.is_bf16_supported(),
+        tf32=False,
+        logging_steps=1,
+        eval_strategy="steps",
+        eval_steps=10,
         save_strategy="steps",
         load_best_model_at_end=True,
         gradient_checkpointing=True,
         report_to="none",
         optim="adamw_torch",
-        max_grad_norm=1.0
+        max_grad_norm=1.0,
     )
     
     # Inicializar Trainer
     trainer = LegalTrainer(
         model=model,
+        processing_class=tokenizer,
         args=training_args,
         train_dataset=tokenized_dataset["train"],
         eval_dataset=tokenized_dataset["test"],
-        callbacks=[MonitorLegal(tokenizer)]
+        callbacks=[MonitorLegal(tokenizer)],
     )
     
     # Treinar
@@ -257,26 +296,26 @@ def main():
 if __name__ == "__main__":
     main()
     
-def plot_progress():
-    import matplotlib.pyplot as plt
-    with open(os.path.join(OUTPUT_DIR, "training_logs.txt")) as f:
-        lines = f.readlines()
+# def plot_progress():
+#     import matplotlib.pyplot as plt
+#     with open(os.path.join(OUTPUT_DIR, "training_logs.txt")) as f:
+#         lines = f.readlines()
     
-    steps, train_loss, eval_loss = [], [], []
-    for line in lines:
-        if "Treino" in line:
-            parts = line.split("Loss: ")
-            steps.append(int(parts[0].split("Step ")[1].split(" -")[0]))
-            train_loss.append(float(parts[1]))
-        elif "Validação" in line:
-            parts = line.split("Loss: ")
-            eval_loss.append(float(parts[1]))
+#     steps, train_loss, eval_loss = [], [], []
+#     for line in lines:
+#         if "Treino" in line:
+#             parts = line.split("Loss: ")
+#             steps.append(int(parts[0].split("Step ")[1].split(" -")[0]))
+#             train_loss.append(float(parts[1]))
+#         elif "Validação" in line:
+#             parts = line.split("Loss: ")
+#             eval_loss.append(float(parts[1]))
     
-    plt.figure(figsize=(10,5))
-    plt.plot(steps, train_loss, label='Train Loss')
-    plt.plot(steps[:len(eval_loss)], eval_loss, label='Eval Loss')
-    plt.xlabel('Steps')
-    plt.ylabel('Loss')
-    plt.legend()
-    plt.savefig(os.path.join(OUTPUT_DIR, "progresso.png"))
-    plt.show()
+#     plt.figure(figsize=(10,5))
+#     plt.plot(steps, train_loss, label='Train Loss')
+#     plt.plot(steps[:len(eval_loss)], eval_loss, label='Eval Loss')
+#     plt.xlabel('Steps')
+#     plt.ylabel('Loss')
+#     plt.legend()
+#     plt.savefig(os.path.join(OUTPUT_DIR, "progresso.png"))
+#     plt.show()

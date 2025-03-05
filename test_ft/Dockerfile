@@ -32,7 +32,7 @@ RUN python3.10 -m pip install --upgrade pip && python3.10 -m pip install -r requ
 COPY . .
 
 # COPY model_cache /app/model_cache
-# ENV HF_HOME=/app/model_cache
+ENV HF_HOME=/root/.cache/huggingface/hub
 
 # Comando padrão para executar seu script com Accelerate (ajuste o número de processos se necessário)
 #CMD ["accelerate", "launch", "--num_processes=4", "test_ft.py"]
