@@ -102,6 +102,7 @@ train <- rsample::training(split2)
 validation <- rsample::testing(split2)
 
 ## save .parquet
+nanoparquet::write_parquet(tbl_lacerda, "data/lacerda_clean.parquet")
 nanoparquet::write_parquet(train, "data/train.parquet")
 nanoparquet::write_parquet(validation, "data/validation.parquet")
 nanoparquet::write_parquet(test, "data/test.parquet")
