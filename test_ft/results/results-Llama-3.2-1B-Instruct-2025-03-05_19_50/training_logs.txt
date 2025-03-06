@@ -1,0 +1,3 @@
+Wed Mar  5 19:52:44 2025 - [Treino] Step 10 - Loss: 8.4818
+Wed Mar  5 19:52:44 2025 - [Treino] Step 10 - Loss: 8.4818
+Wed Mar  5 19:52:44 2025 - [Treino] Step 10 - Loss: 8.4818
