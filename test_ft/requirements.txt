@@ -163,3 +163,4 @@ widgetsnbextension==4.0.13
 xxhash==3.5.0
 yarl==1.18.3
 zstandard==0.23.0
+deepspeed
