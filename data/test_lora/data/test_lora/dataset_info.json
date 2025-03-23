@@ -1,0 +1,20 @@
+{
+  "citation": "",
+  "description": "",
+  "features": {
+    "processo": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "cd_doc": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "julgado": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": ""
+}

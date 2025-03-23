@@ -1,0 +1,88 @@
+[2025-03-07 13:59:53,114] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+W0307 13:59:54.428000 9097 torch/distributed/run.py:792] 
+W0307 13:59:54.428000 9097 torch/distributed/run.py:792] *****************************************
+W0307 13:59:54.428000 9097 torch/distributed/run.py:792] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0307 13:59:54.428000 9097 torch/distributed/run.py:792] *****************************************
+[2025-03-07 13:59:59,214] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-03-07 13:59:59,283] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-03-07 13:59:59,286] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-03-07 13:59:59,315] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-03-07 14:00:00,346] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-03-07 14:00:00,380] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-03-07 14:00:00,385] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-03-07 14:00:00,418] [INFO] [comm.py:658:init_distributed] cdb=None
+[2025-03-07 14:00:00,418] [INFO] [comm.py:689:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+`low_cpu_mem_usage` was None, now default to True since model is quantized.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]`low_cpu_mem_usage` was None, now default to True since model is quantized.
+`low_cpu_mem_usage` was None, now default to True since model is quantized.
+`low_cpu_mem_usage` was None, now default to True since model is quantized.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.13s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.23s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.26s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.79s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.38s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.34s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.36s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.35s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.36s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.34s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.68s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.69s/it]
+trainable params: 88,440,320 || all params: 2,533,068,800 || trainable%: 3.4914
+trainable params: 88,440,320 || all params: 2,533,068,800 || trainable%: 3.4914
+trainable params: 88,440,320 || all params: 2,533,068,800 || trainable%: 3.4914
+Map:   0%|          | 0/7871 [00:00<?, ? examples/s]Map:   0%|          | 0/7871 [00:00<?, ? examples/s]trainable params: 88,440,320 || all params: 2,533,068,800 || trainable%: 3.4914
+Map:   0%|          | 0/7871 [00:00<?, ? examples/s]Token indices sequence length is longer than the specified maximum sequence length for this model (9129 > 4096). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (9129 > 4096). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (9129 > 4096). Running this sequence through the model will result in indexing errors
+Map:   0%|          | 0/7871 [00:00<?, ? examples/s]Token indices sequence length is longer than the specified maximum sequence length for this model (9129 > 4096). Running this sequence through the model will result in indexing errors
+Map:  13%|█▎        | 1000/7871 [01:53<13:02,  8.78 examples/s]Map:  13%|█▎        | 1000/7871 [01:54<13:04,  8.76 examples/s]Map:  13%|█▎        | 1000/7871 [01:54<13:04,  8.75 examples/s]Map:  13%|█▎        | 1000/7871 [01:54<13:04,  8.76 examples/s]Map:  25%|██▌       | 2000/7871 [03:43<10:53,  8.98 examples/s]Map:  25%|██▌       | 2000/7871 [03:43<10:54,  8.98 examples/s]Map:  25%|██▌       | 2000/7871 [03:43<10:53,  8.99 examples/s]Map:  25%|██▌       | 2000/7871 [03:44<10:55,  8.95 examples/s]Map:  38%|███▊      | 3000/7871 [05:33<08:59,  9.04 examples/s]Map:  38%|███▊      | 3000/7871 [05:34<09:00,  9.02 examples/s]Map:  38%|███▊      | 3000/7871 [05:34<09:00,  9.01 examples/s]Map:  38%|███▊      | 3000/7871 [05:33<09:00,  9.02 examples/s]Map:  51%|█████     | 4000/7871 [07:25<07:10,  8.99 examples/s]Map:  51%|█████     | 4000/7871 [07:26<07:10,  8.98 examples/s]Map:  51%|█████     | 4000/7871 [07:26<07:11,  8.97 examples/s]Map:  51%|█████     | 4000/7871 [07:25<07:11,  8.98 examples/s]Map:  64%|██████▎   | 5000/7871 [09:14<05:16,  9.06 examples/s]Map:  64%|██████▎   | 5000/7871 [09:15<05:17,  9.05 examples/s]Map:  64%|██████▎   | 5000/7871 [09:15<05:18,  9.02 examples/s]Map:  64%|██████▎   | 5000/7871 [09:16<05:18,  9.02 examples/s]Map:  76%|███████▌  | 6000/7871 [11:02<03:25,  9.12 examples/s]Map:  76%|███████▌  | 6000/7871 [11:02<03:25,  9.12 examples/s]Map:  76%|███████▌  | 6000/7871 [11:03<03:25,  9.11 examples/s]Map:  76%|███████▌  | 6000/7871 [11:03<03:25,  9.11 examples/s]Map:  89%|████████▉ | 7000/7871 [12:54<01:36,  9.05 examples/s]Map:  89%|████████▉ | 7000/7871 [12:56<01:36,  9.03 examples/s]Map:  89%|████████▉ | 7000/7871 [12:56<01:36,  9.02 examples/s]Map:  89%|████████▉ | 7000/7871 [12:57<01:36,  9.01 examples/s]Map: 100%|██████████| 7871/7871 [14:30<00:00,  9.06 examples/s]Map: 100%|██████████| 7871/7871 [14:30<00:00,  9.04 examples/s]
+Map:   0%|          | 0/9322 [00:00<?, ? examples/s]Map: 100%|██████████| 7871/7871 [14:33<00:00,  9.02 examples/s]Map: 100%|██████████| 7871/7871 [14:33<00:00,  9.02 examples/s]
+Map:   0%|          | 0/9322 [00:00<?, ? examples/s]Map: 100%|██████████| 7871/7871 [14:32<00:00,  9.02 examples/s]Map: 100%|██████████| 7871/7871 [14:32<00:00,  9.02 examples/s]
+Map:   0%|          | 0/9322 [00:00<?, ? examples/s]Map: 100%|██████████| 7871/7871 [14:33<00:00,  9.02 examples/s]Map: 100%|██████████| 7871/7871 [14:33<00:00,  9.01 examples/s]
+Map:   0%|          | 0/9322 [00:00<?, ? examples/s]Map:  11%|█         | 1000/9322 [00:07<01:00, 138.52 examples/s]Map:  11%|█         | 1000/9322 [00:07<01:04, 129.53 examples/s]Map:  11%|█         | 1000/9322 [00:08<01:08, 122.31 examples/s]Map:  11%|█         | 1000/9322 [00:07<01:06, 125.25 examples/s]Map:  21%|██▏       | 2000/9322 [00:14<00:52, 140.47 examples/s]Map:  21%|██▏       | 2000/9322 [00:14<00:53, 136.85 examples/s]Map:  21%|██▏       | 2000/9322 [00:15<00:54, 134.28 examples/s]Map:  21%|██▏       | 2000/9322 [00:15<00:55, 131.45 examples/s]Map:  32%|███▏      | 3000/9322 [00:21<00:44, 141.75 examples/s]Map:  32%|███▏      | 3000/9322 [00:21<00:44, 141.16 examples/s]Map:  32%|███▏      | 3000/9322 [00:22<00:46, 135.76 examples/s]Map:  32%|███▏      | 3000/9322 [00:22<00:46, 137.20 examples/s]Map:  43%|████▎     | 4000/9322 [00:28<00:37, 143.33 examples/s]Map:  43%|████▎     | 4000/9322 [00:28<00:37, 143.35 examples/s]Map:  43%|████▎     | 4000/9322 [00:29<00:38, 139.48 examples/s]Map:  43%|████▎     | 4000/9322 [00:29<00:38, 139.92 examples/s]Map:  54%|█████▎    | 5000/9322 [00:34<00:29, 144.22 examples/s]Map:  54%|█████▎    | 5000/9322 [00:35<00:29, 144.25 examples/s]Map:  54%|█████▎    | 5000/9322 [00:36<00:30, 140.92 examples/s]Map:  54%|█████▎    | 5000/9322 [00:36<00:30, 140.98 examples/s]Map:  64%|██████▍   | 6000/9322 [00:42<00:23, 143.00 examples/s]Map:  64%|██████▍   | 6000/9322 [00:42<00:23, 143.56 examples/s]Map:  64%|██████▍   | 6000/9322 [00:43<00:23, 142.33 examples/s]Map:  64%|██████▍   | 6000/9322 [00:43<00:23, 141.17 examples/s]Map:  75%|███████▌  | 7000/9322 [00:48<00:16, 144.95 examples/s]Map:  75%|███████▌  | 7000/9322 [00:48<00:15, 145.38 examples/s]Map:  75%|███████▌  | 7000/9322 [00:49<00:16, 144.91 examples/s]Map:  75%|███████▌  | 7000/9322 [00:49<00:16, 144.13 examples/s]Map:  86%|████████▌ | 8000/9322 [00:55<00:09, 144.57 examples/s]Map:  86%|████████▌ | 8000/9322 [00:55<00:09, 145.64 examples/s]Map:  86%|████████▌ | 8000/9322 [00:56<00:09, 144.86 examples/s]Map:  86%|████████▌ | 8000/9322 [00:56<00:09, 144.65 examples/s]Map:  97%|█████████▋| 9000/9322 [01:02<00:02, 144.83 examples/s]Map: 100%|██████████| 9322/9322 [01:04<00:00, 145.76 examples/s]Map: 100%|██████████| 9322/9322 [01:04<00:00, 143.52 examples/s]
+Map:  97%|█████████▋| 9000/9322 [01:02<00:02, 146.20 examples/s][rank3]: Traceback (most recent call last):
+[rank3]:   File "/app/test_lora/test_lorav2.py", line 248, in <module>
+[rank3]:     train()
+[rank3]:   File "/app/test_lora/test_lorav2.py", line 208, in train
+[rank3]:     training_args = TrainingArguments(
+[rank3]:   File "<string>", line 134, in __init__
+[rank3]:   File "/usr/local/lib/python3.10/dist-packages/transformers/training_args.py", line 2057, in __post_init__
+[rank3]:     self.deepspeed_plugin = DeepSpeedPlugin(hf_ds_config=self.hf_deepspeed_config)
+[rank3]:   File "<string>", line 17, in __init__
+[rank3]:   File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/dataclasses.py", line 1160, in __post_init__
+[rank3]:     self._deepspeed_config_checks()
+[rank3]:   File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/dataclasses.py", line 1374, in _deepspeed_config_checks
+[rank3]:     raise ValueError(
+[rank3]: ValueError: When using `deepspeed_config_file`, the following accelerate config variables will be ignored: ['gradient_accumulation_steps', 'gradient_clipping', 'zero_stage', 'offload_optimizer_device', 'offload_param_device', 'offload_param_nvme_path', 'offload_optimizer_nvme_path', 'zero3_save_16bit_model', 'mixed_precision'].
+[rank3]: Please specify them appropriately in the DeepSpeed config file.
+[rank3]: If you are using an accelerate config file, remove others config variables mentioned in the above specified list.
+[rank3]: The easiest method is to create a new config following the questionnaire via `accelerate config`.
+[rank3]: It will only ask for the necessary config variables when using `deepspeed_config_file`.
+Map:  97%|█████████▋| 9000/9322 [01:03<00:02, 146.20 examples/s]Map:  97%|█████████▋| 9000/9322 [01:03<00:02, 146.20 examples/s]W0307 14:15:48.963000 9097 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 9252 closing signal SIGTERM
+W0307 14:15:48.964000 9097 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 9253 closing signal SIGTERM
+W0307 14:15:48.965000 9097 torch/distributed/elastic/multiprocessing/api.py:897] Sending process 9254 closing signal SIGTERM
+E0307 14:15:50.703000 9097 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 3 (pid: 9255) of binary: /usr/bin/python3.10
+Traceback (most recent call last):
+  File "/usr/local/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 1182, in launch_command
+    deepspeed_launcher(args)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/commands/launch.py", line 861, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+test_lorav2.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-03-07_14:15:48
+  host      : e24449d2168a
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 9255)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
