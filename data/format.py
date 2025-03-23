@@ -6,6 +6,8 @@ def save_dataset(path, input_col = 'julgado', split = None):
     # recover the name of dataset from the file
     name = path.split('.parquet')[0]
     
+    print(f"Processing {name} dataset...")
+    
     # load
     try:
         df = pd.read_parquet(path)
@@ -14,11 +16,11 @@ def save_dataset(path, input_col = 'julgado', split = None):
         return
       
     # transform the columns into json output
-    input = df[input_col]
-    output = df.drop(columns=[input_col, 'id', 'processo']).apply(lambda x: x.to_dict(), axis=1)
+    input_data = df[["processo", input_col]]
+    output_data = df.drop(columns=[input_col, 'id', 'processo']).apply(lambda x: x.to_dict(), axis=1)
     
     # build dictionary
-    base_output = Dataset.from_dict({'input': input, 'output': output}, split = split)
+    base_output = Dataset.from_pandas(pd.DataFrame({'processo': input_data['processo'],'input': input_data[input_col], 'output': output_data}), split=split)
     
     # save
     try: 

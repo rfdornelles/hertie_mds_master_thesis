@@ -2,6 +2,10 @@
   "citation": "",
   "description": "",
   "features": {
+    "processo": {
+      "dtype": "string",
+      "_type": "Value"
+    },
     "input": {
       "dtype": "string",
       "_type": "Value"
