@@ -54,7 +54,7 @@ Campos a serem extraídos:
 - **lsd**: Informação textual sobre o LSD apreendido.
 - **lsd_g**: Quantidade de LSD apreendida em gramas (numérico).
 - **maconha_outras**: Informação textual sobre maconha em outras formas como skank, haxixe, etc. 
-- **outras**: Outras drogas como anabolizantes, anorexigenos, lanca_perfume, tolueno, etc; se não houver, utilize "None".
+- **outras_drogas**: Outras drogas como anabolizantes, anorexigenos, lanca_perfume, tolueno, etc; se não houver, utilize "None".
 - **den_drog**: Trecho referente à denúncia baseada em artigos da Lei de Drogas.
 - **den_outros**: Trecho referente à denúncia por outros artigos; se não houver, utilize "None".
 - **sentenca**: Resultado final da sentença.

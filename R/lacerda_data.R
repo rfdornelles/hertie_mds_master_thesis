@@ -31,6 +31,7 @@ tbl_lacerda <- db_lacerda |>
     -regime_inicial_agrupado,
     -x4o,
     -res_outros,
+    -vara
   ) |> 
   dplyr::rename(
    paragrafo_4o_agrupado = x4o_agrupado,
@@ -91,8 +92,10 @@ tbl_lacerda <- tbl_lacerda |>
     aval_culpabilidade    = stringr::str_detect(aval_neg_pb, stringr::fixed("Culpabilidade")),
     
     ## clean columns
-    pena33 = dplyr::if_else(pena33 == "NA", "0", pena33),
+    # pena33 = dplyr::if_else(pena33 == "NA", "0", pena33),
     tot_pen = dplyr::if_else(tot_pen == "NA", "0", tot_pen),
+    sentenca = stringr::str_to_title(sentenca),
+    pena_base = dplyr::if_else(pena_base == "Não expresso", "NA", pena_base),
      ) |> 
   dplyr::select(-aspectos, -aval_neg_pb,
                 ### removing unecessary features
@@ -122,21 +125,9 @@ tbl_lacerda <- tbl_lacerda |>
                 -regime_inicial,
                 -confissao,
                 -menoridade,
+                -pena33,
+                -pena33_meses,
                 )
-
-# ## transform in boolean
-# tbl_lacerda |> 
-#   dplyr::mutate(
-#     dplyr::across(
-#       .cols = c(confissao, menoridade),
-#       .fns = \(x) dplyr::if_else(x == 'Sim', 
-#                                  true = TRUE, 
-#                                  false = FALSE, 
-#                                  missing = FALSE)
-#     )
-#   ) |> 
-#   dplyr::count(confissao, menoridade)
-
 
 ### normalize names
 
@@ -160,6 +151,9 @@ tbl_lacerda <- tbl_lacerda |>
 tbl_lacerda <- tbl_lacerda |> 
   dplyr::distinct()
 
+# reorder
+tbl_lacerda <- tbl_lacerda |> 
+  dplyr::relocate(maconha_outras, .after = maconha_g) 
 
 ## split in train, validation and test
 set.seed(55)

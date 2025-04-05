@@ -1,0 +1,384 @@
+{
+  "name": "extract_information_drug_cases_v1",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Verson 1: extraction of information from drug cases in Brazil"
+      },
+      "type": {
+        "type": "string",
+        "enum": [
+          "object"
+        ]
+      },
+      "properties": {
+        "type": "object",
+        "properties": {
+          "processo": {
+            "type": "string",
+            "description": "Número CNJ do processo, composto por 20 dígitos."
+          },
+          "juiz": {
+            "type": "string",
+            "description": "Nome do juiz responsável."
+          },
+          "sexo_juiz": {
+            "type": "string",
+            "description": "Gênero do juiz."
+          },
+          "vara": {
+            "type": "string",
+            "description": "Vara criminal responsável."
+          },
+          "nome": {
+            "type": "string",
+            "description": "Nome completo do réu."
+          },
+          "local": {
+            "type": "string",
+            "description": "Indicação do local relacionado ao réu ou à ocorrência."
+          },
+          "maconha": {
+            "type": "string",
+            "description": "Informação textual sobre a maconha apreendida."
+          },
+          "maconha_g": {
+            "type": "number",
+            "description": "Quantidade de maconha apreendida em gramas."
+          },
+          "cocaina": {
+            "type": "string",
+            "description": "Informação textual sobre a cocaína apreendida."
+          },
+          "cocaina_g": {
+            "type": "number",
+            "description": "Quantidade de cocaína apreendida em gramas."
+          },
+          "crack": {
+            "type": "string",
+            "description": "Informação textual sobre o crack apreendido."
+          },
+          "crack_g": {
+            "type": "number",
+            "description": "Quantidade de crack apreendida em gramas."
+          },
+          "ecstasy": {
+            "type": "string",
+            "description": "Informação textual sobre o ecstasy apreendido."
+          },
+          "ecstasy_g": {
+            "type": "number",
+            "description": "Quantidade de ecstasy apreendida em gramas."
+          },
+          "lsd": {
+            "type": "string",
+            "description": "Informação textual sobre o LSD apreendido."
+          },
+          "lsd_g": {
+            "type": "number",
+            "description": "Quantidade de LSD apreendida em gramas."
+          },
+          "outras": {
+            "type": "string",
+            "description": "Outras drogas ou informações relacionadas."
+          },
+          "anabolizantes": {
+            "type": "string",
+            "description": "Indicação se houve apreensão de anabolizantes."
+          },
+          "anorexigenos": {
+            "type": "string",
+            "description": "Indicação se houve apreensão de anorexígenos."
+          },
+          "haxixe": {
+            "type": "string",
+            "description": "Indicação se houve apreensão de haxixe."
+          },
+          "skank": {
+            "type": "string",
+            "description": "Indicação se houve apreensão de skank."
+          },
+          "lanca_perfume": {
+            "type": "string",
+            "description": "Indicação se houve apreensão de lança-perfume."
+          },
+          "tolueno": {
+            "type": "string",
+            "description": "Indicação se houve apreensão de tolueno."
+          },
+          "den_drog": {
+            "type": "string",
+            "description": "Trecho referente à denúncia baseada em artigos da Lei de Drogas."
+          },
+          "den_outros": {
+            "type": "string",
+            "description": "Trecho referente à denúncia por outros artigos."
+          },
+          "sentenca": {
+            "type": "string",
+            "description": "Resultado final da sentença."
+          },
+          "res_drogas": {
+            "type": "string",
+            "description": "Resultado relacionado aos aspectos de drogas."
+          },
+          "res_outros": {
+            "type": "string",
+            "description": "Resultado relacionado a outros aspectos."
+          },
+          "pena_base": {
+            "type": "string",
+            "description": "Tempo definido como pena base."
+          },
+          "agravantes33_agrup": {
+            "type": "string",
+            "description": "Informação sobre agravantes."
+          },
+          "confissao": {
+            "type": "string",
+            "description": "Indicação se houve confissão do réu."
+          },
+          "menoridade": {
+            "type": "string",
+            "description": "Indicação se o réu é menor."
+          },
+          "atenuantes33_agrup": {
+            "type": "string",
+            "description": "Informação sobre atenuantes."
+          },
+          "adolescente": {
+            "type": "string",
+            "description": "Indicação se o réu é adolescente."
+          },
+          "arma_de_fogo": {
+            "type": "string",
+            "description": "Indicação se houve apreensão de arma de fogo."
+          },
+          "interestadual": {
+            "type": "string",
+            "description": "Indicação se o processo possui caráter interestadual."
+          },
+          "concurso_formal": {
+            "type": "string",
+            "description": "Indicação se há concurso formal de crimes."
+          },
+          "estabelecimento": {
+            "type": "string",
+            "description": "Indicação se houve apreensão em estabelecimento comercial."
+          },
+          "aumento33_agrup": {
+            "type": "string",
+            "description": "Informação sobre aumento de pena."
+          },
+          "paragrafo_4o_agrupado": {
+            "type": "string",
+            "description": "Informação agregada do parágrafo 4º."
+          },
+          "pena33": {
+            "type": "string",
+            "description": "Texto referente à pena."
+          },
+          "pena33_meses": {
+            "type": "number",
+            "description": "Pena convertida em meses."
+          },
+          "pena_drogas": {
+            "type": "string",
+            "description": "Informação textual sobre pena relacionada a drogas."
+          },
+          "pena_outros": {
+            "type": "string",
+            "description": "Informação textual sobre pena relacionada a outros delitos."
+          },
+          "tot_pen": {
+            "type": "string",
+            "description": "Pena total em texto."
+          },
+          "tot_pen_meses": {
+            "type": "number",
+            "description": "Pena total convertida em meses."
+          },
+          "substituicao_da_pena": {
+            "type": "string",
+            "description": "Informação sobre eventual substituição da pena."
+          },
+          "regime_inicial": {
+            "type": "string",
+            "description": "Regime inicial da pena."
+          },
+          "flag_local_de_trafico": {
+            "type": "boolean",
+            "description": "Indica se o local está associado ao tráfico."
+          },
+          "flag_preso_no_momento_da_sentenca": {
+            "type": "boolean",
+            "description": "Indica se o réu estava preso no momento da sentença."
+          },
+          "flag_confissao_informal": {
+            "type": "boolean",
+            "description": "Indica se houve confissão informal."
+          },
+          "flag_confissao": {
+            "type": "boolean",
+            "description": "Indica se houve evidências de uma confissão formal."
+          },
+          "flag_denuncia_anonima": {
+            "type": "boolean",
+            "description": "Indica se a denúncia foi feita de forma anônima."
+          },
+          "flag_denuncia": {
+            "type": "boolean",
+            "description": "Indica se houve menção a uma denúncia formal."
+          },
+          "flag_atitude_suspeita": {
+            "type": "boolean",
+            "description": "Indica se houve comportamentos suspeitos."
+          },
+          "flag_divergencias_nos_relatos_dos_policiais": {
+            "type": "boolean",
+            "description": "Indica se houve inconsistências nos relatos dos policiais."
+          },
+          "flag_investigacao": {
+            "type": "boolean",
+            "description": "Indica se houve investigações."
+          },
+          "flag_interceptacao": {
+            "type": "boolean",
+            "description": "Indica se houve interceptações mencionadas."
+          },
+          "flag_mandado": {
+            "type": "boolean",
+            "description": "Indica se houve menção a mandado."
+          },
+          "flag_nacionalidade": {
+            "type": "boolean",
+            "description": "Indica se a nacionalidade do réu foi destacada."
+          },
+          "flag_revista_vexatoria": {
+            "type": "boolean",
+            "description": "Indica se houve revista vexatória."
+          },
+          "aval_antecedentes": {
+            "type": "boolean",
+            "description": "Indica se há referências a antecedentes."
+          },
+          "aval_conduta": {
+            "type": "boolean",
+            "description": "Indica se houve avaliação sobre a conduta do réu."
+          },
+          "aval_personalidade": {
+            "type": "boolean",
+            "description": "Indica se a personalidade do réu foi mencionada."
+          },
+          "aval_natureza": {
+            "type": "boolean",
+            "description": "Indica se há avaliação sobre a natureza do delito."
+          },
+          "aval_quantidade": {
+            "type": "boolean",
+            "description": "Indica se houve avaliação da quantidade."
+          },
+          "aval_variedade": {
+            "type": "boolean",
+            "description": "Indica se houve avaliação da variedade."
+          },
+          "aval_circunstancias": {
+            "type": "boolean",
+            "description": "Indica se houve avaliação das circunstâncias do caso."
+          },
+          "aval_consequencias": {
+            "type": "boolean",
+            "description": "Indica se houveram avaliações sobre as consequências."
+          },
+          "aval_culpabilidade": {
+            "type": "boolean",
+            "description": "Indica se houve avaliação da culpabilidade do réu."
+          }
+        },
+        "required": [
+          "processo",
+          "juiz",
+          "sexo_juiz",
+          "vara",
+          "nome",
+          "local",
+          "maconha",
+          "maconha_g",
+          "cocaina",
+          "cocaina_g",
+          "crack",
+          "crack_g",
+          "ecstasy",
+          "ecstasy_g",
+          "lsd",
+          "lsd_g",
+          "outras",
+          "anabolizantes",
+          "anorexigenos",
+          "haxixe",
+          "skank",
+          "lanca_perfume",
+          "tolueno",
+          "den_drog",
+          "den_outros",
+          "sentenca",
+          "res_drogas",
+          "res_outros",
+          "pena_base",
+          "agravantes33_agrup",
+          "confissao",
+          "menoridade",
+          "atenuantes33_agrup",
+          "adolescente",
+          "arma_de_fogo",
+          "interestadual",
+          "concurso_formal",
+          "estabelecimento",
+          "aumento33_agrup",
+          "paragrafo_4o_agrupado",
+          "pena33",
+          "pena33_meses",
+          "pena_drogas",
+          "pena_outros",
+          "tot_pen",
+          "tot_pen_meses",
+          "substituicao_da_pena",
+          "regime_inicial",
+          "flag_local_de_trafico",
+          "flag_preso_no_momento_da_sentenca",
+          "flag_confissao_informal",
+          "flag_confissao",
+          "flag_denuncia_anonima",
+          "flag_denuncia",
+          "flag_atitude_suspeita",
+          "flag_divergencias_nos_relatos_dos_policiais",
+          "flag_investigacao",
+          "flag_interceptacao",
+          "flag_mandado",
+          "flag_nacionalidade",
+          "flag_revista_vexatoria",
+          "aval_antecedentes",
+          "aval_conduta",
+          "aval_personalidade",
+          "aval_natureza",
+          "aval_quantidade",
+          "aval_variedade",
+          "aval_circunstancias",
+          "aval_consequencias",
+          "aval_culpabilidade"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "$defs": {},
+    "additionalProperties": false,
+    "required": [
+      "name",
+      "type",
+      "properties"
+    ]
+  },
+  "strict": true
+}
