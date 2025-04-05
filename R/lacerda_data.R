@@ -5,7 +5,6 @@ db_lacerda <- nanoparquet::read_parquet(
   "data/lacerda/tjsp_drugs/dados_sentencas_bd_clean.parquet") |> 
   tibble::as_tibble()
 
-
 tbl_lacerda <- db_lacerda |> 
   dplyr::filter(!is.na(julgado)) |> 
   ## remove features that are not in the sentence
@@ -120,7 +119,7 @@ tbl_lacerda <- tbl_lacerda |>
                 -pena_drogas,
                 -pena_outros,
                 -substituicao_da_pena,
-                -regime_inicial
+                -regime_inicial,
                 -confissao,
                 -menoridade,
                 )
@@ -157,6 +156,9 @@ tbl_lacerda <- tbl_lacerda |>
     )
   )
 
+# deduplicate
+tbl_lacerda <- tbl_lacerda |> 
+  dplyr::distinct()
 
 
 ## split in train, validation and test
