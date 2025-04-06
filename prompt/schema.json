@@ -248,6 +248,5 @@
     ],
     "$defs": {},
     "additionalProperties": false
-  },
-  "strict": true
+  }
 }

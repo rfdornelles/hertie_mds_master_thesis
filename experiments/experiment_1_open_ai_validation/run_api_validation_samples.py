@@ -2,11 +2,18 @@
 # using the chepeast model available (4o-mini)
 
 import dotenv
+import pandas as pd
 import os
+import re
 from openai import OpenAI
 import json
 from datasets import load_from_disk
-import pandas as pd
+
+from pydantic import BaseModel, Field
+from typing import List, Optional
+import unicodedata
+
+
 
 #### load environment variables from .env file
 dotenv.load_dotenv()
@@ -27,11 +34,6 @@ with open(f"../../prompt/prompt_v4_clean.md", "r") as f:
     prompt = f.read()
     
 ### define structure of the output
-
-from pydantic import BaseModel, Field
-from typing import List, Optional
-import unicodedata
-import re
 
 class SentencaJudicial(BaseModel):
     processo: str = Field(..., description='Número do processo (ex.: "00316684320178260050").')
