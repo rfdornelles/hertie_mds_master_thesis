@@ -149,7 +149,8 @@ tbl_lacerda <- tbl_lacerda |>
 
 # deduplicate
 tbl_lacerda <- tbl_lacerda |> 
-  dplyr::distinct()
+  dplyr::distinct(processo, nome, .keep_all = TRUE)
+
 
 # reorder
 tbl_lacerda <- tbl_lacerda |> 
