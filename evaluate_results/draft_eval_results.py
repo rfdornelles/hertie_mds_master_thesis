@@ -4,14 +4,19 @@ from difflib import SequenceMatcher
 from datasets import load_from_disk
 
 # load data
-df_expected = load_from_disk("../data/validation")
+df_expected = load_from_disk("../data/validation").to_pandas()
+
+# extract data from json column
+df_expected = df_expected.pop("output").apply(json.loads).apply(pd.Series)
+
+#TODO: improve processo, since it's being used as id but it should be tested
 
 # dados gerados
+df_generated = pd.read_csv("../experiments/experiment_1_open_ai_validation/experiment_1_open_ai_validation-batch_results_parsed.csv")
 
+# identify the process metadata
+df_generated['processo'] = df_generated["custom_id"].apply(lambda x: x.split(":")[1])
 
-# Exemplo: 
-# df_generated = pd.read_json("generated.json")
-# df_expected = pd.read_json("expected.json")
 
 # Identifica as colunas comuns (por nome) entre os dois DataFrames
 columns_common = set(df_generated.columns) & set(df_expected.columns)
@@ -61,6 +66,11 @@ def score_text(gen, exp):
 
 # Junta os DataFrames pelo campo "processo" para comparar os registros correspondentes
 merged_df = pd.merge(df_generated, df_expected, on="processo", suffixes=("_gen", "_exp"))
+
+
+
+# TODO: change processo as the common key, since it should be tested
+#merged_df = pd.merge(df_generated, df_expected, left_on="processo_id", right_on= 'processo', suffixes=("_gen", "_exp"))
 
 # Listas para armazenar scores por linha e por coluna
 row_scores = []             # cada item: (processo, score, detalhes)
