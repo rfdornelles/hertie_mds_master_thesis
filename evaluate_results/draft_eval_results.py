@@ -9,12 +9,10 @@ df_expected = load_from_disk("../data/validation").to_pandas()
 # extract data from json column
 df_expected = df_expected.pop("output").apply(json.loads).apply(pd.Series)
 
-#TODO: save results in .parquet instead of .csv
-
 #TODO: improve processo, since it's being used as id but it should be tested
 
 # dados gerados
-df_generated = pd.read_csv("../experiments/experiment_1_open_ai_validation/experiment_1_open_ai_validation-batch_results_parsed.csv")
+df_generated = pd.read_parquet("../experiments/experiment_2_open_ai_validation_4o/experiment_2_open_ai_validation_4o-batch_results_parsed.parquet")
 
 # identify the process metadata
 df_generated['processo'] = df_generated["custom_id"].apply(lambda x: x.split(":")[1])
@@ -67,7 +65,7 @@ def score_text(gen, exp):
         return 1 if similarity >= 0.9 else (0.5 if similarity >= 0.8 else 0)
 
 # Junta os DataFrames pelo campo "processo" para comparar os registros correspondentes
-merged_df = pd.merge(df_generated, df_expected, on="processo", suffixes=("_gen", "_exp"))
+merged_df = pd.merge(df_generated, df_expected, left_on="processo", right_on="processo", suffixes=("_gen", "_exp"))
 
 
 
