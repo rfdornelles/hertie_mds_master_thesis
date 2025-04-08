@@ -9,6 +9,8 @@ df_expected = load_from_disk("../data/validation").to_pandas()
 # extract data from json column
 df_expected = df_expected.pop("output").apply(json.loads).apply(pd.Series)
 
+#TODO: save results in .parquet instead of .csv
+
 #TODO: improve processo, since it's being used as id but it should be tested
 
 # dados gerados

@@ -215,6 +215,6 @@ df_rows = pd.DataFrame(df_rows)
 df_rows
 
 ## save
-df_rows.to_csv(f"{experiment}-batch_results_parsed.csv", index=False)
+df_rows.to_parquet(f"{experiment}-batch_results_parsed.parquet", index=False)
 
-print(f"Batch job results parsed and saved to {experiment}-batch_results_parsed.csv")
+print(f"Batch job results parsed and saved to {experiment}-batch_results_parsed.parquet")
