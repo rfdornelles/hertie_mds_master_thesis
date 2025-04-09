@@ -135,7 +135,10 @@ def evaluate_experiment(experiment, verbose=False):
     return
 
   # reference data
-  df_reference = df_validation.copy() if name.__contains__("validation") else df_test.copy()
+  if name.__contains__("_ft_"):
+    df_reference = pd.concat([df_validation, df_test], ignore_index=True)
+  else:
+    df_reference = df_validation.copy() if name.__contains__("validation") else df_test.copy()
   
   # check the sizes
   if df_experiment.shape[0] != df_reference.shape[0]:
