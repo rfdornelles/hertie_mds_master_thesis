@@ -1,1 +1,0 @@
-# ref: https://platform.openai.com/docs/guides/structured-outputs?api-mode=chat&example=structured-data
