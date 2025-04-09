@@ -131,7 +131,7 @@ def evaluate_experiment(experiment, verbose=False):
     df_experiment = pd.read_parquet(path)
     
   except Exception as e:
-    print(f"Error loading data: {e}")
+    print(f"  [Error] Experiment {name}: loading data: {e}")
     return
 
   # reference data
@@ -139,7 +139,7 @@ def evaluate_experiment(experiment, verbose=False):
   
   # check the sizes
   if df_experiment.shape[0] != df_reference.shape[0]:
-    print(f"Error: the number of rows in the experiment ({df_experiment.shape[0]}) is different from the reference ({df_reference.shape[0]})")
+    print(f"  [Error] Experiment {name}: the number of rows in the experiment ({df_experiment.shape[0]}) is different from the reference ({df_reference.shape[0]})")
     return {"score": [], "details": {}}
   
   # merge data
@@ -147,7 +147,7 @@ def evaluate_experiment(experiment, verbose=False):
     merged_data = df_reference.merge(df_experiment, on='processo', suffixes=("_result", "_expected"))
     
   except Exception as e:
-    print(f"Error merging data: {e}")
+    print(f"  [Error] Experiment {name}: Error merging data: {e}")
     return {"score": [], "details": {}}
 
   # initialize lists to accumulate row scores and details
@@ -173,7 +173,7 @@ def evaluate_experiment(experiment, verbose=False):
         result = row[f"{col}_result"]
         expected = row[f"{col}_expected"]
       except KeyError as e:
-        print(f"Error: missing key {e} in row {idx}")
+        print(f"  [Error] Experiment {name}: Error: missing key {e} in row {idx}")
         continue
       
       # define the score according with its type
@@ -186,7 +186,7 @@ def evaluate_experiment(experiment, verbose=False):
       elif col in open_textual_fields:
         score = score_open_textual(result, expected, remove_spaces=True)
       else:
-        print(f"Error: unknown column type for {col}")
+        print(f"  [Error] Experiment {name}: Error: unknown column type for {col}")
         continue
       
       # add the score to the row total
@@ -216,19 +216,77 @@ def evaluate_experiment(experiment, verbose=False):
   
 ## define an overall score to each experiment
 
-overall_score = pd.DataFrame(columns=["experiment", "score", "details"])
+overall_score = pd.DataFrame(columns=["experiment", "details", "score"])
 
 #### iterate over each experiment
 for experiment in experiments:
   print(f"Evaluating experiment {experiment}...")
   
-  score_details = evaluate_experiment(experiment, verbose=True)
+  score_details = evaluate_experiment(experiment)
   
-  overall_score = pd.concat([overall_score, pd.DataFrame({"experiment": experiment, "score": score_details["score"], "details": score_details["details"]})], ignore_index=True)
+  # new column
+  new_row = pd.DataFrame({"experiment": [experiment], "details": [score_details["details"]], "score": [score_details["score"]]})
+  overall_score = pd.concat([overall_score, new_row], ignore_index=True)
   
 # calculate the overall score to each model
-overall_score["score"] = overall_score["score"].apply(lambda x: x.mean() if isinstance(x, list) else x)
-overall_score["details"] = overall_score["details"].apply(lambda x: x.mean() if isinstance(x, list) else x)
+overall_score["final_score"] = overall_score["score"].apply(lambda x: pd.Series(x).mean() if isinstance(x, list) else x)
 
-# save the overall score to a files  
+# function to compute the average score for each column in each experiment
+def compute_avg_details(details):
+  # if details is not a non-empty list, return empty dict
+  if not isinstance(details, list) or len(details) == 0:
+    return {}
+  sums = {}
+  counts = {}
+  # each element in details is a dict for a row
+  for row_detail in details:
+    for col, score in row_detail.items():
+      sums[col] = sums.get(col, 0) + score
+      counts[col] = counts.get(col, 0) + 1
+  # compute average for each column
+  return {col: sums[col] / counts[col] for col in sums}
+
+# to each experiment, calculate the average score for each column using the details field
+overall_score["col_score"] = overall_score["details"].apply(compute_avg_details)
+
+# now we want to check the average score for each column-type (to identify the performance in each kind of text)
+
+df_column_result = pd.DataFrame(columns=["experiment", "column", "column_type", "score"])
+
+for experiment in overall_score["experiment"]:
+    
+    name = experiment.split("/")[-1].split(".")[0]
+    
+    # get the details for the experiment
+    details = overall_score[overall_score["experiment"] == experiment]["col_score"].values[0]
+    
+    # iterate over each column
+    for col, score in details.items():
+        # get the column type
+        if col in numeric_fields:
+            col_type = "numeric"
+        elif col in boolean_fields:
+            col_type = "boolean"
+        elif col in categorical_fields:
+            col_type = "categorical"
+        elif col in open_textual_fields:
+            col_type = "open_textual"
+        else:
+            col_type = "unknown"
+        
+        # add the row to the dataframe
+        new_row = pd.DataFrame({"experiment": [name], "column": [col], "column_type": [col_type], "score": [score]})
+        df_column_result = pd.concat([df_column_result, new_row], ignore_index=True)  
   
+df_column_result
+
+# describing the results according with column type
+result = (
+  df_column_result.groupby(['experiment', 'column_type'])['score']
+  .mean()
+  .reset_index()
+  .pivot(index='experiment', columns='column_type', values='score')
+  .reset_index()
+)
+result = result[['experiment', 'numeric', 'boolean', 'categorical', 'open_textual']]
+result
