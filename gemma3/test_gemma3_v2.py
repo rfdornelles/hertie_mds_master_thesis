@@ -8,9 +8,9 @@ import tqdm
 torch.cuda.empty_cache()
 
 # definitions
-experiment = 'experiment_gemma3_27b_it_baseline_v2'
-folder = f'experiments2/{experiment}'
-model_name = "google/gemma-3-27b-it"
+experiment = 'experiment_gemma3_12b_it_baseline'
+folder = f'experiments/{experiment}/'
+model_name = "google/gemma-3-12b-it"
 
 os.makedirs(folder, exist_ok=True)
 
@@ -67,12 +67,10 @@ def run_model(processo, new_tokens=1000, overwrite = False):
   
   # check if the file already exists
   file = f'{folder}/{processo}.json'
-  
   if os.path.exists(file) and not overwrite:
     print(f"File {file} already exists. Skipping...")
     return
 
-  print(f"  Processing {processo}...")
   # retrieve the content of the sentença
   sentenca = datasets[datasets['processo'] == processo]['input'].values[0]
   
@@ -81,7 +79,7 @@ def run_model(processo, new_tokens=1000, overwrite = False):
   
   # run the model
   try:
-    print(f"  Applying chat template for {processo}")
+    
     inputs = tokenizer.apply_chat_template(
         message, 
         add_generation_prompt=True, 
@@ -92,18 +90,15 @@ def run_model(processo, new_tokens=1000, overwrite = False):
     
     input_len = inputs["input_ids"].shape[-1]
     
-    print(f"  Generating for {processo}")
     generation = model.generate(**inputs, 
                                 max_new_tokens=new_tokens, do_sample=False,
                                 temperature=None,
                                 top_p=None,
                                 top_k=None)
   
-    print(f"  Decoding for {processo}")
     # only keep the new tokens
     generation = generation[0][input_len:]
   
-    print("  Decoding the generation...")
     decoded = tokenizer.decode(generation, skip_special_tokens=True)
     
   except Exception as e:
@@ -112,7 +107,7 @@ def run_model(processo, new_tokens=1000, overwrite = False):
     
     
   # save the output as json
-  print(f"  Saving the output for {processo}...")
+  
   try:
     with open(file, 'w') as f:  
       f.write(decoded)
@@ -121,7 +116,6 @@ def run_model(processo, new_tokens=1000, overwrite = False):
   except Exception as e:
     print(f"Error writing file {file}: {e}")
     return  
-  
   
 # test    
 #run_model('00316684320178260050', overwrite = True)
@@ -134,13 +128,14 @@ print("Starting the iteration...")
 
 for processo in tqdm.tqdm(datasets['processo'].unique()):
   try:
-    run_model(processo)
+    run_model(processo, overwrite = True)
   except Exception as e:
     print(f"Error processing {processo}: {e}")
     continue
-  
-
-torch.cuda.empty_cache()    
-print("All processes finished -- cache cleaned.")   
+  finally:
+    torch.cuda.empty_cache()
+    #print(f"Process {processo} finished.")
+    
+print("All processes finished.")   
 
     
