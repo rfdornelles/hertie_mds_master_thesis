@@ -1,0 +1,66 @@
+Aqui está o código em Python para extrair as informações de sentença judicial:
+
+```python
+import re
+import json
+
+def extrair_informacoes(sentenca):
+    # Cabeçalho
+    cabecalho = re.search(r'Vistos.*', sentenca, re.DOTALL).group()
+    if cabecalho:
+        cabecalho = cabecalho.strip()
+    else:
+        cabecalho = None
+
+    # Relatório
+    relatorio = re.search(r'Relatório.*', sentenca, re.DOTALL).group()
+    if relatorio:
+        relatorio = relatorio.strip()
+    else:
+        relatorio = None
+
+    # Fundamentação
+    fundamentacao = re.search(r'Fundamentação.*', sentenca, re.DOTALL).group()
+    if fundamentacao:
+        fundamentacao = fundamentacao.strip()
+    else:
+        fundamentacao = None
+
+    # Parte dispositiva
+    parte_dispositiva = re.search(r'Parte dispositiva.*', sentenca, re.DOTALL).group()
+    if parte_dispositiva:
+        parte_dispositiva = parte_dispositiva.strip()
+    else:
+        parte_dispositiva = None
+
+    # Outras informações
+    outras_informacoes = re.search(r'Outras informações.*', sentenca, re.DOTALL).group()
+    if outras_informacoes:
+        outras_informacoes = outras_informacoes.strip()
+    else:
+        outras_informacoes = None
+
+    # Dados do réu
+    dados_reu = {}
+    if cabecalho:
+        dados_reu['processo'] = re.search(r'Processo Digital nº: (.*?)', cabecalho, re.DOTALL).group(1)
+    if relatorio:
+        dados_reu['nome'] = re.search(r'Leonardo Bernards de Santana Rodelo', relatorio, re.DOTALL).group()
+        dados_reu['local'] = re.search(r'Avenida Duque de Caxias, nº. 880, bairro Santa Cecília', relatorio, re.DOTALL).group()
+        dados_reu['maconha'] = re.search(r'76,1 gramas de crack', outras_informacoes, re.DOTALL).group()
+        dados_reu['cocaina'] = re.search(r'Cocaina: false', outras_informacoes, re.DOTALL).group()
+        dados_reu['crack'] = re.search(r'Crack: true', outras_informacoes, re.DOTALL).group()
+        dados_reu['ecstasy'] = re.search(r'Ecstasy: false', outras_informacoes, re.DOTALL).group()
+        dados_reu['lsd'] = re.search(r'LSD: false', outras_informacoes, re.DOTALL).group()
+        dados_reu['sentenca'] = re.search(r'Procedente', parte_dispositiva, re.DOTALL).group()
+        dados_reu['pena_base'] = re.search(r'8a', parte_dispositiva, re.DOTALL).group()
+        dados_reu['tot_pen'] = re.search(r'8a 6m', parte_dispositiva, re.DOTALL).group()
+        dados_reu['tot_pen_meses'] = re.search(r'102', parte_dispositiva, re.DOTALL).group()
+        dados_reu['outras_drogas'] = re.search(r'Tráfico de outras drogas: false', outras_informacoes, re.DOTALL).group()
+        dados_reu['resultado_art_28'] = re.search(r'Resultado do art. 28: false', outras_informacoes, re.DOTALL).group()
+        dados_reu['resultado_art_33'] = re.search(r'Resultado do art. 33: true', outras_informacoes, re.DOTALL).group()
+        dados_reu['resultado_art_34'] = re.search(r'Resultado do art. 34: false', outras_informacoes, re.DOTALL).group()
+        dados_reu['resultado_art_35'] = re.search(r'Resultado do art. 35: false', outras_informacoes, re.DOTALL).group()
+        dados_reu['denuncia_art_33'] = re.search(r'Denúncia do art. 33: true', outras_informacoes, re.DOTALL).group()
+        dados_reu['denuncia_art_34'] = re.search(r'Denúncia do art. 34: false', outras_informacoes, re.DOTALL).group()
+        dados_reu

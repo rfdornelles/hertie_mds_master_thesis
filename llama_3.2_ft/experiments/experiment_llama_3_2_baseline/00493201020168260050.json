@@ -1,0 +1,72 @@
+Aqui está o código em Python para extrair as informações da sentença judicial:
+
+```python
+import re
+import json
+
+def extrair_informacoes(sentenca):
+    # Regras para extração de informações
+    regras = {
+        'nome': r'nome completo do réu',
+        'local': r'local relacionado ao crime/ocorrência',
+       'maconha': r'maconha',
+        'cocaina': r'cocaina',
+        'crack': r'crack',
+        'ecstasy': r'ecstasy',
+        'lsd': r'lsd',
+       'sentenca': r'resultado final da sentença',
+        'pena_base': r'pena-base',
+        'tot_pen': r'tot_pen',
+        'tot_pen_meses': r'tot_pen_meses',
+        'outras_drogas': r'outras_drogas',
+       'resultado_art_28': r'resultado_art_28',
+       'resultado_art_33': r'resultado_art_33',
+       'resultado_art_34': r'resultado_art_34',
+       'resultado_art_35': r'resultado_art_35',
+        'denuncia_art_33': r'denuncia_art_33',
+        'denuncia_art_34': r'denuncia_art_34',
+        'denuncia_art_35': r'denuncia_art_35',
+        'flag_local_de_trafico': r'flag_local_de_trafico',
+        'flag_preso_no_momento_da_sentenca': r'flag_preso_no_momento_da_sentenca',
+        'flag_confissao_informal': r'flag_confissao_informal',
+        'flag_confissao': r'flag_confissao',
+        'flag_denuncia_anonima': r'flag_denuncia_anonima',
+        'flag_denuncia': r'flag_denuncia',
+        'flag_atitude_suspeita': r'flag_atitude_suspeita',
+        'flag_divergencias_nos_relatos_dos_policiais': r'flag_divergencias_nos_relatos_dos_policiais',
+        'flag_investigacao': r'flag_investigacao',
+        'flag_interceptacao': r'flag_interceptacao',
+        'flag_mandado': r'flag_mandado',
+        'aval_antecedentes': r'aval_antecedentes',
+        'aval_conduta': r'aval_conduta',
+        'aval_personalidade': r'aval_personalidade',
+        'aval_natureza': r'aval_natureza',
+        'aval_quantidade': r'aval_quantidade',
+        'aval_variedade': r'aval_variedade',
+        'aval_circunstancias': r'aval_circunstancias',
+        'aval_consequencias': r'aval_consequencias',
+        'aval_culpabilidade': r'aval_culpabilidade'
+    }
+
+    # Extração de informações
+    informacoes = {}
+    for regra, texto in regras.items():
+        informacoes[regra] = re.search(texto, sentenca).group()
+
+    # Preparação dos dados
+    dados = []
+    for informacao in informacoes.values():
+        if informacao:
+            dados.append({
+                'processo': '0049320-10.2016.8.26.0050',
+                regra: informacao
+            })
+
+    # Formatação dos dados
+    dados = [json.dumps(dado, indent=4) for dado in dados]
+
+    return dados
+
+# Teste
+sentenca = """
+Vistos, etc. WESLEY DA SILVA COELHO, R.G. 48.083.781, qualificado nos autos, foi denunciado e está sendo processado como incurso nas sanções do artigo 33, caput, da Lei 11.343/06, isto porque no dia 15 de junho de 2016, por volta das 12 horas, na Rua Conquista Povão Colorado, Ermelino Matarazzo, nesta Capital, foi preso em flagrante quando trazia consigo e tinha em depósito, para venda a terceiros, sem autorização legal ou regulamentar, 1,635 kg (um quilo, seiscentos e trinta e cinco gramas) de Cannabis Sativa L, vulgarmente conhecida como “maconha”, erva que contém a substância Tetrahidrocanabinol, dividida em 520 invólucros conhecidos como “papelotes”; 

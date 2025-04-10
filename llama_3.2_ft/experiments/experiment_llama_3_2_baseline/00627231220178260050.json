@@ -1,0 +1,73 @@
+Aqui está o resultado da extração de informações de sentença judicial:
+
+```json
+[
+  {
+    "processo": "0062723-12.2017.8.26.0050",
+    "juiz": "Dr. Carlos Alberto Corrêa de Almeida Oliveira",
+    "sexo_juiz": "Masculino",
+    "nome": "ALCIDES ANDRADE ASSIS",
+    "local": "Via Pública",
+    "maconha": true,
+    "maconha_g": 23.9,
+    "maconha_outras": true,
+    "cocaina": false,
+    "cocaina_g": 0,
+    "crack": false,
+    "crack_g": 0,
+    "ecstasy": false,
+    "ecstasy_g": 0,
+    "lsd": false,
+    "lsd_g": 0,
+    "sentenca": "Procedente",
+    "pena_base": "8a",
+    "tot_pen": "8a 6m",
+    "tot_pen_meses": 102,
+    "outras_drogas": false,
+    "resultado_art_28": false,
+    "resultado_art_33": true,
+    "resultado_art_34": false,
+    "resultado_art_35": false,
+    "denuncia_art_33": true,
+    "denuncia_art_34": false,
+    "denuncia_art_35": false,
+    "flag_local_de_trafico": true,
+    "flag_preso_no_momento_da_sentenca": true,
+    "flag_confissao_informal": false,
+    "flag_confissao": true,
+    "flag_denuncia_anonima": false,
+    "flag_denuncia": true,
+    "flag_atitude_suspeita": false,
+    "flag_divergencias_nos_relatos_dos_policiais": false,
+    "flag_investigacao": true,
+    "flag_interceptacao": false,
+    "flag_mandado": false,
+    "aval_antecedentes": true,
+    "aval_conduta": true,
+    "aval_personalidade": false,
+    "aval_natureza": true,
+    "aval_quantidade": true,
+    "aval_variedade": false,
+    "aval_circunstancias": false,
+    "aval_consequencias": false,
+    "aval_culpabilidade": false
+  }
+]
+```
+
+Observações:
+
+* O réu é ALCIDES ANDRADE ASSIS.
+* O processo é 0062723-12.2017.8.26.0050.
+* A sentença é Procedente.
+* O réu foi condenado a 2 anos e 6 meses de reclusão e 250 dias multa.
+* O réu foi preso preventivamente.
+* O réu foi interrogado e testemunhas foram ouvidas.
+* A prisão foi feita em flagrante delito.
+* A quantidade de drogas apreendidas foi de 50 porções de "Cocaína", com peso líquido de 23,9g.
+* O réu negou a prática do crime.
+* A sentença foi proferida por Dr. Carlos Alberto Corrêa de Almeida Oliveira.
+* O réu é primário.
+* A pena foi aplicada no regime fechado.
+* A substituição da pena privativa de liberdade por medidas restritivas de direitos não é permitida.
+* A Justiça Gratuita foi concedida ao réu.

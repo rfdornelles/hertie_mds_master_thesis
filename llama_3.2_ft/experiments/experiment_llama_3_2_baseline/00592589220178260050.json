@@ -1,0 +1,75 @@
+Aqui está o código em Python para extrair as informações da sentença judicial:
+
+```python
+import re
+import json
+
+def extrair_informacoes(sentenca):
+    # Regras para extração de informações
+    regras = {
+        'nome': r'nome completo ([^,]+)',
+        'local': r'local ([^,]+)',
+       'maconha': r'maconha ([^,]+)',
+        'cocaina': r'cocaina ([^,]+)',
+        'crack': r'crack ([^,]+)',
+        'ecstasy': r'ecstasy ([^,]+)',
+        'lsd': r'lsd ([^,]+)',
+       'sentenca': r'sentenca ([^,]+)',
+        'pena_base': r'pena base ([^,]+)',
+        'tot_pen': r'tot pen ([^,]+)',
+        'tot_pen_meses': r'tot pen meses ([^,]+)',
+        'outras_drogas': r'outras drogas ([^,]+)',
+       'resultado_art_28': r'resultado art 28 ([^,]+)',
+       'resultado_art_33': r'resultado art 33 ([^,]+)',
+       'resultado_art_34': r'resultado art 34 ([^,]+)',
+       'resultado_art_35': r'resultado art 35 ([^,]+)',
+        'denuncia_art_33': r'denuncia art 33 ([^,]+)',
+        'denuncia_art_34': r'denuncia art 34 ([^,]+)',
+        'denuncia_art_35': r'denuncia art 35 ([^,]+)',
+        'flag_local_de_trafico': r'flag local de tráfico ([^,]+)',
+        'flag_preso_no_momento_da_sentenca': r'flag preso no momento da sentença ([^,]+)',
+        'flag_confissao_informal': r'flag confissao informal ([^,]+)',
+        'flag_confissao': r'flag confissao ([^,]+)',
+        'flag_denuncia_anonima': r'flag denuncia anonima ([^,]+)',
+        'flag_denuncia': r'flag denuncia ([^,]+)',
+        'flag_atitude_suspeita': r'flag atitude suspeita ([^,]+)',
+        'flag_divergencias_nos_relatos_dos_policiais': r'flag divergencias nos relatos dos policiais ([^,]+)',
+        'flag_investigacao': r'flag investigacao ([^,]+)',
+        'flag_interceptacao': r'flag interceptacao ([^,]+)',
+        'flag_mandado': r'flag mandado ([^,]+)',
+        'aval_antecedentes': r'aval antecedentes ([^,]+)',
+        'aval_conduta': r'aval conduta ([^,]+)',
+        'aval_personalidade': r'aval personalidade ([^,]+)',
+        'aval_natureza': r'aval natureza ([^,]+)',
+        'aval_quantidade': r'aval quantidade ([^,]+)',
+        'aval_variedade': r'aval variedade ([^,]+)',
+        'aval_circunstancias': r'aval circunstancias ([^,]+)',
+        'aval_consequencias': r'aval consequencias ([^,]+)',
+        'aval_culpabilidade': r'aval culpabilidade ([^,]+)'
+    }
+
+    # Extração de informações
+    informacoes = {}
+    for regra, padrão in regras.items():
+        match = re.search(padrão, sentenca)
+        if match:
+            informacoes[regra] = match.group(1)
+
+    # Converte a sentença em um objeto JSON
+    objeto_json = {
+        'processo': '0059258-92.2017.8.26.0050',
+        'juiz': 'PATRÍCIA ÁLVARES CRUZ',
+       'sexo_juiz': 'Feminino',
+        'nome': 'DIEGO MARCELINO DOS SANTOS',
+        'local': 'Via Pública',
+       'maconha': True,
+       'maconha_g': 575.5,
+       'maconha_outras': True,
+        'cocaina': True,
+        'cocaina_g': 938.1,
+        'crack': False,
+        'crack_g': 0,
+        'ecstasy': False,
+        'ecstasy_g': 0,
+        'lsd': False,
+        '

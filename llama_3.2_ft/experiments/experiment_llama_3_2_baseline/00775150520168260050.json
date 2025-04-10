@@ -1,0 +1,73 @@
+Aqui está o resultado da extração de informações de sentença judicial em formato JSON:
+
+```json
+[
+  {
+    "processo": "0077515-05.2016.8.26.0050",
+    "reus": [
+      {
+        "nome": "RICHARD SOARES VILLELA",
+        "local": "Via Pública",
+        "maconha": true,
+        "maconha_g": 16.8,
+        "maconha_outras": true,
+        "cocaina": false,
+        "cocaina_g": 0,
+        "crack": false,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "5 anos e 10 meses",
+        "tot_pen": "5 anos e 10 meses",
+        "tot_pen_meses": 170,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": true,
+        "flag_confissao_informal": false,
+        "flag_confissao": true,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": false,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+      }
+    ]
+  }
+]
+```
+
+Observações:
+
+* O campo `reus` é um array que contém um objeto por réu.
+* O campo `nome` é o nome completo do réu.
+* O campo `local` é o local relacionado ao crime/ocorrência.
+* Os campos `maconha`, `cocaina`, `crack`, `ecstasy` e `lsd` são booleanos que indicam se o réu foi apreendido com essas substâncias.
+* Os campos `maconha_g`, `cocaina_g`, `crack_g` e `ecstasy_g` são números que indicam a quantidade de substâncias apreendidas em gramas.
+* O campo `sentenca` é a sentença aplicada ao réu.
+* O campo `pena_base` é a pena-base aplicada ao réu.
+* O campo `tot_pen` é a pena total aplicada ao réu.
+* O campo `tot_pen_meses` é a pena total convertida em meses.
+* Os campos `outras_drogas`, `resultado_art_28`, `resultado_art_33`, `resultado_art_34`, `resultado_art_35`, `denuncia_art_33`, `denuncia_art_34`, `denuncia_art_35`, `flag_local_de_trafico`, `flag_preso_no_momento_da_sentenca`, `flag_confissao_informal`, `flag_confissao`, `flag_denuncia_anonima`, `flag_denuncia`, `flag_atitude_suspeita`, `flag_divergencias_nos_relatos_dos_policiais`, `flag_investigacao`, `flag_interceptacao`, `flag_mandado`, `aval_antecedentes`, `aval_conduta`, `aval_personalidade`, `aval_natureza`, `aval_quantidade`, `aval_variedade`, `aval_circunstancias`, `aval_consequencias` e `aval_culpabilidade` são booleanos que indicam se o réu foi condenado por essas características.
+* O campo `flag_local_de_trafico` é um booleano que indica se o local relacionado ao crime/ocorrência é um ponto de tráfico.
+* O campo `flag_preso_no_momento_da_sentenca` é um

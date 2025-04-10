@@ -1,0 +1,61 @@
+Aqui está o resultado da extração de informações de sentenças judiciais:
+
+```json
+[
+  {
+    "processo": "0038618-05.2016.8.26.0050",
+    "nome": "ALEXANDRE MENDES DE PAULO",
+    "local": "Via Pública",
+    "maconha": true,
+    "maconha_g": 40,
+    "maconha_outras": true,
+    "cocaina": true,
+    "cocaina_g": 8,
+    "crack": true,
+    "crack_g": 6,
+    "ecstasy": false,
+    "ecstasy_g": 0,
+    "lsd": false,
+    "lsd_g": 0,
+    "sentenca": "Procedente",
+    "pena_base": "5 anos",
+    "tot_pen": "1 ano e 8 meses",
+    "tot_pen_meses": 32,
+    "outras_drogas": true,
+    "resultado_art_28": false,
+    "resultado_art_33": true,
+    "resultado_art_34": false,
+    "resultado_art_35": false,
+    "denuncia_art_33": true,
+    "denuncia_art_34": false,
+    "denuncia_art_35": false,
+    "flag_local_de_trafico": true,
+    "flag_preso_no_momento_da_sentenca": true,
+    "flag_confissao_informal": false,
+    "flag_confissao": true,
+    "flag_denuncia_anonima": false,
+    "flag_denuncia": true,
+    "flag_atitude_suspeita": true,
+    "flag_divergencias_nos_relatos_dos_policiais": false,
+    "flag_investigacao": true,
+    "flag_interceptacao": false,
+    "flag_mandado": false,
+    "aval_antecedentes": true,
+    "aval_conduta": true,
+    "aval_personalidade": false,
+    "aval_natureza": true,
+    "aval_quantidade": true,
+    "aval_variedade": true,
+    "aval_circunstancias": true,
+    "aval_consequencias": true,
+    "aval_culpabilidade": true
+  }
+]
+```
+
+Observações:
+
+* O réu ALEXANDRE MENDES DE PAULO foi condenado à pena de 1 ano e 8 meses de reclusão, regime inicial fechado, e ao pagamento de 166 dias-multa.
+* O réu foi condenado por incurso no artigo 33, § 4º da Lei 11.343/06.
+* O réu foi absolvido em parte, pois a ação penal foi procedente em parte.
+* O réu foi condenado ao pagamento do valor de 100 UFESPs, nos termos do art. 4º, § 9º, “a”, da Lei Estadual nº 11.608/03, em razão da atuação da Defensoria Pública do Estado.
