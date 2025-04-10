@@ -13,3 +13,9 @@ data/lacerda/tjsp_drugs/sentences/manual_download/metadata/*.html
 data/lacerda/tjsp_drugs/sentences/*/*.xlsx
 data/*/*.arrow
 */*.arrow
+read_pdf/
+llama_3.2_ft/cache/*
+gemma3/unsloth_compiled_cache/*
+gemma3/gemma-3-12/*
+gemma3/gemma-3-finetune-12b/*
+gemma3/test_lora/*
