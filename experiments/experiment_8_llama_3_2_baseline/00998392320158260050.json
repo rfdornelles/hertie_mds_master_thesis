@@ -1,0 +1,75 @@
+Aqui está o resultado da extração de informações de sentença judicial em formato JSON:
+
+```json
+[
+  {
+    "processo": "0099839-23.2015.8.26.0050",
+    "nome": "TYAGO ROCHA PIRES",
+    "local": "Alameda Barão Piracicaba, 96, Santa Cecília",
+    "maconha": true,
+    "maconha_g": 53,
+    "maconha_outras": true,
+    "cocaina": true,
+    "cocaina_g": 26.2,
+    "cocaina_outras": false,
+    "crack": true,
+    "crack_g": 131,
+    "crack_outras": false,
+    "ecstasy": false,
+    "ecstasy_g": 0,
+    "lsd": false,
+    "lsd_g": 0,
+    "sentenca": "Procedente",
+    "pena_base": "8a",
+    "tot_pen": "8a 6m",
+    "tot_pen_meses": 102,
+    "outras_drogas": false,
+    "resultado_art_28": false,
+    "resultado_art_33": true,
+    "resultado_art_34": false,
+    "resultado_art_35": false,
+    "denuncia_art_33": true,
+    "denuncia_art_34": false,
+    "denuncia_art_35": false,
+    "flag_local_de_trafico": true,
+    "flag_preso_no_momento_da_sentenca": true,
+    "flag_confissao_informal": false,
+    "flag_confissao": true,
+    "flag_denuncia_anonima": false,
+    "flag_denuncia": true,
+    "flag_atitude_suspeita": false,
+    "flag_divergencias_nos_relatos_dos_policiais": false,
+    "flag_investigacao": true,
+    "flag_interceptacao": false,
+    "flag_mandado": false,
+    "aval_antecedentes": true,
+    "aval_conduta": true,
+    "aval_personalidade": false,
+    "aval_natureza": true,
+    "aval_quantidade": true,
+    "aval_variedade": false,
+    "aval_circunstancias": false,
+    "aval_consequencias": false,
+    "aval_culpabilidade": false
+  }
+]
+```
+
+Observações:
+
+* O campo `maconha_outras`, `cocaina_outras`, `crack_outras` e `ecstasy_outras` foram considerados como `false` pois não há menção a outras formas de drogas.
+* O campo `lsd_g` foi considerado como `0` pois não há menção à quantidade de LSD.
+* O campo `tot_pen_meses` foi calculado com base na pena base e no número de meses.
+* O campo `denuncia_art_28`, `denuncia_art_34` e `denuncia_art_35` foram considerados como `false` pois não há menção a essas formas de denúncia.
+* O campo `flag_local_de_trafico` foi considerado como `true` pois há menção ao local de tráfico.
+* O campo `flag_preso_no_momento_da_sentenca` foi considerado como `true` pois há menção ao acusado estar preso no momento da sentença.
+* O campo `flag_confissao_informal` foi considerado como `false` pois não há menção a confissão informal.
+* O campo `flag_confissao` foi considerado como `true` pois há menção à confissão formal.
+* O campo `flag_denuncia_anonima` foi considerado como `false` pois não há menção a denúncia anônima.
+* O campo `flag_denuncia` foi considerado como `true` pois há menção à denúncia formal.
+* O campo `flag_atitude_suspeita` foi considerado como `false` pois não há menção à atitude suspeita.
+* O campo `flag_divergencias_nos_relatos_dos_policiais` foi considerado como `false` pois não há menção a divergências nos relatos dos policiais.
+* O campo `flag_investigacao` foi considerado como `true` pois há menção à investigação.
+* O campo `flag_interceptacao` foi considerado como `false` pois não há menção à interceptação.
+* O campo `flag_mandado` foi considerado como `false` pois não há menção ao mandado.
+*
