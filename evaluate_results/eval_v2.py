@@ -293,3 +293,112 @@ result = (
 )
 result = result[['experiment', 'numeric', 'boolean', 'categorical', 'open_textual']]
 result
+
+## calculate the final score for each experiment
+# the final score is the average of all rows: i want a df with experiment | final_score
+final_score = pd.DataFrame(columns=["experiment", "final_score"])
+# calculate the final score for each experiment by standardizing the experiment names
+final_score = overall_score.copy()
+final_score["experiment"] = final_score["experiment"].apply(lambda x: x.split("/")[-1].split(".")[0] if isinstance(x, str) else x)
+final_score = final_score[["experiment", "final_score"]]
+
+# remove final_score null and order by experiment name
+final_score = final_score[final_score["final_score"].notnull()]
+final_score = final_score.sort_values(by="experiment")
+
+# merge with values of result
+final_score = final_score.merge(result, on="experiment")
+
+# round results
+final_score = final_score.round(3)
+
+### plot results
+import seaborn as sns
+import textwrap
+import matplotlib.pyplot as plt
+
+# Redefinir a figura com estilo visual aprimorado
+sns.set_theme(style="darkgrid", palette="pastel")
+fig, ax = plt.subplots(figsize=(14, 6))
+
+# Ocultar eixos
+ax.axis("off")
+
+# Criar uma tabela no gráfico com estilo
+table = plt.table(cellText=final_score.values,
+          colLabels=final_score.columns,
+          cellLoc='center',
+          loc='center',
+          colColours=["#003366"]*len(final_score.columns),
+          colWidths=[0.2]*len(final_score.columns))
+
+# Estilização da tabela
+table.auto_set_font_size(False)
+table.set_fontsize(10)
+table.scale(1, 2)
+
+# Aplicar quebra de linha (wrap) para o conteúdo da coluna 1 (índice 0)
+for key, cell in table.get_celld().items():
+  # key é uma tupla (linha, coluna); pulando o cabeçalho (linha 0)
+  if key[1] == 0 and key[0] > 0:
+    original_text = cell.get_text().get_text()
+    wrapped_text = "\n".join(textwrap.wrap(original_text, width=30))
+    cell.get_text().set_text(wrapped_text)
+
+# Cabeçalho com cor branca e negrito
+for i in range(len(final_score.columns)):
+  cell = table[0, i]
+  cell.set_text_props(color='white', weight='bold')
+
+highlight_row = 5
+# Destaque para a linha do modelo fine-tuned
+for i in range(len(final_score.columns)):
+  table[(highlight_row+1, i)].set_facecolor('#b9f6ca')  # verde pastel
+
+# Título estilizado
+plt.title("Preliminary Results – OpenAI Model Comparisons", fontsize=16, weight='bold', color='#003366', pad=20)
+
+# Salvar imagem final
+plt.savefig("preliminary_results_table_stylish.png", dpi=300, bbox_inches='tight', transparent=True)
+plt.show()
+
+#### radar plot
+import numpy as np
+# Criar múltiplos gráficos de radar, um para cada experimento
+num_experiments = len(final_score)
+cols = 3
+rows = int(np.ceil(num_experiments / cols))
+
+fig, axes = plt.subplots(rows, cols, figsize=(cols * 5, rows * 5), subplot_kw=dict(polar=True))
+axes = axes.flatten()
+
+# Define radar plot configuration variables
+exp_columns = ['numeric', 'boolean', 'categorical', 'open_textual']
+angles = np.linspace(0, 2 * np.pi, len(exp_columns), endpoint=False).tolist()
+angles += angles[:1]  # complete the loop for radar chart
+colors = plt.cm.viridis(np.linspace(0, 1, len(final_score)))
+labels = exp_columns
+
+for idx, row in final_score.iterrows():
+    values = row[exp_columns].tolist()
+    values += values[:1]
+
+    ax = axes[idx]
+    ax.plot(angles, values, color=colors[idx % len(colors)], linewidth=2)
+    ax.fill(angles, values, color=colors[idx % len(colors)], alpha=0.2)
+
+    ax.set_title(row["experiment"], fontsize=10, weight='bold', pad=10)
+    ax.set_theta_offset(np.pi / 2)
+    ax.set_theta_direction(-1)
+    ax.set_thetagrids(np.degrees(angles[:-1]), labels)
+    ax.set_ylim(0.6, 1.0)
+
+# Remover subplots não utilizados
+for j in range(idx + 1, len(axes)):
+    fig.delaxes(axes[j])
+
+plt.suptitle("Radar Charts – Individual Experiment Performance", fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.subplots_adjust(top=0.92)
+plt.savefig("radar_charts_per_experiment.png", dpi=600)
+plt.show()
