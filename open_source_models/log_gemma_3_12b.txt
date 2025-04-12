@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/228446@hertie-school.lan/workspace/master_thesis/llama_3.2_ft/gemma3_12b_run.py", line 1, in <module>
+    import torch
+  File "/home/228446@hertie-school.lan/.pyenv/versions/3.11.11/lib/python3.11/site-packages/torch/__init__.py", line 14, in <module>
+    import ctypes
+  File "/home/228446@hertie-school.lan/.pyenv/versions/3.11.11/lib/python3.11/ctypes/__init__.py", line 8, in <module>
+    from _ctypes import Union, Structure, Array
+ModuleNotFoundError: No module named '_ctypes'
