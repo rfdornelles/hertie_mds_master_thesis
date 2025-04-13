@@ -1,14 +1,15 @@
 ## Objective: evaluate all experiments results
+
 import os
 import json
 import pandas as pd
 from datasets import load_from_disk
 from difflib import SequenceMatcher
+import numpy as np
+import re
 
 ### List all experiments and its results
 experiments = []
-
-#######TODO: compile experiments from the same model together, so there's no eval/train but 
 
 print("Listing all experiments and its results...")
 
@@ -21,13 +22,16 @@ for root, dirs, files in os.walk("../experiments", topdown=True, onerror=None, f
       # get the full path of the experiment file
       full_path = os.path.join(root, file)
       
+      # ignore validation tests
+      if full_path.__contains__("validation"):
+        continue
       # add the experiment full path to the list
       experiments.append(full_path)
-      print(f"  Experiment: {full_path}")
+      # print(f"  Experiment: {full_path}")
 
+print(f"  Found {len(experiments)} experiments.")
 ### load the validation data
-print("Loading validation data...")
-df_validation = load_from_disk("../data/validation").to_pandas().pop("output").apply(json.loads).apply(pd.Series)
+print("Loading test data...")
 df_test = load_from_disk("../data/test").to_pandas().pop("output").apply(json.loads).apply(pd.Series)
 
 ### determine the types of columns -- to each type we'll have a different evaluation
@@ -46,6 +50,12 @@ categorical_fields = ['sexo_juiz', 'local',  'sentenca', 'pena_base', 'tot_pen']
 open_textual_fields = ['processo',  'juiz', 'nome']
 
 ### auxiliary functions
+# clean processo
+def clean_processo(processo):
+  # only numeric digits
+  processo = processo.replace("[^0-9]", "")
+  return processo
+
 # normalize text
 def normalize_text(text, remove_spaces=True) -> str:
   text = str(text)
@@ -67,6 +77,9 @@ def normalize_text(text, remove_spaces=True) -> str:
 # numeric: difference between the two values
 
 def score_numeric(result, expected):
+  # coerce to numeric because they might be strings
+  result = pd.to_numeric(result, errors='coerce')
+  expected = pd.to_numeric(expected, errors='coerce')
   try:
     diff = abs(float(result) - float(expected))
 
@@ -125,7 +138,7 @@ def score_open_textual(result, expected, remove_spaces=False):
 def evaluate_experiment(experiment, verbose=False):
   
   path = experiment
-  name = experiment.split("/")[-1].split(".")[0]
+  name = re.sub(r"(_)?results_parsed\.parquet|experiment(_|[0-9])", "", experiment.split("/")[-1])
 
   ## load data
   # experiment
@@ -137,18 +150,27 @@ def evaluate_experiment(experiment, verbose=False):
     return
 
   # reference data
-  if name.__contains__("_ft_"):
-    df_reference = pd.concat([df_validation, df_test], ignore_index=True)
-  else:
-    df_reference = df_validation.copy() if name.__contains__("validation") else df_test.copy()
+  df_reference = df_test.copy()
+  
+      
+  # clean the processo column in both dataframes
+  df_experiment["processo"] = df_experiment["processo"].apply(clean_processo)
+  df_reference["processo"] = df_reference["processo"].apply(clean_processo)
+
   
   # check the sizes
   if df_experiment.shape[0] != df_reference.shape[0]:
-    print(f"  [Error] Experiment {name}: the number of rows in the experiment ({df_experiment.shape[0]}) is different from the reference ({df_reference.shape[0]})")
-    return {"score": [], "details": {}}
+    # retrieve only the rows in df_experiment that are also in df_reference
+    df_experiment = df_experiment[df_experiment["processo"].isin(df_reference["processo"])]
+    
+    # check the sizes again
+    if df_experiment.shape[0] != df_reference.shape[0]:
+      print(f"  [Error] Experiment {name}: the number of rows in the experiment ({df_experiment.shape[0]}) is different from the reference ({df_reference.shape[0]})")
+    # return {"score": [], "details": {}}
   
   # merge data
   try:
+    # merge the dataframes on the processo column  
     merged_data = df_reference.merge(df_experiment, on='processo', suffixes=("_result", "_expected"))
     
   except Exception as e:
@@ -216,8 +238,7 @@ def evaluate_experiment(experiment, verbose=False):
     all_row_details.append(details)
 
   return {"score": all_row_scores, "details": all_row_details}  
-  
-  
+
   
 ## define an overall score to each experiment
 
@@ -227,10 +248,11 @@ overall_score = pd.DataFrame(columns=["experiment", "details", "score"])
 for experiment in experiments:
   print(f"Evaluating experiment {experiment}...")
   
+  experiment_name = experiment.replace('../experiments/experiment_','').split('/')[0]
   score_details = evaluate_experiment(experiment)
   
   # new column
-  new_row = pd.DataFrame({"experiment": [experiment], "details": [score_details["details"]], "score": [score_details["score"]]})
+  new_row = pd.DataFrame({"experiment": [experiment_name], "details": [score_details["details"]], "score": [score_details["score"]]})
   overall_score = pd.concat([overall_score, new_row], ignore_index=True)
   
 # calculate the overall score to each model
@@ -260,7 +282,7 @@ df_column_result = pd.DataFrame(columns=["experiment", "column", "column_type", 
 
 for experiment in overall_score["experiment"]:
     
-    name = experiment.split("/")[-1].split(".")[0]
+    name = experiment#.split("/")[-1].split(".")[0]
     
     # get the details for the experiment
     details = overall_score[overall_score["experiment"] == experiment]["col_score"].values[0]
@@ -301,7 +323,7 @@ result
 final_score = pd.DataFrame(columns=["experiment", "final_score"])
 # calculate the final score for each experiment by standardizing the experiment names
 final_score = overall_score.copy()
-final_score["experiment"] = final_score["experiment"].apply(lambda x: x.split("/")[-1].split(".")[0] if isinstance(x, str) else x)
+final_score["experiment"] = final_score["experiment"]#.apply(lambda x: x.split("/")[-1].split(".")[0] if isinstance(x, str) else x)
 final_score = final_score[["experiment", "final_score"]]
 
 # remove final_score null and order by experiment name
@@ -365,7 +387,7 @@ plt.savefig("preliminary_results_table_stylish.png", dpi=300, bbox_inches='tight
 plt.show()
 
 #### radar plot
-import numpy as np
+
 # Criar múltiplos gráficos de radar, um para cada experimento
 num_experiments = len(final_score)
 cols = 3
