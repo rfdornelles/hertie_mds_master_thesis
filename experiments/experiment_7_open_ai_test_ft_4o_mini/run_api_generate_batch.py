@@ -21,7 +21,7 @@ HERTIE_OPENAI_ORG_ID = os.getenv("HERTIE_OPENAI_ORG_ID")
 HERTIE_OPENAI_PROJECT_ID = os.getenv("HERTIE_OPENAI_PROJECT_ID")
 
 #### definitions
-model = 'ft:gpt-4o-mini-2024-07-18:hertie-school:judicial-sentences:BKQ48gf0'
+model = 'ft:gpt-4o-mini-2024-07-18:hertie-school:judicial-sentences-v2:BLwV3kjz' #'ft:gpt-4o-mini-2024-07-18:hertie-school:judicial-sentences:BKQ48gf0'
 experiment = os.path.basename(os.path.abspath(os.path.dirname(__file__)))
 dataset = "test"
 prompt = "prompt_v4_clean.md"
@@ -38,20 +38,6 @@ print(f"Using schema: {schema}")
 #### download data
 df = load_from_disk(f"../../data/{dataset}").to_pandas()
 
-if (model.startswith("ft:")):
-  ## using the test + validation sets
-  print(f"[ATTENTION] Since using a ft model ({model}) we are using the test + validation sets")
-  df = pd.concat(
-    [
-     load_from_disk(f"../../data/test").to_pandas(),
-     load_from_disk(f"../../data/validation").to_pandas()
-    ]
-  ) 
-else:
-  df = load_from_disk(f"../../data/{dataset}").to_pandas()
-
-
-  
 ### load prompt
 with open(f"../../prompt/{prompt}", "r") as f:
     prompt = f.read()
@@ -157,7 +143,7 @@ def get_batch_job_status(batch_job_id):
         return batch_job_status, 0.5
     elif (batch_job_status.status == "in_progress"):
         print(f"Batch job is in progress: {batch_job_status.status}")
-        return batch_job_status, 5
+        return batch_job_status, 1
     elif (batch_job_status.status == "completed"):
         print(f"Batch job completed: {batch_job_status.status}")
         # download the results
