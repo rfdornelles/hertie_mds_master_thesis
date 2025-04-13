@@ -12,10 +12,12 @@ from tqdm import tqdm
 ## definitions
 
 experiments = [
-  'experiment_8_llama_3_2_baseline',
   'experiment_gemma3_1b_it_baseline',
   'experiment_gemma3_12b_it_baseline_v2',
   'experiment_gemma3_27b_it_baseline_v2',
+  'experiment_llama_3.1_8b_baseline',
+  'experiment_llama_3.2_3b_baseline',
+  'experiment_llama_3.2_3B_baseline_ft_unsloth_2025-04-13_17-52-07'
   ]
 
 folder = "../experiments"
@@ -105,6 +107,8 @@ print("Parser initialized successfully.")
 # function to read each output
 def parse_result(experiment, folder, file):
 
+  processo = file.split(".")[0]
+  
   try:
     with open(f"{folder}/{experiment}/{file}", "r", encoding="utf-8") as f:
       content = f.read()
@@ -115,21 +119,24 @@ def parse_result(experiment, folder, file):
   
   try:
     output = parser.parse(content)
+    
   except Exception as e:
-    print(f"Error parsing file {file}: {e}")
-    
-    ## in this case, we need to return an empty DataFrame to that giving process, with all other fields as None
-    
-    processo = unicodedata.normalize("NFKD", file.split(".")[0])
+    print(f"Error parsing file {file}")
     data = {field: None for field in SentencaJudicial.model_fields.keys()}
     data["processo"] = processo
     return pd.DataFrame([data])
   
   try:
     result = pd.DataFrame(output)
-  except Exception as e:
-    print(f"Error converting to DataFrame {file}: {e}")
-    return None
+    # force processo to be the name of the file
+    result["processo"] = processo
+    
+  except Exception as e:    
+    try:
+      result = pd.DataFrame([output])
+    except:
+      print(f"Error converting to DataFrame {file}: {e}")
+      return None
   
   return result
 
@@ -181,6 +188,6 @@ def read_experiment(experiment, overwrite=False):
   
 ## iterate over the experiments and read each one
 for experiment in experiments:
-  read_experiment(experiment)
+  read_experiment(experiment, overwrite=True)
   
 print("All experiments completed.")

@@ -21,9 +21,9 @@ openai_api_key = os.getenv("HERTIE_OPENAI_API_KEY")
 model = "gpt-4o-mini-2024-07-18"
 df_train = load_from_disk('../data/train/').to_pandas()
 
-df_test = pd.concat([load_from_disk('../data/test/').to_pandas(), load_from_disk('../data/validation/').to_pandas()])
+df_test = load_from_disk('../data/validation/').to_pandas()
 
-experiment = f"fine_tuning_{model}"
+experiment = f"fine_tuning_v2_{model}"
 
 ## prompt 
 with open(f"../prompt/prompt_v4_clean.md", "r") as f:
@@ -136,7 +136,7 @@ else:
     training_file=training_file_id,
     validation_file=validation_file_id,
     model=model,
-    suffix="judicial_sentences",
+    suffix="judicial_sentences_v2",
     seed=77
   )
 
@@ -151,10 +151,21 @@ else:
 def get_batch_job_status(job_id):
     batch_job_status = client.fine_tuning.jobs.retrieve(job_id)
     
+    if(batch_job_status.status == "validating_files"):
+        
+        print(f"Batch job is validating files: {batch_job_status.status}")
+        return batch_job_status, 0.2
+    
     if (batch_job_status.status == "running"):
         print(f"Batch job is still processing: {batch_job_status.status}")
-        print(f"Estimated finish: {datetime.fromtimestamp(status.estimated_finish)}")
-        return batch_job_status, 1
+        
+        try:
+            print(f"Batch job estimated finish: {datetime.fromtimestamp(batch_job_status.estimated_finish)}")
+        except Exception:
+            print("Estimated finish time not available.")
+        
+        #print(f"Estimated finish: {datetime.fromtimestamp(batch_job_status.estimated_finish)}")
+        return batch_job_status, 0.5
     elif (batch_job_status.status == "in_progress"):
         print(f"Batch job is in progress: {batch_job_status.status}")
         return batch_job_status, 0.5
@@ -163,7 +174,7 @@ def get_batch_job_status(job_id):
         # download the results
         print(f"Completed!!")
         print(f"Completed at: {datetime.fromtimestamp(batch_job_status.completed_at)}")
-        return batch_job_status
+        return batch_job_status, 0
     elif (batch_job_status.status == "failed"):
         print(f"Batch job failed: {batch_job_status.status}")
         print(f"Error code: {batch_job_status.error.code}")
@@ -208,4 +219,4 @@ model_metrics = client.fine_tuning.jobs.list_events(job_id).data
 # itera
 model_metrics = [event.data for event in model_metrics if event.type == "metrics"]
 
-pd.DataFrame(model_metrics).sort_values(by="step", ascending=True)
+pd.DataFrame(model_metrics).sort_values(by="step", ascending=False)

@@ -17,7 +17,7 @@ import tqdm
 torch.cuda.empty_cache()
 
 # definitions
-experiment = 'experiment_llama_3_2_baseline'
+experiment = 'experiment_llama_3.2_3b_baseline'
 folder = f'experiments/{experiment}/'
 os.makedirs(folder, exist_ok=True)
 
