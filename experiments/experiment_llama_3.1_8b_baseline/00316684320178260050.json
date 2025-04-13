@@ -1,0 +1,67 @@
+Aqui está a resposta no formato solicitado:
+
+```json
+[
+    {
+        "processo": "00316684320178260050",
+        "juiz": "Carlos Eduardo Lora Franco",
+        "sexo_juiz": "Masculino",
+        "nome": "Milton Teixeira da Silva",
+        "local": "Via Pública",
+        "maconha": false,
+        "maconha_g": 0,
+        "maconha_outras": false,
+        "cocaina": true,
+        "cocaina_g": 1971.3,
+        "crack": false,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "8a 800d",
+        "tot_pen": "10a",
+        "tot_pen_meses": 120,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": false,
+        "flag_confissao_informal": false,
+        "flag_confissao": false,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": false,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+    }
+]
+```
+
+Observações:
+
+- A sentença foi considerada procedente e o réu foi condenado por tráfico de cocaína.
+- A pena base foi fixada em 8 anos de reclusão e 800 dias-multa.
+- A pena total foi fixada em 10 anos de reclusão e 1000 dias-multa.
+- O réu não poderá apelar em liberdade.
+- O juiz determinou que se oficie para incineração dos entorpecentes apreendidos.
+- O réu foi considerado reincidente e não teve direito à redução de pena prevista no § 4º do art. 33 da Lei n° 11.343/06.
+- O réu não foi considerado primário e não teve direito à redução de pena prevista no § 4º do art. 33 da Lei n° 11.343/06.
+- O réu foi considerado voltado à prática de delitos e não teve direito à substituição da pena ou ao sursis.

@@ -1,0 +1,68 @@
+Aqui está a extração de informações da sentença:
+
+```json
+[
+    {
+        "processo": "0105978-54.2016.8.26.0050",
+        "juiz": "Dr(a). Fátima Vilas Boas Cruz",
+        "sexo_juiz": "Feminino",
+        "nome": "FERNANDO DELGADO DE ALMEIDA",
+        "local": "Via Pública",
+        "maconha": true,
+        "maconha_g": 0,
+        "maconha_outras": true,
+        "cocaina": true,
+        "cocaina_g": 0,
+        "crack": false,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "5a 500d",
+        "tot_pen": "2a 6m",
+        "tot_pen_meses": 30,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": false,
+        "flag_confissao_informal": false,
+        "flag_confissao": false,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": false,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": true,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+    }
+]
+```
+
+Observações:
+
+- A sentença foi julgada procedente, condenando o réu às penas de 2 anos e 6 meses de reclusão, mais 250 dias-multa.
+- A pena-base foi fixada em 5 anos de reclusão e 500 dias-multa, mas foi reduzida à metade devido à quantidade e ao tipo de entorpecente apreendido.
+- O réu foi considerado primário e não havia elementos para demonstrar que ele integrava uma organização criminosa.
+- A sentença não menciona a presença de outras drogas além da cocaína e da maconha.
+- A sentença não menciona a presença de crack, ecstasy ou LSD.
+- A sentença não menciona a presença de outras substâncias além da cocaína e da maconha.
+- A sentença não menciona a presença de outras circunstâncias que possam influenciar na dosagem das penas.
+- A sentença não menciona a presença de outras consequências do delito.
+- A sentença não menciona a presença de outras avaliações da culpabilidade do réu.

@@ -1,0 +1,66 @@
+Aqui está a resposta no formato solicitado:
+
+```json
+[
+    {
+        "processo": "0053310-72.2017.8.26.0050",
+        "juiz": "Celina Maria Macedo",
+        "sexo_juiz": "Feminino",
+        "nome": "RONALD ROGER GRIFO",
+        "local": "Via Pública",
+        "maconha": true,
+        "maconha_g": 60.0,
+        "maconha_outras": true,
+        "cocaina": true,
+        "cocaina_g": 14.0,
+        "crack": true,
+        "crack_g": 100.0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "6a",
+        "tot_pen": "8a 2m",
+        "tot_pen_meses": 98,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": true,
+        "flag_confissao_informal": false,
+        "flag_confissao": true,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": true,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": false,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+    }
+]
+```
+
+Observações:
+
+- A sentença foi considerada procedente, pois o réu foi condenado por tráfico de drogas.
+- A pena-base foi fixada em 6 anos de reclusão e 600 dias-multa.
+- A pena definitiva foi fixada em 8 anos e 2 meses de reclusão e 816 dias-multa.
+- O réu foi condenado a cumprir a pena em regime inicialmente fechado.
+- A prisão preventiva do réu foi mantida.
+- A droga apreendida foi incinerada.
+- Os valores apreendidos foram perdidos em favor do FUNAD/SENAD.
