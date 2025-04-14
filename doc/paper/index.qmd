@@ -6,6 +6,7 @@
 #     roles: author
 #     corresponding: true
 bibliography: references.bib
+csl: apa.csl
 format: 
   pdf:
     include-in-header:
@@ -28,6 +29,7 @@ number-sections: false
 link-citations: true
 figure-caption: true
 cap-location: bottom
+
 ---
 
 <!-- TODO: citation on APA style -->
@@ -212,6 +214,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ## Conclusion
 
+
+@alva-manchego_suitability_2021
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 
 # References
@@ -220,6 +225,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 <!-- TODO: insert references.bib file here -->
 
+::: {#refs}
+:::
 
 # Appendix
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
