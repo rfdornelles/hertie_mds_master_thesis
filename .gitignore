@@ -14,3 +14,4 @@ data/lacerda/tjsp_drugs/sentences/*/*.xlsx
 data/*/*.arrow
 */*.arrow
 *.arrow
+.env

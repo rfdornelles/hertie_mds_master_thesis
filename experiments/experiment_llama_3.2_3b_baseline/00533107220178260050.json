@@ -1,0 +1,73 @@
+Aqui está o resultado da extração de informações de sentença judicial em formato JSON:
+
+```json
+[
+  {
+    "processo": "0053310-72.2017.8.26.0050",
+    "juiz": "Dr(a). Celina Maria Macedo",
+    "sexo_juiz": "Feminino",
+    "nome": "RONALD ROGER GRIFO",
+    "local": "Cidade Lider",
+    "maconha": true,
+    "maconha_g": 60,
+    "maconha_outras": true,
+    "cocaina": true,
+    "cocaina_g": 14,
+    "crack": true,
+    "crack_g": 100,
+    "ecstasy": false,
+    "ecstasy_g": 0,
+    "lsd": false,
+    "lsd_g": 0,
+    "sentenca": "Procedente",
+    "pena_base": "8 anos",
+    "tot_pen": "8 anos e 2 meses",
+    "tot_pen_meses": 102,
+    "outras_drogas": false,
+    "resultado_art_28": false,
+    "resultado_art_33": true,
+    "resultado_art_34": false,
+    "resultado_art_35": false,
+    "denuncia_art_33": true,
+    "denuncia_art_34": false,
+    "denuncia_art_35": false,
+    "flag_local_de_trafico": true,
+    "flag_preso_no_momento_da_sentenca": true,
+    "flag_confissao_informal": false,
+    "flag_confissao": true,
+    "flag_denuncia_anonima": false,
+    "flag_denuncia": true,
+    "flag_atitude_suspeita": true,
+    "flag_divergencias_nos_relatos_dos_policiais": false,
+    "flag_investigacao": true,
+    "flag_interceptacao": false,
+    "flag_mandado": false,
+    "aval_antecedentes": true,
+    "aval_conduta": true,
+    "aval_personalidade": false,
+    "aval_natureza": true,
+    "aval_quantidade": true,
+    "aval_variedade": false,
+    "aval_circunstancias": true,
+    "aval_consequencias": true,
+    "aval_culpabilidade": false
+  }
+]
+```
+
+Observações:
+
+* O campo `maconha_outras` foi marcado como `true` porque a sentença menciona "outras formas de maconha", mas não fornece mais informações.
+* O campo `cocaina_g` foi marcado como `14` porque a sentença menciona 14 "porções de cocaína", mas não especifica se é em gramas ou outro formato.
+* O campo `crack_g` foi marcado como `100` porque a sentença menciona 100 "porções de crack", mas não especifica se é em gramas ou outro formato.
+* O campo `ecstasy_g` foi marcado como `0` porque a sentença não menciona a quantidade de ecstasy.
+* O campo `lsd_g` foi marcado como `0` porque a sentença não menciona a quantidade de LSD.
+* O campo `tot_pen_meses` foi marcado como `102` porque a sentença menciona 8 anos e 2 meses, que é equivalente a 102 meses.
+* O campo `tot_pen` foi marcado como "8 anos e 2 meses" porque a sentença menciona 8 anos e 2 meses como a pena total.
+* O campo `pena_base` foi marcado como "8 anos" porque a sentença menciona 8 anos como a pena base.
+* O campo `sentenca` foi marcado como "Procedente" porque a sentença é procedente.
+* O campo `flag_confissao` foi marcado como `true` porque a sentença menciona que o réu confessou, mas não especifica se foi formal ou informal.
+* O campo `flag_confissao_informal` foi marcado como `false` porque a sentença não menciona que o réu confessou de forma informal.
+* O campo `flag_denuncia_anonima` foi marcado como `false` porque a sentença não menciona que a denúncia foi anônima.
+* O campo `flag_denuncia` foi marcado como `true` porque a sentença menciona que a denúncia foi formal.
+* O campo `flag_atitude_suspeita` foi marcado como `true` porque a sentença menciona que o

@@ -1,0 +1,74 @@
+Aqui está a resposta no formato solicitado:
+
+```json
+[
+    {
+        "processo": "0001120-26.2017.8.26.0635",
+        "juiz": "Dr(a). Luciane Jabur Mouchaloite Figueiredo",
+        "sexo_juiz": "Feminino",
+        "nome": "IAGO FERREIRA LOBO",
+        "local": "Via Pública",
+        "maconha": true,
+        "maconha_g": 150.0,
+        "maconha_outras": true,
+        "cocaina": false,
+        "cocaina_g": 0,
+        "crack": false,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "05a",
+        "tot_pen": "01a 08m",
+        "tot_pen_meses": 32,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": true,
+        "flag_confissao_informal": false,
+        "flag_confissao": true,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": false,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+    }
+]
+```
+
+Observações:
+
+- O réu foi condenado por tráfico de drogas, conforme artigo 33 da Lei 11.343/06.
+- A pena-base foi fixada em 5 anos de reclusão, com redução de 2/3, devido à confissão e à ausência de antecedentes.
+- A pena total foi fixada em 1 ano e 8 meses de reclusão e 166 dias-multa.
+- O réu foi condenado a regime semiaberto.
+- A prisão do réu não foi afetada pela sentença.
+- A sentença não menciona a existência de outras drogas além da maconha.
+- A sentença não menciona a existência de interceptações ou mandados.
+- A sentença não menciona a existência de divergências nos relatos dos policiais.
+- A sentença não menciona a existência de investigação ou diligências.
+- A sentença não menciona a existência de avaliação da personalidade do réu.
+- A sentença não menciona a existência de avaliação da natureza do delito.
+- A sentença não menciona a existência de avaliação da variedade de substâncias.
+- A sentença não menciona a existência de avaliação das circunstâncias do crime.
+- A sentença não menciona a existência de avaliação das consequências do delito.
+- A sentença não menciona a existência de avaliação da culpabilidade do réu.
