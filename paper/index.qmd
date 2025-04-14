@@ -1,11 +1,10 @@
 ---
-#title: 'LLM in Court'
-#subtitle: Leveraging Open-Source Language Models to Enhance Empirical Legal Research in Brazil'
-# authors:
-#   - name: Rodrigo Dornelles
-#     affiliation: Hertie School
-#     roles: author
-#     corresponding: true
+title: Master Thesis - Teste 
+authors:
+  - name: Rodrigo Dornelles
+    affiliation: Hertie School
+    roles: author
+    corresponding: true
 bibliography: references.bib
 format: 
   pdf:
@@ -30,34 +29,32 @@ figure-caption: true
 cap-location: bottom
 ---
 
-```{r variables setup, include=FALSE, quiet=TRUE}
-thesis_title = 'LLM in Court: Leveraging Open-Source Language Models to Enhance Empirical Legal Research in Brazil'
-```
-
+```{=latex}
 \begin{titlepage}
-  \centering
-  \includegraphics[width=0.75\textwidth]{images/hertie-school-logo.jpg}
-  \vspace*{\fill}
-  
-  \textbf{`r thesis_title`}\\
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/hertie-school-logo.jpg}
+    \vspace*{\fill}
+    
+    \textbf{Master Thesis - Whatever test title you want}\\
 
-  \vspace{2.5cm}
+    \vspace{2.5cm}
 
-  Rodrigo Filippi Dornelles
+    Rodrigo Filippi Dornelles
 
-  \vspace{1cm}
-  
-  Master of Data Science for Public Policy, Class of 2025\\
-  
-  \vspace{0.5cm}
+    \vspace{1cm}
+    
+    Master of Data Science for Public Policy, Class of 2025\\
+    
+    \vspace{0.5cm}
 
-  Berlin, April 28, 2025\\
+    Berlin, April 28, 2025\\
 
-  \vspace*{\fill}
+    \vspace*{\fill}
 
-  Supervised by Prof. Lynn Kaack, PhD
+    Supervised by Prof. Lynn Kaack, PhD
 
 \end{titlepage}
+```
 ```{=latex}
 \tableofcontents
 \thispagestyle{empty}
