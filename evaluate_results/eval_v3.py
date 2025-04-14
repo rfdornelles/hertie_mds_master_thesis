@@ -328,7 +328,7 @@ final_score = final_score[["experiment", "final_score"]]
 
 # remove final_score null and order by experiment name
 final_score = final_score[final_score["final_score"].notnull()]
-final_score = final_score.sort_values(by="experiment")
+final_score = final_score.sort_values(by="final_score", ascending=True)
 
 # merge with values of result
 final_score = final_score.merge(result, on="experiment")
@@ -374,10 +374,10 @@ for i in range(len(final_score.columns)):
   cell = table[0, i]
   cell.set_text_props(color='white', weight='bold')
 
-highlight_row = 5
+# highlight_row = 5
 # Destaque para a linha do modelo fine-tuned
-for i in range(len(final_score.columns)):
-  table[(highlight_row+1, i)].set_facecolor('#b9f6ca')  # verde pastel
+# for i in range(len(final_score.columns)):
+#   table[(highlight_row+1, i)].set_facecolor('#b9f6ca')  # verde pastel
 
 # Título estilizado
 plt.title("Preliminary Results – OpenAI Model Comparisons", fontsize=16, weight='bold', color='#003366', pad=20)
