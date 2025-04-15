@@ -99,6 +99,15 @@ Lorem ipsum dolor
 
 # Introduction
 
+ * context:
+    - law is a fundamental aspect in governance and, therefore, to well being
+    - however, law is heavely dogmatic and there is little empirical legal research in the country. 
+    - to do empirical research on law the data mining process is specially complicated, not because the lack of material -- Judiciary in BR is full digitalized -- but to analyze a large volume of data, with it's specific linguo
+    - the first obstacle to a data-driving analysis in law is how to manage text data in large scale and extract structured information from it: one could easily take months to properly analyze few dozens of complex documents. 
+    - one side-hipothesis: our legal studies and legislative production is suboptimal, due the lack of evidence based decisions
+    - relevant to a policy school; in a data science program it's specially relevant to point out solutions to improve this field and offer policy recommendations in the light of the state of the art
+  * contribution: pipeline, analyse, at least 1 os model trained
+
 <!-- 
   * context:
     - law is a fundamental aspect in governance and, therefore, to well being
@@ -164,19 +173,45 @@ Lorem ipsum dolor
     
 -->
 
-Lorem ipsum dolor sit amet
-
 # Literature Review
 
-Lorem ipsum dolor sit amet
+
+* literature: lawma, tucano, marina lacerda, rayssa, abj drogas, 
 
 # Research Question
 
-Lorem ipsum dolor sit amet
+  * research gap: lack of empirical legal research in Brazil; very few studies based on empirical research but, when they happen, they may high impact
+  * research opportunity: natural language processing, specially the advent of LLMs
+  * RQ: is possible to deploy LLMs to analyze legal documents and extract structured information from they? and -- assuming that academia and public service would refrain using commercial models -- are open source models a feasible tool?
 
 # Research Design
 
-Lorem ipsum dolor sit amet
+* method:
+    - gathered data from judicial sentences in São Paulo
+    - received access from dataset from Lacerda: ± 400 judicial sentences labelled
+    - cleaned data
+    - prompt engeneering
+    - used commercial OS (OpenAI) as baseline
+    - tryied the OS models
+      - llama
+      - gemma
+      - tucano
+      - lawma
+      - lola
+    - libraries HF and unsloth
+    - ft models
+    - compared their performance
+    - limitations: 
+      - drug traffic, sao paulo
+      - 2017/2018
+      - only models that were possible to access
+      - small sample to ft and test
+      - tucano, lawma:
+        - context window was too short to legal docs;
+        - tried with no success to apply rope scaling or yarn
+        - tried RAG to retrieve relevant parts; tried rag to squish the text
+        - possibility: try a task-based prompt -- still limited window, but might be sufficient to many documents
+        - lack of computational resources
 
 ## Data Sources
 
@@ -192,7 +227,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
 # Results
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit
+b
 
 # Discussion
 
@@ -200,19 +235,35 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit
 
 ## Key Findings
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit
-
- Ut enim ad minim veniam, 
+* results
+      - os: 
+        - cons: difficult to manage, several have short context window; computationaly intensive;
+        - pro: privacy; costs; fast paced; adaptability; full control;
+      - comercial:
+        - cons: privacy; costs; 
+        - pro: reliability; easiness; credibility
+      - indeed, specialization is a good strategy
+      - have good potential, altough more testing is needed 
 
 ## Future Research
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    - future research:
+      - quantization; prunning; distillation;
+      - task-based approach
 
 ## Policy Recommendations
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    - policy recs:
+      - academia: open the data from the empirical studies -\-\-> corpus of legal label
+      - os community: larger context windows, more light models
+      - judiciary branch: improve metadata recollection and open access to judicial decisoms
 
 ## Conclusion
+    * conclusions:
+      - llms are good tools to leverage empirical legal research in BR
+      - commercial models: still up to date a good strategy, despite of its costs and privacy issues
+        - pre-process to anonymize is an option
+      - os models: feasible and decent baseline performances in certain models; ft is a good strategy that increases a lot performance
 
 
 @alva-manchego_suitability_2021
