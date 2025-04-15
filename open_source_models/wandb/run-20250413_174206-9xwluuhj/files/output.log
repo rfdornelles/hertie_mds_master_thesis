@@ -1,0 +1,10 @@
+Starting training....
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 3
+   \\   /|    Num examples = 186 | Num Epochs = 10 | Total steps = 460
+O^O/ \_/ \    Batch size per device = 1 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (1 x 4 x 1) = 4
+ "-____-"     Trainable parameters = 24,313,856/3,000,000,000 (0.81% trained)
+Unsloth: Will smartly offload gradients to save VRAM!
+Unsloth: Not an error, but LlamaForCausalLM does not accept `num_items_in_batch`.
+Using gradient accumulation will be very slightly less accurate.
+Read more on gradient accumulation issues here: https://unsloth.ai/blog/gradient

@@ -1,0 +1,18 @@
+{"time":"2025-04-13T20:20:08.283495915Z","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"/workspace/master_thesis/master_thesis/open_source_models/wandb/run-20250413_202008-micqrna6/logs/debug-core.log"}
+{"time":"2025-04-13T20:20:08.89152332Z","level":"INFO","msg":"created new stream","id":"micqrna6"}
+{"time":"2025-04-13T20:20:08.89157167Z","level":"INFO","msg":"stream: started","id":"micqrna6"}
+{"time":"2025-04-13T20:20:08.892629384Z","level":"INFO","msg":"handler: started","stream_id":"micqrna6"}
+{"time":"2025-04-13T20:20:08.892653529Z","level":"INFO","msg":"writer: Do: started","stream_id":"micqrna6"}
+{"time":"2025-04-13T20:20:08.892829048Z","level":"INFO","msg":"sender: started","stream_id":"micqrna6"}
+{"time":"2025-04-13T20:20:09.132171636Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-13T20:20:13.481328799Z","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-04-13T20:22:19.498363947Z","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-04-13T20:23:26.681817139Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-13T20:23:26.681880438Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-13T20:23:27.481202443Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-13T20:23:27.684292521Z","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading summary, console lines 16-17","runtime_seconds":0.202922935}],"total_operations":1}}
+{"time":"2025-04-13T20:23:27.70274355Z","level":"INFO","msg":"stream: closing","id":"micqrna6"}
+{"time":"2025-04-13T20:23:27.70276477Z","level":"INFO","msg":"handler: closed","stream_id":"micqrna6"}
+{"time":"2025-04-13T20:23:27.7027756Z","level":"INFO","msg":"writer: Close: closed","stream_id":"micqrna6"}
+{"time":"2025-04-13T20:23:27.702792833Z","level":"INFO","msg":"sender: closed","stream_id":"micqrna6"}
+{"time":"2025-04-13T20:23:27.702973191Z","level":"INFO","msg":"stream: closed","id":"micqrna6"}

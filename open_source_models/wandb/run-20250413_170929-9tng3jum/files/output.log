@@ -1,0 +1,4 @@
+Unsloth: Will smartly offload gradients to save VRAM!
+Unsloth: Not an error, but LlamaForCausalLM does not accept `num_items_in_batch`.
+Using gradient accumulation will be very slightly less accurate.
+Read more on gradient accumulation issues here: https://unsloth.ai/blog/gradient

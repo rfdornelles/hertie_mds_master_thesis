@@ -1,0 +1,8 @@
+{"time":"2025-04-13T20:38:57.145018311Z","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"/workspace/master_thesis/master_thesis/open_source_models/wandb/run-20250413_203857-sa7hmygy/logs/debug-core.log"}
+{"time":"2025-04-13T20:38:58.175678675Z","level":"INFO","msg":"created new stream","id":"sa7hmygy"}
+{"time":"2025-04-13T20:38:58.175736653Z","level":"INFO","msg":"stream: started","id":"sa7hmygy"}
+{"time":"2025-04-13T20:38:58.176878875Z","level":"INFO","msg":"handler: started","stream_id":"sa7hmygy"}
+{"time":"2025-04-13T20:38:58.176904273Z","level":"INFO","msg":"writer: Do: started","stream_id":"sa7hmygy"}
+{"time":"2025-04-13T20:38:58.177070685Z","level":"INFO","msg":"sender: started","stream_id":"sa7hmygy"}
+{"time":"2025-04-13T20:38:58.465663406Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-13T20:39:05.877304118Z","level":"INFO","msg":"Pausing system monitor"}

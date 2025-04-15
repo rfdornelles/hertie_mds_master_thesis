@@ -1,0 +1,25 @@
+Starting training....
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 3
+   \\   /|    Num examples = 186 | Num Epochs = 10 | Total steps = 460
+O^O/ \_/ \    Batch size per device = 1 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (1 x 4 x 1) = 4
+ "-____-"     Trainable parameters = 24,313,856/3,000,000,000 (0.81% trained)
+  0%|▎                                                                                                                            | 1/460 [00:16<2:02:52, 16.06s/it]Unsloth: Not an error, but LlamaForCausalLM does not accept `num_items_in_batch`.
+Unsloth: Will smartly offload gradients to save VRAM!
+{'loss': 0.2435, 'grad_norm': 0.21848922967910767, 'learning_rate': 0.0, 'epoch': 0.02}
+Using gradient accumulation will be very slightly less accurate.
+Read more on gradient accumulation issues here: https://unsloth.ai/blog/gradient
+  1%|█▋                                                                                                                           | 6/460 [03:06<3:55:36, 31.14s/it]
+                                                                                                                                                                    
+{'eval_loss': nan, 'eval_runtime': 21.5235, 'eval_samples_per_second': 1.533, 'eval_steps_per_second': 1.533, 'epoch': 0.02}
+{'loss': 0.2302, 'grad_norm': 0.28349727392196655, 'learning_rate': 4.000000000000001e-06, 'epoch': 0.04}
+{'eval_loss': nan, 'eval_runtime': 19.9861, 'eval_samples_per_second': 1.651, 'eval_steps_per_second': 1.651, 'epoch': 0.04}
+{'loss': 0.1836, 'grad_norm': 0.2519071698188782, 'learning_rate': 8.000000000000001e-06, 'epoch': 0.06}
+{'eval_loss': nan, 'eval_runtime': 20.296, 'eval_samples_per_second': 1.626, 'eval_steps_per_second': 1.626, 'epoch': 0.06}
+{'loss': 0.2219, 'grad_norm': 0.2310629040002823, 'learning_rate': 1.2e-05, 'epoch': 0.09}
+{'eval_loss': nan, 'eval_runtime': 25.5111, 'eval_samples_per_second': 1.294, 'eval_steps_per_second': 1.294, 'epoch': 0.09}
+{'loss': 0.2223, 'grad_norm': 0.2904983162879944, 'learning_rate': 1.6000000000000003e-05, 'epoch': 0.11}
+{'eval_loss': nan, 'eval_runtime': 20.6968, 'eval_samples_per_second': 1.594, 'eval_steps_per_second': 1.594, 'epoch': 0.11}
+{'loss': 1.9034, 'grad_norm': 1.2536691427230835, 'learning_rate': 2e-05, 'epoch': 0.13}
+{'eval_loss': nan, 'eval_runtime': 20.4968, 'eval_samples_per_second': 1.61, 'eval_steps_per_second': 1.61, 'epoch': 0.13}
+{'train_runtime': 186.8533, 'train_samples_per_second': 9.954, 'train_steps_per_second': 2.462, 'train_loss': 0.5008099898695946, 'epoch': 0.13}

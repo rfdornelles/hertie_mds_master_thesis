@@ -1,0 +1,230 @@
+Starting training....
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 4
+   \\   /|    Num examples = 186 | Num Epochs = 10 | Total steps = 460
+O^O/ \_/ \    Batch size per device = 1 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (1 x 4 x 1) = 4
+ "-____-"     Trainable parameters = 12,156,928/3,000,000,000 (0.41% trained)
+  1%|█▏                                                                                                             | 5/460 [00:36<47:32,  6.27s/it]Unsloth: Not an error, but LlamaForCausalLM does not accept `num_items_in_batch`.
+Unsloth: Will smartly offload gradients to save VRAM!
+{'loss': 0.2435, 'grad_norm': 0.15965807437896729, 'learning_rate': 0.0, 'epoch': 0.02}
+{'loss': 0.2302, 'grad_norm': 0.2069283425807953, 'learning_rate': 4e-05, 'epoch': 0.04}
+{'loss': 0.1838, 'grad_norm': 0.18716533482074738, 'learning_rate': 8e-05, 'epoch': 0.06}
+{'loss': 0.2198, 'grad_norm': 0.1786462664604187, 'learning_rate': 0.00012, 'epoch': 0.09}
+{'loss': 0.211, 'grad_norm': 0.2501208186149597, 'learning_rate': 0.00016, 'epoch': 0.11}
+Using gradient accumulation will be very slightly less accurate.
+Read more on gradient accumulation issues here: https://unsloth.ai/blog/gradient
+                                                                                                                                                    
+                                                                                                                                                    
+{'eval_loss': 0.8248082399368286, 'eval_runtime': 24.5231, 'eval_samples_per_second': 1.59, 'eval_steps_per_second': 1.59, 'epoch': 0.11}
+{'loss': 1.8874, 'grad_norm': 1.06510329246521, 'learning_rate': 0.0002, 'epoch': 0.13}
+{'loss': 0.1937, 'grad_norm': 0.21809212863445282, 'learning_rate': 0.00019956043956043958, 'epoch': 0.15}
+{'loss': 1.7413, 'grad_norm': 1.4927828311920166, 'learning_rate': 0.00019912087912087913, 'epoch': 0.17}
+{'loss': 1.2633, 'grad_norm': 2.172412157058716, 'learning_rate': 0.0001986813186813187, 'epoch': 0.19}
+{'loss': 0.136, 'grad_norm': 0.21581165492534637, 'learning_rate': 0.00019824175824175827, 'epoch': 0.22}
+{'eval_loss': 0.5892782807350159, 'eval_runtime': 23.4681, 'eval_samples_per_second': 1.662, 'eval_steps_per_second': 1.662, 'epoch': 0.22}
+{'loss': 0.8741, 'grad_norm': 1.8734186887741089, 'learning_rate': 0.0001978021978021978, 'epoch': 0.24}
+{'loss': 0.1205, 'grad_norm': 0.2789207100868225, 'learning_rate': 0.00019736263736263738, 'epoch': 0.26}
+{'loss': 0.1036, 'grad_norm': 0.26052606105804443, 'learning_rate': 0.00019692307692307696, 'epoch': 0.28}
+{'loss': 0.0914, 'grad_norm': 0.1836424320936203, 'learning_rate': 0.00019648351648351647, 'epoch': 0.3}
+{'loss': 0.0794, 'grad_norm': 0.17934569716453552, 'learning_rate': 0.00019604395604395604, 'epoch': 0.32}
+{'eval_loss': 0.4102402329444885, 'eval_runtime': 23.5678, 'eval_samples_per_second': 1.655, 'eval_steps_per_second': 1.655, 'epoch': 0.32}
+{'loss': 0.0915, 'grad_norm': 0.1780032068490982, 'learning_rate': 0.00019560439560439562, 'epoch': 0.34}
+{'loss': 0.1466, 'grad_norm': 1.003108263015747, 'learning_rate': 0.00019516483516483516, 'epoch': 0.37}
+{'loss': 0.6154, 'grad_norm': 2.547475814819336, 'learning_rate': 0.00019472527472527473, 'epoch': 0.39}
+{'loss': 0.0447, 'grad_norm': 0.16838061809539795, 'learning_rate': 0.0001942857142857143, 'epoch': 0.41}
+{'loss': 0.0729, 'grad_norm': 0.22353559732437134, 'learning_rate': 0.00019384615384615385, 'epoch': 0.43}
+{'eval_loss': 0.2988993227481842, 'eval_runtime': 23.4101, 'eval_samples_per_second': 1.666, 'eval_steps_per_second': 1.666, 'epoch': 0.43}
+{'loss': 0.8846, 'grad_norm': 2.4275968074798584, 'learning_rate': 0.00019340659340659342, 'epoch': 0.45}
+{'loss': 0.0547, 'grad_norm': 0.1730293333530426, 'learning_rate': 0.000192967032967033, 'epoch': 0.47}
+{'loss': 0.0437, 'grad_norm': 0.1468481719493866, 'learning_rate': 0.00019252747252747254, 'epoch': 0.49}
+{'loss': 0.0629, 'grad_norm': 0.20116467773914337, 'learning_rate': 0.0001920879120879121, 'epoch': 0.52}
+{'loss': 0.0696, 'grad_norm': 0.16997377574443817, 'learning_rate': 0.00019164835164835168, 'epoch': 0.54}
+{'eval_loss': 0.19883492588996887, 'eval_runtime': 22.7919, 'eval_samples_per_second': 1.711, 'eval_steps_per_second': 1.711, 'epoch': 0.54}
+{'loss': 0.0499, 'grad_norm': 0.15642547607421875, 'learning_rate': 0.00019120879120879122, 'epoch': 0.56}
+{'loss': 0.0958, 'grad_norm': 0.20038191974163055, 'learning_rate': 0.0001907692307692308, 'epoch': 0.58}
+{'loss': 0.0747, 'grad_norm': 0.26110705733299255, 'learning_rate': 0.00019032967032967034, 'epoch': 0.6}
+{'loss': 0.1017, 'grad_norm': 0.28497517108917236, 'learning_rate': 0.00018989010989010988, 'epoch': 0.62}
+{'loss': 0.0455, 'grad_norm': 0.1426546722650528, 'learning_rate': 0.00018945054945054945, 'epoch': 0.65}
+{'eval_loss': 0.16756322979927063, 'eval_runtime': 24.5685, 'eval_samples_per_second': 1.587, 'eval_steps_per_second': 1.587, 'epoch': 0.65}
+{'loss': 0.3127, 'grad_norm': 1.7826061248779297, 'learning_rate': 0.00018901098901098903, 'epoch': 0.67}
+{'loss': 0.0738, 'grad_norm': 0.19338630139827728, 'learning_rate': 0.00018857142857142857, 'epoch': 0.69}
+{'loss': 0.0584, 'grad_norm': 0.19001972675323486, 'learning_rate': 0.00018813186813186814, 'epoch': 0.71}
+{'loss': 0.0927, 'grad_norm': 0.14528806507587433, 'learning_rate': 0.0001876923076923077, 'epoch': 0.73}
+{'loss': 0.203, 'grad_norm': 0.9142478108406067, 'learning_rate': 0.00018725274725274726, 'epoch': 0.75}
+    trainer_stats = trainer.train()
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 381, in _fast_inner_training_loop
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3096, in _maybe_log_save_evaluate
+    metrics = self._evaluate(trial, ignore_keys_for_eval)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3045, in _evaluate
+    metrics = self.evaluate(ignore_keys=ignore_keys_for_eval)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4154, in evaluate
+    output = eval_loop(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4348, in evaluation_loop
+    losses, logits, labels = self.prediction_step(model, inputs, prediction_loss_only, ignore_keys=ignore_keys)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4564, in prediction_step
+    loss, outputs = self.compute_loss(model, inputs, return_outputs=True)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/UnslothSFTTrainer.py", line 748, in compute_loss
+    outputs = super().compute_loss(
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/_utils.py", line 1029, in _unsloth_pre_compute_loss
+    outputs = self._old_compute_loss(model, inputs, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3801, in compute_loss
+    outputs = model(**inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 814, in forward
+    return model_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 802, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/usr/local/lib/python3.10/dist-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_compile.py", line 32, in inner
+    return disable_fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 1200, in PeftModelForCausalLM_fast_forward
+    return self.base_model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/peft/tuners/tuners_utils.py", line 193, in forward
+    return self.model.forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 1043, in _CausalLM_fast_forward
+    outputs = self.model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 870, in LlamaModel_fast_forward
+    layer_outputs = decoder_layer(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 543, in LlamaDecoderLayer_fast_forward
+    hidden_states, self_attn_weights, present_key_value = self.self_attn(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 424, in LlamaAttention_fast_forward
+    Q, K = fast_rope_embedding(Q, K, cos, sin)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/kernels/rope_embedding.py", line 157, in fast_rope_embedding
+    K = Fast_RoPE_Embedding.apply(K.transpose(1, 2), cos, sin).transpose(1, 2)
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/kernels/rope_embedding.py", line 103, in forward
+    with torch_cuda_device(Q.device):
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 438, in __init__
+    self.idx = _get_device_index(device, optional=True)
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/_utils.py", line 33, in _get_device_index
+    elif device.type != "cuda":
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/open_source_models/ft_unsloth_llama_3.2_3b_v2.py", line 195, in <module>
+    trainer_stats = trainer.train()
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 381, in _fast_inner_training_loop
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3096, in _maybe_log_save_evaluate
+    metrics = self._evaluate(trial, ignore_keys_for_eval)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3045, in _evaluate
+    metrics = self.evaluate(ignore_keys=ignore_keys_for_eval)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4154, in evaluate
+    output = eval_loop(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4348, in evaluation_loop
+    losses, logits, labels = self.prediction_step(model, inputs, prediction_loss_only, ignore_keys=ignore_keys)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4564, in prediction_step
+    loss, outputs = self.compute_loss(model, inputs, return_outputs=True)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/UnslothSFTTrainer.py", line 748, in compute_loss
+    outputs = super().compute_loss(
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/_utils.py", line 1029, in _unsloth_pre_compute_loss
+    outputs = self._old_compute_loss(model, inputs, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3801, in compute_loss
+    outputs = model(**inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 814, in forward
+    return model_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 802, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/usr/local/lib/python3.10/dist-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_compile.py", line 32, in inner
+    return disable_fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 1200, in PeftModelForCausalLM_fast_forward
+    return self.base_model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/peft/tuners/tuners_utils.py", line 193, in forward
+    return self.model.forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 1043, in _CausalLM_fast_forward
+    outputs = self.model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 870, in LlamaModel_fast_forward
+    layer_outputs = decoder_layer(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 543, in LlamaDecoderLayer_fast_forward
+    hidden_states, self_attn_weights, present_key_value = self.self_attn(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 424, in LlamaAttention_fast_forward
+    Q, K = fast_rope_embedding(Q, K, cos, sin)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/kernels/rope_embedding.py", line 157, in fast_rope_embedding
+    K = Fast_RoPE_Embedding.apply(K.transpose(1, 2), cos, sin).transpose(1, 2)
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/kernels/rope_embedding.py", line 103, in forward
+    with torch_cuda_device(Q.device):
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py", line 438, in __init__
+    self.idx = _get_device_index(device, optional=True)
+  File "/usr/local/lib/python3.10/dist-packages/torch/cuda/_utils.py", line 33, in _get_device_index
+    elif device.type != "cuda":
+KeyboardInterrupt
+Exception ignored in atexit callback: <function _start_and_connect_service.<locals>.teardown_atexit at 0x7ff0b67e1630>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/wandb/sdk/lib/service_connection.py", line 94, in teardown_atexit
+    conn.teardown(hooks.exit_code)
+  File "/usr/local/lib/python3.10/dist-packages/wandb/sdk/lib/service_connection.py", line 226, in teardown
+    self._router.join()
+  File "/usr/local/lib/python3.10/dist-packages/wandb/sdk/interface/router.py", line 75, in join
+    self._thread.join()
+  File "/usr/lib/python3.10/threading.py", line 1096, in join
+    self._wait_for_tstate_lock()
+  File "/usr/lib/python3.10/threading.py", line 1116, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+KeyboardInterrupt:
