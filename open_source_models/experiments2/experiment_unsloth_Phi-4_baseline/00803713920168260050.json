@@ -1,0 +1,80 @@
+Aqui está o array JSON extraído das informações da sentença judicial fornecida:
+
+```json
+[
+    {
+        "processo": "0080371-39.2016.8.26.0050",
+        "juiz": "Edison Tetsuzo Namba",
+        "sexo_juiz": "Masculino",
+        "nome": "WALDINEY FARIAS DA COSTA",
+        "local": "Via Pública",
+        "maconha": true,
+        "maconha_g": 14519.7,
+        "maconha_outras": true,
+        "cocaina": true,
+        "cocaina_g": 220.7,
+        "crack": false,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "8a 4m",
+        "tot_pen": "15a 6m 20d",
+        "tot_pen_meses": 186,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": true,
+        "flag_confissao_informal": true,
+        "flag_confissao": false,
+        "flag_denuncia_anonima": true,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": true,
+        "aval_consequencias": false,
+        "aval_culpabilidade": true
+    }
+]
+```
+
+### Explicação dos Campos:
+
+- **processo**: O número do processo judicial.
+- **juiz**: Nome do juiz responsável.
+- **sexo_juiz**: Gênero do juiz.
+- **nome**: Nome completo do réu.
+- **local**: Local relacionado ao crime.
+- **maconha**, **cocaina**, **crack**, **ecstasy**, **lsd**: Flags indicando se houve apreensão dessas drogas.
+- **maconha_g**, **cocaina_g**, **crack_g**, **ecstasy_g**, **lsd_g**: Quantidades em gramas das drogas apreendidas.
+- **maconha_outras**: Flag indicando se houve menção a outras formas de maconha.
+- **sentenca**: Resultado final da sentença.
+- **pena_base**: Texto da pena-base.
+- **tot_pen**: Pena total em texto.
+- **tot_pen_meses**: Pena total convertida em meses.
+- **outras_drogas**: Flag indicando menção a outras substâncias além das listadas.
+- **resultado_art_28**, **resultado_art_33**, **resultado_art_34**, **resultado_art_35**: Flags indicando aplicação de artigos específicos da lei.
+- **denuncia_art_33**, **denuncia_art_34**, **denuncia_art_35**: Flags indicando se a denúncia alegou esses artigos.
+- **flag_local_de_trafico**: Flag indicando se houve indicação de local associado a tráfico.
+- **flag_preso_no_momento_da_sentenca**: Flag indicando se o réu estava preso na ocasião da sentença.
+- **flag_confissao_informal**, **flag_confissao**: Flags indicando confissões.
+- **flag_denuncia_anonima**, **flag_denuncia**: Flags indicando denúncias.
+- **flag_atitude_suspeita**: Flag indicando menção a atitude ou comportamento suspeito.
+- **flag_divergencias_nos_relatos_dos_policiais**: Flag indicando divergências nos rel

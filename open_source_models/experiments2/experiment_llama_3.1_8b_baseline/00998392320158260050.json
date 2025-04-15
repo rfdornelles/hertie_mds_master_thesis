@@ -1,0 +1,67 @@
+Aqui está a extração de informações da sentença judicial:
+
+```json
+[
+    {
+        "processo": "0099839-23.2015.8.26.0050",
+        "juiz": "José Fernandes Freitas Neto",
+        "sexo_juiz": "Masculino",
+        "nome": "Tyago Rocha Pires",
+        "local": "Via Pública",
+        "maconha": false,
+        "maconha_g": 0,
+        "maconha_outras": false,
+        "cocaina": true,
+        "cocaina_g": 79.2,
+        "crack": true,
+        "crack_g": 53,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "5a",
+        "tot_pen": "5a 10m",
+        "tot_pen_meses": 190,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": false,
+        "flag_confissao_informal": true,
+        "flag_confissao": true,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": false,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+    }
+]
+```
+
+Observações:
+
+*   A sentença foi julgada procedente e o réu foi condenado por tráfico de drogas.
+*   A quantidade de cocaína apreendida foi de 79,2g e a quantidade de crack foi de 53g.
+*   O réu foi condenado a 5 anos e 10 meses de reclusão e multa de 583 dias-multa.
+*   O regime inicial foi fixado como fechado.
+*   O réu não foi preso no momento da sentença.
+*   A defesa do réu não apresentou elementos de comprovação da fala do réu, e a versão escusatória do réu não mereceu prosperar.
+*   A prova trazida pela acusação tem força para conduzir a uma condenação, e os depoimentos dos policiais são coesos e sequenciais.
+*   A quantidade e a maneira como estavam acondicionados os entorpecentes, acrescida às declarações das testemunhas de acusação, denunciam o referido comércio.

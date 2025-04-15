@@ -19,3 +19,11 @@ gemma3/unsloth_compiled_cache/*
 gemma3/gemma-3-12/*
 gemma3/gemma-3-finetune-12b/*
 gemma3/test_lora/*
+.vscode/*
+data/train/*
+data/valitation/*
+data/test/*
+data/lacerda/*
+data/*
+.env
+gemma3/*

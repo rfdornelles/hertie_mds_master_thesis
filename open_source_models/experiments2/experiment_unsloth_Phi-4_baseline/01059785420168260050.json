@@ -1,0 +1,80 @@
+Para extrair as informações da sentença judicial fornecida, vamos analisar o texto e preencher os campos do JSON de acordo com as instruções. Aqui está o resultado:
+
+```json
+[
+    {
+        "processo": "0105978-54.2016.8.26.0050",
+        "juiz": "Fátima Vilas Boas Cruz",
+        "sexo_juiz": "Feminino",
+        "nome": "FERNANDO DELGADO DE ALMEIDA",
+        "local": "Via Pública",
+        "maconha": true,
+        "maconha_g": 0,
+        "maconha_outras": false,
+        "cocaina": true,
+        "cocaina_g": 0,
+        "crack": false,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "5a",
+        "tot_pen": "2a 6m",
+        "tot_pen_meses": 30,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": false,
+        "flag_confissao_informal": false,
+        "flag_confissao": false,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": false,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": true,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+    }
+]
+```
+
+### Explicação dos Campos:
+
+- **processo**: Extraído do cabeçalho.
+- **juiz**: Nome do juiz mencionado.
+- **sexo_juiz**: Inferido a partir do nome do juiz.
+- **nome**: Nome do réu mencionado.
+- **local**: "Via Pública" mencionado no contexto do crime.
+- **maconha, maconha_g, maconha_outras**: A presença de maconha é mencionada, mas a quantidade não é especificada.
+- **cocaina, cocaina_g**: A presença de cocaína é mencionada, mas a quantidade não é especificada.
+- **crack, crack_g, ecstasy, ecstasy_g, lsd, lsd_g**: Não mencionados.
+- **sentenca**: "Procedente" conforme a decisão final.
+- **pena_base**: "5a" conforme a pena-base fixada.
+- **tot_pen**: "2a 6m" conforme a pena total após redução.
+- **tot_pen_meses**: Convertido de "2a 6m" para 30 meses.
+- **outras_drogas**: Não mencionadas.
+- **resultado_art_28, resultado_art_34, resultado_art_35**: Não aplicados.
+- **denuncia_art_33, denuncia_art_34, denuncia_art_35**: Apenas o art. 33 é mencionado na denúncia.
+- **flag_local_de_trafico**: Verdadeiro, pois o réu estava traficando.
+- **flag_preso_no_momento_da_sentenca**: Falso, não há menção de prisão no momento da sentença.
+- **flag_confissao_informal, flag_confissao**: Falso, o réu negou os fatos.
+- **flag_denuncia_anonima**: Falso, não há menção de denúncia anônima.
+- **flag_denuncia**: Verdadeiro, a denúncia foi recebida.
+- **flag_atitude_suspeita**: Falso, não

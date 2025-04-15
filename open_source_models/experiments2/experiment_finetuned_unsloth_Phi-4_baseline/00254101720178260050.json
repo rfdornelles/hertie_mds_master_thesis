@@ -1,0 +1,75 @@
+Para extrair as informações da sentença judicial fornecida e preencher o formato JSON solicitado, vamos analisar o texto e identificar os dados relevantes para o réu mencionado. Aqui está o JSON resultante:
+
+```json
+[
+    {
+        "processo": "0025410-17.2017.8.26.0050",
+        "juiz": "GIOVANA FURTADO DE OLIVEIRA",
+        "sexo_juiz": "Feminino",
+        "nome": "FRANCELINO NETO GOMES DA SILVA",
+        "local": "Via Pública",
+        "maconha": false,
+        "maconha_g": 0,
+        "maconha_outras": false,
+        "cocaina": true,
+        "cocaina_g": 0,
+        "crack": true,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "5a 10m",
+        "tot_pen": "7a",
+        "tot_pen_meses": 84,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": false,
+        "flag_confissao_informal": false,
+        "flag_confissao": false,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": false,
+        "aval_personalidade": false,
+        "aval_natureza": false,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": false,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+    }
+]
+```
+
+### Explicação dos Dados:
+
+- **processo**: "0025410-17.2017.8.26.0050" - O número do processo é mencionado no início da sentença.
+- **juiz**: "GIOVANA FURTADO DE OLIVEIRA" - Nome do juiz responsável.
+- **sexo_juiz**: "Feminino" - O juiz é identificado como "Dr(a). Giovana Furtado de Oliveira".
+- **nome**: "FRANCELINO NETO GOMES DA SILVA" - Nome do réu.
+- **local**: "Via Pública" - O crime ocorreu na Rua Papaia, indicada como ponto de venda de drogas.
+- **maconha, maconha_g, maconha_outras**: `false, 0, false` - Não há menção de maconha.
+- **cocaina, cocaina_g**: `true, 0` - Há menção de cocaína, mas a quantidade não é especificada.
+- **crack, crack_g**: `true, 0` - Há menção de crack, mas a quantidade não é especificada.
+- **ecstasy, ecstasy_g, lsd, lsd_g**: `false, 0, false, 0` - Não há menção de ecstasy ou LSD.
+- **sentenca**: "Procedente" - A ação penal é considerada procedente.
+- **pena_base**: "5a 10m" - Pena base de 5 anos e 10 meses.
+- **tot_pen**: "7a" - Pena total de 7 anos.
+- **tot_pen_meses**: 84 - Pena total convertida em meses.
+- **outras_drogas**: `false` - Não há menção de outras drogas além das especificadas.
+- **resultado_art_28, resultado_art_34, resultado_art_35**: `false, false, false` - Não há aplicação desses artigos.
+- **resultado_art_33**:

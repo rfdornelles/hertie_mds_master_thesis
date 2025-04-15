@@ -1,3 +1,7 @@
+# ref: https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(1B_and_3B)-Conversational.ipynb#scrollTo=UBuVBy_sU2Yw
+# ref: https://colab.research.google.com/drive/1T5-zKWM_5OD21QHwXHiV9ixTRR7k3iB9?usp=sharing
+
+
 from unsloth import FastModel
 from unsloth.chat_templates import get_chat_template
 from unsloth.chat_templates import standardize_data_formats

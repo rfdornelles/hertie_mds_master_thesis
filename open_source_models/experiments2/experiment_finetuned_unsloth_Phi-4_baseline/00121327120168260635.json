@@ -1,0 +1,72 @@
+Para extrair as informações da sentença judicial fornecida, vamos analisar o texto e preencher os campos do JSON de acordo com as instruções. Aqui está a análise e o JSON resultante:
+
+### Análise do Texto
+
+1. **Número do Processo**: "0012132-71.2016.8.26.0635"
+2. **Juiz**: "Carlos José Zulian"
+3. **Sexo do Juiz**: Não especificado no texto, então **None**.
+4. **Nome do Réu**: "CAUE LEANDRO DA SILVA CEGARRA LYRA"
+5. **Local**: Não mencionado, então **None**.
+6. **Drogas**:
+   - Maconha: Não mencionada, então `false`.
+   - Maconha (gramas): Não mencionada, então `0`.
+   - Outras formas de maconha: Não mencionadas, então `false`.
+   - Cocaína: Não mencionada, então `false`.
+   - Cocaína (gramas): Não mencionada, então `0`.
+   - Crack: Não mencionado, então `false`.
+   - Crack (gramas): Não mencionado, então `0`.
+   - Ecstasy: Não mencionado, então `false`.
+   - Ecstasy (gramas): Não mencionado, então `0`.
+   - LSD: Não mencionado, então `false`.
+   - LSD (gramas): Não mencionado, então `0`.
+7. **Sentença**: "Procedente" (implícito pela condenação).
+8. **Pena Base**: "5 (cinco) anos de reclusão".
+9. **Pena Total**: "5 (cinco) anos de reclusão", convertido para meses é `60`.
+10. **Outras Drogas**: Não mencionadas, então `false`.
+11. **Artigos**:
+    - Art. 28: Não mencionado, então `false`.
+    - Art. 33: Implicado pelo tipo de processo, então `true`.
+    - Art. 34: Não mencionado, então `false`.
+    - Art. 35: Não mencionado, então `false`.
+12. **Denúncia**:
+    - Art. 33: Implicado pelo tipo de processo, então `true`.
+    - Art. 34: Não mencionado, então `false`.
+    - Art. 35: Não mencionado, então `false`.
+13. **Flags**:
+    - Local de tráfico: Não mencionado, então `false`.
+    - Preso no momento da sentença: Não mencionado, então `false`.
+    - Confissão informal: Não mencionado, então `false`.
+    - Confissão formal: Não mencionado, então `false`.
+    - Denúncia anônima: Não mencionado, então `false`.
+    - Denúncia formal: Não mencionado, então `false`.
+    - Atitude suspeita: Não mencionado, então `false`.
+    - Divergências nos relatos dos policiais: Não mencionado, então `false`.
+    - Investigação: Não mencionado, então `false`.
+    - Interceptação: Não mencionado, então `false`.
+    - Mandado: Não mencionado, então `false`.
+14. **Avaliações**:
+    - Antecedentes: Não mencionado, então `false`.
+    - Conduta: Não mencionado, então `false`.
+    - Personalidade: Não mencionado, então `false`.
+    - Natureza: Não mencionado, então `false`.
+    - Quantidade: Não mencionado, então `false`.
+    - Variedade: Não mencionado, então `false`.
+    - Circunstâncias: Não mencionado, então `false`.
+    - Consequências: Não mencionado, então `false`.
+    - Culpabilidade: Não mencionado, então `false`.
+
+### JSON Resultante
+
+```json
+[
+    {
+        "processo": "0012132-71.2016.8.26.0635",
+        "juiz": "Carlos José Zulian",
+        "sexo_juiz": null,
+        "nome": "CAUE LEANDRO DA SILVA CEGARRA LYRA",
+        "local": null,
+        "maconha": false,
+        "maconha_g": 0,
+        "maconha_outras": false,
+        "cocaina": false,
+        "cocaina

@@ -1,0 +1,66 @@
+Aqui está a extração de informações da sentença judicial:
+
+```json
+[
+    {
+        "processo": "0010058-44.2016.8.26.0635",
+        "juiz": "Dr(a). Cynthia Torres Cristofaro",
+        "sexo_juiz": "Feminino",
+        "nome": "Eder Pimentel de Castro Oliveira",
+        "local": "Via Pública",
+        "maconha": true,
+        "maconha_g": 23.1,
+        "maconha_outras": false,
+        "cocaina": true,
+        "cocaina_g": 503.5,
+        "crack": true,
+        "crack_g": 95.6,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "5a 6m",
+        "tot_pen": "5a 6m",
+        "tot_pen_meses": 186,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": true,
+        "flag_confissao_informal": true,
+        "flag_confissao": true,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": true,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": true,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+    }
+]
+```
+
+Observações:
+
+- O réu foi condenado por infração ao artigo 33 caput, da Lei 11.343/06, que é o tráfico de drogas.
+- A pena aplicada foi de 5 anos e 6 meses de reclusão, em regime fechado.
+- O réu foi considerado reincidente e incidiu a agravante genérica prevista pelo artigo 61, inciso I, do Código Penal.
+- A pena foi fixada com base nas circunstâncias elencadas pelos artigos 59 do Código Penal e 42 da Lei 11.343/06.
+- O réu foi considerado culpado e foi recomendada a sua prisão em que se encontra.
+- O juiz determinou a destruição do entorpecente apreendido, na forma legal.
+- O réu não foi facultado o recurso em liberdade.

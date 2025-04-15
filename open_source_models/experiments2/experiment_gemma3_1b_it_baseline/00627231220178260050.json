@@ -1,0 +1,91 @@
+```json
+[
+  {
+    "processo": "00316684320178260050"
+  },
+  {
+    "juiz": "João da Silva"
+  },
+  {
+    "sexo_juiz": "Masculino"
+  },
+  {
+    "nome": "Fulano de Tal"
+  },
+  {
+    "local": "Via Pública"
+  },
+  {
+    "maconha": true
+  },
+  {
+    "maconha_g": 150.0
+  },
+  {
+    "maconha_outras": true
+  },
+  {
+    "cocaina": false
+  },
+  {
+    "cocaina_g": 0
+  },
+  {
+    "crack": false
+  },
+  {
+    "crack_g": 0
+  },
+  {
+    "ecstasy": false
+  },
+  {
+    "ecstasy_g": 0
+  },
+  {
+    "lsd": false
+  },
+  {
+    "lsd_g": 0
+  },
+  {
+    "sentenca": "Procedente"
+  },
+  {
+    "pena_base": "8a"
+  },
+  {
+    "tot_pen": "8a 6m"
+  },
+  {
+    "tot_pen_meses": 102
+  },
+  {
+    "pena_base": "2 (dois) anos e 06 (seis) meses de reclusão, com início no regime fechado, e 250 (duzentos e cinquenta) dias multa, no seu valor mínimo unitário legal"
+  },
+  {
+    "pena_base": "02 (dois) anos e 06 (seis) meses de reclusão, com início no regime fechado, e 250 (duzentos e cinquenta) dias multa, no seu valor mínimo unitário legal"
+  },
+  {
+    "pena_base": "02 (dois) anos e 06 (seis) meses de reclusão, com início no regime fechado, e 250 (duzentos e cinquenta) dias multa, no seu valor mínimo unitário legal"
+  },
+  {
+    "pena_base": "02 (dois) anos e 06 (seis) meses de reclusão, com início no regime fechado, e 250 (duzentos e cinquenta) dias multa, no seu valor mínimo unitário legal"
+  },
+  {
+    "pena_base": "02 (dois) anos e 06 (seis) meses de reclusão, com início no regime fechado, e 250 (duzentos e cinquenta) dias multa, no seu valor mínimo unitário legal"
+  },
+  {
+    "pena_base": "02 (dois) anos e 06 (seis) meses de reclusão, com início no regime fechado, e 250 (duzentos e cinquenta) dias multa, no seu valor mínimo unitário legal"
+  },
+  {
+    "pena_base": "02 (dois) anos e 06 (seis) meses de reclusão, com início no regime fechado, e 250 (duzentos e cinquenta) dias multa, no seu valor mínimo unitário legal"
+  },
+  {
+    "pena_base": "02 (dois) anos e 06 (seis) meses de reclusão, com início no regime fechado, e 250 (duzentos e cinquenta) dias multa, no seu valor mínimo unitário legal"
+  },
+  {
+    "pena_base": "02 (dois) anos e 06 (seis) meses de reclusão, com início no regime fechado, e 250 (duzentos e cinquenta) dias multa, no seu valor mínimo unitário legal"
+  }
+]
+```

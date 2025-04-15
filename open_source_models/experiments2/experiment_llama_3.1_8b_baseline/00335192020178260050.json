@@ -1,0 +1,64 @@
+Aqui está a resposta no formato solicitado:
+
+```json
+[
+    {
+        "processo": "0033519-20.2017.8.26.0050",
+        "juiz": "Dr(a). Carlos Eduardo Oliveira de Alencar",
+        "sexo_juiz": "Masculino",
+        "nome": "JONY LUCAS DA SILVA",
+        "local": "Rua Doutor Lauro Ribas Braga",
+        "maconha": true,
+        "maconha_g": 13.2,
+        "maconha_outras": false,
+        "cocaina": true,
+        "cocaina_g": 1.9,
+        "crack": false,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Absolvição",
+        "pena_base": "",
+        "tot_pen": "",
+        "tot_pen_meses": 0,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": false,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": false,
+        "flag_confissao_informal": true,
+        "flag_confissao": false,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": true,
+        "flag_divergencias_nos_relatos_dos_policiais": true,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": false,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": false,
+        "aval_quantidade": false,
+        "aval_variedade": false,
+        "aval_circunstancias": false,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+    }
+]
+```
+
+Observações:
+
+- O réu foi absolvido, então a sentença é "Absolvição".
+- A quantidade de maconha e cocaína foi encontrada nos autos, então foi possível calcular a quantidade em gramas.
+- O réu confessou praticar o tráfico ilícito, mas a absolvição foi baseada na falta de provas suficientes.
+- A absolvição foi fundamentada no artigo 386, VII, do Código de Processo Penal.
+- O réu foi solto, então a flag "flag_preso_no_momento_da_sentenca" é false.
