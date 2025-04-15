@@ -27,3 +27,9 @@ data/lacerda/*
 data/*
 .env
 gemma3/*
+*.safetensors
+*safetensors*
+open_source_models/ft_*/*
+open_source_models/output*
+open_source_models/unsloth_compiled_cache/*
+open_source_models/wandb/*
