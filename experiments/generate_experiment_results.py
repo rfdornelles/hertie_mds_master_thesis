@@ -18,9 +18,11 @@ experiments = [
   'experiment_llama_3.1_8b_baseline',
   'experiment_llama_3.2_3b_baseline',
   'experiment_llama_3.2_3B_baseline_ft_unsloth_2025-04-13_17-52-07'
+  'experiment_phi4_4b_baseline_unsloth',
+  'experiment_phi4_4b_finetune_unsloth'
   ]
 
-folder = "../experiments"
+folder = "."
 
 
 
