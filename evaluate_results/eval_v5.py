@@ -7,6 +7,8 @@ from datasets import load_from_disk
 from difflib import SequenceMatcher
 import numpy as np
 import re
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
 
 ### List all experiments and its results
 experiments = []
@@ -47,7 +49,7 @@ boolean_fields = ['maconha', 'maconha_outras','cocaina', 'crack', 'ecstasy',
                   'lsd',   'outras_drogas', 'resultado_art_28', 'resultado_art_33', 'resultado_art_34', 'resultado_art_35', 'denuncia_art_33', 'denuncia_art_34', 'denuncia_art_35', 'flag_local_de_trafico', 'flag_preso_no_momento_da_sentenca', 'flag_confissao_informal', 'flag_confissao', 'flag_denuncia_anonima', 'flag_denuncia','flag_atitude_suspeita','flag_divergencias_nos_relatos_dos_policiais','flag_investigacao', 'flag_interceptacao', 'flag_mandado', 'aval_antecedentes', 'aval_conduta', 'aval_personalidade', 'aval_natureza', 'aval_quantidade', 'aval_variedade', 'aval_circunstancias', 'aval_consequencias', 'aval_culpabilidade']
 # sentence length is going to be categorical since it should be exact match
 categorical_fields = ['sexo_juiz', 'local',  'sentenca', 'pena_base', 'tot_pen']
-open_textual_fields = ['processo',  'juiz', 'nome']
+open_textual_fields = ['juiz', 'nome']
 
 ### auxiliary functions
 # clean processo
@@ -167,7 +169,7 @@ def score_open_textual(result, expected, remove_spaces=False):
 ### evaluate each experiment
 # function to receive the experiment, guess the data and evaluate
 
-def evaluate_experiment(experiment, verbose=False):
+def evaluate_experiment(experiment):
   
   path = experiment
   name = re.sub(r"(_)?results_parsed\.parquet|experiment(_|[0-9])", "", experiment.split("/")[-1])
@@ -202,27 +204,24 @@ def evaluate_experiment(experiment, verbose=False):
     
     # check the sizes again
     if df_experiment.shape[0] != df_reference.shape[0]:
-      print(f"  [Error] Experiment {name}: the number of rows in the experiment ({df_experiment.shape[0]}) is different from the reference ({df_reference.shape[0]})")
+      print(f"  [Alert!] Experiment {name}: the number of rows in the experiment ({df_experiment.shape[0]}) is different from the reference ({df_reference.shape[0]})")
     # return {"score": [], "details": {}}
   
   # merge data
   try:
     # merge the dataframes on the processo column  
-    merged_data = df_reference.merge(df_experiment, on='processo', suffixes=("_expected", "_result"))
+    merged_data = df_reference.merge(df_experiment, how = 'left', on='processo', suffixes=("_expected", "_result"))
     
   except Exception as e:
     print(f"  [Error] Experiment {name}: Error merging data: {e}")
     return {"score": [], "details": {}}
 
   # initialize lists to accumulate row scores and details
-  all_row_scores = []
   all_row_details = []
   
   ### iterate over each line and each column
   for idx, row in merged_data.iterrows():
-    
-    row_total = 0 # total score for the row
-    # row_count = 0 # total number of columns to be scored
+  
     details = {} # details for the row
     
     # iterate over each column
@@ -234,8 +233,11 @@ def evaluate_experiment(experiment, verbose=False):
       
       # get the values
       try:
-        result = row[f"{col}_result"]
+        details["experiment"] = name
+        
         expected = row[f"{col}_expected"]
+        result = row[f"{col}_result"] if f"{col}_result" in row and pd.notna(row[f"{col}_result"]) else None
+        
       except KeyError as e:
         print(f"  [Error] Experiment {name}: Error: missing key {e} in row {idx}")
         continue
@@ -253,34 +255,28 @@ def evaluate_experiment(experiment, verbose=False):
         print(f"  [Error] Experiment {name}: Error: unknown column type for {col}")
         continue
       
-      # add the score to the row total
-      row_total += score
       # row_count += 1
       details[col] = score
       # print(f"  {col}: {score}")
+
       
-    # calculate the row score
-    row_score = row_total / (df_reference.shape[1] - 1) # divide by the number of columns to be scored, excluding 'processo'
-    
-    if verbose:
-      print(f"Row {idx}: {row_score}")
-      # print(f"  Result: {result}")
-      # print(f"  Expected: {expected}")  
-      # print(f"  Count: {row_count}")
-      print(f"  Average: {row_score}")
-      print(f"  Row: {row}")
-      # print(f"  Result: {result}")
-      # print(f"  Expected: {expected}")  
-    # append the row score and details to the list
-    all_row_scores.append(row_score)
     all_row_details.append(details)
 
-  return {"score": all_row_scores, "details": all_row_details}  
+    # return a dataframe
+    try:
+      result = pd.DataFrame(all_row_details) 
+      # result = pd.concat([pd.DataFrame({'experiment': name}), all_row_details], axis=1) 
+      
+    except Exception as e:
+      print(f"  [Error] Experiment {name}: Error creating dataframe: {e}")
+      return None
+    
+  return result
 
   
 ## define an overall score to each experiment
 
-overall_score = pd.DataFrame(columns=["experiment", "details", "score"])
+df_experiments_score = pd.DataFrame()
 
 #### iterate over each experiment
 for experiment in experiments:
@@ -289,183 +285,205 @@ for experiment in experiments:
   experiment_name = experiment.replace('../experiments/experiment_','').split('/')[0]
   score_details = evaluate_experiment(experiment)
   
-  # new column
-  new_row = pd.DataFrame({"experiment": [experiment_name], "details": [score_details["details"]], "score": [score_details["score"]]})
-  overall_score = pd.concat([overall_score, new_row], ignore_index=True)
+  # add the rows to the dataframe
+  if score_details is not None:
+    # add the experiment name to the dataframe
+    score_details["experiment"] = experiment_name
+    # add the rows to the dataframe
+    df_experiments_score = pd.concat([df_experiments_score, score_details], ignore_index=True)
+  else:
+    print(f"  [Error] Experiment {experiment}: Error evaluating experiment")
+    continue
+
   
-## calculate the overall score to each model
-# overall_score["final_score"] = overall_score["score"].apply(lambda x: pd.Series(x).mean() if isinstance(x, list) else x)
-# take care of consider null values as 0
-overall_score["final_score"] = overall_score["score"].apply(lambda x: pd.Series(x).fillna(0).mean() if isinstance(x, list) else 0)
+ ## calculating the overall score
+ 
+ ## remove the id columns
+eval_cols = [col for col in df_experiments_score.columns if col not in ["experiment", "processo"]]
 
+metrics_list = []
 
-# function to compute the average score for each column in each experiment
-def compute_avg_details(details):
-  # if details is not a non-empty list, return empty dict
-  if not isinstance(details, list) or len(details) == 0:
-    return {}
-  sums = {}
-  counts = {}
-  # each element in details is a dict for a row
-  for row_detail in details:
-    for col, score in row_detail.items():
-      sums[col] = sums.get(col, 0) + score
-      counts[col] = counts.get(col, 0) + 1
-  # compute average for each column
-  return {col: sums[col] / counts[col] for col in sums}
-
-# to each experiment, calculate the average score for each column using the details field
-overall_score["col_score"] = overall_score["details"].apply(compute_avg_details)
-
-# now we want to check the average score for each column-type (to identify the performance in each kind of text)
-
-df_column_result = pd.DataFrame(columns=["experiment", "column", "column_type", "score"])
-
-for experiment in overall_score["experiment"]:
-    
-    name = experiment#.split("/")[-1].split(".")[0]
-    
-    # get the details for the experiment
-    details = overall_score[overall_score["experiment"] == experiment]["col_score"].values[0]
-    
-    # iterate over each column
-    for col, score in details.items():
-        # get the column type
-        if col in numeric_fields:
-            col_type = "numeric"
-        elif col in boolean_fields:
-            col_type = "boolean"
-        elif col in categorical_fields:
-            col_type = "categorical"
-        elif col in open_textual_fields:
-            col_type = "open_textual"
-        else:
-            col_type = "unknown"
-        
-        # add the row to the dataframe
-        new_row = pd.DataFrame({"experiment": [name], "column": [col], "column_type": [col_type], "score": [score]})
-        df_column_result = pd.concat([df_column_result, new_row], ignore_index=True)  
+for experiment, group in df_experiments_score.groupby("experiment"):
+   
+  # calculate the score for each column
+  y_pred = group[eval_cols].values.flatten()
+  # the ground_true will be 1 always -- since it was already evaluated
+  y_true = np.ones_like(y_pred)
   
-df_column_result
+  ## calculate metrics
+  acc = accuracy_score(y_true, y_pred)
+  # rec = recall_score(y_true, y_pred, zero_division=0)
+  f1 = f1_score(y_true, y_pred, zero_division=0)
+  metrics = {"experiment": experiment, "accuracy": acc, "f1": f1}
+  metrics_list.append(metrics)
+  
 
-# describing the results according with column type
-result = (
-  df_column_result.groupby(['experiment', 'column_type'])['score']
-  .mean()
-  .reset_index()
-  .pivot(index='experiment', columns='column_type', values='score')
-  .reset_index()
-)
-result = result[['experiment', 'numeric', 'boolean', 'categorical', 'open_textual']]
-result
+df_all_metrics = pd.DataFrame(metrics_list)
 
-## calculate the final score for each experiment
-# the final score is the average of all rows: i want a df with experiment | final_score
-final_score = pd.DataFrame(columns=["experiment", "final_score"])
-# calculate the final score for each experiment by standardizing the experiment names
-final_score = overall_score.copy()
-final_score["experiment"] = final_score["experiment"]#.apply(lambda x: x.split("/")[-1].split(".")[0] if isinstance(x, str) else x)
-final_score = final_score[["experiment", "final_score"]]
+### calculate the score (accuracy and f1) each model has in each task
 
-# remove final_score null and order by experiment name
-final_score = final_score[final_score["final_score"].notnull()]
-final_score = final_score.sort_values(by="final_score", ascending=True)
+task_fields = {
+    "numeric": numeric_fields,
+    "boolean": boolean_fields,
+    "categorical": categorical_fields,
+    "open_textual": open_textual_fields
+}
 
-# merge with values of result
-final_score = final_score.merge(result, on="experiment")
+df_task_metrics = pd.DataFrame(columns=["experiment", "column_type", "score_accuracy", "score_f1"])
+task_metrics_list = []
 
-# round results
-final_score = final_score.round(3)
+for experiment, group in df_experiments_score.groupby("experiment"):
+    
+    # for each task type
+    for task_type, expected_fields in task_fields.items():
+      
+      # filter the group by task type
+      pred_cols = [field for field in expected_fields if field in group.columns]
+      gt_cols = [f"gt_{field}" for field in pred_cols if f"gt_{field}" in group.columns]
+      
+      y_pred = group[pred_cols].to_numpy().flatten()
+      y_true = np.ones_like(y_pred)
 
-final_score
+      acc = accuracy_score(y_true, y_pred)
+      f1 = f1_score(y_true, y_pred, zero_division=0)
+          
+      task_metrics_list.append({
+        "experiment": experiment,
+        "column_type": task_type,
+        "score_accuracy": acc,
+        "score_f1": f1
+    })
+         
+df_task_metrics = pd.DataFrame(task_metrics_list)
+df_task_metrics
+    
+## pivot the results
+df_tasks_metrics_accuracy = df_task_metrics.pivot(index="experiment", columns="column_type", values="score_accuracy").reset_index()
+    
+df_tasks_metrics_f1 = df_task_metrics.pivot(index="experiment", columns="column_type", values="score_f1").reset_index()
 
-### plot results
-import seaborn as sns
-import textwrap
-import matplotlib.pyplot as plt
+## add the overall metrics to the tasks metrics
+df_tasks_metrics_accuracy = df_tasks_metrics_accuracy.merge(
+  df_all_metrics[['experiment', 'accuracy']], on="experiment", how="left"
+).rename(columns={"accuracy": "overall_accuracy"})
 
-# Redefinir a figura com estilo visual aprimorado
-sns.set_theme(style="darkgrid", palette="pastel")
-fig, ax = plt.subplots(figsize=(14, 6))
+# Reorder columns: place overall_accuracy as the first column after experiment
+cols = df_tasks_metrics_accuracy.columns.tolist()
+cols.remove("experiment")
+cols.remove("overall_accuracy")
+df_tasks_metrics_accuracy = df_tasks_metrics_accuracy[["experiment", "overall_accuracy"] + cols]
 
-# Ocultar eixos
-ax.axis("off")
+# Order the dataframe by overall_accuracy in descending order
+df_tasks_metrics_accuracy = df_tasks_metrics_accuracy.sort_values("overall_accuracy", ascending=False)
 
-# Criar uma tabela no gráfico com estilo
-table = plt.table(cellText=final_score.values,
-          colLabels=final_score.columns,
-          cellLoc='center',
-          loc='center',
-          colColours=["#003366"]*len(final_score.columns),
-          colWidths=[0.2]*len(final_score.columns))
 
-# Estilização da tabela
-table.auto_set_font_size(False)
-table.set_fontsize(10)
-table.scale(1, 2)
+## add the f1 metrics to the tasks metrics
+df_tasks_metrics_f1 = df_tasks_metrics_f1.merge(
+  df_all_metrics[['experiment', 'f1']], on="experiment", how="left"
+).rename(columns={"f1": "overall_f1"})
+# Reorder columns: place overall_f1 as the first column after experiment
+cols = df_tasks_metrics_f1.columns.tolist()
+cols.remove("experiment")
+cols.remove("overall_f1")
+df_tasks_metrics_f1 = df_tasks_metrics_f1[["experiment", "overall_f1"] + cols]
+# Order the dataframe by overall_f1 in descending order
+df_tasks_metrics_f1 = df_tasks_metrics_f1.sort_values("overall_f1", ascending=False)
+ 
+ 
+##### save results
+df_tasks_metrics_accuracy.to_csv("tasks_metrics_accuracy.csv", index=False)
+df_tasks_metrics_f1.to_csv("tasks_metrics_f1.csv", index=False)
+df_experiments_score.to_csv("experiments_score.csv", index=False)
+df_all_metrics.to_csv("all_metrics.csv", index=False)
 
-# Aplicar quebra de linha (wrap) para o conteúdo da coluna 1 (índice 0)
-for key, cell in table.get_celld().items():
-  # key é uma tupla (linha, coluna); pulando o cabeçalho (linha 0)
-  if key[1] == 0 and key[0] > 0:
-    original_text = cell.get_text().get_text()
-    wrapped_text = "\n".join(textwrap.wrap(original_text, width=30))
-    cell.get_text().set_text(wrapped_text)
+ 
+# ### plot results
+# import seaborn as sns
+# import textwrap
+# import matplotlib.pyplot as plt
 
-# Cabeçalho com cor branca e negrito
-for i in range(len(final_score.columns)):
-  cell = table[0, i]
-  cell.set_text_props(color='white', weight='bold')
+# # Redefinir a figura com estilo visual aprimorado
+# sns.set_theme(style="darkgrid", palette="pastel")
+# fig, ax = plt.subplots(figsize=(14, 6))
 
-# highlight_row = 5
-# Destaque para a linha do modelo fine-tuned
+# # Ocultar eixos
+# ax.axis("off")
+
+# # Criar uma tabela no gráfico com estilo
+# table = plt.table(cellText=final_score.values,
+#           colLabels=final_score.columns,
+#           cellLoc='center',
+#           loc='center',
+#           colColours=["#003366"]*len(final_score.columns),
+#           colWidths=[0.2]*len(final_score.columns))
+
+# # Estilização da tabela
+# table.auto_set_font_size(False)
+# table.set_fontsize(10)
+# table.scale(1, 2)
+
+# # Aplicar quebra de linha (wrap) para o conteúdo da coluna 1 (índice 0)
+# for key, cell in table.get_celld().items():
+#   # key é uma tupla (linha, coluna); pulando o cabeçalho (linha 0)
+#   if key[1] == 0 and key[0] > 0:
+#     original_text = cell.get_text().get_text()
+#     wrapped_text = "\n".join(textwrap.wrap(original_text, width=30))
+#     cell.get_text().set_text(wrapped_text)
+
+# # Cabeçalho com cor branca e negrito
 # for i in range(len(final_score.columns)):
-#   table[(highlight_row+1, i)].set_facecolor('#b9f6ca')  # verde pastel
+#   cell = table[0, i]
+#   cell.set_text_props(color='white', weight='bold')
 
-# Título estilizado
-plt.title("Preliminary Results – OpenAI Model Comparisons", fontsize=16, weight='bold', color='#003366', pad=20)
+# # highlight_row = 5
+# # Destaque para a linha do modelo fine-tuned
+# # for i in range(len(final_score.columns)):
+# #   table[(highlight_row+1, i)].set_facecolor('#b9f6ca')  # verde pastel
 
-# Salvar imagem final
-plt.savefig("preliminary_results_table_stylish.png", dpi=300, bbox_inches='tight', transparent=True)
-plt.show()
+# # Título estilizado
+# plt.title("Preliminary Results – OpenAI Model Comparisons", fontsize=16, weight='bold', color='#003366', pad=20)
 
-#### radar plot
+# # Salvar imagem final
+# plt.savefig("preliminary_results_table_stylish.png", dpi=300, bbox_inches='tight', transparent=True)
+# plt.show()
 
-# Criar múltiplos gráficos de radar, um para cada experimento
-num_experiments = len(final_score)
-cols = 3
-rows = int(np.ceil(num_experiments / cols))
+# #### radar plot
 
-fig, axes = plt.subplots(rows, cols, figsize=(cols * 5, rows * 5), subplot_kw=dict(polar=True))
-axes = axes.flatten()
+# # Criar múltiplos gráficos de radar, um para cada experimento
+# num_experiments = len(final_score)
+# cols = 3
+# rows = int(np.ceil(num_experiments / cols))
 
-# Define radar plot configuration variables
-exp_columns = ['numeric', 'boolean', 'categorical', 'open_textual']
-angles = np.linspace(0, 2 * np.pi, len(exp_columns), endpoint=False).tolist()
-angles += angles[:1]  # complete the loop for radar chart
-colors = plt.cm.viridis(np.linspace(0, 1, len(final_score)))
-labels = exp_columns
+# fig, axes = plt.subplots(rows, cols, figsize=(cols * 5, rows * 5), subplot_kw=dict(polar=True))
+# axes = axes.flatten()
 
-for idx, row in final_score.iterrows():
-    values = row[exp_columns].tolist()
-    values += values[:1]
+# # Define radar plot configuration variables
+# exp_columns = ['numeric', 'boolean', 'categorical', 'open_textual']
+# angles = np.linspace(0, 2 * np.pi, len(exp_columns), endpoint=False).tolist()
+# angles += angles[:1]  # complete the loop for radar chart
+# colors = plt.cm.viridis(np.linspace(0, 1, len(final_score)))
+# labels = exp_columns
 
-    ax = axes[idx]
-    ax.plot(angles, values, color=colors[idx % len(colors)], linewidth=2)
-    ax.fill(angles, values, color=colors[idx % len(colors)], alpha=0.2)
+# for idx, row in final_score.iterrows():
+#     values = row[exp_columns].tolist()
+#     values += values[:1]
 
-    ax.set_title(row["experiment"], fontsize=10, weight='bold', pad=10)
-    ax.set_theta_offset(np.pi / 2)
-    ax.set_theta_direction(-1)
-    ax.set_thetagrids(np.degrees(angles[:-1]), labels)
-    ax.set_ylim(0.0, 1.0)
+#     ax = axes[idx]
+#     ax.plot(angles, values, color=colors[idx % len(colors)], linewidth=2)
+#     ax.fill(angles, values, color=colors[idx % len(colors)], alpha=0.2)
 
-# Remover subplots não utilizados
-for j in range(idx + 1, len(axes)):
-    fig.delaxes(axes[j])
+#     ax.set_title(row["experiment"], fontsize=10, weight='bold', pad=10)
+#     ax.set_theta_offset(np.pi / 2)
+#     ax.set_theta_direction(-1)
+#     ax.set_thetagrids(np.degrees(angles[:-1]), labels)
+#     ax.set_ylim(0.0, 1.0)
 
-plt.suptitle("Radar Charts – Individual Experiment Performance", fontsize=16, fontweight='bold')
-plt.tight_layout()
-plt.subplots_adjust(top=0.92)
-plt.savefig("radar_charts_per_experiment.png", dpi=600)
-plt.show()
+# # Remover subplots não utilizados
+# for j in range(idx + 1, len(axes)):
+#     fig.delaxes(axes[j])
+
+# plt.suptitle("Radar Charts – Individual Experiment Performance", fontsize=16, fontweight='bold')
+# plt.tight_layout()
+# plt.subplots_adjust(top=0.92)
+# plt.savefig("radar_charts_per_experiment.png", dpi=600)
+# plt.show()

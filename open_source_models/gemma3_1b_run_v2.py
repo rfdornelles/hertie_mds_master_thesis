@@ -15,11 +15,7 @@ model_name = "google/gemma-3-1b-it"
 os.makedirs(folder, exist_ok=True)
 
 # load datasets
-validation = load_from_disk('../data/validation')
-test = load_from_disk('../data/test')
-
-# merge both
-datasets = concatenate_datasets([validation, test]).to_pandas()
+datasets = load_from_disk('../data/test')
 
 # load prompt
 with open('../prompt/prompt_v4.md', 'r') as f:

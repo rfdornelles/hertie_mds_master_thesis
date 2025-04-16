@@ -7,6 +7,8 @@ from datasets import load_from_disk
 from difflib import SequenceMatcher
 import numpy as np
 import re
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
 
 ### List all experiments and its results
 experiments = []
@@ -314,6 +316,7 @@ def compute_avg_details(details):
   # compute average for each column
   return {col: sums[col] / counts[col] for col in sums}
 
+
 # to each experiment, calculate the average score for each column using the details field
 overall_score["col_score"] = overall_score["details"].apply(compute_avg_details)
 
@@ -351,6 +354,7 @@ df_column_result
 # describing the results according with column type
 result = (
   df_column_result.groupby(['experiment', 'column_type'])['score']
+  # .fillna(0)
   .mean()
   .reset_index()
   .pivot(index='experiment', columns='column_type', values='score')
@@ -361,10 +365,10 @@ result
 
 ## calculate the final score for each experiment
 # the final score is the average of all rows: i want a df with experiment | final_score
-final_score = pd.DataFrame(columns=["experiment", "final_score"])
+# final_score = pd.DataFrame(columns=["experiment", "final_score"])
 # calculate the final score for each experiment by standardizing the experiment names
 final_score = overall_score.copy()
-final_score["experiment"] = final_score["experiment"]#.apply(lambda x: x.split("/")[-1].split(".")[0] if isinstance(x, str) else x)
+# final_score["experiment"] = final_score["experiment"]#.apply(lambda x: x.split("/")[-1].split(".")[0] if isinstance(x, str) else x)
 final_score = final_score[["experiment", "final_score"]]
 
 # remove final_score null and order by experiment name
@@ -379,93 +383,135 @@ final_score = final_score.round(3)
 
 final_score
 
-### plot results
-import seaborn as sns
-import textwrap
-import matplotlib.pyplot as plt
+### calculate accuracy, precision, recall and f1 score
+def compute_metrics_from_details(details, threshold=0.9):
+    """
+    Given details (list of dictionaries, each representing cell scores for a row),
+    aggregate the scores and compute binary metrics.
+    For ground truth, we assume a cell is correct (1) only if its score equals 1; otherwise 0.
+    Prediction: a cell is predicted positive if its score is >= threshold.
+    """
+    cell_scores = []
+    for row_detail in details:
+        for score in row_detail.values():
+            cell_scores.append(score)
+    if not cell_scores:
+        return {"accuracy": 0, "precision": 0, "recall": 0, "f1": 0}
+    y_true = [1 if score == 1 else 0 for score in cell_scores]
+    y_pred = [1 if score >= threshold else 0 for score in cell_scores]
+    
+    # Calculate metrics
+    acc = accuracy_score(y_true, y_pred)
+    prec = precision_score(y_true, y_pred, zero_division=0)
+    rec = recall_score(y_true, y_pred, zero_division=0)
+    f1 = f1_score(y_true, y_pred, zero_division=0)
+    
+    metrics = {"accuracy": acc, "precision": prec, "recall": rec, "f1": f1}
+    
+    return metrics
 
-# Redefinir a figura com estilo visual aprimorado
-sns.set_theme(style="darkgrid", palette="pastel")
-fig, ax = plt.subplots(figsize=(14, 6))
+# For each experiment, calculate the metrics from its cell-level details.
+metrics_list = []
 
-# Ocultar eixos
-ax.axis("off")
+for idx, row in overall_score.iterrows():
+    experiment_name = row["experiment"]
+    details = row["details"]  # This is a list of dicts for each row.
+    metrics = compute_metrics_from_details(details, threshold=0.9)
+    metrics["experiment"] = experiment_name
+    metrics_list.append(metrics)
 
-# Criar uma tabela no gráfico com estilo
-table = plt.table(cellText=final_score.values,
-          colLabels=final_score.columns,
-          cellLoc='center',
-          loc='center',
-          colColours=["#003366"]*len(final_score.columns),
-          colWidths=[0.2]*len(final_score.columns))
 
-# Estilização da tabela
-table.auto_set_font_size(False)
-table.set_fontsize(10)
-table.scale(1, 2)
+metrics_df = pd.DataFrame(metrics_list)
+metrics_df
+  
 
-# Aplicar quebra de linha (wrap) para o conteúdo da coluna 1 (índice 0)
-for key, cell in table.get_celld().items():
-  # key é uma tupla (linha, coluna); pulando o cabeçalho (linha 0)
-  if key[1] == 0 and key[0] > 0:
-    original_text = cell.get_text().get_text()
-    wrapped_text = "\n".join(textwrap.wrap(original_text, width=30))
-    cell.get_text().set_text(wrapped_text)
+# ### plot results
+# import seaborn as sns
+# import textwrap
+# import matplotlib.pyplot as plt
 
-# Cabeçalho com cor branca e negrito
-for i in range(len(final_score.columns)):
-  cell = table[0, i]
-  cell.set_text_props(color='white', weight='bold')
+# # Redefinir a figura com estilo visual aprimorado
+# sns.set_theme(style="darkgrid", palette="pastel")
+# fig, ax = plt.subplots(figsize=(14, 6))
 
-# highlight_row = 5
-# Destaque para a linha do modelo fine-tuned
+# # Ocultar eixos
+# ax.axis("off")
+
+# # Criar uma tabela no gráfico com estilo
+# table = plt.table(cellText=final_score.values,
+#           colLabels=final_score.columns,
+#           cellLoc='center',
+#           loc='center',
+#           colColours=["#003366"]*len(final_score.columns),
+#           colWidths=[0.2]*len(final_score.columns))
+
+# # Estilização da tabela
+# table.auto_set_font_size(False)
+# table.set_fontsize(10)
+# table.scale(1, 2)
+
+# # Aplicar quebra de linha (wrap) para o conteúdo da coluna 1 (índice 0)
+# for key, cell in table.get_celld().items():
+#   # key é uma tupla (linha, coluna); pulando o cabeçalho (linha 0)
+#   if key[1] == 0 and key[0] > 0:
+#     original_text = cell.get_text().get_text()
+#     wrapped_text = "\n".join(textwrap.wrap(original_text, width=30))
+#     cell.get_text().set_text(wrapped_text)
+
+# # Cabeçalho com cor branca e negrito
 # for i in range(len(final_score.columns)):
-#   table[(highlight_row+1, i)].set_facecolor('#b9f6ca')  # verde pastel
+#   cell = table[0, i]
+#   cell.set_text_props(color='white', weight='bold')
 
-# Título estilizado
-plt.title("Preliminary Results – OpenAI Model Comparisons", fontsize=16, weight='bold', color='#003366', pad=20)
+# # highlight_row = 5
+# # Destaque para a linha do modelo fine-tuned
+# # for i in range(len(final_score.columns)):
+# #   table[(highlight_row+1, i)].set_facecolor('#b9f6ca')  # verde pastel
 
-# Salvar imagem final
-plt.savefig("preliminary_results_table_stylish.png", dpi=300, bbox_inches='tight', transparent=True)
-plt.show()
+# # Título estilizado
+# plt.title("Preliminary Results – OpenAI Model Comparisons", fontsize=16, weight='bold', color='#003366', pad=20)
 
-#### radar plot
+# # Salvar imagem final
+# plt.savefig("preliminary_results_table_stylish.png", dpi=300, bbox_inches='tight', transparent=True)
+# plt.show()
 
-# Criar múltiplos gráficos de radar, um para cada experimento
-num_experiments = len(final_score)
-cols = 3
-rows = int(np.ceil(num_experiments / cols))
+# #### radar plot
 
-fig, axes = plt.subplots(rows, cols, figsize=(cols * 5, rows * 5), subplot_kw=dict(polar=True))
-axes = axes.flatten()
+# # Criar múltiplos gráficos de radar, um para cada experimento
+# num_experiments = len(final_score)
+# cols = 3
+# rows = int(np.ceil(num_experiments / cols))
 
-# Define radar plot configuration variables
-exp_columns = ['numeric', 'boolean', 'categorical', 'open_textual']
-angles = np.linspace(0, 2 * np.pi, len(exp_columns), endpoint=False).tolist()
-angles += angles[:1]  # complete the loop for radar chart
-colors = plt.cm.viridis(np.linspace(0, 1, len(final_score)))
-labels = exp_columns
+# fig, axes = plt.subplots(rows, cols, figsize=(cols * 5, rows * 5), subplot_kw=dict(polar=True))
+# axes = axes.flatten()
 
-for idx, row in final_score.iterrows():
-    values = row[exp_columns].tolist()
-    values += values[:1]
+# # Define radar plot configuration variables
+# exp_columns = ['numeric', 'boolean', 'categorical', 'open_textual']
+# angles = np.linspace(0, 2 * np.pi, len(exp_columns), endpoint=False).tolist()
+# angles += angles[:1]  # complete the loop for radar chart
+# colors = plt.cm.viridis(np.linspace(0, 1, len(final_score)))
+# labels = exp_columns
 
-    ax = axes[idx]
-    ax.plot(angles, values, color=colors[idx % len(colors)], linewidth=2)
-    ax.fill(angles, values, color=colors[idx % len(colors)], alpha=0.2)
+# for idx, row in final_score.iterrows():
+#     values = row[exp_columns].tolist()
+#     values += values[:1]
 
-    ax.set_title(row["experiment"], fontsize=10, weight='bold', pad=10)
-    ax.set_theta_offset(np.pi / 2)
-    ax.set_theta_direction(-1)
-    ax.set_thetagrids(np.degrees(angles[:-1]), labels)
-    ax.set_ylim(0.0, 1.0)
+#     ax = axes[idx]
+#     ax.plot(angles, values, color=colors[idx % len(colors)], linewidth=2)
+#     ax.fill(angles, values, color=colors[idx % len(colors)], alpha=0.2)
 
-# Remover subplots não utilizados
-for j in range(idx + 1, len(axes)):
-    fig.delaxes(axes[j])
+#     ax.set_title(row["experiment"], fontsize=10, weight='bold', pad=10)
+#     ax.set_theta_offset(np.pi / 2)
+#     ax.set_theta_direction(-1)
+#     ax.set_thetagrids(np.degrees(angles[:-1]), labels)
+#     ax.set_ylim(0.0, 1.0)
 
-plt.suptitle("Radar Charts – Individual Experiment Performance", fontsize=16, fontweight='bold')
-plt.tight_layout()
-plt.subplots_adjust(top=0.92)
-plt.savefig("radar_charts_per_experiment.png", dpi=600)
-plt.show()
+# # Remover subplots não utilizados
+# for j in range(idx + 1, len(axes)):
+#     fig.delaxes(axes[j])
+
+# plt.suptitle("Radar Charts – Individual Experiment Performance", fontsize=16, fontweight='bold')
+# plt.tight_layout()
+# plt.subplots_adjust(top=0.92)
+# plt.savefig("radar_charts_per_experiment.png", dpi=600)
+# plt.show()

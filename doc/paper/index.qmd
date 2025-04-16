@@ -74,8 +74,7 @@ cap-location: bottom
 \begin{minipage}{0.60\textwidth} 
 \flushright 
 \setstretch{1} 
-\textit{
-"I promise to practice law with dignity and independence, to observe ethics, professional duties and prerogatives and to defend the Constitution, the legal order of the Democratic State, human rights, social justice, the proper application of laws, the rapid administration of justice and \textbf{the improvement of legal culture and institutions}."\\[1ex]
+\textit{\fontsize{10}{12}\selectfont"I promise to practice law with dignity and independence, to observe ethics, professional duties and prerogatives and to defend the Constitution, the legal order of the Democratic State, human rights, social justice, the proper application of laws, the rapid administration of justice and \textbf{the improvement of legal culture and institutions}."\\[1ex]
 (Oath of the Legal Profession - Art. 20, General Regulation of the Statute of the Lawyer Professorship, Brazilian Bar Association)
 }
 \end{minipage}
