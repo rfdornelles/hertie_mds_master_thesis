@@ -1,0 +1,79 @@
+Para extrair as informações da sentença judicial fornecida, vamos analisar o texto e preencher os campos do JSON de acordo com as instruções. Aqui está o objeto JSON para o réu mencionado:
+
+```json
+[
+    {
+        "processo": "0033864-83.2017.8.26.0050",
+        "juiz": "DANIELA M. C. M. CAVALLANTI",
+        "sexo_juiz": "Feminino",
+        "nome": "YGOR CAMARA SATELES",
+        "local": "Via Pública",
+        "maconha": true,
+        "maconha_g": 67.5,
+        "maconha_outras": true,
+        "cocaina": true,
+        "cocaina_g": 18.3,
+        "crack": true,
+        "crack_g": 2.4,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Parcialmente Procedente",
+        "pena_base": "6a",
+        "tot_pen": "1a 8m",
+        "tot_pen_meses": 20,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": true,
+        "flag_confissao_informal": false,
+        "flag_confissao": false,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": true,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": true,
+        "aval_consequencias": true,
+        "aval_culpabilidade": true
+    }
+]
+```
+
+### Explicação dos Campos:
+
+- **processo**: Extraído do cabeçalho.
+- **juiz**: Nome do juiz mencionado.
+- **sexo_juiz**: Inferido como "Feminino" a partir do nome.
+- **nome**: Nome do réu.
+- **local**: "Via Pública" mencionado no texto.
+- **maconha, maconha_g, maconha_outras**: Informações sobre maconha extraídas do texto.
+- **cocaina, cocaina_g**: Informações sobre cocaína extraídas do texto.
+- **crack, crack_g**: Informações sobre crack extraídas do texto.
+- **ecstasy, ecstasy_g, lsd, lsd_g**: Não mencionados, portanto, `False` e `0`.
+- **sentenca**: "Parcialmente Procedente" conforme a decisão.
+- **pena_base, tot_pen, tot_pen_meses**: Pena base e total extraídas da sentença.
+- **outras_drogas**: Não mencionadas, portanto, `False`.
+- **resultado_art_28, resultado_art_34, resultado_art_35**: Não aplicados, portanto, `False`.
+- **denuncia_art_33, denuncia_art_34, denuncia_art_35**: Apenas o art. 33 mencionado, portanto, `True` para art. 33.
+- **flag_local_de_trafico**: Mencionado como ponto de venda.
+- **flag_preso_no_momento_da_sentenca**: Mencionado que o réu estava preso.
+- **flag_confissao_informal, flag_confissao**: Não há confissão formal, apenas informal, portanto, `False`.
+- **flag_denuncia_anonima**: Não mencionado, portanto, `False`.
+- **flag_denuncia**: Denúncia formal mencionada.
+- **flag_atitude_suspeita**: Mencionado comportamento suspe

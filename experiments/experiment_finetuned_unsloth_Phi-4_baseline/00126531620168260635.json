@@ -1,0 +1,81 @@
+Para extrair as informações necessárias da sentença judicial fornecida, vamos analisar o texto e preencher os campos do dataset estruturado conforme as instruções. Aqui está o JSON resultante:
+
+```json
+[
+    {
+        "processo": "0012653-16.2016.8.26.0635",
+        "juiz": "Rafael Henrique Janela Tamai Rocha",
+        "sexo_juiz": "Masculino",
+        "nome": "Bruno Rodrigues de Andrade Lima",
+        "local": "Via Pública",
+        "maconha": false,
+        "maconha_g": 0,
+        "maconha_outras": false,
+        "cocaina": true,
+        "cocaina_g": 16.3,
+        "crack": true,
+        "crack_g": 3.9,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "5a 10m",
+        "tot_pen": "6a 9m 20d",
+        "tot_pen_meses": 77,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": true,
+        "flag_confissao_informal": true,
+        "flag_confissao": false,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": false,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+    }
+]
+```
+
+### Explicação dos Campos:
+
+- **processo**: O número do processo judicial.
+- **juiz**: Nome do juiz responsável.
+- **sexo_juiz**: Gênero do juiz.
+- **nome**: Nome completo do réu.
+- **local**: Local do crime, identificado como "Via Pública".
+- **maconha**, **cocaina**, **crack**, **ecstasy**, **lsd**: Booleanos indicando a apreensão de cada substância.
+- **maconha_g**, **cocaina_g**, **crack_g**, **ecstasy_g**, **lsd_g**: Quantidades em gramas das substâncias apreendidas.
+- **sentenca**: Resultado da sentença, "Procedente".
+- **pena_base**: Pena-base em anos e meses.
+- **tot_pen**: Pena total em anos, meses e dias.
+- **tot_pen_meses**: Pena total convertida em meses.
+- **outras_drogas**: Não há menção a outras drogas além das especificadas.
+- **resultado_art_28**, **resultado_art_33**, **resultado_art_34**, **resultado_art_35**: Aplicação dos artigos da Lei nº 11.343/06.
+- **denuncia_art_33**, **denuncia_art_34**, **denuncia_art_35**: Alegações na denúncia.
+- **flag_local_de_trafico**: Indica local associado ao tráfico.
+- **flag_preso_no_momento_da_sentenca**: Réu estava preso no momento da sentença.
+- **flag_confissao_informal**: Confissão informal foi mencionada.
+- **flag_confissao**: Confissão formal não foi mencionada.
+- **flag_denuncia_anonima**: Não há menção de denúncia anônima.
+- **flag_denuncia**: Denúncia formal foi mencionada.
+- **flag_atitude_suspeita**: Não há menção de atitude suspeita.
+- **

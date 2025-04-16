@@ -1,0 +1,80 @@
+Para extrair as informações da sentença judicial fornecida e preencher o formato JSON solicitado, vamos analisar o texto e identificar os dados relevantes para cada campo. A sentença trata de um único réu, Mariana da Silva Lima, e contém informações suficientes para preencher todos os campos necessários.
+
+Aqui está o JSON resultante:
+
+```json
+[
+    {
+        "processo": "00316684320178260050",
+        "juiz": "Carlos Eduardo Lora Franco",
+        "sexo_juiz": "Masculino",
+        "nome": "Mariana da Silva Lima",
+        "local": "Residência",
+        "maconha": true,
+        "maconha_g": 80000.0,
+        "maconha_outras": false,
+        "cocaina": false,
+        "cocaina_g": 0,
+        "crack": false,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "8a",
+        "tot_pen": "2a 6m",
+        "tot_pen_meses": 30,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": false,
+        "flag_confissao_informal": false,
+        "flag_confissao": true,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": true,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": true,
+        "aval_consequencias": false,
+        "aval_culpabilidade": true
+    }
+]
+```
+
+### Explicação dos Campos:
+
+- **processo**: O número do processo é assumido como "00316684320178260050" para fins de exemplo.
+- **juiz**: Nome do juiz mencionado no final da sentença.
+- **sexo_juiz**: Inferido como "Masculino" com base no nome.
+- **nome**: Nome completo do réu mencionado no início da sentença.
+- **local**: "Residência" é inferido a partir da descrição de onde a droga foi encontrada.
+- **maconha**: True, pois há menção de apreensão de maconha.
+- **maconha_g**: 80 quilogramas convertidos para gramas (80000.0).
+- **maconha_outras**: False, não há menção de outras formas de maconha.
+- **cocaina, crack, ecstasy, lsd**: Todos false, pois não há menção de apreensão dessas drogas.
+- **sentenca**: "Procedente", conforme a decisão final.
+- **pena_base**: "8a", conforme a pena base fixada.
+- **tot_pen**: "2a 6m", conforme a pena total após redução.
+- **tot_pen_meses**: 30 meses, correspondendo a 2 anos e 6 meses.
+- **outras_drogas**: False, pois não há menção de outras drogas além da maconha.
+- **resultado_art_28, resultado_art_34, resultado_art_35**: False, pois não há aplicação desses artigos.
+- **denuncia_art_33**: True, conforme a denúncia mencionada.
+- **denuncia_art_34, denuncia_art_35**: False, pois não há menção de denúncia desses artigos.
+- **flag_local_de_trafico**: True, pois a droga foi encontrada em um local associado ao tráfico.
+- **flag_preso_no_momento

@@ -1,0 +1,81 @@
+Para extrair as informações da sentença judicial fornecida, vamos analisar o texto e preencher os campos do JSON de acordo com as instruções. Aqui está o objeto JSON para o réu mencionado:
+
+```json
+[
+    {
+        "processo": "0006150-42.2017.8.26.0635",
+        "juiz": "Daniela Martins de C M Cavallanti",
+        "sexo_juiz": "Feminino",
+        "nome": "LEONARDO BERNARDS DE SANTANA RODELO",
+        "local": "Via Pública",
+        "maconha": false,
+        "maconha_g": 0,
+        "maconha_outras": false,
+        "cocaina": false,
+        "cocaina_g": 0,
+        "crack": true,
+        "crack_g": 76.1,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "6a 600d",
+        "tot_pen": "2a 200d",
+        "tot_pen_meses": 26,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": true,
+        "flag_confissao_informal": true,
+        "flag_confissao": false,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": false,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": true,
+        "aval_consequencias": true,
+        "aval_culpabilidade": true
+    }
+]
+```
+
+### Explicação dos Campos:
+
+- **processo**: Extraído do cabeçalho do documento.
+- **juiz**: Nome do juiz mencionado no final da sentença.
+- **sexo_juiz**: Inferido do nome do juiz.
+- **nome**: Nome do réu mencionado no início da sentença.
+- **local**: "Via Pública" devido à menção da Avenida Duque de Caxias.
+- **maconha, cocaina, ecstasy, lsd**: Não mencionados, portanto `false`.
+- **crack**: Mencionado com 76,1 gramas.
+- **pena_base**: "6a 600d" (6 anos e 600 dias) conforme a sentença.
+- **tot_pen**: "2a 200d" (2 anos e 200 dias) após a diminuição.
+- **tot_pen_meses**: Convertido para meses (2 anos e 200 dias = 26 meses).
+- **outras_drogas**: Não mencionadas, portanto `false`.
+- **resultado_art_28, resultado_art_34, resultado_art_35**: Não aplicados, portanto `false`.
+- **resultado_art_33**: Aplicado conforme a sentença.
+- **denuncia_art_33**: Alegado na denúncia.
+- **flag_local_de_trafico**: Verdadeiro devido à menção da "cracolândia".
+- **flag_preso_no_momento_da_sentenca**: Verdadeiro, pois o réu estava preso.
+- **flag_confissao_informal**: Verdadeiro, pois o réu confessou informalmente.
+- **flag_confissao**: Falso, pois não houve confissão formal.
+- **flag_denuncia_anonima**: Falso, não mencionado.
+- **flag_denuncia**: Verdadeiro, denúncia formal.
+- **flag_atitude_suspeita**: Falso, não mencionado.
+- **flag_divergencias_nos_re

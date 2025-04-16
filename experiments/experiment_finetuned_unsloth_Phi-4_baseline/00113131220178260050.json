@@ -1,0 +1,81 @@
+Para extrair as informações da sentença judicial fornecida, vamos analisar o texto e preencher os campos do JSON conforme as instruções. Aqui está o resultado:
+
+```json
+[
+    {
+        "processo": "0011313-12.2017.8.26.0050",
+        "juiz": "Maria Paula Cassone Rossi",
+        "sexo_juiz": "Feminino",
+        "nome": "DAX PEREIRA DE OLIVEIRA",
+        "local": "Via Pública",
+        "maconha": true,
+        "maconha_g": 1654.6,
+        "maconha_outras": false,
+        "cocaina": false,
+        "cocaina_g": 0,
+        "crack": false,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "5a 10m",
+        "tot_pen": "5a 10m",
+        "tot_pen_meses": 70,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": false,
+        "flag_preso_no_momento_da_sentenca": false,
+        "flag_confissao_informal": false,
+        "flag_confissao": true,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": false,
+        "aval_personalidade": false,
+        "aval_natureza": false,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": false,
+        "aval_consequencias": false,
+        "aval_culpabilidade": false
+    }
+]
+```
+
+### Explicação dos Campos:
+
+- **processo**: Extraído do cabeçalho da sentença.
+- **juiz**: Nome do juiz mencionado no cabeçalho.
+- **sexo_juiz**: Inferido a partir do nome do juiz.
+- **nome**: Nome do réu mencionado na denúncia.
+- **local**: Local do crime mencionado na denúncia.
+- **maconha**: True, pois há menção de apreensão de maconha.
+- **maconha_g**: Quantidade de maconha apreendida.
+- **maconha_outras**: False, não há menção de outras formas de maconha.
+- **cocaina, crack, ecstasy, lsd**: False, pois não há menção de apreensão dessas drogas.
+- **sentenca**: "Procedente", conforme a decisão final.
+- **pena_base**: Pena base fixada na sentença.
+- **tot_pen**: Pena total fixada na sentença.
+- **tot_pen_meses**: Conversão da pena total em meses.
+- **outras_drogas**: False, não há menção de outras drogas além das especificadas.
+- **resultado_art_28, resultado_art_34, resultado_art_35**: False, pois não há aplicação desses artigos.
+- **denuncia_art_34, denuncia_art_35**: False, pois não há menção desses artigos na denúncia.
+- **flag_local_de_trafico**: False, não há menção específica de local de tráfico.
+- **flag_preso_no_momento_da_sentenca**: False, não há menção de prisão no momento da sentença.
+- **flag_confissao_informal**: False, não há menção de confissão informal.
+- **flag_confissao**: True, o réu admitiu a posse da droga.
+- **flag_denuncia_anonima**: False, não há menção de denúncia anônima.
+- **flag_denuncia**: True, há denúncia formal.

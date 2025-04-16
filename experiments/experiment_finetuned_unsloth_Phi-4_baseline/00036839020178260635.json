@@ -1,0 +1,75 @@
+Aqui está o array JSON extraído das informações da sentença judicial fornecida:
+
+```json
+[
+    {
+        "processo": "0003683-90.2017.8.26.0635",
+        "juiz": "Richard Francisco Chequini",
+        "sexo_juiz": "Masculino",
+        "nome": "JOSE LUIS SANTOS VIEIRA",
+        "local": "Via Pública",
+        "maconha": true,
+        "maconha_g": 24.4,
+        "maconha_outras": false,
+        "cocaina": true,
+        "cocaina_g": 1.3,
+        "crack": false,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "5a",
+        "tot_pen": "5a 10m",
+        "tot_pen_meses": 70,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": true,
+        "flag_confissao_informal": true,
+        "flag_confissao": false,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": true,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": false,
+        "aval_circunstancias": true,
+        "aval_consequencias": false,
+        "aval_culpabilidade": true
+    }
+]
+```
+
+### Explicação dos Campos:
+
+- **processo**: O número do processo judicial.
+- **juiz**: Nome do juiz responsável pela sentença.
+- **sexo_juiz**: Gênero do juiz, assumido como "Masculino" com base no nome.
+- **nome**: Nome completo do réu.
+- **local**: Local do crime, identificado como "Via Pública".
+- **maconha**, **cocaina**, etc.: Booleanos indicando a apreensão de cada substância.
+- **maconha_g**, **cocaina_g**, etc.: Quantidades em gramas das substâncias apreendidas.
+- **sentenca**: Resultado da sentença, "Procedente" neste caso.
+- **pena_base** e **tot_pen**: Pena-base e pena total em anos e meses.
+- **tot_pen_meses**: Pena total convertida em meses.
+- **outras_drogas**: Indica se outras substâncias além das listadas foram mencionadas.
+- **resultado_art_28**, **resultado_art_33**, etc.: Booleanos indicando a aplicação de artigos específicos da lei.
+- **flag_local_de_trafico**, **flag_preso_no_momento_da_sentenca**, etc.: Booleanos indicando a presença de certas condições ou ações.
+- **aval_antecedentes**, **aval_conduta**, etc.: Booleanos indicando se houve avaliação de aspectos específicos do réu ou do crime.
+
+Os campos foram preenchidos com base nas informações fornecidas na sentença, respeitando as instruções de preencher com `None` ou `0` quando a informação não estava disponível.
