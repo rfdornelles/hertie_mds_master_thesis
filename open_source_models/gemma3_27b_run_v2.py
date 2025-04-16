@@ -6,7 +6,7 @@ import tqdm
 
 # clean cuda just in case
 torch.cuda.empty_cache()
-
+# CUDA_VISIBLE_DEVICES="0,2,3"
 # definitions
 experiment = 'experiment_gemma3_27b_it_baseline_v2'
 folder = f'experiments2/{experiment}'
@@ -30,7 +30,7 @@ with open('../prompt/prompt_v4.md', 'r') as f:
 model = Gemma3ForCausalLM.from_pretrained(
     model_name, 
     torch_dtype=torch.bfloat16, 
-    load_in_8bit=True,
+    # load_in_8bit=True,
     # device_map="cuda",
     device_map="auto",
     attn_implementation = 'eager'
