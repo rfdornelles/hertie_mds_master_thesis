@@ -93,8 +93,42 @@
 % Set default figure placement to htbp
 \def\fps@figure{htbp}
 \makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \usepackage{setspace}
+\usepackage{changepage}
 \doublespacing
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
@@ -143,7 +177,6 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Master Thesis -},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -152,12 +185,10 @@
   pdfcreator={LaTeX via pandoc}}
 
 
-\title{Master Thesis -}
-\author{Rodrigo Dornelles}
+\author{}
 \date{}
 
 \begin{document}
-\maketitle
 
 
 \begin{titlepage}
@@ -165,7 +196,7 @@
     \includegraphics[width=0.75\textwidth]{images/hertie-school-logo.jpg}
     \vspace*{\fill}
     
-    \textbf{Master Thesis - Whatever}
+    \textbf{LLM in Court: Leveraging Open-Source Language Models to Enhance Empirical Legal Research in Brazil}\\
 
     \vspace{2.5cm}
 
@@ -182,164 +213,349 @@
     \vspace*{\fill}
 
     Supervised by Prof. Lynn Kaack, PhD
+    \vspace{0.5cm}
+    
+    Word count: 7,000 words
 
 \end{titlepage}
 
+\newpage
+
+\thispagestyle{empty}
+\vspace*{\fill}
+\noindent\hspace*{\fill}
+\begin{minipage}{0.60\textwidth} 
+\flushright 
+\setstretch{1} 
+\textit{\fontsize{10}{12}\selectfont"I promise to practice law with dignity and independence, to observe ethics, professional duties and prerogatives and to defend the Constitution, the legal order of the Democratic State, human rights, social justice, the proper application of laws, the rapid administration of justice and \textbf{the improvement of legal culture and institutions}."\\[1ex]
+(Oath of the Legal Profession - Art. 20, General Regulation of the Statute of the Lawyer Professorship, Brazilian Bar Association)
+}
+\end{minipage}
+\vspace*{0pt}
+
+\newpage
 \tableofcontents
 \thispagestyle{empty}
-\newpage
+
 
 \setcounter{page}{1}
 
-\section{Abstract}\label{abstract}
+\newpage
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\section{Executive Summary}\label{executive-summary}
+
+Lorem ipsum dolor
 
 \section{Introduction}\label{introduction}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\begin{itemize}
+\tightlist
+\item
+  context:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    law is a fundamental aspect in governance and, therefore, to well
+    being
+  \item
+    however, law is heavely dogmatic and there is little empirical legal
+    research in the country.
+  \item
+    to do empirical research on law the data mining process is specially
+    complicated, not because the lack of material -- Judiciary in BR is
+    full digitalized -- but to analyze a large volume of data, with it's
+    specific linguo
+  \item
+    the first obstacle to a data-driving analysis in law is how to
+    manage text data in large scale and extract structured information
+    from it: one could easily take months to properly analyze few dozens
+    of complex documents.
+  \item
+    one side-hipothesis: our legal studies and legislative production is
+    suboptimal, due the lack of evidence based decisions
+  \item
+    relevant to a policy school; in a data science program it's
+    specially relevant to point out solutions to improve this field and
+    offer policy recommendations in the light of the state of the art
+  \end{itemize}
+\item
+  contribution: pipeline, analyse, at least 1 os model trained
+\end{itemize}
+
+There is a significant methodological gap in legal research. Empirical
+methods are rarely applied, resulting in predominantly qualitative,
+bibliographical research. When empirical research is done in the legal
+field, it usually takes a substantial period and a big research team,
+making it a costly process.
+
+Since the most challenging part of empirical analysis in the legal field
+is extracting information from very complex documents, I hope to develop
+a good strategy to make it easier for researchers to analyze how the law
+is being applied by the courts. Also, I want to apply open-source models
+since they are a better fit for the public interest and are most easily
+adoptable by academia and public institutions.
 
 \section{Literature Review}\label{literature-review}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\begin{itemize}
+\tightlist
+\item
+  literature: lawma, tucano, marina lacerda, rayssa, abj drogas
+  Dominguez-Olmedo et al.
+  (\citeproc{ref-dominguez-olmedo_lawma_2024}{2024}), Corrêa et al.
+  (\citeproc{ref-correa_tucano_2024}{2024}), Lacerda e Silva
+  (\citeproc{ref-lacerda_e_silva_punindo_2021}{2021}), Instituto de
+  Pesquisa Econômica Aplicada (Ipea) \& Brasil. Ministério da Justiça e
+  Segurança Pública
+  (\citeproc{ref-instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023}{2023}),
+  Associação Brasileira de Jurimetria
+  (\citeproc{ref-associacao_brasileira_de_jurimetria_avaliacao_2019}{2019}),
+  Costa et al. (\citeproc{ref-costa_eficacia_2011}{2011})
+\end{itemize}
+
+The primary focus is the lack of empirical research in the legal field
+and the costly, time-consuming nature of conducting such studies. While
+traditional legal research, like that of the Brazilian Applied Economics
+Institute, and jurimetrics research using data-driven techniques exist,
+they are limited. In contrast, recent advancements in the application of
+LLMs to the legal field in the U.S. (e.g., Dominguez-Olmedo et al.,
+Lawma: The Power of Specialization for Legal Tasks) show promise. My
+thesis will explore the role of open-source models, techniques for their
+specialization in legal tasks, and the costs of their deployment.
 
 \section{Research Question}\label{research-question}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+At one hand, we recognize a research gap regarding the lack of empirical
+legal research mainly in Brazil. On the other hand, we see an
+opportunity to apply the findings of the fast-paced field of natural
+language processing, empowered by the modern technichs from deep
+learning. Giving this setting, the research questions relies on: 1. How
+can large language models be deployed in the Brazilian legal context to
+accurately extract information, recognize entities, and summarize
+complex legal documents, considering factors such as cost, computational
+eﬀiciency, and the specific challenges of legal language and document
+structure?
 
-\section{Data and Methods}\label{data-and-methods}
+This question implies: - is possible to use commercial llms in similar
+tasks - the new releases on open-source models might reached a point
+when those are also a perspective
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\section{Research Design}\label{research-design}
+
+\begin{itemize}
+\tightlist
+\item
+  method:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    gathered data from judicial sentences in São Paulo
+  \item
+    received access from dataset from Lacerda: ± 400 judicial sentences
+    labelled
+  \item
+    cleaned data
+  \item
+    prompt engeneering
+  \item
+    used commercial OS (OpenAI) as baseline
+  \item
+    tryied the OS models
+
+    \begin{itemize}
+    \tightlist
+    \item
+      llama
+    \item
+      gemma
+    \item
+      tucano
+    \item
+      lawma
+    \item
+      lola
+    \end{itemize}
+  \item
+    libraries HF and unsloth
+  \item
+    ft models
+  \item
+    compared their performance
+  \item
+    limitations:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      drug traffic, sao paulo
+    \item
+      2017/2018
+    \item
+      only models that were possible to access
+    \item
+      small sample to ft and test
+    \item
+      tucano, lawma:
+
+      \begin{itemize}
+      \tightlist
+      \item
+        context window was too short to legal docs;
+      \item
+        tried with no success to apply rope scaling or yarn
+      \item
+        tried RAG to retrieve relevant parts; tried rag to squish the
+        text
+      \item
+        possibility: try a task-based prompt -- still limited window,
+        but might be sufficient to many documents
+      \item
+        lack of computational resources
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
 
 \subsection{Data Sources}\label{data-sources}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\begin{itemize}
+\tightlist
+\item
+  data from legal experts -- Lacerda e Silva
+  (\citeproc{ref-lacerda_e_silva_punindo_2021}{2021})
+\end{itemize}
 
 \subsection{Methods}\label{methods}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
-
-\section{Results}\label{results}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
-
-\section{Discussion}\label{discussion}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
-
-\subsection{Key Findings}\label{key-findings}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+Lorem ipsum dolor sit amet
 
 \subsection{Limitations}\label{limitations}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+tempor incididunt ut labore et dolore magna aliqua.
+
+\section{Results}\label{results}
+
+b
+
+\section{Discussion}\label{discussion}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit
+
+\subsection{Key Findings}\label{key-findings}
+
+\begin{itemize}
+\tightlist
+\item
+  results - os: - cons: difficult to manage, several have short context
+  window; computationaly intensive; - pro: privacy; costs; fast paced;
+  adaptability; full control; - comercial: - cons: privacy; costs; -
+  pro: reliability; easiness; credibility - indeed, specialization is a
+  good strategy - have good potential, altough more testing is needed
+\end{itemize}
 
 \subsection{Future Research}\label{future-research}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\begin{verbatim}
+- future research:
+  - quantization; prunning; distillation;
+  - task-based approach
+\end{verbatim}
 
 \subsection{Policy Recommendations}\label{policy-recommendations}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\begin{verbatim}
+- policy recs:
+  - academia: open the data from the empirical studies -\-\-> corpus of legal label
+  - os community: larger context windows, more light models
+  - judiciary branch: improve metadata recollection and open access to judicial decisoms
+\end{verbatim}
 
 \subsection{Conclusion}\label{conclusion}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\begin{verbatim}
+* conclusions:
+  - llms are good tools to leverage empirical legal research in BR
+  - commercial models: still up to date a good strategy, despite of its costs and privacy issues
+    - pre-process to anonymize is an option
+  - os models: feasible and decent baseline performances in certain models; ft is a good strategy that increases a lot performance
+\end{verbatim}
+
+Alva-Manchego et al.
+(\citeproc{ref-alva-manchego_suitability_2021}{2021})
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 \section{References}\label{references}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+\phantomsection\label{refs}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-alva-manchego_suitability_2021}
+Alva-Manchego, F., Scarton, C., \& Specia, L. (2021). The
+({Un}){Suitability} of {Automatic} {Evaluation} {Metrics} for {Text}
+{Simplification}. \emph{Computational Linguistics}, \emph{47}, 861--889.
+\url{https://doi.org/10.1162/coli_a_00418}
+
+\bibitem[\citeproctext]{ref-associacao_brasileira_de_jurimetria_avaliacao_2019}
+Associação Brasileira de Jurimetria. (2019). \emph{Avaliação do
+{Impacto} de {Critérios} {Objetivos} na {Distinção} {Entre} {Posse} para
+{Uso} e {Posse} para {Tráfico}: {Um} estudo {Jurimétrico}}. Associação
+Brasileira de Jurimetria.
+\url{https://abj.org.br/pdf/20190402_abj_criterios_objetivos.pdf}
+
+\bibitem[\citeproctext]{ref-correa_tucano_2024}
+Corrêa, N. K., Sen, A., Falk, S., \& Fatimah, S. (2024). \emph{Tucano:
+{Advancing} {Neural} {Text} {Generation} for {Portuguese}}. arXiv.
+\url{https://doi.org/10.48550/arXiv.2411.07854}
+
+\bibitem[\citeproctext]{ref-costa_eficacia_2011}
+Costa, S. H. da, Silva, P. E. A. da, Sabino, M. A. da C., Fernandes, D.
+C. M., \& Lusvarghi, L. A. dos S. (2011). \emph{A eficácia do sistema
+jurídico de prevenção e combate à improbidade administrativa}
+{[}Publicação de relatório de pesquisa{]}. Secretaria de Assuntos
+Legislativos do Ministério da Justiça.
+
+\bibitem[\citeproctext]{ref-dominguez-olmedo_lawma_2024}
+Dominguez-Olmedo, R., Nanda, V., Abebe, R., Bechtold, S., Engel, C.,
+Frankenreiter, J., Gummadi, K., Hardt, M., \& Livermore, M. (2024).
+\emph{Lawma: {The} {Power} of {Specialization} for {Legal} {Tasks}}.
+arXiv. \url{http://arxiv.org/abs/2407.16615}
+
+\bibitem[\citeproctext]{ref-instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023}
+Instituto de Pesquisa Econômica Aplicada (Ipea), \& Brasil. Ministério
+da Justiça e Segurança Pública. (2023). \emph{Perfil do processado e
+produção de provas nas ações criminais por tráfico de drogas : Relatório
+analítico nacional dos {Tribunais} {Estaduais} de {Justiça} {Comum}}.
+Instituto de Pesquisa Econômica Aplicada (Ipea).
+\url{https://doi.org/10.38116/ri221151}
+
+\bibitem[\citeproctext]{ref-lacerda_e_silva_punindo_2021}
+Lacerda e Silva, M. (2021). \emph{Punindo as diferenças: {Gênero}, raça
+e geração no sentenciamento de tráfico de drogas na cidade de {São}
+{Paulo}}. \url{http://repositorio.unb.br/handle/10482/41413}
+
+\end{CSLReferences}
+
+\section{Acknowledgements}\label{acknowledgements}
+
+Marina Lacerda Silva, Lynn Kaack, Huy Dang, Sascha. Prof.~Susana
+Henriques da Costa, José Jesus Filho, Associação Brasileira de
+Jurimetria e Jusbrasil. MDS classes of 2023 and 2025, the Latin-American
+Club specially the Brazilians. Special thanks to João Vitor Krieger,
+Renan Barbosa. Also, a grateful to Fernanda Horn, Vitor Moneo, Orisha,
+Meirelles.
+
+\section{Appendix}\label{appendix}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+\subsection{List of experiments}\label{list-of-experiments}
+
+\subsection{}\label{section}
 
 
 
