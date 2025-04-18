@@ -188,8 +188,7 @@ Since the most challenging part of empirical analysis in the legal field is extr
 
 # Literature Review
 
-```{=html}
-<!-- @alves_da_silva_aspectos_2022
+@alves_da_silva_aspectos_2022
 paulo: 'O que se entende por pesquisa empírica em direito? A pesquisa empírica em direito é uma pesquisa que toma por objeto não exclusivamente leis e normas, mas principalmente o fenômeno jurídico em sua manifestação concreta' Não olha somente a lei posta, positivada, mas os modos como a lei atua na vida das pessoas e no funcionamento das instituições. A pesquisa empírica em direito, em
 resumo, analisa o fenômeno jurídico em um sentido mais amplo do que normalmente se lhe atribui na dinâmica de suas manifestações concretas.
 
@@ -198,14 +197,12 @@ manuais etc. O jurista é formado para ler e interpretar textos escritos, inscul
 conceitos, significados e opiniões e, então, articulá-los em discursos lógicos de função retórica. Se na formação de nível médio aprendemos a decorar e repetir, nas faculdades de direito aprendemos a decifrar e a discorrer
 
 
-
-<!-- bib review: @cabrera_de_bonito_pesquisa_2025
+bib review: @cabrera_de_bonito_pesquisa_2025
 "Embora   haja   muitas   abordagens   que   tentam   lidar   com   o   desafio   de transformar textos legais em um conjunto de condições legíveis por máquina, os resultados ainda são insatisfatórios e esse continua sendo um grande desafio em aberto  (Dragoni et  al.,  2016).  A  pesquisa  nas  áreas  de  extração  de  informações (processamento   de   linguagem   natural,   inteligência   artificial,   entre   outros) aumentou  o  processo  de  mineração  de  texto  para  aprimorar  o  processo  de descoberta de conhecimento neste domínio (Wagh, 2013)"
 
 "Uma  das  aplicações  de  métodos  quantitativos  ao  Direito,  em  especial,  à jurisprudência,   é   cunhada   como   jurimetria.   O   uso   dessa   ferramenta   não   é contemporâneo,  mas  pouco  explorada  em  países  de  tradição  jurídica  romano-germânica, como o Brasil. Isso porque háum distanciamento entre pesquisadores de  ciências  de  campos  científicos  diferentes,  aplicando-se  aos  voltados  à  análise das  ciências  jurídicas,  cuja  abordagem  quantitativa  dos  estudos  não  é  frequente (Andrade, 2018)"
 
-
-<!--- jurimetria  @ribeiro_jurimetria_2022
+jurimetria  @ribeiro_jurimetria_2022
 A utilização da estatística aplicada ao direito, embora ainda incipiente no Brasil, já chama a atenção do direito estadunidense há tempos. Para efeito de comparação, o termo jurimetria, quando
 pesquisado na ferramenta Google Scholar, conhecida por agregar artigos acadêmicos de várias fontes, resulta em 814 resultados (12. set.2021), ao passo que o termo jurimetrics pesquisado na mesma
 ferramenta retorna 16.600 resultados. Oliver Holmes Jr. (1897) já mencionava que o “homem das leis” do futuro seria aquele que dominasse a estatística e a economia.(“The Path of the Law”, 1897).
@@ -220,8 +217,6 @@ atualmente todos os processos serem digitais, ainda falta muito para a uniformiz
 deveriam ser uniformes em todos os ramos da justiça e em todo o Brasil, conforme as determinações da Resolução do CNJ nº 65/2008. Porém, ainda se encontram processos em curso que não seguem essa
 regra, dificultando o rastreamento de processos
 
- -->
-```
 
 -   literature: lawma, tucano, marina lacerda, rayssa, abj drogas @dominguez-olmedo_lawma_2024, @correa_tucano_2024, @lacerda_e_silva_punindo_2021, @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023, @associacao_brasileira_de_jurimetria_avaliacao_2019, @costa_eficacia_2011
 
@@ -240,13 +235,23 @@ This question implies: - is possible to use commercial llms in similar tasks - t
   -->
 ```
 
-# Research Design
+# Teorethical Framework
 
--   choose SOTA models, both commercial and open source
+-   I'm assuming that the the main contribution would be in the first stage of the data science cicle @wickham_r_2023
+
+    ![Data science cicle [@wickham_r_2023] ](images/r4ds_data_science_cicle.png){.Fig width="624"}
+
+-   NLP: @vajjala_practical_2020: tasks such as "text classification, information extraction, information retrieval, conversational agent, text summarization, question anserwing, machine translation"
+
+    !['NLP tasks organized according to their relative difficulty' [@vajjala_practical_2020]](images/vajjala-2020_nlp_complexity.png){width="441"}
+
+-   LLMs: 'ushered in a new era for natural language processing (NLP)'; "are deep neural networks models; developed over the past few years", 'NLP models performed well in many tasks' -- they focused on specific tasks; 'failed on follow complex instructions, contextual analysis and creating coherent and contextually appropriate original text'.  @raschka_build_2024
+
+-   chose sota models, both commercial and open source
 
 -   gathered data, cleaned and adapted: @lacerda_e_silva_punindo_2021
 
--   design a prompt to extract the same features, according with Lacerda e Silva's dictionary
+-   design a prompt to extract the same features, according with Lacerda e Silva's dictionary. prompting relies on the ability of the model 'understand' specific instructions and act accordingly. So with several iterations, it was possible to guide the model on how to perform the task
 
 -   run models
 
@@ -265,6 +270,16 @@ This question implies: - is possible to use commercial llms in similar tasks - t
 ## Methods
 
 Lorem ipsum dolor sit amet
+
+-- different tasks, that's why NLP technichs were not feasible 
+-- @vajjala_practical_2020: "Recently, large transformers have been used for transfer learning with smaller down‐stream tasks. Transfer learning is a technique in AI where the knowledge gained while solving one problem is applied to a different but related problem. With transformers, the idea is to train a very large transformer mode in an unsupervised manner (known as pre-training) to predict a part of a sentence given the rest of the content so that it can encode the high-level nuances of the language in it. " --> pick some basemodel and use it to the specific task
+
+-- not enought to have an answer, it should be an structured output: JSON. force the output to match a json-style was a challenge, which were overcome with @chase_langchain_2022. commercial models are better on this, and do this with the open-source was a challenge
+
+-- context window: at least 16k is needed; <list context window of the open source models> were insufficient. tryied rope-scaling and yarn but lacked computational resources. @daniel_han_unsloth_2023 was a good and functional option, but it only worked with newer infrastructure.
+
+-- @raschka_build_2024, Lora
+
 
 ## Limitations
 
