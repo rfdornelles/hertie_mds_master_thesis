@@ -151,5 +151,5 @@ df_drug_cases_clean <- df_drug_cases_clean |>
   dplyr::ungroup() |> 
   dplyr::select(-sentence_lenght)
 
-arrow::write_parquet(df_drug_cases_clean, "data/sample400_tjsp_drug_cases_2024.parquet")
+arrow::write_parquet(df_drug_cases_clean, "data/sample400_tjsp_drug_cases_2024_v2.parquet")
 
