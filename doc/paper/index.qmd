@@ -98,6 +98,8 @@ Lorem ipsum dolor
 
 # Introduction
 
+
+
  * context:
     - law is a fundamental aspect in governance and, therefore, to well being
     - however, law is heavely dogmatic and there is little empirical legal research in the country. 
@@ -106,6 +108,11 @@ Lorem ipsum dolor
     - one side-hipothesis: our legal studies and legislative production is suboptimal, due the lack of evidence based decisions
     - relevant to a policy school; in a data science program it's specially relevant to point out solutions to improve this field and offer policy recommendations in the light of the state of the art
   * contribution: pipeline, analyse, at least 1 os model trained
+
+There is a significant methodological gap in legal research. Empirical methods are rarely applied, resulting in predominantly qualitative, bibliographical research. When empirical research is done in the legal field, it usually takes a substantial period and a big research team, making it a costly process.
+
+Since the most challenging part of empirical analysis in the legal field is extracting information from very complex documents, I hope to develop a good strategy to make it easier for researchers to analyze how the law is being applied by the courts. Also, I want to apply open-source models since they are a better fit for the public interest and are most easily adoptable by academia and public institutions.
+<!-- LLM as a way towards jurimetrics-->
 
 <!-- 
   * context:
@@ -175,13 +182,27 @@ Lorem ipsum dolor
 # Literature Review
 
 
-* literature: lawma, tucano, marina lacerda, rayssa, abj drogas, 
+* literature: lawma, tucano, marina lacerda, rayssa, abj drogas
+@dominguez-olmedo_lawma_2024, @correa_tucano_2024, @silva_punindo_2021, @ipea2023perfil, @abj2019criterios
+The primary focus is the lack of empirical research in the legal field and the costly, time-consuming nature of conducting such studies. While traditional legal research, like that of the Brazilian Applied Economics Institute, and jurimetrics research using data-driven techniques exist, they are limited. In contrast, recent advancements in the application of LLMs to the legal field in the U.S. (e.g., Dominguez-Olmedo et al., Lawma: The Power of Specialization for Legal Tasks) show promise. My thesis will explore the role of open-source models, techniques for their specialization in legal tasks, and the costs of their deployment.
+
+
 
 # Research Question
 
-  * research gap: lack of empirical legal research in Brazil; very few studies based on empirical research but, when they happen, they may high impact
+At one hand, we recognize a research gap regarding the lack of empirical legal research mainly in Brazil. On the other hand, we see an opportunity to apply the findings of the fast-paced field of natural language processing, empowered by the modern technichs from deep learning. 
+Giving this setting, the research questions relies on:
+  1. How can large language models be deployed in the Brazilian legal context to accurately extract information, recognize entities, and summarize complex legal documents, considering factors such as cost, computational eﬀiciency, and the specific challenges of legal
+language and document structure? 
+
+This question implies:
+- is possible to use commercial llms in similar tasks
+- the new releases on open-source models might reached a point when those are also a <empolgante> perspective
+
+  <!-- * research gap: lack of empirical legal research in Brazil; very few studies based on empirical research but, when they happen, they may high impact
   * research opportunity: natural language processing, specially the advent of LLMs
   * RQ: is possible to deploy LLMs to analyze legal documents and extract structured information from they? and -- assuming that academia and public service would refrain using commercial models -- are open source models a feasible tool?
+  --> 
 
 # Research Design
 
@@ -214,7 +235,7 @@ Lorem ipsum dolor
 
 ## Data Sources
 
-Lorem ipsum dolor sit amet
+* data from legal experts -- @silva_punindo_2021
 
 ## Methods
 
@@ -226,6 +247,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
 # Results
 
+<!--TODO: explain the evaluation metric -->
 b
 
 # Discussion
@@ -278,7 +300,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ::: {#refs}
 :::
 
+# Acknowledgements
+
+Marina Lacerda Silva, Lynn Kaack, Huy Dang, Sascha. Prof. Susana Henriques da Costa, José Jesus Filho, Associação Brasileira de Jurimetria e Jusbrasil. MDS classes of 2023 and 2025, the Latin-American Club specially the Brazilians. Special thanks to João Vitor Krieger, Renan Barbosa. Also, a grateful to Fernanda Horn, 
+
 # Appendix
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 <!-- TODO: import content from other files -->
+
