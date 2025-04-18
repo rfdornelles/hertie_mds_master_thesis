@@ -4,11 +4,13 @@ import torch
 import tqdm
 import wandb
 import datetime
+import json
 from pandas import read_parquet
 from transformers import pipeline
 from datasets import Dataset
 import dotenv
 
+os.environ['CUDA_VISIBLE_DEVICES'] = '1, 2, 3'
 dotenv.load_dotenv()
 # -----------------------------------------------------------------------------
 # 1. CONFIG / SETUP
@@ -94,23 +96,116 @@ def run_single(processo: str, overwrite=False):
         print(f"[ERROR] {processo} → {e}")
         return None
 
+
+def infer_batch(batch):
+    
+    texts = batch["julgado"]
+    # build list of chat messages
+    messages = [
+        [
+            {"role": "system", "content": prompt},
+            {"role": "user",   "content": txt}
+        ]
+        for txt in texts
+    ]
+
+    t0 = time.time()
+    outputs = pipe(
+        messages,
+        max_new_tokens=run.config.max_new_tokens,
+        do_sample=False,
+        top_p = None,
+        temperature = None
+    )
+    
+    elapsed = time.time() - t0
+
+    # evenly assign per‑sample latency
+    per_sample_latency = elapsed / len(texts)
+
+    # parse generated text
+    gen = [
+        out[0]["generated_text"][-1]["content"]
+        for out in outputs
+    ]
+
+    return {
+        "generated": gen,
+        "latency_s": [per_sample_latency] * len(texts)
+    }
+
 # -----------------------------------------------------------------------------
 # 4. RUN INFERENCE
 # -----------------------------------------------------------------------------
 sample_table = wandb.Table(columns=["processo", "latency_s", "snippet"])
-for proc in tqdm.tqdm(datasets):
+# for proc in tqdm.tqdm(datasets):
     
-    res = run_single(proc['processo'])
+# # res = run_single(proc['processo'])
+# result = datasets.map(
+#     infer_batch,
+#     batched=True,
+# # batch_size= 4, #run.config.batch_size,
+# # # disable_tqdm=True    # <- silence this one call only
+# )
+torch.cuda.empty_cache()
+
+    # if res:
+    #     # log every inference as a point in a latency chart
+    #     wandb.log({"latency_s": res["latency_s"]})
+
+    #     # capture a handful of examples in a W&B table
+    #     if len(sample_table.data) < 20:
+    #         snippet = res["output"][:200].replace("\n", " ")
+    #         sample_table.add_data(res["processo"], res["latency_s"], snippet)
+
+# batch size
+batch_size = 6
+
+# ─── Inference Loop ───────────────────────────────────────────────────────
+for i in tqdm.tqdm(range(0, len(datasets), batch_size), desc="Batches"):
+    batch = datasets.select(range(i, min(i + batch_size, len(datasets))))
+    ids    = batch["processo"]
+    texts  = batch["julgado"]
+
+    # filter out those already done
+    work_items = [
+        (pid, txt)
+        for pid, txt in zip(ids, texts)
+        if not os.path.exists(os.path.join(folder, f"{pid}.json"))
+    ]
+    if not work_items:
+        continue  # skip entire batch
+
+    pids, inputs = zip(*work_items)
+
+    # build prompts only for the ones we need
+    messages = [
+        [
+            {"role": "system", "content": prompt},
+            {"role": "user",   "content": txt}
+        ]
+        for txt in inputs
+    ]
+
+    # run model once per batch
+    start   = time.time()
+    outputs = pipe(messages, 
+                   max_new_tokens=1000, 
+                   do_sample=False, 
+                   temperature = None, 
+                   top_p = None)
+    
     torch.cuda.empty_cache()
+    elapsed = time.time() - start
 
-    if res:
-        # log every inference as a point in a latency chart
-        wandb.log({"latency_s": res["latency_s"]})
-
-        # capture a handful of examples in a W&B table
-        if len(sample_table.data) < 20:
-            snippet = res["output"][:200].replace("\n", " ")
-            sample_table.add_data(res["processo"], res["latency_s"], snippet)
+    # extract and write each JSON
+    for pid, out in zip(pids, outputs):
+        
+        gen_text = out[0]["generated_text"][-1]["content"]
+        out_path = os.path.join(folder, f"{pid}.json")
+        with open(out_path, 'w', encoding='utf-8') as f:
+            # dump only the content string as valid JSON
+            f.write(gen_text)
 
 # push the sample outputs to W&B
 run.log({"example_inferences": sample_table})
