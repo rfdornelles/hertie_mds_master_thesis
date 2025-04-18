@@ -5,11 +5,11 @@ import os
 import tqdm
 
 # clean cuda just in case
-torch.cuda.empty_cache()
+# torch.cuda.empty_cache()
 # CUDA_VISIBLE_DEVICES="0,2,3"
 # definitions
 experiment = 'experiment_gemma3_1b_it_baseline'
-folder = f'experiments2/{experiment}'
+folder = f'../experiments/{experiment}'
 model_name = "google/gemma-3-1b-it"
 
 os.makedirs(folder, exist_ok=True)
@@ -70,7 +70,7 @@ def run_model(processo, new_tokens=1000, overwrite = False):
 
   print(f"  Processing {processo}...")
   # retrieve the content of the sentença
-  sentenca = datasets[datasets['processo'] == processo]['input'].values[0]
+  sentenca = datasets.filter(lambda x: x['processo'] == processo)['input'][0]
   
   # build the prompt
   message = build_prompt(sentenca)
@@ -129,7 +129,7 @@ def run_model(processo, new_tokens=1000, overwrite = False):
 ## iterate
 print("Starting the iteration...")
 
-for processo in tqdm.tqdm(datasets['processo'].unique()):
+for processo in tqdm.tqdm(datasets['processo']):
   try:
     run_model(processo)
   except Exception as e:
