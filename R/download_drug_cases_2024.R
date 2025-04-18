@@ -73,6 +73,41 @@ df_drug_cases_clean <- df_drug_cases_clean |>
 arrow::write_parquet(df_drug_cases_clean, 
                      "data/clean_tjsp_drug_cases_2024.parquet")
 
+df_drug_cases_clean |> 
+  dplyr::count(processo, sort = TRUE)
+
+df_drug_cases_clean |> 
+  dplyr::count(processo, julgado, disponibilizacao, sort = TRUE) |> 
+  dplyr::filter(n > 1)
+
+df_drug_cases_clean |>  
+  # dplyr::select(-cd_doc, duplicado, -hora_coleta) |> 
+  janitor::get_dupes()
+
+# df_drug_cases_clean |> 
+#   dplyr::distinct(processo, disponibilizacao, .keep_all = TRUE) |> 
+#   dplyr::group_by(processo) |> 
+#   dplyr::filter(disponibilizacao == min(disponibilizacao)) |> 
+#   dplyr::filter(sentence_lenght == max(sentence_lenght)) |>
+#   dplyr::ungroup() |> 
+#   dplyr::select(-cd_doc) |> 
+#   dplyr::distinct() |> 
+#   dplyr::arrange(disponibilizacao)  |> 
+#   dplyr::count(processo, sort = TRUE) |>
+#   dplyr::filter(n > 1)
+
+df_drug_cases_clean <- df_drug_cases_clean |> 
+  dplyr::distinct(processo, disponibilizacao, .keep_all = TRUE) |> 
+  dplyr::group_by(processo) |> 
+  dplyr::filter(disponibilizacao == min(disponibilizacao)) |> 
+  dplyr::filter(sentence_lenght == max(sentence_lenght)) |>
+  dplyr::ungroup() |> 
+  dplyr::select(-cd_doc) |> 
+  dplyr::distinct()
+
+df_drug_cases_clean |> 
+  dplyr::count(group)
+
 ###### sample
 set.seed(2025)
 
@@ -99,7 +134,7 @@ sample_size <- sampler::rsampcalc(
 print(sample_size)
 
 # adding some margin
-sample_size <- sample_size*1.2
+sample_size <- round(sample_size*1.2)
 
 ## sampling
 # df_drug_cases_clean |>
