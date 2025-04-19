@@ -1,7 +1,6 @@
-Loading checkpoint shards: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:01<00:00,  1.32it/s]
+Loading checkpoint shards: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:01<00:00,  1.29it/s]
 Device set to use cuda:0
-Batches:   7%|████████▎                                                                                                                    | 10/150 [18:13<4:00:16, 102.98s/it]You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
-Batches:  10%|████████████▌                                                                                                                | 15/150 [36:16<5:26:24, 145.07s/it]
+Batches:  10%|████████████▊                                                                                                                   | 30/300 [00:01<00:14, 19.22it/s]
 Traceback (most recent call last):
   File "/workspace/master_thesis/master_thesis/experiments_inference/run_llama_ft_3.2_3B_sample_tjsp.py", line 192, in <module>
     outputs = pipe(messages,
@@ -59,7 +58,15 @@ Traceback (most recent call last):
     output = module._old_forward(*args, **kwargs)
   File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 172, in forward
     down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 262.00 MiB. GPU 0 has a total capacity of 39.39 GiB of which 211.75 MiB is free. Process 1601847 has 586.00 MiB memory in use. Process 2635786 has 3.54 GiB memory in use. Process 2652986 has 35.04 GiB memory in use. Of the allocated memory 2.73 GiB is allocated by PyTorch, and 315.38 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 432, in forward
+    return F.silu(input, inplace=self.inplace)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/functional.py", line 2380, in silu
+    return torch._C._nn.silu(input)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 262.00 MiB. GPU 0 has a total capacity of 39.39 GiB of which 49.75 MiB is free. Process 1601847 has 586.00 MiB memory in use. Process 2652986 has 35.04 GiB memory in use. Process 2657961 has 3.70 GiB memory in use. Of the allocated memory 2.64 GiB is allocated by PyTorch, and 577.38 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 Traceback (most recent call last):
   File "/workspace/master_thesis/master_thesis/experiments_inference/run_llama_ft_3.2_3B_sample_tjsp.py", line 192, in <module>
     outputs = pipe(messages,
@@ -117,4 +124,12 @@ Traceback (most recent call last):
     output = module._old_forward(*args, **kwargs)
   File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 172, in forward
     down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 262.00 MiB. GPU 0 has a total capacity of 39.39 GiB of which 211.75 MiB is free. Process 1601847 has 586.00 MiB memory in use. Process 2635786 has 3.54 GiB memory in use. Process 2652986 has 35.04 GiB memory in use. Of the allocated memory 2.73 GiB is allocated by PyTorch, and 315.38 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 432, in forward
+    return F.silu(input, inplace=self.inplace)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/functional.py", line 2380, in silu
+    return torch._C._nn.silu(input)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 262.00 MiB. GPU 0 has a total capacity of 39.39 GiB of which 49.75 MiB is free. Process 1601847 has 586.00 MiB memory in use. Process 2652986 has 35.04 GiB memory in use. Process 2657961 has 3.70 GiB memory in use. Of the allocated memory 2.64 GiB is allocated by PyTorch, and 577.38 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

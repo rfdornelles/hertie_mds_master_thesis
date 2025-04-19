@@ -20,3 +20,4 @@ config: {'model': '../open_source_models/master_thesis_llama_3.2_3b_ft', 'max_ne
 2025-04-18 16:16:55,936 INFO    MainThread:1686596 [wandb_run.py:_redirect():2371] Wrapping output streams.
 2025-04-18 16:16:55,936 INFO    MainThread:1686596 [wandb_run.py:_redirect():2394] Redirects installed.
 2025-04-18 16:16:55,938 INFO    MainThread:1686596 [wandb_init.py:init():1056] run started, returning control to user process
+2025-04-18 16:53:15,999 INFO    MsgRouterThr:1686596 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.
