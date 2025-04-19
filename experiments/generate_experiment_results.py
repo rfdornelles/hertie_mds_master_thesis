@@ -13,20 +13,30 @@ import re
 
 ## definitions
 
-experiments = [
-  'experiment_gemma3_1b_it_baseline',
-  'experiment_gemma3_12b_it_baseline_v2',
-  'experiment_gemma3_27b_it_baseline_v2',
-  'experiment_llama_3.1_8b_baseline',
-  'experiment_llama_3.2_3b_baseline',
-  'experiment_llama_3.2_3B_baseline_ft_unsloth_2025-04-13_17-52-07',
-  'experiment_phi4_4b_baseline_unsloth',
-  'experiment_phi4_4b_finetune_unsloth',
-  'experiment_finetune_lora_master_thesis_tucanobr_2b4_ft_v1',
-  'run_unsloth_ft_lora_master_thesis_lawma8b_ft_v1'
-  ]
+# experiments = [
+#   'experiment_gemma3_1b_it_baseline',
+#   'experiment_gemma3_12b_it_baseline_v2',
+#   'experiment_gemma3_27b_it_baseline_v2',
+#   'experiment_llama_3.1_8b_baseline',
+#   'experiment_llama_3.2_3b_baseline',
+#   'experiment_llama_3.2_3B_baseline_ft_unsloth_2025-04-13_17-52-07',
+#   'experiment_phi4_4b_baseline_unsloth',
+#   'experiment_phi4_4b_finetune_unsloth',
+#   'experiment_finetune_lora_master_thesis_tucanobr_2b4_ft_v1',
+#   'run_unsloth_ft_lora_master_thesis_lawma8b_ft_v1'
+#   ]
 
-folder = "."
+# list all folders in the current directory
+folder = os.getcwd()
+
+experiments = []
+# every folder that starts with experiment_ but not contains open_ai
+for _folder in os.listdir(folder):
+  
+  if re.match(r'^experiment_', _folder) and not re.search(r'open_ai', _folder):
+    experiments.append(_folder)
+
+print(f"Found {len(experiments)} experiments that need pre-processing")
 
 
 
