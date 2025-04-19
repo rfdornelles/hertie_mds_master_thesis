@@ -1,0 +1,31 @@
+Starting training....
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/open_source_models/ft_unsloth_llama_3.1_8b.py", line 187, in <module>
+    trainer_stats = trainer.train()
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 123, in _fast_inner_training_loop
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1446, in prepare
+    result = tuple(
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1447, in <genexpr>
+    self._prepare_one(obj, first_pass=True, device_placement=d) for obj, d in zip(args, device_placement)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1289, in _prepare_one
+    return self.prepare_model(obj, device_placement=device_placement)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1559, in prepare_model
+    raise ValueError(
+ValueError: You can't train a model that has been loaded in 8-bit or 4-bit precision on a different device than the one you're training on. Make sure you loaded the model on the correct device using for example `device_map={'':torch.cuda.current_device()}` or `device_map={'':torch.xpu.current_device()}`
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/open_source_models/ft_unsloth_llama_3.1_8b.py", line 187, in <module>
+    trainer_stats = trainer.train()
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 123, in _fast_inner_training_loop
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1446, in prepare
+    result = tuple(
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1447, in <genexpr>
+    self._prepare_one(obj, first_pass=True, device_placement=d) for obj, d in zip(args, device_placement)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1289, in _prepare_one
+    return self.prepare_model(obj, device_placement=device_placement)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1559, in prepare_model
+    raise ValueError(
+ValueError: You can't train a model that has been loaded in 8-bit or 4-bit precision on a different device than the one you're training on. Make sure you loaded the model on the correct device using for example `device_map={'':torch.cuda.current_device()}` or `device_map={'':torch.xpu.current_device()}`

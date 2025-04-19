@@ -1,0 +1,11 @@
+Starting training....
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 3
+   \\   /|    Num examples = 186 | Num Epochs = 10 | Total steps = 460
+O^O/ \_/ \    Batch size per device = 1 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (1 x 4 x 1) = 4
+ "-____-"     Trainable parameters = 32,788,480/4,000,000,000 (0.82% trained)
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+num_proc must be <= 33. Reducing num_proc to 33 for dataset of size 33.
+Trainer loaded!!
+[34m[1mwandb[0m: [33mWARNING[0m Calling wandb.login() after wandb.init() has no effect.
+[34m[1mwandb[0m: [32m[41mERROR[0m The nbformat package was not found. It is required to save notebook history.

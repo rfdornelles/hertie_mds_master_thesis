@@ -1,0 +1,55 @@
+Loading checkpoint shards: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:01<00:00,  1.01it/s]
+Device set to use cuda:0
+  0%|                                                                                                                                                  | 0/896 [00:00<?, ?it/s]/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/transformers/generation/configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+  0%|                                                                                                                                                  | 0/896 [00:42<?, ?it/s]
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/open_source_models/run_llama_ft_3.2_3B_sample_tjsp.py", line 95, in <module>
+    res = run_single(proc, overwrite=True)
+  File "/workspace/master_thesis/master_thesis/open_source_models/run_llama_ft_3.2_3B_sample_tjsp.py", line 77, in run_single
+    outputs = pipe(messages, max_new_tokens=1000, do_sample=False)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 280, in __call__
+    return super().__call__(Chat(text_inputs), **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1379, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1386, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1286, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 385, in _forward
+    output = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2465, in generate
+    result = self._sample(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 3422, in _sample
+    while self._has_unfinished_sequences(this_peer_finished, synced_gpus, device=input_ids.device):
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2616, in _has_unfinished_sequences
+    elif this_peer_finished:
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/open_source_models/run_llama_ft_3.2_3B_sample_tjsp.py", line 95, in <module>
+    res = run_single(proc, overwrite=True)
+  File "/workspace/master_thesis/master_thesis/open_source_models/run_llama_ft_3.2_3B_sample_tjsp.py", line 77, in run_single
+    outputs = pipe(messages, max_new_tokens=1000, do_sample=False)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 280, in __call__
+    return super().__call__(Chat(text_inputs), **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1379, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1386, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1286, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 385, in _forward
+    output = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2465, in generate
+    result = self._sample(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 3422, in _sample
+    while self._has_unfinished_sequences(this_peer_finished, synced_gpus, device=input_ids.device):
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2616, in _has_unfinished_sequences
+    elif this_peer_finished:
+KeyboardInterrupt

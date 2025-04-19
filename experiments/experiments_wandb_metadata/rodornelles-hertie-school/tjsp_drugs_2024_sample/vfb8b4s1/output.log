@@ -1,0 +1,3 @@
+Batches:   6%|▌         | 10/161 [08:35<2:02:09, 48.54s/it]You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Batches: 100%|██████████| 161/161 [2:09:20<00:00, 48.20s/it] 
+[34m[1mwandb[0m: Adding directory to artifact (/content/drive/MyDrive/tjsp_experiment)... Done. 5.0s
