@@ -7,7 +7,7 @@ from datasets import load_from_disk
 from difflib import SequenceMatcher
 import numpy as np
 import re
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score #, precision_score, recall_score, f1_score
 
 
 ### List all experiments and its results
@@ -313,8 +313,9 @@ for experiment, group in df_experiments_score.groupby("experiment"):
   ## calculate metrics
   acc = accuracy_score(y_true, y_pred)
   # rec = recall_score(y_true, y_pred, zero_division=0)
-  f1 = f1_score(y_true, y_pred, zero_division=0)
-  metrics = {"experiment": experiment, "accuracy": acc, "f1": f1}
+  # f1 = f1_score(y_true, y_pred, zero_division=0)
+  # metrics = {"experiment": experiment, "accuracy": acc, "f1": f1}
+  metrics = {"experiment": experiment, "accuracy": acc}
   metrics_list.append(metrics)
   
 
@@ -329,7 +330,9 @@ task_fields = {
     "open_textual": open_textual_fields
 }
 
-df_task_metrics = pd.DataFrame(columns=["experiment", "column_type", "score_accuracy", "score_f1"])
+# df_task_metrics = pd.DataFrame(columns=["experiment", "column_type", "score_accuracy", "score_f1"])
+df_task_metrics = pd.DataFrame(columns=["experiment", "column_type", "score_accuracy"])
+
 task_metrics_list = []
 
 for experiment, group in df_experiments_score.groupby("experiment"):
@@ -351,7 +354,7 @@ for experiment, group in df_experiments_score.groupby("experiment"):
         "experiment": experiment,
         "column_type": task_type,
         "score_accuracy": acc,
-        "score_f1": f1
+        # "score_f1": f1
     })
          
 df_task_metrics = pd.DataFrame(task_metrics_list)
@@ -360,7 +363,7 @@ df_task_metrics
 ## pivot the results
 df_tasks_metrics_accuracy = df_task_metrics.pivot(index="experiment", columns="column_type", values="score_accuracy").reset_index()
     
-df_tasks_metrics_f1 = df_task_metrics.pivot(index="experiment", columns="column_type", values="score_f1").reset_index()
+# df_tasks_metrics_f1 = df_task_metrics.pivot(index="experiment", columns="column_type", values="score_f1").reset_index()
 
 ## add the overall metrics to the tasks metrics
 df_tasks_metrics_accuracy = df_tasks_metrics_accuracy.merge(
@@ -378,112 +381,13 @@ df_tasks_metrics_accuracy = df_tasks_metrics_accuracy.sort_values("overall_accur
 
 
 ## add the f1 metrics to the tasks metrics
-df_tasks_metrics_f1 = df_tasks_metrics_f1.merge(
-  df_all_metrics[['experiment', 'f1']], on="experiment", how="left"
-).rename(columns={"f1": "overall_f1"})
-# Reorder columns: place overall_f1 as the first column after experiment
-cols = df_tasks_metrics_f1.columns.tolist()
-cols.remove("experiment")
-cols.remove("overall_f1")
-df_tasks_metrics_f1 = df_tasks_metrics_f1[["experiment", "overall_f1"] + cols]
-# Order the dataframe by overall_f1 in descending order
-df_tasks_metrics_f1 = df_tasks_metrics_f1.sort_values("overall_f1", ascending=False)
- 
- 
-##### save results
-df_tasks_metrics_accuracy.to_csv("tasks_metrics_accuracy.csv", index=False)
-df_tasks_metrics_f1.to_csv("tasks_metrics_f1.csv", index=False)
-df_experiments_score.to_csv("experiments_score.csv", index=False)
-df_all_metrics.to_csv("all_metrics.csv", index=False)
-
- 
-# ### plot results
-# import seaborn as sns
-# import textwrap
-# import matplotlib.pyplot as plt
-
-# # Redefinir a figura com estilo visual aprimorado
-# sns.set_theme(style="darkgrid", palette="pastel")
-# fig, ax = plt.subplots(figsize=(14, 6))
-
-# # Ocultar eixos
-# ax.axis("off")
-
-# # Criar uma tabela no gráfico com estilo
-# table = plt.table(cellText=final_score.values,
-#           colLabels=final_score.columns,
-#           cellLoc='center',
-#           loc='center',
-#           colColours=["#003366"]*len(final_score.columns),
-#           colWidths=[0.2]*len(final_score.columns))
-
-# # Estilização da tabela
-# table.auto_set_font_size(False)
-# table.set_fontsize(10)
-# table.scale(1, 2)
-
-# # Aplicar quebra de linha (wrap) para o conteúdo da coluna 1 (índice 0)
-# for key, cell in table.get_celld().items():
-#   # key é uma tupla (linha, coluna); pulando o cabeçalho (linha 0)
-#   if key[1] == 0 and key[0] > 0:
-#     original_text = cell.get_text().get_text()
-#     wrapped_text = "\n".join(textwrap.wrap(original_text, width=30))
-#     cell.get_text().set_text(wrapped_text)
-
-# # Cabeçalho com cor branca e negrito
-# for i in range(len(final_score.columns)):
-#   cell = table[0, i]
-#   cell.set_text_props(color='white', weight='bold')
-
-# # highlight_row = 5
-# # Destaque para a linha do modelo fine-tuned
-# # for i in range(len(final_score.columns)):
-# #   table[(highlight_row+1, i)].set_facecolor('#b9f6ca')  # verde pastel
-
-# # Título estilizado
-# plt.title("Preliminary Results – OpenAI Model Comparisons", fontsize=16, weight='bold', color='#003366', pad=20)
-
-# # Salvar imagem final
-# plt.savefig("preliminary_results_table_stylish.png", dpi=300, bbox_inches='tight', transparent=True)
-# plt.show()
-
-# #### radar plot
-
-# # Criar múltiplos gráficos de radar, um para cada experimento
-# num_experiments = len(final_score)
-# cols = 3
-# rows = int(np.ceil(num_experiments / cols))
-
-# fig, axes = plt.subplots(rows, cols, figsize=(cols * 5, rows * 5), subplot_kw=dict(polar=True))
-# axes = axes.flatten()
-
-# # Define radar plot configuration variables
-# exp_columns = ['numeric', 'boolean', 'categorical', 'open_textual']
-# angles = np.linspace(0, 2 * np.pi, len(exp_columns), endpoint=False).tolist()
-# angles += angles[:1]  # complete the loop for radar chart
-# colors = plt.cm.viridis(np.linspace(0, 1, len(final_score)))
-# labels = exp_columns
-
-# for idx, row in final_score.iterrows():
-#     values = row[exp_columns].tolist()
-#     values += values[:1]
-
-#     ax = axes[idx]
-#     ax.plot(angles, values, color=colors[idx % len(colors)], linewidth=2)
-#     ax.fill(angles, values, color=colors[idx % len(colors)], alpha=0.2)
-
-#     ax.set_title(row["experiment"], fontsize=10, weight='bold', pad=10)
-#     ax.set_theta_offset(np.pi / 2)
-#     ax.set_theta_direction(-1)
-#     ax.set_thetagrids(np.degrees(angles[:-1]), labels)
-#     ax.set_ylim(0.0, 1.0)
-
-# # Remover subplots não utilizados
-# for j in range(idx + 1, len(axes)):
-#     fig.delaxes(axes[j])
-
-# plt.suptitle("Radar Charts – Individual Experiment Performance", fontsize=16, fontweight='bold')
-# plt.tight_layout()
-# plt.subplots_adjust(top=0.92)
-# plt.savefig("radar_charts_per_experiment.png", dpi=600)
-# plt.show()
+# df_tasks_metrics_f1 = df_tasks_metrics_f1.merge(
+#   df_all_metrics[['experiment', 'f1']], on="experiment", how="left"
+# ).rename(columns={"f1": "overall_f1"})
+# # Reorder columns: place overall_f1 as the first column after experiment
+# cols = df_tasks_metrics_f1.columns.tolist()
+# cols.remove("experiment")
+# cols.remove("overall_f1")
+# df_tasks_metrics_f1 = df_tasks_metrics_f1[["experiment", "overall_f1"] + cols]
+# # Order the dataframe by overall_f1 in descending order
+# df_tasks_metrics_f1 = df_tasks_metrics_f1.sort_values("overall_f1", ascending=False)
