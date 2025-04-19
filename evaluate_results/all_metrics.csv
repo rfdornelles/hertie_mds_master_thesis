@@ -13,6 +13,6 @@ llama_3.2_3b_baseline,0.5422804146208402
 open_ai_test_gpt-4.1-2025-04-14,0.7545008183306056
 open_ai_test_gpt-4.1-nano,0.6590289143480633
 open_ai_test_gpt4.1mini,0.6966721222040371
-phi4_4b_baseline_unsloth,0.7474086197490453
-phi4_4b_finetune_unsloth,0.9279869067103109
+phi4_14b_baseline_unsloth,0.7474086197490453
+phi4_14b_finetune_unsloth,0.9279869067103109
 unsloth_ft_lora_master_thesis_lawma8b_ft_v1,0.0
