@@ -269,8 +269,6 @@ This question implies: - is possible to use commercial llms in similar tasks - t
 
 ## Methods
 
-Lorem ipsum dolor sit amet
-
 -- different tasks, that's why NLP technichs were not feasible 
 -- @vajjala_practical_2020: "Recently, large transformers have been used for transfer learning with smaller down‐stream tasks. Transfer learning is a technique in AI where the knowledge gained while solving one problem is applied to a different but related problem. With transformers, the idea is to train a very large transformer mode in an unsupervised manner (known as pre-training) to predict a part of a sentence given the rest of the content so that it can encode the high-level nuances of the language in it. " --> pick some basemodel and use it to the specific task
 
@@ -279,11 +277,18 @@ Lorem ipsum dolor sit amet
 -- context window: at least 16k is needed; <list context window of the open source models> were insufficient. tryied rope-scaling and yarn but lacked computational resources. @daniel_han_unsloth_2023 was a good and functional option, but it only worked with newer infrastructure.
 
 -- @raschka_build_2024, Lora
+-- @daniel_han_unsloth_2023 enabled using the models
+
+
 
 
 ## Limitations
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+-- little samples, altough high quality
+-- only used one field of law, only São Paulo 
+-- prompt very large
+-- might be some overfitting 
+-- 
 
 # Results
 

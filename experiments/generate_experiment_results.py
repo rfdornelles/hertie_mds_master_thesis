@@ -7,7 +7,9 @@ from typing import List, Optional
 import unicodedata
 from langchain_core.output_parsers import JsonOutputParser
 import json
+from json import JSONDecodeError
 from tqdm import tqdm
+import re
 
 ## definitions
 
@@ -17,9 +19,11 @@ experiments = [
   'experiment_gemma3_27b_it_baseline_v2',
   'experiment_llama_3.1_8b_baseline',
   'experiment_llama_3.2_3b_baseline',
-  'experiment_llama_3.2_3B_baseline_ft_unsloth_2025-04-13_17-52-07'
+  'experiment_llama_3.2_3B_baseline_ft_unsloth_2025-04-13_17-52-07',
   'experiment_phi4_4b_baseline_unsloth',
-  'experiment_phi4_4b_finetune_unsloth'
+  'experiment_phi4_4b_finetune_unsloth',
+  'experiment_finetune_lora_master_thesis_tucanobr_2b4_ft_v1',
+  'experiments/run_unsloth_ft_lora_master_thesis_lawma8b_ft_v1'
   ]
 
 folder = "."
@@ -101,10 +105,10 @@ class SentencasJudiciaisResponse(BaseModel):
 
 try:
   parser = JsonOutputParser(pydantic_object=SentencasJudiciaisResponse)
+  print("Parser initialized successfully!")
   
 except Exception as e:
   print(f"Error initializing parser: {e}")
-
 
 
 # function to read each output
@@ -112,6 +116,11 @@ def parse_result(experiment, folder, file):
 
   processo = file.split(".")[0]
   full_file = f"{folder}/{experiment}/{file}"
+  
+  if (os.path.exists(full_file) == False):
+    print(f"File {full_file} does not exist.")
+    return None
+  
   try:
     with open(full_file, "r", encoding="utf-8") as f:
       content = f.read()
@@ -119,27 +128,49 @@ def parse_result(experiment, folder, file):
   except Exception as e:
     print(f"Error reading file {full_file}: {e}")
     return None
-  
+    
   try:
     output = parser.parse(content)
-    
+
   except Exception as e:
-    print(f"Error parsing file {full_file}")
-    data = {field: None for field in SentencaJudicial.model_fields.keys()}
-    data["processo"] = processo
-    return pd.DataFrame([data])
+    
+    # trying to clean the content before parsing again
+    try:
+      content = re.sub(r'^```(?:json)?\s*', '', content)
+      content = re.sub(r'\s*```$', '', content)
+      
+      # normalize the booleans
+      content = re.sub(r'(?i)\bTrue\b', 'true', content)
+      content = re.sub(r'(?i)\bFalse\b', 'false', content)
+      content = re.sub(r'(?i)\bNone\b', 'null', content)
+      
+      # try again
+      output = parser.parse(content)
+      
+    except Exception as e:
+        print(f"Error parsing file {full_file} after cleaning:")
+        data = {field: None for field in SentencaJudicial.model_fields.keys()}
+        data["processo"] = processo
+    
+        return pd.DataFrame([data])    
+  
   
   try:
-    result = pd.DataFrame(output)
+    # squish the results in a single row
+    # Assuming 'output' is the list returned by your parser:
+    merged_output = {}
+    
+    for item in output:
+      merged_output.update(item)
+
+    result = pd.DataFrame([merged_output])
     # force processo to be the name of the file
     result["processo"] = processo
   
-    print(result.shape, type(output))  
-    
   except Exception as e:    
     try:
       result = pd.DataFrame([output])
-    except:
+    except Exception as e:
       print(f"Error converting to DataFrame {full_file}: {e}")
       return None
   
@@ -157,6 +188,7 @@ def read_experiment(experiment, overwrite=False):
   # read the files in the experiment folder
   try:
     files = os.listdir(f"{folder}/{experiment}")
+    
   except Exception as e:
     print(f"Error reading directory {folder}/{experiment}: {e}")
     return None
