@@ -1,0 +1,10 @@
+{
+  "entity": "rodornelles-hertie-school",
+  "project": "master_thesis-gemma3",
+  "run_id": "suh1rltx",
+  "run_name": "ft_unsloth_gemma-3-4b-it_v1_2025-04-13_14-08-01",
+  "created_at": "2025-04-13T14:17:46Z",
+  "state": "crashed",
+  "tags": [],
+  "url": "https://wandb.ai/rodornelles-hertie-school/master_thesis-gemma3/runs/suh1rltx"
+}

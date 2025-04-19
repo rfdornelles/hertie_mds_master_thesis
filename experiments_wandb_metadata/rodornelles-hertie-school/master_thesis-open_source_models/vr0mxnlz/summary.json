@@ -1,0 +1,11 @@
+{
+  "metric__runtime": 594.944907405,
+  "metric__step": 1,
+  "metric__timestamp": 1744613858.6877606,
+  "metric__wandb": "{'runtime': 741}",
+  "metric_train/epoch": 0.08602150537634409,
+  "metric_train/global_step": 2,
+  "metric_train/grad_norm": 0.6608962416648865,
+  "metric_train/learning_rate": 4.000000000000001e-06,
+  "metric_train/loss": 0.2694
+}

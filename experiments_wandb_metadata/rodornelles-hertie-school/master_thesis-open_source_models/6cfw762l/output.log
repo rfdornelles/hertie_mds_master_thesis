@@ -1,0 +1,90 @@
+Starting training....
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 3
+   \\   /|    Num examples = 186 | Num Epochs = 10 | Total steps = 460
+O^O/ \_/ \    Batch size per device = 1 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (1 x 4 x 1) = 4
+ "-____-"     Trainable parameters = 41,943,040/8,000,000,000 (0.52% trained)
+  0%|                                                                                                                                                                                   | 0/460 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/open_source_models/ft_unsloth_llama_3.1_8b.py", line 184, in <module>
+    trainer_stats = trainer.train()
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 314, in _fast_inner_training_loop
+  File "<string>", line 31, in _unsloth_training_step
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/UnslothSFTTrainer.py", line 748, in compute_loss
+    outputs = super().compute_loss(
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/_utils.py", line 1029, in _unsloth_pre_compute_loss
+    outputs = self._old_compute_loss(model, inputs, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3801, in compute_loss
+    outputs = model(**inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 814, in forward
+    return model_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 802, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/usr/local/lib/python3.10/dist-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_compile.py", line 32, in inner
+    return disable_fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 1200, in PeftModelForCausalLM_fast_forward
+    return self.base_model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/peft/tuners/tuners_utils.py", line 193, in forward
+    return self.model.forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 1097, in _CausalLM_fast_forward
+    loss = fused_linear_cross_entropy(
+  File "/usr/local/lib/python3.10/dist-packages/unsloth_zoo/loss_utils.py", line 180, in fused_linear_cross_entropy
+    if num_items_in_batch is not None: loss = loss / num_items_in_batch
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:3 and cuda:1!
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/open_source_models/ft_unsloth_llama_3.1_8b.py", line 184, in <module>
+    trainer_stats = trainer.train()
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 314, in _fast_inner_training_loop
+  File "<string>", line 31, in _unsloth_training_step
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/UnslothSFTTrainer.py", line 748, in compute_loss
+    outputs = super().compute_loss(
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/_utils.py", line 1029, in _unsloth_pre_compute_loss
+    outputs = self._old_compute_loss(model, inputs, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3801, in compute_loss
+    outputs = model(**inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 814, in forward
+    return model_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 802, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/usr/local/lib/python3.10/dist-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_compile.py", line 32, in inner
+    return disable_fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 1200, in PeftModelForCausalLM_fast_forward
+    return self.base_model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/peft/tuners/tuners_utils.py", line 193, in forward
+    return self.model.forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/llama.py", line 1097, in _CausalLM_fast_forward
+    loss = fused_linear_cross_entropy(
+  File "/usr/local/lib/python3.10/dist-packages/unsloth_zoo/loss_utils.py", line 180, in fused_linear_cross_entropy
+    if num_items_in_batch is not None: loss = loss / num_items_in_batch
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:3 and cuda:1!

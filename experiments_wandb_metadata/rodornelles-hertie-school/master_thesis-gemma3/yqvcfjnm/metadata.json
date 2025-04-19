@@ -1,0 +1,10 @@
+{
+  "entity": "rodornelles-hertie-school",
+  "project": "master_thesis-gemma3",
+  "run_id": "yqvcfjnm",
+  "run_name": "unsloth-gemma-3-4b-it_v1_2025-04-12_17-52-39_ft",
+  "created_at": "2025-04-12T18:01:40Z",
+  "state": "crashed",
+  "tags": [],
+  "url": "https://wandb.ai/rodornelles-hertie-school/master_thesis-gemma3/runs/yqvcfjnm"
+}

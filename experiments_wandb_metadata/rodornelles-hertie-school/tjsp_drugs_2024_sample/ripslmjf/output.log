@@ -1,0 +1,124 @@
+Loading checkpoint shards: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:01<00:00,  1.30it/s]
+Device set to use cuda:0
+  1%|█▍                                                                                                                                    | 10/896 [14:00<22:11:10, 90.15s/it]You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+  7%|████████▉                                                                                                                              | 59/896 [38:49<9:10:52, 39.49s/it]
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/open_source_models/run_llama_ft_3.2_3B_sample_tjsp.py", line 99, in <module>
+    res = run_single(proc, overwrite=True)
+  File "/workspace/master_thesis/master_thesis/open_source_models/run_llama_ft_3.2_3B_sample_tjsp.py", line 77, in run_single
+    outputs = pipe(messages, max_new_tokens=1000,
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 280, in __call__
+    return super().__call__(Chat(text_inputs), **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1379, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1386, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1286, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 385, in _forward
+    output = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2465, in generate
+    result = self._sample(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 3434, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 821, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 571, in forward
+    layer_outputs = decoder_layer(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 333, in forward
+    hidden_states = self.post_attention_layernorm(hidden_states)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 83, in forward
+    return self.weight * hidden_states.to(input_dtype)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1915, in __getattr__
+    def __getattr__(self, name: str) -> Union[Tensor, "Module"]:
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/open_source_models/run_llama_ft_3.2_3B_sample_tjsp.py", line 99, in <module>
+    res = run_single(proc, overwrite=True)
+  File "/workspace/master_thesis/master_thesis/open_source_models/run_llama_ft_3.2_3B_sample_tjsp.py", line 77, in run_single
+    outputs = pipe(messages, max_new_tokens=1000,
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 280, in __call__
+    return super().__call__(Chat(text_inputs), **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1379, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1386, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1286, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 385, in _forward
+    output = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2465, in generate
+    result = self._sample(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 3434, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 821, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 571, in forward
+    layer_outputs = decoder_layer(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 333, in forward
+    hidden_states = self.post_attention_layernorm(hidden_states)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 83, in forward
+    return self.weight * hidden_states.to(input_dtype)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1915, in __getattr__
+    def __getattr__(self, name: str) -> Union[Tensor, "Module"]:
+KeyboardInterrupt
