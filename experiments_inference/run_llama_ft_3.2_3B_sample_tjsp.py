@@ -159,7 +159,7 @@ torch.cuda.empty_cache()
     #         sample_table.add_data(res["processo"], res["latency_s"], snippet)
 
 # batch size
-batch_size = 6
+batch_size = 3
 
 # ─── Inference Loop ───────────────────────────────────────────────────────
 for i in tqdm.tqdm(range(0, len(datasets), batch_size), desc="Batches"):
