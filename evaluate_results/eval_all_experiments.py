@@ -205,7 +205,6 @@ def evaluate_experiment(experiment):
     # check the sizes again
     if df_experiment.shape[0] != df_reference.shape[0]:
       print(f"  [Alert!] Experiment {name}: the number of rows in the experiment ({df_experiment.shape[0]}) is different from the reference ({df_reference.shape[0]})")
-    # return {"score": [], "details": {}}
   
   # merge data
   try:
@@ -312,9 +311,6 @@ for experiment, group in df_experiments_score.groupby("experiment"):
   
   ## calculate metrics
   acc = accuracy_score(y_true, y_pred)
-  # rec = recall_score(y_true, y_pred, zero_division=0)
-  # f1 = f1_score(y_true, y_pred, zero_division=0)
-  # metrics = {"experiment": experiment, "accuracy": acc, "f1": f1}
   metrics = {"experiment": experiment, "accuracy": acc}
   metrics_list.append(metrics)
   
@@ -330,7 +326,6 @@ task_fields = {
     "open_textual": open_textual_fields
 }
 
-# df_task_metrics = pd.DataFrame(columns=["experiment", "column_type", "score_accuracy", "score_f1"])
 df_task_metrics = pd.DataFrame(columns=["experiment", "column_type", "score_accuracy"])
 
 task_metrics_list = []
@@ -348,13 +343,11 @@ for experiment, group in df_experiments_score.groupby("experiment"):
       y_true = np.ones_like(y_pred)
 
       acc = accuracy_score(y_true, y_pred)
-      f1 = f1_score(y_true, y_pred, zero_division=0)
           
       task_metrics_list.append({
         "experiment": experiment,
         "column_type": task_type,
-        "score_accuracy": acc,
-        # "score_f1": f1
+        "score_accuracy": acc
     })
          
 df_task_metrics = pd.DataFrame(task_metrics_list)
@@ -363,7 +356,6 @@ df_task_metrics
 ## pivot the results
 df_tasks_metrics_accuracy = df_task_metrics.pivot(index="experiment", columns="column_type", values="score_accuracy").reset_index()
     
-# df_tasks_metrics_f1 = df_task_metrics.pivot(index="experiment", columns="column_type", values="score_f1").reset_index()
 
 ## add the overall metrics to the tasks metrics
 df_tasks_metrics_accuracy = df_tasks_metrics_accuracy.merge(
@@ -380,14 +372,11 @@ df_tasks_metrics_accuracy = df_tasks_metrics_accuracy[["experiment", "overall_ac
 df_tasks_metrics_accuracy = df_tasks_metrics_accuracy.sort_values("overall_accuracy", ascending=False)
 
 
-## add the f1 metrics to the tasks metrics
-# df_tasks_metrics_f1 = df_tasks_metrics_f1.merge(
-#   df_all_metrics[['experiment', 'f1']], on="experiment", how="left"
-# ).rename(columns={"f1": "overall_f1"})
-# # Reorder columns: place overall_f1 as the first column after experiment
-# cols = df_tasks_metrics_f1.columns.tolist()
-# cols.remove("experiment")
-# cols.remove("overall_f1")
-# df_tasks_metrics_f1 = df_tasks_metrics_f1[["experiment", "overall_f1"] + cols]
-# # Order the dataframe by overall_f1 in descending order
-# df_tasks_metrics_f1 = df_tasks_metrics_f1.sort_values("overall_f1", ascending=False)
+ 
+######## save results
+df_tasks_metrics_accuracy.to_csv("tasks_metrics_accuracy.csv", index=False)
+# df_tasks_metrics_f1.to_csv("tasks_metrics_f1.csv", index=False)
+df_experiments_score.to_csv("experiments_score.csv", index=False)
+df_all_metrics.to_csv("all_metrics.csv", index=False)
+
+ 
