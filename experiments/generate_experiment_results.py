@@ -23,7 +23,7 @@ experiments = [
   'experiment_phi4_4b_baseline_unsloth',
   'experiment_phi4_4b_finetune_unsloth',
   'experiment_finetune_lora_master_thesis_tucanobr_2b4_ft_v1',
-  'experiments/run_unsloth_ft_lora_master_thesis_lawma8b_ft_v1'
+  'run_unsloth_ft_lora_master_thesis_lawma8b_ft_v1'
   ]
 
 folder = "."
@@ -114,7 +114,7 @@ except Exception as e:
 # function to read each output
 def parse_result(experiment, folder, file):
 
-  processo = file.split(".")[0]
+  processo = os.path.splitext(file)[0] 
   full_file = f"{folder}/{experiment}/{file}"
   
   if (os.path.exists(full_file) == False):
@@ -129,6 +129,8 @@ def parse_result(experiment, folder, file):
     print(f"Error reading file {full_file}: {e}")
     return None
     
+  ## attempt to parse directly 
+  
   try:
     output = parser.parse(content)
 
@@ -154,25 +156,26 @@ def parse_result(experiment, folder, file):
     
         return pd.DataFrame([data])    
   
-  
+  ## merge the list of dicts into dataframe
   try:
     # squish the results in a single row
-    # Assuming 'output' is the list returned by your parser:
     merged_output = {}
     
     for item in output:
       merged_output.update(item)
 
     result = pd.DataFrame([merged_output])
-    # force processo to be the name of the file
-    result["processo"] = processo
   
   except Exception as e:    
     try:
       result = pd.DataFrame([output])
+      
     except Exception as e:
       print(f"Error converting to DataFrame {full_file}: {e}")
       return None
+  
+  # force processo to be the name of the file
+  result["processo"] = processo
   
   return result
 
