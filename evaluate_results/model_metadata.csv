@@ -1,0 +1,15 @@
+model,family,parameters,type
+GPT 4.1,OpenAI,unknown,commercial
+GPT 4.1-mini,OpenAI,unknown,commercial
+GPT 4.1-nano,OpenAI,unknown,commercial
+GPT 4o,OpenAI,unknown,commercial
+GPT 4o-mini,OpenAI,unknown,commercial
+o3-mini,OpenAI,unknown,commercial
+Gemma 3,Gemma,27 B,open-source
+Gemma 3,Gemma,12 B,open-source
+Gemma 3,Gemma,1 B,open-source
+Llama 3.1,Llama,8 B,open-source
+Llama 3.2,Llama,3 B,open-source
+Phi 4,Phi,14 B,open-source
+Lawma 8B,Lawma,8 B,open-source
+Tucano,Tucano,2.4 B,open-source

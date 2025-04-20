@@ -298,6 +298,74 @@ adoptable by academia and public institutions.
 
 \section{Literature Review}\label{literature-review}
 
+Alves da Silva (\citeproc{ref-alves_da_silva_aspectos_2022}{2022})
+paulo: `O que se entende por pesquisa empírica em direito? A pesquisa
+empírica em direito é uma pesquisa que toma por objeto não
+exclusivamente leis e normas, mas principalmente o fenômeno jurídico em
+sua manifestação concreta' Não olha somente a lei posta, positivada, mas
+os modos como a lei atua na vida das pessoas e no funcionamento das
+instituições. A pesquisa empírica em direito, em resumo, analisa o
+fenômeno jurídico em um sentido mais amplo do que normalmente se lhe
+atribui na dinâmica de suas manifestações concretas.
+
+Sob tais características, o nosso padrão de produção de conhecimento em
+direito é predominantemente bibliográfico, baseado em ``livros'' - em
+sentido amplo: livros, artigos, opiniões doutrinárias, manuais etc. O
+jurista é formado para ler e interpretar textos escritos, insculpidos em
+obras bibliográficas. Desde a faculdade, aprendemos a decifrar uma
+linguagem rebuscada que veicula um conjunto vasto de conceitos,
+significados e opiniões e, então, articulá-los em discursos lógicos de
+função retórica. Se na formação de nível médio aprendemos a decorar e
+repetir, nas faculdades de direito aprendemos a decifrar e a discorrer
+
+bib review: Cabrera De Bonito et al.
+(\citeproc{ref-cabrera_de_bonito_pesquisa_2025}{2025}) ``Embora haja
+muitas abordagens que tentam lidar com o desafio de transformar textos
+legais em um conjunto de condições legíveis por máquina, os resultados
+ainda são insatisfatórios e esse continua sendo um grande desafio em
+aberto (Dragoni et al., 2016). A pesquisa nas áreas de extração de
+informações (processamento de linguagem natural, inteligência
+artificial, entre outros) aumentou o processo de mineração de texto para
+aprimorar o processo de descoberta de conhecimento neste domínio (Wagh,
+2013)''
+
+``Uma das aplicações de métodos quantitativos ao Direito, em especial, à
+jurisprudência, é cunhada como jurimetria. O uso dessa ferramenta não é
+contemporâneo, mas pouco explorada em países de tradição jurídica
+romano-germânica, como o Brasil. Isso porque háum distanciamento entre
+pesquisadores de ciências de campos científicos diferentes, aplicando-se
+aos voltados à análise das ciências jurídicas, cuja abordagem
+quantitativa dos estudos não é frequente (Andrade, 2018)''
+
+jurimetria Ribeiro et al. (\citeproc{ref-ribeiro_jurimetria_2022}{2022})
+A utilização da estatística aplicada ao direito, embora ainda incipiente
+no Brasil, já chama a atenção do direito estadunidense há tempos. Para
+efeito de comparação, o termo jurimetria, quando pesquisado na
+ferramenta Google Scholar, conhecida por agregar artigos acadêmicos de
+várias fontes, resulta em 814 resultados (12. set.2021), ao passo que o
+termo jurimetrics pesquisado na mesma ferramenta retorna 16.600
+resultados. Oliver Holmes Jr.~(1897) já mencionava que o ``homem das
+leis'' do futuro seria aquele que dominasse a estatística e a
+economia.(``The Path of the Law'', 1897). Desde a década de 1960, o
+direito americano tem lidado com esse seu aspecto pouco conhecido8 .
+Entretanto, as possibilidades surgidas com a evolução da informática
+levaram a jurimetria e a predição probabilística no direito a outro
+patamar. --- jurimetria (18/04): 2 270 --- jurimetrics (18/04): 21 800
+
+Está em curso, no Brasil, uma grande revolução tecnológica no
+judiciário. Os processos passam por uma fase de informatização e
+digitalização e o Processo Judicial Eletrônico traz, por um lado,
+desafios aos advogados que precisaram forçosamente renovar e reaprender
+a peticionar no ambiente digital e, por outro, ao próprio Judiciário, na
+implementação de sistemas seguros e coesos. Apesar de atualmente todos
+os processos serem digitais, ainda falta muito para a uniformização dos
+dados, o que dificulta a pesquisa, principalmente quantitativa, com
+eles. Um exemplo básico: os números de processos deveriam ser uniformes
+em todos os ramos da justiça e em todo o Brasil, conforme as
+determinações da Resolução do CNJ nº 65/2008. Porém, ainda se encontram
+processos em curso que não seguem essa regra, dificultando o
+rastreamento de processos
+
 \begin{itemize}
 \tightlist
 \item
@@ -341,82 +409,80 @@ This question implies: - is possible to use commercial llms in similar
 tasks - the new releases on open-source models might reached a point
 when those are also a perspective
 
-\section{Research Design}\label{research-design}
+\section{Teorethical Framework}\label{teorethical-framework}
 
 \begin{itemize}
-\tightlist
 \item
-  method:
+  I'm assuming that the the main contribution would be in the first
+  stage of the data science cicle Wickham et al.
+  (\citeproc{ref-wickham_r_2023}{2023})
 
-  \begin{itemize}
-  \tightlist
-  \item
-    gathered data from judicial sentences in São Paulo
-  \item
-    received access from dataset from Lacerda: ± 400 judicial sentences
-    labelled
-  \item
-    cleaned data
-  \item
-    prompt engeneering
-  \item
-    used commercial OS (OpenAI) as baseline
-  \item
-    tryied the OS models
+  \begin{figure}[H]
 
-    \begin{itemize}
-    \tightlist
-    \item
-      llama
-    \item
-      gemma
-    \item
-      tucano
-    \item
-      lawma
-    \item
-      lola
-    \end{itemize}
-  \item
-    libraries HF and unsloth
-  \item
-    ft models
-  \item
-    compared their performance
-  \item
-    limitations:
+  {\centering \includegraphics[width=6.5in,height=\textheight,keepaspectratio]{images/r4ds_data_science_cicle.png}
 
-    \begin{itemize}
-    \tightlist
-    \item
-      drug traffic, sao paulo
-    \item
-      2017/2018
-    \item
-      only models that were possible to access
-    \item
-      small sample to ft and test
-    \item
-      tucano, lawma:
+  }
 
-      \begin{itemize}
-      \tightlist
-      \item
-        context window was too short to legal docs;
-      \item
-        tried with no success to apply rope scaling or yarn
-      \item
-        tried RAG to retrieve relevant parts; tried rag to squish the
-        text
-      \item
-        possibility: try a task-based prompt -- still limited window,
-        but might be sufficient to many documents
-      \item
-        lack of computational resources
-      \end{itemize}
-    \end{itemize}
-  \end{itemize}
+  \caption{Data science cicle (\citeproc{ref-wickham_r_2023}{Wickham et
+  al., 2023})}
+
+  \end{figure}%
+\item
+  NLP: Vajjala et al. (\citeproc{ref-vajjala_practical_2020}{2020}):
+  tasks such as ``text classification, information extraction,
+  information retrieval, conversational agent, text summarization,
+  question anserwing, machine translation''
+
+  \begin{figure}[H]
+
+  {\centering \includegraphics[width=4.59375in,height=\textheight,keepaspectratio]{images/vajjala-2020_nlp_complexity.png}
+
+  }
+
+  \caption{`NLP tasks organized according to their relative difficulty'
+  (\citeproc{ref-vajjala_practical_2020}{Vajjala et al., 2020})}
+
+  \end{figure}%
+\item
+  LLMs: `ushered in a new era for natural language processing (NLP)';
+  ``are deep neural networks models; developed over the past few
+  years'', `NLP models performed well in many tasks' -- they focused on
+  specific tasks; `failed on follow complex instructions, contextual
+  analysis and creating coherent and contextually appropriate original
+  text'. Raschka (\citeproc{ref-raschka_build_2024}{2024})
+\item
+  chose sota models, both commercial and open source
+\item
+  gathered data, cleaned and adapted: Lacerda e Silva
+  (\citeproc{ref-lacerda_e_silva_punindo_2021}{2021})
+\item
+  design a prompt to extract the same features, according with Lacerda e
+  Silva's dictionary. prompting relies on the ability of the model
+  `understand' specific instructions and act accordingly. So with
+  several iterations, it was possible to guide the model on how to
+  perform the task
+\item
+  run models
+\item
+  fine tuned
+\item
+  test again
+\item
+  deep dive in the results
 \end{itemize}
+
+* method: - gathered data from judicial sentences in São Paulo -
+received access from dataset from Lacerda: ± 400 judicial sentences
+labelled - cleaned data - prompt engeneering - used commercial OS
+(OpenAI) as baseline - tryied the OS models - llama - gemma - tucano -
+lawma - lola - libraries HF and unsloth - ft models - compared their
+performance - limitations: - drug traffic, sao paulo - 2017/2018 - only
+models that were possible to access - small sample to ft and test -
+tucano, lawma: - context window was too short to legal docs; - tried
+with no success to apply rope scaling or yarn - tried RAG to retrieve
+relevant parts; tried rag to squish the text - possibility: try a
+task-based prompt -- still limited window, but might be sufficient to
+many documents - lack of computational resources
 
 \subsection{Data Sources}\label{data-sources}
 
@@ -429,16 +495,72 @@ when those are also a perspective
 
 \subsection{Methods}\label{methods}
 
-Lorem ipsum dolor sit amet
+-- different tasks, that's why NLP technichs were not feasible --
+Vajjala et al. (\citeproc{ref-vajjala_practical_2020}{2020}):
+``Recently, large transformers have been used for transfer learning with
+smaller down‐stream tasks. Transfer learning is a technique in AI where
+the knowledge gained while solving one problem is applied to a different
+but related problem. With transformers, the idea is to train a very
+large transformer mode in an unsupervised manner (known as pre-training)
+to predict a part of a sentence given the rest of the content so that it
+can encode the high-level nuances of the language in it.''
+--\textgreater{} pick some basemodel and use it to the specific task
+
+-- not enought to have an answer, it should be an structured output:
+JSON. force the output to match a json-style was a challenge, which were
+overcome with Chase (\citeproc{ref-chase_langchain_2022}{2022}).
+commercial models are better on this, and do this with the open-source
+was a challenge
+
+-- context window: at least 16k is needed; were insufficient. tryied
+rope-scaling and yarn but lacked computational resources. Daniel Han \&
+team (\citeproc{ref-daniel_han_unsloth_2023}{2023}) was a good and
+functional option, but it only worked with newer infrastructure.
+
+-- Raschka (\citeproc{ref-raschka_build_2024}{2024}), Lora -- Daniel Han
+\& team (\citeproc{ref-daniel_han_unsloth_2023}{2023}) enabled using the
+models
 
 \subsection{Limitations}\label{limitations}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua.
+-- little samples, altough high quality -- only used one field of law,
+only São Paulo -- prompt very large -- might be some overfitting --
 
 \section{Results}\label{results}
 
-b
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{../../evaluate_results/model_metadata_table.png}
+
+}
+
+\caption{fig1}
+
+\end{figure}%
+
+bla bla
+
+\begin{figure}[H]
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{../../evaluate_results/accuracy_heatmap.png}}
+
+}
+
+\caption{fig2}
+
+\end{figure}%
+
+bla bla
+
+\begin{figure}[H]
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{../../evaluate_results/finetune_impact_table.png}}
+
+}
+
+\caption{fig3}
+
+\end{figure}%
 
 \section{Discussion}\label{discussion}
 
@@ -500,12 +622,27 @@ Alva-Manchego, F., Scarton, C., \& Specia, L. (2021). The
 {Simplification}. \emph{Computational Linguistics}, \emph{47}, 861--889.
 \url{https://doi.org/10.1162/coli_a_00418}
 
+\bibitem[\citeproctext]{ref-alves_da_silva_aspectos_2022}
+Alves da Silva, P. E. (2022). Aspectos metodológicos da pesquisa
+empírica em {Direito} com processos judiciais físicos e eletrônicos. In
+\emph{Estudos empíricos em processo e organização judiciária}. Expert.
+
 \bibitem[\citeproctext]{ref-associacao_brasileira_de_jurimetria_avaliacao_2019}
 Associação Brasileira de Jurimetria. (2019). \emph{Avaliação do
 {Impacto} de {Critérios} {Objetivos} na {Distinção} {Entre} {Posse} para
 {Uso} e {Posse} para {Tráfico}: {Um} estudo {Jurimétrico}}. Associação
 Brasileira de Jurimetria.
 \url{https://abj.org.br/pdf/20190402_abj_criterios_objetivos.pdf}
+
+\bibitem[\citeproctext]{ref-cabrera_de_bonito_pesquisa_2025}
+Cabrera De Bonito, B., Veloso De Castro, C., \& Korasaki, V. (2025).
+{PESQUISA} {QUANTITATIVA} {NO} {DIREITO}: {UMA} {REVISÃO}
+{BIBLIOGRÁFICA}. \emph{Revista de Estudos Empíricos Em Direito},
+\emph{11}. \url{https://doi.org/10.19092/reed.v11.830}
+
+\bibitem[\citeproctext]{ref-chase_langchain_2022}
+Chase, H. (2022). \emph{{LangChain}}.
+\url{https://github.com/langchain-ai/langchain}
 
 \bibitem[\citeproctext]{ref-correa_tucano_2024}
 Corrêa, N. K., Sen, A., Falk, S., \& Fatimah, S. (2024). \emph{Tucano:
@@ -518,6 +655,11 @@ C. M., \& Lusvarghi, L. A. dos S. (2011). \emph{A eficácia do sistema
 jurídico de prevenção e combate à improbidade administrativa}
 {[}Publicação de relatório de pesquisa{]}. Secretaria de Assuntos
 Legislativos do Ministério da Justiça.
+\url{https://web.archive.org/web/20211004195943/http://pensando.mj.gov.br/wp-content/uploads/2015/07/34Pensando_Direito1.pdf}
+
+\bibitem[\citeproctext]{ref-daniel_han_unsloth_2023}
+Daniel Han, M. H., \& team, U. (2023). \emph{Unsloth}.
+\url{http://github.com/unslothai/unsloth}
 
 \bibitem[\citeproctext]{ref-dominguez-olmedo_lawma_2024}
 Dominguez-Olmedo, R., Nanda, V., Abebe, R., Bechtold, S., Engel, C.,
@@ -538,16 +680,40 @@ Lacerda e Silva, M. (2021). \emph{Punindo as diferenças: {Gênero}, raça
 e geração no sentenciamento de tráfico de drogas na cidade de {São}
 {Paulo}}. \url{http://repositorio.unb.br/handle/10482/41413}
 
+\bibitem[\citeproctext]{ref-raschka_build_2024}
+Raschka, S. (2024). \emph{Build a {Large} {Language} {Model} (from
+{Scratch})}. Manning Publications Co. LLC.
+\url{http://ebookcentral.proquest.com/lib/hertie-school/detail.action?docID=31657639}
+
+\bibitem[\citeproctext]{ref-ribeiro_jurimetria_2022}
+Ribeiro, E. M. S., Rodello, I. A., \& Morilas, L. R. (2022). Jurimetria:
+As possibilidades e os desafios de um modelo para a análise empírica dos
+processos e dos atores processuais. In G. M. Gonçalves, R. C. V. Maia,
+I. M. Rocha, \& G. P. Teodoro (Eds.), \emph{Estudos empíricos em
+processo e organização judiciária}. Editora Expert.
+\url{https://experteditora.com.br/wp-content/uploads/2022/02/Estudos-empiricos-em-processo-e-organizacao-judiciaria.pdf}
+
+\bibitem[\citeproctext]{ref-vajjala_practical_2020}
+Vajjala, S., Majumder, B., Gupta, A., \& Surana, H. (2020).
+\emph{Practical {Natural} {Language} {Processing}: {A} {Comprehensive}
+{Guide} to {Building} {Real}-{World} {NLP} {Systems}}. "O'Reilly Media,
+Inc.".
+
+\bibitem[\citeproctext]{ref-wickham_r_2023}
+Wickham, H., Çetinkaya-Rundel, M., \& Grolemund, G. (2023). \emph{R for
+{Data} {Science}} (2nd ed.). O'Reilly Media.
+\url{https://r4ds.hadley.nz/}
+
 \end{CSLReferences}
 
 \section{Acknowledgements}\label{acknowledgements}
 
-Marina Lacerda Silva, Lynn Kaack, Huy Dang, Sascha. Prof.~Susana
-Henriques da Costa, José Jesus Filho, Associação Brasileira de
-Jurimetria e Jusbrasil. MDS classes of 2023 and 2025, the Latin-American
-Club specially the Brazilians. Special thanks to João Vitor Krieger,
-Renan Barbosa. Also, a grateful to Fernanda Horn, Vitor Moneo, Orisha,
-Meirelles.
+Vetor Brasil, ChancenEg. Marina Lacerda Silva, Lynn Kaack, Huy Dang,
+Sascha. Prof.~Susana Henriques da Costa, José Jesus Filho, Associação
+Brasileira de Jurimetria e Jusbrasil. MDS classes of 2023 and 2025, the
+Latin-American Club specially the Brazilians. Special thanks to João
+Vitor Krieger, Renan Barbosa. Also, a grateful to Fernanda Horn, Vitor
+Moneo, Orisha, Meirelles.
 
 \section{Appendix}\label{appendix}
 

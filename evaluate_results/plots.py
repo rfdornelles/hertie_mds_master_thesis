@@ -146,7 +146,7 @@ sns.barplot(
     hue="status",
     ax=ax
 )
-ax.set_xlabel("Experiment")
+ax.set_xlabel("Model")
 ax.set_ylabel("Overall accuracy")
 ax.set_title("Base vs Finetuned accuracy", weight="bold")
 ax.set_ylim(0, 1.0)
@@ -154,19 +154,19 @@ ax.set_ylim(0, 1.0)
 gpt_4o_mini_acc = df_experiments_score_comparison[
     df_experiments_score_comparison["experiment"] == "3_open_ai_test_4o-mini"
 ]["overall_accuracy"].values[0]
-ax.axhline(y=gpt_4o_mini_acc, color='r', linestyle='--', label="GPT 4o-mini")
+ax.axhline(y=gpt_4o_mini_acc, color='r', linestyle='--')
 ax.text(
     x=0.5, y=gpt_4o_mini_acc + 0.02,
     s="GPT 4o-mini", color='r', ha='center', va='bottom'
 )
 # add legend
-ax.legend(title="Status", loc="upper left")
+ax.legend(loc="upper center")
 # add grid
 ax.grid(axis='y', linestyle='--', alpha=0.7)
 # add text to each bar
 for p in ax.patches:
     ax.annotate(
-        f"{p.get_height():.2f}",
+        f"{p.get_height():.3f}",
         (p.get_x() + p.get_width() / 2., p.get_height()),
         ha='center', va='bottom',
         fontsize=10,
@@ -175,8 +175,9 @@ for p in ax.patches:
         textcoords='offset points'
     )
 # rotate x labels
-plt.xticks(rotation=45)
+# plt.xticks(rotation=45)
 plt.tight_layout()
+plt.savefig("base_vs_finetuned_accuracy.png", dpi=900, transparent=True)
 plt.show()
 
 ## compare per-task accuracies for each model
@@ -191,6 +192,8 @@ df_tasks_comparison = df_tasks_metrics_accuracy[
         "llama_3.2_3B_ft_unsloth_2025-04-13_17-52-07"
     ])
 ].copy().sort_values(["model", "status"])
+
+
 
 # List of tasks to compare
 tasks = ["numeric", "boolean", "categorical", "open_textual"]
@@ -218,7 +221,7 @@ for i, task in enumerate(tasks):
     # Annotate each bar with its value
     for p in ax.patches:
         ax.annotate(
-            f"{p.get_height():.2f}",
+            f"{p.get_height():.3f}",
             (p.get_x() + p.get_width()/2., p.get_height()),
             ha='center', va='bottom',
             fontsize=9,
@@ -232,10 +235,10 @@ for i, task in enumerate(tasks):
 
 # Create one shared legend at the top center
 handles, labels = axs[0].get_legend_handles_labels()
-fig.legend(handles, labels, title="Status", loc="upper center", ncol=len(labels))
+fig.legend(handles, labels,loc="upper center", ncol=len(labels))
 
 plt.tight_layout(rect=[0, 0, 1, 0.95])
-plt.savefig("per_task_accuracy_comparison.png", dpi=300, transparent=True)
+plt.savefig("per_task_accuracy_comparison.png", dpi=900, transparent=True)
 plt.show()
 
 # plt.savefig("base_vs_finetuned_accuracy.png", dpi=300, transparent=True)
@@ -258,19 +261,23 @@ ax.set_ylabel("Experiment")
 ax.set_title("Overall accuracy by experiment", weight="bold")
 ax.set_xlim(0, 1.0)
 plt.tight_layout()
-plt.savefig("overall_accuracy_barplot.png", dpi=300, transparent=True)
+plt.savefig("overall_accuracy_barplot.png", dpi=900, transparent=True)
 plt.show()
 
 ###############################################################################
 # 2. Heat‑map table – task accuracies
 ###############################################################################
 # Use only the four task columns + overall
-task_cols = ["numeric", "boolean", "categorical", "open_textual", "overall_accuracy"]
+task_cols = ["overall_accuracy", "numeric", "boolean", "categorical", "open_textual"]
 heat_data = (
     df_tasks_metrics_accuracy
-    .set_index("experiment")[task_cols]
+    .set_index("model")[task_cols]
     .sort_values("overall_accuracy", ascending=False)
 )
+
+# remove accuracy 0
+heat_data = heat_data[heat_data["overall_accuracy"] > 0]
+
 
 fig, ax = plt.subplots(figsize=(12, 0.5 + 0.4 * len(heat_data)))
 sns.heatmap(
@@ -281,13 +288,15 @@ sns.heatmap(
     linewidths=0.5,
     ax=ax,
     cmap="YlGnBu",
-    vmin=0, vmax=1,
+    vmin=0.3, vmax=0.95,
 )
-ax.set_title("Accuracy by task and experiment", weight="bold", pad=12)
+# x axis in the top
+ax.xaxis.set_ticks_position("top")
+ax.set_title("Accuracy by model and experiment", weight="bold", pad=12)
 ax.set_xlabel("")
 ax.set_ylabel("")
 plt.tight_layout()
-plt.savefig("task_accuracy_heatmap.png", dpi=300, transparent=True)
+plt.savefig("task_accuracy_heatmap.png", dpi=900, transparent=True)
 plt.show()
 
 ###############################################################################
@@ -321,6 +330,8 @@ def radar_factory(num_vars, frame="circle"):
 
     register_projection(RadarAxes)
     return theta
+df_tasks_metrics_accuracy_clean = df_tasks_metrics_accuracy[df_tasks_metrics_accuracy["overall_accuracy"] > 0].copy()
+
 
 labels = ["numeric", "boolean", "categorical", "open_textual"]
 theta = radar_factory(len(labels))
@@ -330,18 +341,18 @@ cols = 3
 rows = int(np.ceil(N / cols))
 fig = plt.figure(figsize=(cols * 4, rows * 4))
 
-for idx, row in df_tasks_metrics_accuracy.iterrows():
+for idx, row in df_tasks_metrics_accuracy_clean.iterrows():
     values = row[labels].tolist()
     ax = fig.add_subplot(rows, cols, idx + 1, projection="radar")
     ax.plot(theta, values, linewidth=2)
     ax.fill(theta, values, alpha=0.25)
     ax.set_ylim(0, 1)
-    title = "\n".join(textwrap.wrap(row["experiment"], width=20))
+    title = "\n".join(textwrap.wrap(f"{row['model']}-{row['status']}", width=20))
     ax.set_title(title, size=9, weight="bold", pad=15)
 
 fig.suptitle("Per‑task accuracy radar – each experiment", weight="bold", y=1.02)
 plt.tight_layout()
-plt.savefig("radar_charts_per_experiment.png", dpi=300, transparent=True)
+plt.savefig("radar_charts_per_experiment.png", dpi=900, transparent=True)
 plt.show()
 
 ###############################################################################
@@ -365,7 +376,7 @@ def save_table_png(df, filename, title=""):
     if title:
         ax.set_title(title, weight="bold", pad=12)
     plt.tight_layout()
-    plt.savefig(filename, dpi=300, transparent=True)
+    plt.savefig(filename, dpi=900, transparent=True)
     plt.close()
 
 # --------------------------------------------------------------------------
@@ -388,5 +399,5 @@ save_table_png(task_tbl, "task_accuracy_table.png", "Accuracy by task")
 
 # --------------------------------------------------------------------------
 # Also export tidy HTML copies (great for slides or Confluence/Wiki)
-overall_tbl.to_html("overall_accuracy_table.html", index=False)
-task_tbl.to_html("task_accuracy_table.html", index=False)
+# overall_tbl.to_html("overall_accuracy_table.html", index=False)
+# task_tbl.to_html("task_accuracy_table.html", index=False)
