@@ -5,8 +5,8 @@
 #     affiliation: Hertie School
 #     roles: author
 #     corresponding: true
-bibliography: Hertie Master Thesis.bib
-csl: apa.csl
+bibliography: ../Hertie Master Thesis.bib
+csl: ../apa.csl
 format: 
   pdf:
     include-in-header:
@@ -38,6 +38,8 @@ cap-location: bottom
 <!-- TODO: statement of autorship -->
 
 <!-- TODO: statement of AI -->
+
+<!-- TODO: credit Steve Kerr https://github.com/smkerr/mpox-wiki-analysis/tree/main/7-paper/LaTeX%20template https://github.com/tecosaur/BMC -->
 
 ```{=latex}
 \begin{titlepage}
@@ -294,7 +296,16 @@ This question implies: - is possible to use commercial llms in similar tasks - t
 
 <!--TODO: explain the evaluation metric -->
 
-b
+<!--TODO: change the tasks from data type to NLP task (extraction, question answering, NER) -->
+![fig1](../../evaluate_results/model_metadata_table.png){ width="100%" }
+
+bla bla 
+
+![fig2](../../evaluate_results/accuracy_heatmap.png)
+
+bla bla
+
+![fig3](../../evaluate_results/finetune_impact_table.png)
 
 # Discussion
 
@@ -344,9 +355,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ::: {#refs}
 :::
 
+<!--TODO: annex --> 
 # Acknowledgements
 
-Marina Lacerda Silva, Lynn Kaack, Huy Dang, Sascha. Prof. Susana Henriques da Costa, José Jesus Filho, Associação Brasileira de Jurimetria e Jusbrasil. MDS classes of 2023 and 2025, the Latin-American Club specially the Brazilians. Special thanks to João Vitor Krieger, Renan Barbosa. Also, a grateful to Fernanda Horn, Vitor Moneo, Orisha, Meirelles.
+Vetor Brasil, ChancenEg. Marina Lacerda Silva, Lynn Kaack, Huy Dang, Sascha. Prof. Susana Henriques da Costa, José Jesus Filho, Associação Brasileira de Jurimetria e Jusbrasil. MDS classes of 2023 and 2025, the Latin-American Club specially the Brazilians. Special thanks to João Vitor Krieger, Renan Barbosa. Also, a grateful to Fernanda Horn, Vitor Moneo, Orisha, Meirelles.
 
 # Appendix
 
