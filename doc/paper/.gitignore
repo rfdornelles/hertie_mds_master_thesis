@@ -1,1 +1,5 @@
-/.quarto/
+.quarto/*
+_freeze/*
+_tex/*
+_manuscript
+doc/paper/*/*.json

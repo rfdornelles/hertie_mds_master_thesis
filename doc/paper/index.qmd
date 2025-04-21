@@ -6,28 +6,29 @@
 #     affiliation: Hertie School
 #     roles: author
 #     corresponding: true
-format: 
-  pdf:
-    output-file: MasterThesis_Dornelles.pdf
-    notebook-links: false
-    include-in-header:
-      text: |
-        \usepackage{setspace}
-        \usepackage{changepage}
-        \doublespacing
-    latex-engine: "lualatex"
-    documentclass: article
-    titlepage: false
-    geometry: "margin=1in"
-    fontsize: "12pt"
-    highlight-style: "github"
-    colorlinks: true
-    keep-tex: true
-    fig-pos: "H"
-    # source: null
-    # pandoc-args: ["--metadata=source="]
-# # filters: [remove_title.lua]
-# editor: "visual"
+# format: 
+#   pdf:
+#     output-dir: ../
+#     output-file: Dornelles_Rodrigo_master_thesis.pdf
+#     notebook-links: false
+#     include-in-header:
+#       text: |
+#         \usepackage{setspace}
+#         \usepackage{changepage}
+#         \doublespacing
+#     latex-engine: "lualatex"
+#     documentclass: article
+#     titlepage: false
+#     geometry: "margin=1in"
+#     fontsize: "12pt"
+#     highlight-style: "github"
+#     colorlinks: true
+#     keep-tex: true
+#     fig-pos: "H"
+#     # source: null
+#     # pandoc-args: ["--metadata=source="]
+# # # filters: [remove_title.lua]
+# # editor: "visual"
 toc: false
 number-sections: false
 link-citations: true

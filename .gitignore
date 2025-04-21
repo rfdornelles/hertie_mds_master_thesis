@@ -26,3 +26,5 @@ data/raw_tjsp_drug_cases_2024.parquet
 data/clean_tjsp_drug_cases_2024.parquet
 doc/paper/_manuscript/index.pdf
 doc/paper/_manuscript/_tex/index.tex
+doc/_tex
+doc/paper/_manuscript
