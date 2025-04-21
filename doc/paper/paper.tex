@@ -5,7 +5,8 @@
 %
 \documentclass[
   12pt,
-]{article}
+  letterpaper,
+]{book}
 
 \usepackage{amsmath,amssymb}
 \usepackage{iftex}
@@ -143,8 +144,10 @@
 \usepackage{xcolor}
 \usepackage{setspace}
 \usepackage{changepage}
-\usepackage[table]{xcolor}
 \doublespacing
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -192,24 +195,130 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Master Thesis - Outline and Results},
   colorlinks=true,
-  linkcolor={blue},
+  linkcolor={Maroon},
   filecolor={Maroon},
   citecolor={Blue},
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
 
-\title{Master Thesis - Outline and Results}
-\author{Rodrigo Dornelles}
+\author{}
 \date{}
 
 \begin{document}
-\maketitle
+\frontmatter
 
 
-\section{Introduction}\label{introduction}
+\mainmatter
+\bookmarksetup{startatroot}
+
+\chapter{Executive Summary}\label{executive-summary}
+
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/hertie-school-logo.jpg}
+    \vspace*{\fill}
+    
+    \textbf{Jurimetrics in the Age of LLMs: Deploying Open‑Source Models for Empirical Insights into Brazilian Courts}\\
+
+    \vspace{2.5cm}
+
+    Rodrigo Filippi Dornelles
+
+    \vspace{1cm}
+    
+    Master of Data Science for Public Policy, Class of 2025\\
+    
+    \vspace{0.5cm}
+
+    Berlin, April 28, 2025\\
+
+    \vspace*{\fill}
+
+    Supervised by Prof. Lynn Kaack, PhD
+    \vspace{0.5cm}
+    
+    Word count: 7,000 words
+
+\end{titlepage}
+
+\newpage
+
+\thispagestyle{empty}
+\vspace*{\fill}
+\noindent\hspace*{\fill}
+\begin{minipage}{0.60\textwidth} 
+\flushright 
+\setstretch{1} 
+\textit{\fontsize{10}{12}\selectfont"I promise to practice law with dignity and independence, to observe ethics, professional duties and prerogatives and to defend the Constitution, the legal order of the Democratic State, human rights, social justice, the proper application of laws, the rapid administration of justice and \textbf{the improvement of legal culture and institutions}."\\[1ex]
+(Oath of the Legal Profession)\footnote{Art. 20, General Regulation of the Statute of the Lawyer Professorship, Brazilian Bar Association}
+}
+\end{minipage}
+\vspace*{0pt}
+
+\newpage
+\tableofcontents
+\thispagestyle{empty}
+
+
+\setcounter{page}{1}
+
+\newpage
+
+Lorem ipsum dolor
+
+\bookmarksetup{startatroot}
+
+\chapter{Introduction}\label{introduction}
+
+\begin{itemize}
+\tightlist
+\item
+  context:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    law is a fundamental aspect in governance and, therefore, to well
+    being
+  \item
+    however, law is heavely dogmatic and there is little empirical legal
+    research in the country.
+  \item
+    to do empirical research on law the data mining process is specially
+    complicated, not because the lack of material -- Judiciary in BR is
+    full digitalized -- but to analyze a large volume of data, with it's
+    specific linguo
+  \item
+    the first obstacle to a data-driving analysis in law is how to
+    manage text data in large scale and extract structured information
+    from it: one could easily take months to properly analyze few dozens
+    of complex documents.
+  \item
+    one side-hipothesis: our legal studies and legislative production is
+    suboptimal, due the lack of evidence based decisions
+  \item
+    relevant to a policy school; in a data science program it's
+    specially relevant to point out solutions to improve this field and
+    offer policy recommendations in the light of the state of the art
+  \end{itemize}
+\item
+  contribution: pipeline, analyse, at least 1 os model trained
+\end{itemize}
+
+There is a significant methodological gap in legal research. Empirical
+methods are rarely applied, resulting in predominantly qualitative,
+bibliographical research. When empirical research is done in the legal
+field, it usually takes a substantial period and a big research team,
+making it a costly process.
+
+Since the most challenging part of empirical analysis in the legal field
+is extracting information from very complex documents, I hope to develop
+a good strategy to make it easier for researchers to analyze how the law
+is being applied by the courts. Also, I want to apply open-source models
+since they are a better fit for the public interest and are most easily
+adoptable by academia and public institutions.
 
 \begin{itemize}
 \item
@@ -241,11 +350,11 @@
   actions in the Court during Bolsonaro's administration:
 \end{itemize}
 
-\begin{figure}[H]
+\begin{figure}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{outline_files/mediabag/grafico_distribuicao.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/mediabag/grafico_distribuicao.png}}
 
 }
 
@@ -297,10 +406,12 @@ Brazilian Supreme Court. Dornelles
   about data protection, once inserted in the API, there is no real
   control over it. Also, commercial models might be expensive (although
   cheaper than the fair price of human labor to do a similar task),
-  which might block their deployment.{[}\^{}1{]}
+  which might block their deployment.
 \end{itemize}
 
-\section{Literature Review}\label{literature-review}
+\bookmarksetup{startatroot}
+
+\chapter{Literature Review}\label{literature-review}
 
 \begin{itemize}
 \tightlist
@@ -324,13 +435,211 @@ Brazilian Supreme Court. Dornelles
   (\citeproc{ref-dominguez-olmedo_lawma_2024}{2024})
 \end{itemize}
 
-\section{Research Question}\label{research-question}
+Alves da Silva (\citeproc{ref-alves_da_silva_aspectos_2022}{2022})
+paulo: `O que se entende por pesquisa empírica em direito? A pesquisa
+empírica em direito é uma pesquisa que toma por objeto não
+exclusivamente leis e normas, mas principalmente o fenômeno jurídico em
+sua manifestação concreta' Não olha somente a lei posta, positivada, mas
+os modos como a lei atua na vida das pessoas e no funcionamento das
+instituições. A pesquisa empírica em direito, em resumo, analisa o
+fenômeno jurídico em um sentido mais amplo do que normalmente se lhe
+atribui na dinâmica de suas manifestações concretas.
+
+Sob tais características, o nosso padrão de produção de conhecimento em
+direito é predominantemente bibliográfico, baseado em ``livros'' - em
+sentido amplo: livros, artigos, opiniões doutrinárias, manuais etc. O
+jurista é formado para ler e interpretar textos escritos, insculpidos em
+obras bibliográficas. Desde a faculdade, aprendemos a decifrar uma
+linguagem rebuscada que veicula um conjunto vasto de conceitos,
+significados e opiniões e, então, articulá-los em discursos lógicos de
+função retórica. Se na formação de nível médio aprendemos a decorar e
+repetir, nas faculdades de direito aprendemos a decifrar e a discorrer
+
+bib review: Cabrera De Bonito et al.
+(\citeproc{ref-cabrera_de_bonito_pesquisa_2025}{2025}) ``Embora haja
+muitas abordagens que tentam lidar com o desafio de transformar textos
+legais em um conjunto de condições legíveis por máquina, os resultados
+ainda são insatisfatórios e esse continua sendo um grande desafio em
+aberto (Dragoni et al., 2016). A pesquisa nas áreas de extração de
+informações (processamento de linguagem natural, inteligência
+artificial, entre outros) aumentou o processo de mineração de texto para
+aprimorar o processo de descoberta de conhecimento neste domínio (Wagh,
+2013)''
+
+``Uma das aplicações de métodos quantitativos ao Direito, em especial, à
+jurisprudência, é cunhada como jurimetria. O uso dessa ferramenta não é
+contemporâneo, mas pouco explorada em países de tradição jurídica
+romano-germânica, como o Brasil. Isso porque háum distanciamento entre
+pesquisadores de ciências de campos científicos diferentes, aplicando-se
+aos voltados à análise das ciências jurídicas, cuja abordagem
+quantitativa dos estudos não é frequente (Andrade, 2018)''
+
+jurimetria Ribeiro et al. (\citeproc{ref-ribeiro_jurimetria_2022}{2022})
+A utilização da estatística aplicada ao direito, embora ainda incipiente
+no Brasil, já chama a atenção do direito estadunidense há tempos. Para
+efeito de comparação, o termo jurimetria, quando pesquisado na
+ferramenta Google Scholar, conhecida por agregar artigos acadêmicos de
+várias fontes, resulta em 814 resultados (12. set.2021), ao passo que o
+termo jurimetrics pesquisado na mesma ferramenta retorna 16.600
+resultados. Oliver Holmes Jr.~(1897) já mencionava que o ``homem das
+leis'' do futuro seria aquele que dominasse a estatística e a
+economia.(``The Path of the Law'', 1897). Desde a década de 1960, o
+direito americano tem lidado com esse seu aspecto pouco conhecido8 .
+Entretanto, as possibilidades surgidas com a evolução da informática
+levaram a jurimetria e a predição probabilística no direito a outro
+patamar. --- jurimetria (18/04): 2 270 --- jurimetrics (18/04): 21 800
+
+Está em curso, no Brasil, uma grande revolução tecnológica no
+judiciário. Os processos passam por uma fase de informatização e
+digitalização e o Processo Judicial Eletrônico traz, por um lado,
+desafios aos advogados que precisaram forçosamente renovar e reaprender
+a peticionar no ambiente digital e, por outro, ao próprio Judiciário, na
+implementação de sistemas seguros e coesos. Apesar de atualmente todos
+os processos serem digitais, ainda falta muito para a uniformização dos
+dados, o que dificulta a pesquisa, principalmente quantitativa, com
+eles. Um exemplo básico: os números de processos deveriam ser uniformes
+em todos os ramos da justiça e em todo o Brasil, conforme as
+determinações da Resolução do CNJ nº 65/2008. Porém, ainda se encontram
+processos em curso que não seguem essa regra, dificultando o
+rastreamento de processos
+
+\begin{itemize}
+\tightlist
+\item
+  literature: lawma, tucano, marina lacerda, rayssa, abj drogas
+  Dominguez-Olmedo et al.
+  (\citeproc{ref-dominguez-olmedo_lawma_2024}{2024}), Corrêa et al.
+  (\citeproc{ref-correa_tucano_2024}{2024}), Lacerda e Silva
+  (\citeproc{ref-lacerda_e_silva_punindo_2021}{2021}), Instituto de
+  Pesquisa Econômica Aplicada (Ipea) \& Brasil. Ministério da Justiça e
+  Segurança Pública
+  (\citeproc{ref-instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023}{2023}),
+  Associação Brasileira de Jurimetria
+  (\citeproc{ref-associacao_brasileira_de_jurimetria_avaliacao_2019}{2019}),
+  Costa et al. (\citeproc{ref-costa_eficacia_2011}{2011})
+\end{itemize}
+
+The primary focus is the lack of empirical research in the legal field
+and the costly, time-consuming nature of conducting such studies. While
+traditional legal research, like that of the Brazilian Applied Economics
+Institute, and jurimetrics research using data-driven techniques exist,
+they are limited. In contrast, recent advancements in the application of
+LLMs to the legal field in the U.S. (e.g., Dominguez-Olmedo et al.,
+Lawma: The Power of Specialization for Legal Tasks) show promise. My
+thesis will explore the role of open-source models, techniques for their
+specialization in legal tasks, and the costs of their deployment.
+
+\bookmarksetup{startatroot}
+
+\chapter{Research Question}\label{research-question}
 
 Can open-source large language models be deployed in the Brazilian legal
 context to accurately extract information, recognize entities, and
 summarize complex legal documents?
 
-\section{Data}\label{data}
+At one hand, we recognize a research gap regarding the lack of empirical
+legal research mainly in Brazil. On the other hand, we see an
+opportunity to apply the findings of the fast-paced field of natural
+language processing, empowered by the modern technichs from deep
+learning. Giving this setting, the research questions relies on: 1. How
+can large language models be deployed in the Brazilian legal context to
+accurately extract information, recognize entities, and summarize
+complex legal documents, considering factors such as cost, computational
+eﬀiciency, and the specific challenges of legal language and document
+structure?
+
+This question implies: - is possible to use commercial llms in similar
+tasks - the new releases on open-source models might reached a point
+when those are also a perspective
+
+\bookmarksetup{startatroot}
+
+\chapter{Teorethical Framework}\label{teorethical-framework}
+
+\begin{itemize}
+\item
+  \textbf{Natural Language Processing}
+\item
+  \textbf{LLMs}
+\item
+  \textbf{Fine tuning}: Using Dominguez-Olmedo et al.
+  (\citeproc{ref-dominguez-olmedo_lawma_2024}{2024}) strategy.
+\item
+  \textbf{LoRA}: Daniel Han \& team
+  (\citeproc{ref-daniel_han_unsloth_2023}{2023})
+\item
+  I'm assuming that the the main contribution would be in the first
+  stage of the data science cicle Wickham et al.
+  (\citeproc{ref-wickham_r_2023}{2023})
+
+  \begin{figure}[H]
+
+  {\centering \includegraphics[width=6.5in,height=\textheight,keepaspectratio]{images/r4ds_data_science_cicle.png}
+
+  }
+
+  \caption{Data science cicle (\citeproc{ref-wickham_r_2023}{Wickham et
+  al., 2023})}
+
+  \end{figure}%
+\item
+  NLP: Vajjala et al. (\citeproc{ref-vajjala_practical_2020}{2020}):
+  tasks such as ``text classification, information extraction,
+  information retrieval, conversational agent, text summarization,
+  question anserwing, machine translation''
+
+  \begin{figure}[H]
+
+  {\centering \includegraphics[width=4.59375in,height=\textheight,keepaspectratio]{images/vajjala-2020_nlp_complexity.png}
+
+  }
+
+  \caption{`NLP tasks organized according to their relative difficulty'
+  (\citeproc{ref-vajjala_practical_2020}{Vajjala et al., 2020})}
+
+  \end{figure}%
+\item
+  LLMs: `ushered in a new era for natural language processing (NLP)';
+  ``are deep neural networks models; developed over the past few
+  years'', `NLP models performed well in many tasks' -- they focused on
+  specific tasks; `failed on follow complex instructions, contextual
+  analysis and creating coherent and contextually appropriate original
+  text'. Raschka (\citeproc{ref-raschka_build_2024}{2024})
+\item
+  chose sota models, both commercial and open source
+\item
+  gathered data, cleaned and adapted: Lacerda e Silva
+  (\citeproc{ref-lacerda_e_silva_punindo_2021}{2021})
+\item
+  design a prompt to extract the same features, according with Lacerda e
+  Silva's dictionary. prompting relies on the ability of the model
+  `understand' specific instructions and act accordingly. So with
+  several iterations, it was possible to guide the model on how to
+  perform the task
+\item
+  run models
+\item
+  fine tuned
+\item
+  test again
+\item
+  deep dive in the results
+\end{itemize}
+
+* method: - gathered data from judicial sentences in São Paulo -
+received access from dataset from Lacerda: ± 400 judicial sentences
+labelled - cleaned data - prompt engeneering - used commercial OS
+(OpenAI) as baseline - tryied the OS models - llama - gemma - tucano -
+lawma - lola - libraries HF and unsloth - ft models - compared their
+performance - limitations: - drug traffic, sao paulo - 2017/2018 - only
+models that were possible to access - small sample to ft and test -
+tucano, lawma: - context window was too short to legal docs; - tried
+with no success to apply rope scaling or yarn - tried RAG to retrieve
+relevant parts; tried rag to squish the text - possibility: try a
+task-based prompt -- still limited window, but might be sufficient to
+many documents - lack of computational resources
+
+\section{Data Sources}\label{data-sources}
 
 \begin{itemize}
 \tightlist
@@ -379,61 +688,43 @@ therefore, to a specific document.
   information about the most common articles of Law in the accusation.
   It was transformed into the columns \emph{denuncia\_art\_33},
   \emph{denuncia\_art\_34}, and \emph{denuncia\_art\_35}.
+\item
+  data from legal experts -- Lacerda e Silva
+  (\citeproc{ref-lacerda_e_silva_punindo_2021}{2021})
 \end{itemize}
 
-\section{Theoretical Framework}\label{theoretical-framework}
+\section{Methods}\label{methods}
 
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Natural Language Processing}
-\item
-  \textbf{LLMs}
-\item
-  \textbf{Fine tuning}: Using Dominguez-Olmedo et al.
-  (\citeproc{ref-dominguez-olmedo_lawma_2024}{2024}) strategy.
-\item
-  \textbf{LoRA}: Daniel Han \& team
-  (\citeproc{ref-daniel_han_unsloth_2023}{2023})
-\end{itemize}
+-- different tasks, that's why NLP technichs were not feasible --
+Vajjala et al. (\citeproc{ref-vajjala_practical_2020}{2020}):
+``Recently, large transformers have been used for transfer learning with
+smaller down‐stream tasks. Transfer learning is a technique in AI where
+the knowledge gained while solving one problem is applied to a different
+but related problem. With transformers, the idea is to train a very
+large transformer mode in an unsupervised manner (known as pre-training)
+to predict a part of a sentence given the rest of the content so that it
+can encode the high-level nuances of the language in it.''
+--\textgreater{} pick some basemodel and use it to the specific task
 
-\section{Models}\label{models}
+-- not enought to have an answer, it should be an structured output:
+JSON. force the output to match a json-style was a challenge, which were
+overcome with Chase (\citeproc{ref-chase_langchain_2022}{2022}).
+commercial models are better on this, and do this with the open-source
+was a challenge
+
+-- context window: at least 16k is needed; were insufficient. tryied
+rope-scaling and yarn but lacked computational resources. Daniel Han \&
+team (\citeproc{ref-daniel_han_unsloth_2023}{2023}) was a good and
+functional option, but it only worked with newer infrastructure.
+
+-- Raschka (\citeproc{ref-raschka_build_2024}{2024}), Lora -- Daniel Han
+\& team (\citeproc{ref-daniel_han_unsloth_2023}{2023}) enabled using the
+models
 
 We used 12 models in this research. OpenAI models were considered
 commercial, and the others were open source. Also, OpenAI does not
 disclose its architectures, so it is impossible to know its number of
 parameters beforehand.
-
-\begin{longtable}[t]{llll}
-
-\toprule
-model & family & parameters & type\\
-\midrule
-GPT 4.1 & OpenAI & unknown & commercial\\
-GPT 4.1-mini & OpenAI & unknown & commercial\\
-GPT 4.1-nano & OpenAI & unknown & commercial\\
-GPT 4o & OpenAI & unknown & commercial\\
-GPT 4o-mini & OpenAI & unknown & commercial\\
-\addlinespace
-o3-mini & OpenAI & unknown & commercial\\
-Gemma 3 & Gemma & 27 B & open-source\\
-Gemma 3 & Gemma & 12 B & open-source\\
-Gemma 3 & Gemma & 1 B & open-source\\
-Llama 3.1 & Llama & 8 B & open-source\\
-\addlinespace
-Llama 3.2 & Llama & 3 B & open-source\\
-Phi 4 & Phi & 14 B & open-source\\
-Lawma 8B & Lawma & 8 B & open-source\\
-Tucano & Tucano & 2.4 B & open-source\\
-\bottomrule
-
-
-\caption{\label{tbl-metadata}Basemodels used}
-
-\tabularnewline
-\end{longtable}
-
-\section{Methods}\label{methods}
 
 \begin{itemize}
 \tightlist
@@ -471,7 +762,77 @@ Tucano & Tucano & 2.4 B & open-source\\
   final evaluation
 \end{itemize}
 
-\section{Results}\label{results}
+\begin{longtable}[t]{llll}
+
+\toprule
+model & family & parameters & type\\
+\midrule
+GPT 4.1 & OpenAI & unknown & commercial\\
+GPT 4.1-mini & OpenAI & unknown & commercial\\
+GPT 4.1-nano & OpenAI & unknown & commercial\\
+GPT 4o & OpenAI & unknown & commercial\\
+GPT 4o-mini & OpenAI & unknown & commercial\\
+\addlinespace
+o3-mini & OpenAI & unknown & commercial\\
+Gemma 3 & Gemma & 27 B & open-source\\
+Gemma 3 & Gemma & 12 B & open-source\\
+Gemma 3 & Gemma & 1 B & open-source\\
+Llama 3.1 & Llama & 8 B & open-source\\
+\addlinespace
+Llama 3.2 & Llama & 3 B & open-source\\
+Phi 4 & Phi & 14 B & open-source\\
+Lawma 8B & Lawma & 8 B & open-source\\
+Tucano & Tucano & 2.4 B & open-source\\
+\bottomrule
+
+
+\caption{\label{tbl-metadata}Basemodels used}
+
+\tabularnewline
+\end{longtable}
+
+\section{Limitations}\label{limitations}
+
+-- little samples, altough high quality -- only used one field of law,
+only São Paulo -- prompt very large -- might be some overfitting --
+
+\bookmarksetup{startatroot}
+
+\chapter{Results}\label{results}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{../../evaluate_results/model_metadata_table.png}
+
+}
+
+\caption{fig1}
+
+\end{figure}%
+
+bla bla
+
+\begin{figure}[H]
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{../../evaluate_results/accuracy_heatmap.png}}
+
+}
+
+\caption{fig2}
+
+\end{figure}%
+
+bla bla
+
+\begin{figure}[H]
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{../../evaluate_results/finetune_impact_table.png}}
+
+}
+
+\caption{fig3}
+
+\end{figure}%
 
 After 17 experiments\footnote{Ignoring validation tests and the
   experiences to try to overcome the limitations regarding context
@@ -533,7 +894,7 @@ tasks, such as the case's outcome (conviction, acquittal, etc.). The
 \emph{open textual} tasks are more likely to be similar to named entity
 recognition: the name of the Judge and the defendant in this case.
 
-\begin{figure}[H]
+\begin{figure}
 
 \centering{
 
@@ -558,7 +919,7 @@ OpenAI 4o-mini (which is the recommended model by OpenAI), Llama 3.2
 other models. After the fine-tuning, we could see a big improvement in
 the results.
 
-\begin{figure}[H]
+\begin{figure}
 
 \centering{
 
@@ -617,6 +978,32 @@ ceiling. Assuming that, in those architectures, the number of parameters
 is the critical factor, fewer parameters than 14B and more than 3B would
 be ideal.
 
+\bookmarksetup{startatroot}
+
+\chapter{Discussion}\label{discussion}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit
+
+\section{Key Findings}\label{key-findings}
+
+\begin{itemize}
+\tightlist
+\item
+  results - os: - cons: difficult to manage, several have short context
+  window; computationaly intensive; - pro: privacy; costs; fast paced;
+  adaptability; full control; - comercial: - cons: privacy; costs; -
+  pro: reliability; easiness; credibility - indeed, specialization is a
+  good strategy - have good potential, altough more testing is needed
+\end{itemize}
+
+\section{Future Research}\label{future-research}
+
+\begin{verbatim}
+- future research:
+  - quantization; prunning; distillation;
+  - task-based approach
+\end{verbatim}
+
 \section{Policy Recommendations}\label{policy-recommendations}
 
 \begin{itemize}
@@ -648,7 +1035,26 @@ be ideal.
   practitioners.
 \end{itemize}
 
-\section{References}\label{references}
+\section{Conclusion}\label{conclusion}
+
+\begin{verbatim}
+* conclusions:
+  - llms are good tools to leverage empirical legal research in BR
+  - commercial models: still up to date a good strategy, despite of its costs and privacy issues
+    - pre-process to anonymize is an option
+  - os models: feasible and decent baseline performances in certain models; ft is a good strategy that increases a lot performance
+\end{verbatim}
+
+Alva-Manchego et al.
+(\citeproc{ref-alva-manchego_suitability_2021}{2021})
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+\bookmarksetup{startatroot}
+
+\chapter{References}\label{references}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 \phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
@@ -656,6 +1062,12 @@ be ideal.
 Almeida, T. S., Abonizio, H., Nogueira, R., \& Pires, R. (2024).
 \emph{Sabiá-2: {A} {New} {Generation} of {Portuguese} {Large} {Language}
 {Models}}. arXiv. \url{https://doi.org/10.48550/arXiv.2403.09887}
+
+\bibitem[\citeproctext]{ref-alva-manchego_suitability_2021}
+Alva-Manchego, F., Scarton, C., \& Specia, L. (2021). The
+({Un}){Suitability} of {Automatic} {Evaluation} {Metrics} for {Text}
+{Simplification}. \emph{Computational Linguistics}, \emph{47}, 861--889.
+\url{https://doi.org/10.1162/coli_a_00418}
 
 \bibitem[\citeproctext]{ref-alves_da_silva_aspectos_2022}
 Alves da Silva, P. E. (2022). Aspectos metodológicos da pesquisa
@@ -680,10 +1092,19 @@ Cabrera De Bonito, B., Veloso De Castro, C., \& Korasaki, V. (2025).
 {BIBLIOGRÁFICA}. \emph{Revista de Estudos Empíricos Em Direito},
 \emph{11}. \url{https://doi.org/10.19092/reed.v11.830}
 
+\bibitem[\citeproctext]{ref-chase_langchain_2022}
+Chase, H. (2022). \emph{{LangChain}}.
+\url{https://github.com/langchain-ai/langchain}
+
 \bibitem[\citeproctext]{ref-chen_empowering_2025}
 Chen, W. (2025). Empowering innovation: {The} next generation of the
 {Phi} family. In \emph{Microsoft Azure Blog}.
 \url{https://azure.microsoft.com/en-us/blog/empowering-innovation-the-next-generation-of-the-phi-family/}
+
+\bibitem[\citeproctext]{ref-correa_tucano_2024}
+Corrêa, N. K., Sen, A., Falk, S., \& Fatimah, S. (2024). \emph{Tucano:
+{Advancing} {Neural} {Text} {Generation} for {Portuguese}}. arXiv.
+\url{https://doi.org/10.48550/arXiv.2411.07854}
 
 \bibitem[\citeproctext]{ref-costa_eficacia_2011}
 Costa, S. H. da, Silva, P. E. A. da, Sabino, M. A. da C., Fernandes, D.
@@ -752,11 +1173,24 @@ Raschka, S. (2024). \emph{Build a {Large} {Language} {Model} (from
 {Scratch})}. Manning Publications Co. LLC.
 \url{http://ebookcentral.proquest.com/lib/hertie-school/detail.action?docID=31657639}
 
+\bibitem[\citeproctext]{ref-ribeiro_jurimetria_2022}
+Ribeiro, E. M. S., Rodello, I. A., \& Morilas, L. R. (2022). Jurimetria:
+As possibilidades e os desafios de um modelo para a análise empírica dos
+processos e dos atores processuais. In G. M. Gonçalves, R. C. V. Maia,
+I. M. Rocha, \& G. P. Teodoro (Eds.), \emph{Estudos empíricos em
+processo e organização judiciária}. Editora Expert.
+\url{https://experteditora.com.br/wp-content/uploads/2022/02/Estudos-empiricos-em-processo-e-organizacao-judiciaria.pdf}
+
 \bibitem[\citeproctext]{ref-vajjala_practical_2020}
 Vajjala, S., Majumder, B., Gupta, A., \& Surana, H. (2020).
 \emph{Practical {Natural} {Language} {Processing}: {A} {Comprehensive}
 {Guide} to {Building} {Real}-{World} {NLP} {Systems}}. "O'Reilly Media,
 Inc.".
+
+\bibitem[\citeproctext]{ref-wickham_r_2023}
+Wickham, H., Çetinkaya-Rundel, M., \& Grolemund, G. (2023). \emph{R for
+{Data} {Science}} (2nd ed.). O'Reilly Media.
+\url{https://r4ds.hadley.nz/}
 
 \bibitem[\citeproctext]{ref-wolf_transformers_2020}
 Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A.,
@@ -767,121 +1201,61 @@ S., Drame, M., Lhoest, Q., \& Rush, A. M. (2020). \emph{Transformers:
 
 \end{CSLReferences}
 
-\section{Appendix I - Lacerda's
+lorem
+
+\bookmarksetup{startatroot}
+
+\chapter{Acknowledgements}\label{acknowledgements}
+
+Vetor Brasil, ChancenEg. Marina Lacerda Silva, Lynn Kaack, Huy Dang,
+Sascha. Prof.~Susana Henriques da Costa, José Jesus Filho, Associação
+Brasileira de Jurimetria e Jusbrasil. MDS classes of 2023 and 2025, the
+Latin-American Club specially the Brazilians. Special thanks to João
+Vitor Krieger, Renan Barbosa. Also, a grateful to Fernanda Horn, Vitor
+Moneo, Orisha, Meirelles.
+
+\bookmarksetup{startatroot}
+
+\chapter{Appendix}\label{appendix}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+\section{List of experiments}\label{list-of-experiments}
+
+\bookmarksetup{startatroot}
+
+\chapter{Appendix I - Lacerda's
 Dataset}\label{appendix-i---lacerdas-dataset}
 
-\begin{longtable}[]{@{}ll@{}}
+Lorem ipsum
 
-\toprule\noalign{}
-\endfirsthead
-\endhead
-\bottomrule\noalign{}
-\tabularnewline
-\caption{Data summary}\tabularnewline
-\endlastfoot
-Name & lacerda\_example \\
-Number of rows & 420 \\
-Number of columns & 35 \\
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
-Column type frequency: & \\
-character & 35 \\
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
-Group variables & None \\
+\bookmarksetup{startatroot}
 
+\chapter{Appendix II - Prompt}\label{appendix-ii---prompt}
 
-\caption{\label{tbl-lacerda}Lacerda's dataset}
+Lorem ipsum
 
-\tabularnewline
-\end{longtable}
+\bookmarksetup{startatroot}
 
-\textbf{Variable type: character}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.2658}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1266}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1772}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0506}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0506}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0759}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1139}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1392}}@{}}
-
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-skim\_variable
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-n\_missing
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-complete\_rate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-min
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-max
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-empty
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-n\_unique
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-whitespace
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Processo & 0 & 1 & 20 & 26 & 0 & 352 & 0 \\
-DtDisp & 0 & 1 & 5 & 10 & 0 & 210 & 0 \\
-Juiz & 0 & 1 & 13 & 49 & 0 & 79 & 0 \\
-Vara & 0 & 1 & 16 & 17 & 0 & 32 & 0 \\
-Nome & 0 & 1 & 11 & 39 & 0 & 419 & 0 \\
-Local & 0 & 1 & 7 & 19 & 0 & 10 & 0 \\
-Sexo & 0 & 1 & 8 & 9 & 0 & 2 & 0 \\
-DN & 0 & 1 & 5 & 28 & 0 & 411 & 0 \\
-Cutis & 0 & 1 & 5 & 7 & 0 & 5 & 0 \\
-Cabelo & 0 & 1 & 4 & 16 & 0 & 8 & 0 \\
-Objetos & 0 & 1 & 4 & 159 & 0 & 261 & 0 \\
-Maconha & 0 & 1 & 1 & 41 & 0 & 255 & 0 \\
-Cocaína & 0 & 1 & 1 & 38 & 0 & 274 & 0 \\
-Crack & 1 & 1 & 1 & 40 & 0 & 138 & 0 \\
-Ecstasy & 0 & 1 & 1 & 24 & 0 & 12 & 0 \\
-LSD & 0 & 1 & 1 & 18 & 0 & 6 & 0 \\
-Outras & 0 & 1 & 1 & 61 & 0 & 33 & 0 \\
-DenDrog & 0 & 1 & 7 & 25 & 0 & 4 & 0 \\
-DenOutros & 0 & 1 & 3 & 51 & 0 & 13 & 0 \\
-Aspectos & 0 & 1 & 6 & 122 & 0 & 156 & 0 \\
-Sentença & 0 & 1 & 10 & 23 & 0 & 5 & 0 \\
-ResDrogas & 0 & 1 & 2 & 25 & 0 & 6 & 0 \\
-ResOutros & 0 & 1 & 2 & 45 & 0 & 16 & 0 \\
-AvalNegPB & 0 & 1 & 2 & 50 & 0 & 28 & 0 \\
-PenaBase & 0 & 1 & 2 & 12 & 0 & 18 & 0 \\
-Agravantes33 & 0 & 1 & 2 & 12 & 0 & 3 & 0 \\
-Atenuantes33 & 0 & 1 & 2 & 21 & 0 & 5 & 0 \\
-Aumento33 & 0 & 1 & 2 & 26 & 0 & 8 & 0 \\
-§4º & 0 & 1 & 2 & 13 & 0 & 5 & 0 \\
-Pena33 & 0 & 1 & 2 & 10 & 0 & 46 & 0 \\
-PenaDrogas & 0 & 1 & 2 & 5 & 0 & 7 & 0 \\
-PenaOutros & 0 & 1 & 2 & 9 & 0 & 15 & 0 \\
-TotPen & 0 & 1 & 2 & 11 & 0 & 59 & 0 \\
-Substituição da pena & 0 & 1 & 2 & 3 & 0 & 3 & 0 \\
-Regime inicial & 0 & 1 & 2 & 10 & 0 & 4 & 0 \\
-
-
-\caption{\label{tbl-lacerda}Lacerda's dataset}
-
-\tabularnewline
-\end{longtable}
-
-\section{Appendix II - Prompt}\label{appendix-ii---prompt}
-
-\section{Appendix III - Fine tune
+\chapter{Appendix III - Fine tune
 performance}\label{appendix-iii---fine-tune-performance}
 
-\section{Appendix IV - Plots and
+Lorem ipsum
+
+\bookmarksetup{startatroot}
+
+\chapter{Appendix IV - Plots and
 tables}\label{appendix-iv---plots-and-tables}
 
-\section{Appendix V -
+Lorem ipsum
+
+\bookmarksetup{startatroot}
+
+\chapter{Appendix V -
 Acknowledgments}\label{appendix-v---acknowledgments}
 
 
+\backmatter
 
 
 \end{document}
