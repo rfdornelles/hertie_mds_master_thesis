@@ -21,7 +21,7 @@ doc/paper/_manuscript/*
 doc/paper/_manuscript/*/*/
 doc/paper/_manuscript/_tex/index.tex
 doc/paper/_manuscript/index.pdf
-open_source_models/fine_tune_models/*
+open_source_models/fine_tuned_models/*
 data/raw_tjsp_drug_cases_2024.parquet
 data/clean_tjsp_drug_cases_2024.parquet
 doc/paper/_manuscript/index.pdf
