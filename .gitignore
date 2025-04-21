@@ -16,7 +16,7 @@ data/*/*.arrow
 *.arrow
 .env
 data/hidden/*
-# temporarily ignore manuscript folder
+
 doc/paper/_manuscript/*
 doc/paper/_manuscript/*/*/
 doc/paper/_manuscript/_tex/index.tex
@@ -28,3 +28,4 @@ doc/paper/_manuscript/index.pdf
 doc/paper/_manuscript/_tex/index.tex
 doc/_tex
 doc/paper/_manuscript
+doc/paper/_freeze/*/*/*
