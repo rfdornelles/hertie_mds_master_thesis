@@ -1,45 +1,4 @@
 ---
-#title: Jurimetrics in the Age of LLMs
-#subtitle: Deploying Open‑Source Models for Empirical Insights into Brazilian Courts
-# authors:
-#   - name: Rodrigo Dornelles
-#     affiliation: Hertie School
-#     roles: author
-#     corresponding: true
-# format: 
-#   pdf:
-#     output-dir: ../
-#     output-file: Dornelles_Rodrigo_master_thesis.pdf
-#     notebook-links: false
-#     include-in-header:
-#       text: |
-#         \usepackage{setspace}
-#         \usepackage{changepage}
-#         \doublespacing
-#     latex-engine: "lualatex"
-#     documentclass: article
-#     titlepage: false
-#     geometry: "margin=1in"
-#     fontsize: "12pt"
-#     highlight-style: "github"
-#     colorlinks: true
-#     keep-tex: true
-#     fig-pos: "H"
-#     # source: null
-#     # pandoc-args: ["--metadata=source="]
-# # # filters: [remove_title.lua]
-# # editor: "visual"
-toc: false
-number-sections: false
-link-citations: true
-figure-caption: true
-cap-location: bottom
-bibliography: ../Hertie Master Thesis.bib
-csl: ../apa.csl
-execute:
-  echo: false
-  warning: false
-  error: false
 ---
 
 <!-- TODO: citation on APA style -->
@@ -58,7 +17,7 @@ execute:
     \includegraphics[width=0.75\textwidth]{images/hertie-school-logo.jpg}
     \vspace*{\fill}
     
-    \textbf{Jurimetrics in the Age of LLMs: Deploying Open‑Source Models for Empirical Insights into Brazilian Courts}\\
+    \textbf{Jurimetrics in the Age of LLMs: Deploying Open‑Source Language Models for Empirical Insights into Brazilian Courts}\\
 
     \vspace{2.5cm}
 
@@ -136,6 +95,8 @@ Lorem ipsum dolor
 
 # Introduction
 
+<!--
+
 -   context:
     -   law is a fundamental aspect in governance and, therefore, to well being
     -   however, law is heavely dogmatic and there is little empirical legal research in the country.
@@ -145,9 +106,7 @@ Lorem ipsum dolor
     -   relevant to a policy school; in a data science program it's specially relevant to point out solutions to improve this field and offer policy recommendations in the light of the state of the art
 -   contribution: pipeline, analyse, at least 1 os model trained
 
-There is a significant methodological gap in legal research. Empirical methods are rarely applied, resulting in predominantly qualitative, bibliographical research. When empirical research is done in the legal field, it usually takes a substantial period and a big research team, making it a costly process.
-
-Since the most challenging part of empirical analysis in the legal field is extracting information from very complex documents, I hope to develop a good strategy to make it easier for researchers to analyze how the law is being applied by the courts. Also, I want to apply open-source models since they are a better fit for the public interest and are most easily adoptable by academia and public institutions.
+-->
 
 -   **The lack of legal empirical research:** In Brazil, empirical legal research remains limited. However, it has recently become increasingly common to find studies based on this approach as demonstrated by @cabrera_de_bonito_pesquisa_2025.
 
@@ -155,11 +114,11 @@ Since the most challenging part of empirical analysis in the legal field is extr
 
 -   **Exploratory legal data analysis**: It is possible to analyze the metadata of legal cases. Doing this would be helpful for exploratory analysis and formulating a hypothesis. Data from lawsuits are also used, as some examples show. In @dornelles_o_2021, data extracted from the Brazilian Supreme Court were used to describe the volume of new actions in the Court during Bolsonaro's administration:
 
-![Evolution of new lawsuits each year in the Brazilian Supreme Court. @dornelles_o_2021](https://lab.abj.org.br/posts/2021-04-13-stf-controle-concentrado/stf-controle-concentrado_files/figure-html5/grafico_distribuicao_acoes-1.png){#fig-evolution}
+![Evolution of new lawsuits each year in the Brazilian Supreme Court. @dornelles_o_2021](https://lab.abj.org.br/posts/2021-04-13-stf-controle-concentrado/stf-controle-concentrado_files/figure-html5/grafico_distribuicao_acoes-1.png){#fig-evolution width="600px"}
 
 -   **Robust research**: More legal research beyond metadata is needed. To do that, complex documents must be analyzed in depth. Those documents are often relatively large and full of legal jargon, meaning that legal specialists must also do the analysis or at least oversee it.
 
--   **Natural Language Processing**:NLP is an important tool for handling text as data and providing valuable insights from text documents. However, NLP models often specialize in a single task @vajjala_practical_2020, while a handful of tools are necessary to extract information from such documents. Besides that, the traditional NLP models have little ability to understand larger contexts and follow specific instructions @raschka_build_2024, so large language models would be a better approach to that.[\^Although there is some debate around Small Language Models and Large Language Models, this distinction is not being made here. See also @chen_empowering_2025].
+-   **Natural Language Processing**: NLP is an important tool for handling text as data and providing valuable insights from text documents. However, NLP models often specialize in a single task @vajjala_practical_2020, while a handful of tools are necessary to extract information from such documents. Besides that, the traditional NLP models have little ability to understand larger contexts and follow specific instructions @raschka_build_2024, so large language models would be a better approach to that.[\^Although there is some debate around Small Language Models and Large Language Models, this distinction is not being made here. See also @chen_empowering_2025].
 
 -   **Opportunity**: The advent of powerful language models plus the high level of digitization of Brazil's Judiciary branch would allow a new era of empirical research, both from the academic and the practitioner's perspective. It would be possible for a single researcher to study how administrative misconduct law cases were decided in the last few years. Also, it would be possible for a Public Defender to study Local Court decisions to establish a better strategy for new cases.
 
@@ -169,7 +128,6 @@ Since the most challenging part of empirical analysis in the legal field is extr
 
 <!-- LLM as a way towards jurimetrics-->
 
-```{=html}
 <!-- 
   * context:
     - law is a fundamental aspect in governance and, therefore, to well being
@@ -234,7 +192,6 @@ Since the most challenging part of empirical analysis in the legal field is extr
 
     
 -->
-```
 
 # Literature Review
 
@@ -242,22 +199,41 @@ Since the most challenging part of empirical analysis in the legal field is extr
 -   **LLMs applied to legal field**: @junior_juru_2024, @katz_natural_2023, @bertalan_predicting_nodate
 -   **LLMs in Portuguese**: @niklaus_multilegalpile_2023, @almeida_sabia-2_2024, @pires_sabia_2023
 -   **Specialization in Legal Tasks**: This is the paper that most gave actionable inputs to this research: @dominguez-olmedo_lawma_2024
-
+<!--
 @alves_da_silva_aspectos_2022 paulo: 'O que se entende por pesquisa empírica em direito? A pesquisa empírica em direito é uma pesquisa que toma por objeto não exclusivamente leis e normas, mas principalmente o fenômeno jurídico em sua manifestação concreta' Não olha somente a lei posta, positivada, mas os modos como a lei atua na vida das pessoas e no funcionamento das instituições. A pesquisa empírica em direito, em resumo, analisa o fenômeno jurídico em um sentido mais amplo do que normalmente se lhe atribui na dinâmica de suas manifestações concretas.
 
 Sob tais características, o nosso padrão de produção de conhecimento em direito é predominantemente bibliográfico, baseado em “livros” - em sentido amplo: livros, artigos, opiniões doutrinárias, manuais etc. O jurista é formado para ler e interpretar textos escritos, insculpidos em obras bibliográficas. Desde a faculdade, aprendemos a decifrar uma linguagem rebuscada que veicula um conjunto vasto de conceitos, significados e opiniões e, então, articulá-los em discursos lógicos de função retórica. Se na formação de nível médio aprendemos a decorar e repetir, nas faculdades de direito aprendemos a decifrar e a discorrer
 
-bib review: @cabrera_de_bonito_pesquisa_2025 "Embora haja muitas abordagens que tentam lidar com o desafio de transformar textos legais em um conjunto de condições legíveis por máquina, os resultados ainda são insatisfatórios e esse continua sendo um grande desafio em aberto (Dragoni et al., 2016). A pesquisa nas áreas de extração de informações (processamento de linguagem natural, inteligência artificial, entre outros) aumentou o processo de mineração de texto para aprimorar o processo de descoberta de conhecimento neste domínio (Wagh, 2013)"
+--->
 
-"Uma das aplicações de métodos quantitativos ao Direito, em especial, à jurisprudência, é cunhada como jurimetria. O uso dessa ferramenta não é contemporâneo, mas pouco explorada em países de tradição jurídica romano-germânica, como o Brasil. Isso porque háum distanciamento entre pesquisadores de ciências de campos científicos diferentes, aplicando-se aos voltados à análise das ciências jurídicas, cuja abordagem quantitativa dos estudos não é frequente (Andrade, 2018)"
+@alves_da_silva_aspectos_2022 paulo: "What is meant by empirical legal research? Empirical legal research is a study that focuses not exclusively on laws and regulations, but primarily on the legal phenomenon in its concrete manifestation. It does not examine only the enacted, positivized law, but also the ways in which the law operates in people's lives and in the functioning of institutions. In short, empirical legal research analyzes the legal phenomenon in a broader sense than is typically attributed to it in the dynamics of its concrete manifestations.
 
-jurimetria @ribeiro_jurimetria_2022 A utilização da estatística aplicada ao direito, embora ainda incipiente no Brasil, já chama a atenção do direito estadunidense há tempos. Para efeito de comparação, o termo jurimetria, quando pesquisado na ferramenta Google Scholar, conhecida por agregar artigos acadêmicos de várias fontes, resulta em 814 resultados (12. set.2021), ao passo que o termo jurimetrics pesquisado na mesma ferramenta retorna 16.600 resultados. Oliver Holmes Jr. (1897) já mencionava que o “homem das leis” do futuro seria aquele que dominasse a estatística e a economia.(“The Path of the Law”, 1897). Desde a década de 1960, o direito americano tem lidado com esse seu aspecto pouco conhecido8 . Entretanto, as possibilidades surgidas com a evolução da informática levaram a jurimetria e a predição probabilística no direito a outro patamar. --- jurimetria (18/04): 2 270 --- jurimetrics (18/04): 21 800
+Under these characteristics, our standard of knowledge production in law is predominantly bibliographical, based on 'books' — in a broad sense: books, articles, doctrinal opinions, manuals, etc. The legal scholar is trained to read and interpret written texts embedded in bibliographic works. From law school, we learn to decipher an ornate language that conveys a vast array of concepts, meanings, and opinions, and then to articulate them into logically structured, rhetorical discourse. While in secondary education we learn to memorize and repeat, in law school we learn to decipher and discuss."
 
-Está em curso, no Brasil, uma grande revolução tecnológica no judiciário. Os processos passam por uma fase de informatização e digitalização e o Processo Judicial Eletrônico traz, por um lado, desafios aos advogados que precisaram forçosamente renovar e reaprender a peticionar no ambiente digital e, por outro, ao próprio Judiciário, na implementação de sistemas seguros e coesos. Apesar de atualmente todos os processos serem digitais, ainda falta muito para a uniformização dos dados, o que dificulta a pesquisa, principalmente quantitativa, com eles. Um exemplo básico: os números de processos deveriam ser uniformes em todos os ramos da justiça e em todo o Brasil, conforme as determinações da Resolução do CNJ nº 65/2008. Porém, ainda se encontram processos em curso que não seguem essa regra, dificultando o rastreamento de processos
+<!-- bib review: @cabrera_de_bonito_pesquisa_2025 "Embora haja muitas abordagens que tentam lidar com o desafio de transformar textos legais em um conjunto de condições legíveis por máquina, os resultados ainda são insatisfatórios e esse continua sendo um grande desafio em aberto (Dragoni et al., 2016). A pesquisa nas áreas de extração de informações (processamento de linguagem natural, inteligência artificial, entre outros) aumentou o processo de mineração de texto para aprimorar o processo de descoberta de conhecimento neste domínio (Wagh, 2013)" ""Uma das aplicações de métodos quantitativos ao Direito, em especial, à jurisprudência, é cunhada como jurimetria. O uso dessa ferramenta não é contemporâneo, mas pouco explorada em países de tradição jurídica romano-germânica, como o Brasil. Isso porque háum distanciamento entre pesquisadores de ciências de campos científicos diferentes, aplicando-se aos voltados à análise das ciências jurídicas, cuja abordagem quantitativa dos estudos não é frequente (Andrade, 2018)"
 
--   literature: lawma, tucano, marina lacerda, rayssa, abj drogas @dominguez-olmedo_lawma_2024, @correa_tucano_2024, @lacerda_e_silva_punindo_2021, @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023, @associacao_brasileira_de_jurimetria_avaliacao_2019, @costa_eficacia_2011
+-->
+
+
+@cabrera_de_bonito_pesquisa_2025 "Although there are many approaches that attempt to tackle the challenge of transforming legal texts into a set of machine-readable conditions, the results remain unsatisfactory, and this continues to be a major open challenge (Dragoni et al., 2016). Research in the fields of information extraction (natural language processing, artificial intelligence, among others) has advanced the text mining process to enhance the discovery of knowledge in this domain." "One of the applications of quantitative methods in Law, particularly in jurisprudence, is known as jurimetrics. The use of this tool is not a contemporary phenomenon, but it is little explored in countries with a Roman-Germanic legal tradition, such as Brazil. This is because there exists a gap between researchers from different scientific fields and those focused on the analysis of legal studies, where a quantitative approach is not frequently employed.(Andrade, 2018)" 
+
+<!-- --- jurimetria (18/04): 2 270 --- jurimetrics (18/04): 21 800 --->
+<!--jurimetria @ribeiro_jurimetria_2022 A utilização da estatística aplicada ao direito, embora ainda incipiente no Brasil, já chama a atenção do direito estadunidense há tempos. Para efeito de comparação, o termo jurimetria, quando pesquisado na ferramenta Google Scholar, conhecida por agregar artigos acadêmicos de várias fontes, resulta em 814 resultados (12. set.2021), ao passo que o termo jurimetrics pesquisado na mesma ferramenta retorna 16.600 resultados. Oliver Holmes Jr. (1897) já mencionava que o “homem das leis” do futuro seria aquele que dominasse a estatística e a economia.(“The Path of the Law”, 1897). Desde a década de 1960, o direito americano tem lidado com esse seu aspecto pouco conhecido8 . Entretanto, as possibilidades surgidas com a evolução da informática levaram a jurimetria e a predição probabilística no direito a outro patamar.
+
+Está em curso, no Brasil, uma grande revolução tecnológica no judiciário. Os processos passam por uma fase de informatização e digitalização e o Processo Judicial Eletrônico traz, por um lado, desafios aos advogados que precisaram forçosamente renovar e reaprender a peticionar no ambiente digital e, por outro, ao próprio Judiciário, na implementação de sistemas seguros e coesos. Apesar de atualmente todos os processos serem digitais, ainda falta muito para a uniformização dos dados, o que dificulta a pesquisa, principalmente quantitativa, com eles. Um exemplo básico: os números de processos deveriam ser uniformes em todos os ramos da justiça e em todo o Brasil, conforme as determinações da Resolução do CNJ nº 65/2008. Porém, ainda se encontram processos em curso que não seguem essa regra, dificultando o rastreamento de processos -->
+
+<!-- Translation to English -->
+jurimetrics @ribeiro_jurimetria_2022 The application of statistics to law, although still in its early stages in Brazil, has long attracted the attention of American legal circles. For comparison purposes, the term "jurimetria" when searched on Google Scholar —a tool known for aggregating academic articles from various sources— yields 814 results (as of September 12, 2021), whereas the term "jurimetrics" returns 16,600 results when searched on the same tool. Oliver Holmes Jr. (1897) already mentioned that the "lawman" of the future would be one who mastered statistics and economics ("The Path of the Law", 1897). Since the 1960s, American law has been dealing with this little-known aspect. However, advances in computing have taken jurimetrics and probabilistic prediction in law to a whole new level.
+
+There is currently a major technological revolution underway in the Brazilian judiciary. Cases are undergoing a phase of computerization and digitization, and the Electronic Judicial Process presents, on the one hand, challenges for lawyers who have been forced to update and relearn how to file petitions in a digital environment and, on the other hand, challenges for the Judiciary itself in implementing secure and cohesive systems. Although all cases are now digital, much work remains to achieve data uniformity, which makes research—especially quantitative research—more difficult. A basic example: case numbers should be standardized across all branches of the judiciary throughout Brazil, in accordance with the determinations of CNJ Resolution No. 65/2008. However, there are still ongoing cases that do not follow this rule, hindering the tracking of cases.
+
+-   literature: lawma, tucano, marina lacerda, rayssa, abj drogas @dominguez-olmedo_lawma_2024, @correa_tucano_2024, @lacerda_e_silva_punindo_2021, @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023, @associacao_brasileira_de_jurimetria_avaliacao_2019, @costa_eficacia_2011, @benatti_gender_2024
 
 The primary focus is the lack of empirical research in the legal field and the costly, time-consuming nature of conducting such studies. While traditional legal research, like that of the Brazilian Applied Economics Institute, and jurimetrics research using data-driven techniques exist, they are limited. In contrast, recent advancements in the application of LLMs to the legal field in the U.S. (e.g., Dominguez-Olmedo et al., Lawma: The Power of Specialization for Legal Tasks) show promise. My thesis will explore the role of open-source models, techniques for their specialization in legal tasks, and the costs of their deployment.
+
+"The cost of human annotators represents a considerable bottleneck for the field of empirical legal studies. In many scientific disciplines, the advent of low-cost and flexible tools for data extraction can lead to tremendous boosts in scholarly productivity and knowledge production" @dominguez-olmedo_lawma_2024
+
+"Lightly fine-tuned special purpose models achieve significantly higher accuracy from relatively few labeled examples. Labeling a few hundred cases is often financially feasible. This suggests a simple and practical strategy for solving legal classification tasks: Obtain a few hundred labeled examples, fine-tune an open source model, and use the fine-tuned model to annotate the remaining cases." @dominguez-olmedo_lawma_2024
 
 # Research Question
 
@@ -312,6 +288,8 @@ This question implies: - is possible to use commercial llms in similar tasks - t
 
 ## Data Sources
 
+To evaluate LLMs it was necessary to have text from judicial decisions in a reasonable amount to be splitted in train, test and validation. Instead of annotating new data, this research followed the assumption from @dominguez-olmedo_lawma_2024 in which 
+
 -   **Lacerda Dataset**: @lacerda_e_silva_punindo_2021 A comprehensive empirical analysis was conducted on over 400 legal cases related to drug trafficking. The researcher collected these cases from the São Paulo State Court of Justice (TJSP), focusing on a sample that covered the years 2017 and 2018. Approximately 35 features were manually annotated and labeled for each case. Access to the dataset was obtained by contacting the researcher, who provided it for further adaptation to meet the specific requirements of this research. Some of the original features also referred to other documents rather than the judicial decision, and, therefore, they were excluded (since it would not be reasonable that the model inferred that). Features related to biological data were also excluded for ethical reasons.
 
 Also, I have tried to access @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023 micro data to build a golden dataset since they have about 3.5k data points labelled. I have filled a freedom of information request and, although it was possible to access the [general dataset](https://www.gov.br/mj/pt-br/assuntos/sua-protecao/politicas-sobre-drogas/pesquisa-e-informacao-3/pesquisa%20IPEA/pesquisa-ipea-perfil-processado-e-producao-de-provas), they have not provided the lawsuit identifier, so it was not possible to match each row in their dataset to a legal case and, therefore, to a specific document.
@@ -332,7 +310,8 @@ Also, I have tried to access @instituto_de_pesquisa_economica_aplicada_ipea_perf
 
 -- context window: at least 16k is needed; <list context window of the open source models> were insufficient. tryied rope-scaling and yarn but lacked computational resources. @daniel_han_unsloth_2023 was a good and functional option, but it only worked with newer infrastructure.
 
--- @raschka_build_2024, Lora -- @daniel_han_unsloth_2023 enabled using the models
+-- @raschka_build_2024, Lora 
+-- @daniel_han_unsloth_2023 enabled using the models
 
 We used 12 models in this research. OpenAI models were considered commercial, and the others were open source. Also, OpenAI does not disclose its architectures, so it is impossible to know its number of parameters beforehand.
 
@@ -347,6 +326,7 @@ We used 12 models in this research. OpenAI models were considered commercial, an
 -   finetune commercial and open source models
     -   OpenAI's API
     -   Unsloth
+      - ft details
 -   final evaluation
 
 ```{r}
@@ -391,7 +371,7 @@ After 17 experiments[^1], the metrics above regarding accuracy were gathered. By
   knitr::kable() |> kableExtra::kable_paper(lightable_options = "striped")
 ```
 
-The model Gemma 3-1B achieved 0.0 accuracy due to its inability to yield valid structured JSON outputs.
+The model Gemma 3-1B achieved 0.0 accuracy due to its inability to yield valid structured JSON output and because in many cases the answers were only repeating the schema's example.
 
 The model that best performed in a zero-shot approach was the Gemma 3-27B parameters, which, surprisingly, also beat the benchmark commercial models, even GPT-4o. Also, the Gemma 3 family likely yields accurate results since the lighter version with the 12B parameter performed very well and was better than the newly released GPT-4.1. The model Phi-4 also performed very well, betting OpenAI's smaller models. Regarding the Llama family, the 3.1 version performed better than the 4o-mini and the smaller GPT 4.1-mini and GPT 4.1-nano. On the other hand, Llama 3.2 had a bad performance.
 
