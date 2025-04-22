@@ -23,6 +23,7 @@ format:
         \usepackage{setspace}
         \usepackage{changepage}
         \doublespacing
+        \usepackage{ragged2e}
     latex-engine: "lualatex"
     documentclass: article
     titlepage: false
