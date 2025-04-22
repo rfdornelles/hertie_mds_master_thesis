@@ -1,6 +1,5 @@
 ---
 ---
-
 <!-- TODO: citation on APA style -->
 
 <!-- TODO: repo https://github.com/rfdornelles/hertie_mds_master_thesis/ -->
@@ -249,7 +248,7 @@ This question implies: - is possible to use commercial llms in similar tasks - t
   * RQ: is possible to deploy LLMs to analyze legal documents and extract structured information from they? and -- assuming that academia and public service would refrain using commercial models -- are open source models a feasible tool?
   -->
 ```
-
+<!-- TODO: bias and fairness --> 
 # Teorethical Framework
 
 -   **Natural Language Processing**
@@ -286,9 +285,8 @@ This question implies: - is possible to use commercial llms in similar tasks - t
 
 \* method: - gathered data from judicial sentences in São Paulo - received access from dataset from Lacerda: ± 400 judicial sentences labelled - cleaned data - prompt engeneering - used commercial OS (OpenAI) as baseline - tryied the OS models - llama - gemma - tucano - lawma - lola - libraries HF and unsloth - ft models - compared their performance - limitations: - drug traffic, sao paulo - 2017/2018 - only models that were possible to access - small sample to ft and test - tucano, lawma: - context window was too short to legal docs; - tried with no success to apply rope scaling or yarn - tried RAG to retrieve relevant parts; tried rag to squish the text - possibility: try a task-based prompt -- still limited window, but might be sufficient to many documents - lack of computational resources
 
-## Data Sources
+# Data Sources
 
-To evaluate LLMs it was necessary to have text from judicial decisions in a reasonable amount to be splitted in train, test and validation. Instead of annotating new data, this research followed the assumption from @dominguez-olmedo_lawma_2024 in which 
 
 -   **Lacerda Dataset**: @lacerda_e_silva_punindo_2021 A comprehensive empirical analysis was conducted on over 400 legal cases related to drug trafficking. The researcher collected these cases from the São Paulo State Court of Justice (TJSP), focusing on a sample that covered the years 2017 and 2018. Approximately 35 features were manually annotated and labeled for each case. Access to the dataset was obtained by contacting the researcher, who provided it for further adaptation to meet the specific requirements of this research. Some of the original features also referred to other documents rather than the judicial decision, and, therefore, they were excluded (since it would not be reasonable that the model inferred that). Features related to biological data were also excluded for ethical reasons.
 
@@ -302,7 +300,11 @@ Also, I have tried to access @instituto_de_pesquisa_economica_aplicada_ipea_perf
 
 <!--TODO: describe the tasks -->
 
-## Methods
+# Methods
+
+## Overview
+
+Following the suggestion from @OLMEDO, we gathered few hundreds of judicial sentences already annotated and labeled by an expert to be both the measurement of quality of the model and the source of training. It permited to assess how well the models performed and to feed them with  training cases in order to, hopefully, generalize to new cases never seen before. So the methodology was to
 
 -- different tasks, that's why NLP technichs were not feasible -- @vajjala_practical_2020: "Recently, large transformers have been used for transfer learning with smaller down‐stream tasks. Transfer learning is a technique in AI where the knowledge gained while solving one problem is applied to a different but related problem. With transformers, the idea is to train a very large transformer mode in an unsupervised manner (known as pre-training) to predict a part of a sentence given the rest of the content so that it can encode the high-level nuances of the language in it. " --\> pick some basemodel and use it to the specific task
 
@@ -315,6 +317,68 @@ Also, I have tried to access @instituto_de_pesquisa_economica_aplicada_ipea_perf
 
 We used 12 models in this research. OpenAI models were considered commercial, and the others were open source. Also, OpenAI does not disclose its architectures, so it is impossible to know its number of parameters beforehand.
 
+
+
+```{r}
+#| label: tbl-bad-json-output
+#| tbl-cap: Examples of semantically correct but structurally invalid outputs extracted from legal sentences.
+
+tibble::tibble(
+  `Example (invalid format)` = c(
+    "A sentença foi procedente. A juíza Paula Marie Konno condenou a ré com base no processo 0000922-86.2017.8.26.0635. Foram encontrados 42,4 gramas de cocaína. A pena total foi de 05 anos e 500 dias-multa.",
+    "[\"0000922-86.2017.8.26.0635\", \"Paula Marie Konno\", \"42.4\", \"Procedente\", \"05a 500d\"]",
+    "0000922-86.2017.8.26.0635, Paula Marie Konno, 42.4, Procedente, 05a 500d",
+    "{'proc': '0000922-86.2017.8.26.0635', 'judge': 'Konno', 'cocaine': '42.4g', 'ruling': 'yes', 'pen': '5a500d'}",
+    "Processo ID: #0000922-86-2017-8-26-0635 | J: P. M. Konno | Droga: Cocaína | Qtde: 42.4 | Resultado: sim | Pena: 5a + 500d"
+  ),
+  `Why is this invalid?` = c(
+    "Free-form narrative; does not follow a structured or machine-readable format.",
+    "List without field identifiers; lacks explicit mapping to `processo`, `juiz`, `cocaina_g`, `sentenca`, and `tot_pen`.",
+    "CSV format without headers; field meanings are ambiguous and unsuitable for structured processing.",
+    "Non-standard field names and mixed language; incorrect field types (e.g., cocaine as string with units).",
+    "Custom syntax not aligned with standard field names (`processo`, `juiz`, `cocaina_g`, etc.); difficult to parse programmatically."
+  ),
+) |> 
+  dplyr::mutate(dplyr::across(.fns = gt::escape_latex)) |> 
+  knitr::kable(format = "latex", 
+               booktabs = TRUE, 
+               longtable = TRUE, linesep = "") |>
+  kableExtra::kable_styling(
+    latex_options = c("striped", "hold_position", "repeat_header"), 
+    full_width = FALSE,
+    font_size = 9) |> 
+  #kableExtra::add_header_above(c(" " = 2)) |>  # Optional visual break
+  kableExtra::add_header_above(c(
+    "Invalid Formats for Outputs" = 2
+  )) |> 
+  kableExtra::column_spec(1, width = "27em") |>
+  kableExtra::column_spec(2, width = "20em") 
+
+```
+
+
+```{r}
+#| label: tbl-good-json-output
+#| tbl-cap: Example of correct output.
+tibble::tibble(`Correct JSON Output` = '{
+  "processo": "0000922-86.2017.8.26.0635",
+  "juiz": "Dr(a). Paula Marie Konno",
+  "cocaina_g": 42.4,
+  "sentenca": "Procedente",
+  "tot_pen": "05a 500d"
+}') |>
+  dplyr::mutate(dplyr::across(.fns = gt::escape_latex)) |> 
+  knitr::kable(format = "latex",
+        booktabs = TRUE,
+        longtable = FALSE,
+        escape = FALSE) |>
+  kableExtra::kable_styling(
+    latex_options = c("hold_position"),
+    font_size = 8,
+    full_width = FALSE
+  ) |>
+  kableExtra::column_spec(1, width = "47em")
+```
 -   etl
 -   prompt engeneenering, build schema
 -   generation in OpenAI's models
