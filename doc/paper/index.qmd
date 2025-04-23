@@ -310,8 +310,9 @@ This question implies: - is possible to use commercial llms in similar tasks - t
 
 \* method: - gathered data from judicial sentences in São Paulo - received access from dataset from Lacerda: ± 400 judicial sentences labelled - cleaned data - prompt engeneering - used commercial OS (OpenAI) as baseline - tryied the OS models - llama - gemma - tucano - lawma - lola - libraries HF and unsloth - ft models - compared their performance - limitations: - drug traffic, sao paulo - 2017/2018 - only models that were possible to access - small sample to ft and test - tucano, lawma: - context window was too short to legal docs; - tried with no success to apply rope scaling or yarn - tried RAG to retrieve relevant parts; tried rag to squish the text - possibility: try a task-based prompt -- still limited window, but might be sufficient to many documents - lack of computational resources
 
-# Data Sources
+# Data Sources and Models
 
+## Datasets
 
 -   **Lacerda Dataset**: @lacerda_e_silva_punindo_2021 A comprehensive empirical analysis was conducted on over 400 legal cases related to drug trafficking. The researcher collected these cases from the São Paulo State Court of Justice (TJSP), focusing on a sample that covered the years 2017 and 2018. Approximately 35 features were manually annotated and labeled for each case. Access to the dataset was obtained by contacting the researcher, who provided it for further adaptation to meet the specific requirements of this research. Some of the original features also referred to other documents rather than the judicial decision, and, therefore, they were excluded (since it would not be reasonable that the model inferred that). Features related to biological data were also excluded for ethical reasons.
 
@@ -322,6 +323,25 @@ Also, I have tried to access @instituto_de_pesquisa_economica_aplicada_ipea_perf
 -   **Final dataset**: After cleaning, some duplications were excluded, and some documents were not collected; the final result was a dataset with 258 cases. Also, the final dataset contained 50 columns, which was due to some categorical features being transformed into a boolean. For instance, the column *DenDrogas* contained information about the most common articles of Law in the accusation. It was transformed into the columns *denuncia_art_33*, *denuncia_art_34*, and *denuncia_art_35*.
 
 -   data from legal experts -- @lacerda_e_silva_punindo_2021
+
+## Models
+
+* name
+* family
+* parameters
+* release date
+* window context
+
+```{r}
+
+#| label: tbl-models-description
+#| tbl-cap: Description of the models used in this research.
+#| 
+accuracy_metadata |> 
+  dplyr::filter(status == "base model") |>
+  dplyr::select(family, type, model, parameters, accuracy)
+
+```
 
 <!--TODO: describe the tasks -->
 
@@ -359,15 +379,74 @@ So, to run each desired model, a batch was prepared, and the model and the param
 The model's output will only be helpful if coerced into a tabular format structured in a dataset object. If the model yields an answer in an unstructured format, it cannot be evaluated or used in further analysis—even if this answer is perfectly correct regarding its content.
 
 For instance, by taking the example below in [@REF TABLE], we can see the correct values in the desired JSON format. 
-[TABLE 1]
+
+```{r}
+#| label: tbl-good-json-output
+#| tbl-cap: Example of correct output (simplified version).
+tibble::tibble(`Correct JSON Output` = '{
+  "processo": "0000922-86.2017.8.26.0635",
+  "juiz": "Dr(a). Paula Marie Konno",
+  "cocaina_g": 42.4,
+  "sentenca": "Procedente",
+  "tot_pen": "05a 500d"
+}') |>
+  dplyr::mutate(dplyr::across(.fns = gt::escape_latex)) |> 
+  knitr::kable(format = "latex",
+        booktabs = TRUE,
+        longtable = FALSE,
+        escape = FALSE) |>
+  kableExtra::kable_styling(
+    latex_options = c("hold_position"),
+    font_size = 8,
+    full_width = FALSE
+  ) |>
+  kableExtra::column_spec(1, width = "47em")
+```
 
 The following examples include several cases of outputs that are materially correct but in the wrong format. As we can see, we would have problems parsing them in a structured data frame.
 
-[TABLE 2]
+```{r}
+#| label: tbl-bad-json-output
+#| tbl-cap: Examples of semantically correct but structurally invalid outputs extracted from legal sentences.
+
+tibble::tibble(
+  `Example (invalid format)` = c(
+    "A sentença foi procedente. A juíza Paula Marie Konno condenou a ré com base no processo 0000922-86.2017.8.26.0635. Foram encontrados 42,4 gramas de cocaína. A pena total foi de 05 anos e 500 dias-multa.",
+    "[\"0000922-86.2017.8.26.0635\", \"Paula Marie Konno\", \"42.4\", \"Procedente\", \"05a 500d\"]",
+    "0000922-86.2017.8.26.0635, Paula Marie Konno, 42.4, Procedente, 05a 500d",
+    "{'proc': '0000922-86.2017.8.26.0635', 'judge': 'Konno', 'cocaine': '42.4g', 'ruling': 'yes', 'pen': '5a500d'}",
+    "Processo ID: #0000922-86-2017-8-26-0635 | J: P. M. Konno | Droga: Cocaína | Qtde: 42.4 | Resultado: sim | Pena: 5a + 500d"
+  ),
+  `Why is this invalid?` = c(
+    "Free-form narrative; does not follow a structured or machine-readable format.",
+    "List without field identifiers; lacks explicit mapping to `processo`, `juiz`, `cocaina-g`, `sentenca`, and `tot-pen`.",
+    "CSV format without headers; field meanings are ambiguous and unsuitable for structured processing.",
+    "Non-standard field names and mixed language; incorrect field types (e.g., cocaine as string with units).",
+    "Custom syntax not aligned with standard field names (`processo`, `juiz`, `cocaina-g`, etc.); difficult to parse programmatically."
+  ),
+) |> 
+  dplyr::mutate(dplyr::across(.fns = gt::escape_latex)) |> 
+  knitr::kable(format = "latex", 
+               booktabs = TRUE, 
+               longtable = TRUE, linesep = "") |>
+  kableExtra::kable_styling(
+    latex_options = c("striped", "hold_position", "repeat_header"), 
+    full_width = FALSE,
+    font_size = 9) |> 
+  #kableExtra::add_header_above(c(" " = 2)) |>  # Optional visual break
+  kableExtra::add_header_above(c(
+    "Invalid Formats for Outputs" = 2
+  )) |> 
+  kableExtra::column_spec(1, width = "27em") |>
+  kableExtra::column_spec(2, width = "20em") 
+
+```
 
 OpenAI (and other commercial models) offers a feature called JSON mode, where it is possible to make sure that the answer will match the valid schema offered. The open-source models, however, do not have this feature out of the box. In the initial tests, giving only the models the proper instructions and schema was insufficient. 
 
 The solution to this challenge was using the libraries PyDantic [**REFERENCE**] and LangChain [**REFERENCE**]. The first allows the generation of a class with the valid object and its respective data types. The second offers a parsing structure to constrain the result into a valid schema when possible. Naturally, when the response is too different from the expected result, the answer will be considered invalid in the evaluation phase.
+
+## 4. Evaluation algorithm
 
 ## 4. Evaluation algorithm
 
@@ -377,11 +456,14 @@ The first step is to parse the results from the responses generated and transfor
 
 Then, we have different evaluation functions according to the respective data type (numeric, categorical, boolean, or open textual fields). The different data types change the pre-processing step, but, in the end,  the model's response is compared with the ground truth answer. The functions were split also due to an attempt to establish different tolerance thresholds. However, in this work, all limits were stuck to zero, meaning there was no tolerance. The values obtained might be slightly higher according to the level of tolerable differences.
 
-From this comparison, we will have a matrix with all answers and a value of 0 if they do not match or 1 if they are right. Then, the sum of correct answers will be divided by the total answers expected to assess the accuracy. 
+From this comparison, we will have a matrix with all answers and a value of 0 if they do not match or 1 if they are right. Then, the sum of correct answers will be divided by the total answers expected to assess the accuracy. The accuracy was calculated using scikit-learn's function `metrics.accuracy_score` @buitinck_api_2013, which uses the following formula ^[https://scikit-learn.org/stable/modules/model_evaluation.html#accuracy-score]:
 
-[[formula]] 
 
-Therefore, each model would achieve a value between 0 and 1 according to itsto its capabilities to generate correct answers. This strategy also allows evaluating the accuracy in specific columns, groups of columns, and other combinations, as needed. 
+$$
+\texttt{accuracy}(y, \hat{y}) = \frac{1}{n_\text{samples}} \sum_{i=0}^{n_\text{samples}-1} 1(\hat{y}_i = y_i) 
+$$
+
+Therefore, each model would achieve a value between 0 and 1 according to its capabilities to generate correct answers. This strategy also evaluates the accuracy in specific columns, groups of columns, and other combinations, as needed. 
 
 ## 5. Pipeline to run open-source models
 
@@ -405,67 +487,6 @@ lorem
 We used 12 models in this research. OpenAI models were considered commercial, and the others were open source. Also, OpenAI does not disclose its architectures, so it is impossible to know its number of parameters beforehand.
 
 
-
-```{r}
-#| label: tbl-bad-json-output
-#| tbl-cap: Examples of semantically correct but structurally invalid outputs extracted from legal sentences.
-
-tibble::tibble(
-  `Example (invalid format)` = c(
-    "A sentença foi procedente. A juíza Paula Marie Konno condenou a ré com base no processo 0000922-86.2017.8.26.0635. Foram encontrados 42,4 gramas de cocaína. A pena total foi de 05 anos e 500 dias-multa.",
-    "[\"0000922-86.2017.8.26.0635\", \"Paula Marie Konno\", \"42.4\", \"Procedente\", \"05a 500d\"]",
-    "0000922-86.2017.8.26.0635, Paula Marie Konno, 42.4, Procedente, 05a 500d",
-    "{'proc': '0000922-86.2017.8.26.0635', 'judge': 'Konno', 'cocaine': '42.4g', 'ruling': 'yes', 'pen': '5a500d'}",
-    "Processo ID: #0000922-86-2017-8-26-0635 | J: P. M. Konno | Droga: Cocaína | Qtde: 42.4 | Resultado: sim | Pena: 5a + 500d"
-  ),
-  `Why is this invalid?` = c(
-    "Free-form narrative; does not follow a structured or machine-readable format.",
-    "List without field identifiers; lacks explicit mapping to `processo`, `juiz`, `cocaina_g`, `sentenca`, and `tot_pen`.",
-    "CSV format without headers; field meanings are ambiguous and unsuitable for structured processing.",
-    "Non-standard field names and mixed language; incorrect field types (e.g., cocaine as string with units).",
-    "Custom syntax not aligned with standard field names (`processo`, `juiz`, `cocaina_g`, etc.); difficult to parse programmatically."
-  ),
-) |> 
-  dplyr::mutate(dplyr::across(.fns = gt::escape_latex)) |> 
-  knitr::kable(format = "latex", 
-               booktabs = TRUE, 
-               longtable = TRUE, linesep = "") |>
-  kableExtra::kable_styling(
-    latex_options = c("striped", "hold_position", "repeat_header"), 
-    full_width = FALSE,
-    font_size = 9) |> 
-  #kableExtra::add_header_above(c(" " = 2)) |>  # Optional visual break
-  kableExtra::add_header_above(c(
-    "Invalid Formats for Outputs" = 2
-  )) |> 
-  kableExtra::column_spec(1, width = "27em") |>
-  kableExtra::column_spec(2, width = "20em") 
-
-```
-
-
-```{r}
-#| label: tbl-good-json-output
-#| tbl-cap: Example of correct output.
-tibble::tibble(`Correct JSON Output` = '{
-  "processo": "0000922-86.2017.8.26.0635",
-  "juiz": "Dr(a). Paula Marie Konno",
-  "cocaina_g": 42.4,
-  "sentenca": "Procedente",
-  "tot_pen": "05a 500d"
-}') |>
-  dplyr::mutate(dplyr::across(.fns = gt::escape_latex)) |> 
-  knitr::kable(format = "latex",
-        booktabs = TRUE,
-        longtable = FALSE,
-        escape = FALSE) |>
-  kableExtra::kable_styling(
-    latex_options = c("hold_position"),
-    font_size = 8,
-    full_width = FALSE
-  ) |>
-  kableExtra::column_spec(1, width = "47em")
-```
 -   etl
 -   prompt engeneenering, build schema
 -   generation in OpenAI's models
