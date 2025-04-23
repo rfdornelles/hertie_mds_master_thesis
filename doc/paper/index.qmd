@@ -51,7 +51,7 @@
 \singlespacing
 \justifying
 \textit{\fontsize{10}{12}\selectfont
-"(...) if artificial intelligence were used to promote integral human development, it could introduce important innovations in agriculture, education and culture, an improved level of life for entire nations and peoples, and the growth of human fraternity and social friendship. In the end, the way we use it to include the least of our brothers and sisters, the vulnerable and those most in need, will be the true measure of our humanity."
+"In the end, the way we use [artificial intelligence] to include the least of our brothers and sisters, the vulnerable and those most in need, will be the true measure of our humanity."
 }
 
 \vspace{1ex}
@@ -137,11 +137,12 @@ Lorem ipsum dolor
 
 -   **Exploratory legal data analysis**: It is possible to analyze the metadata of legal cases. Doing this would be helpful for exploratory analysis and formulating a hypothesis. Data from lawsuits are also used, as some examples show. In @dornelles_o_2021, data extracted from the Brazilian Supreme Court were used to describe the volume of new actions in the Court during Bolsonaro's administration:
 
+<!-- TODO: pick Susana's plot --> 
 ![Evolution of new lawsuits each year in the Brazilian Supreme Court. @dornelles_o_2021](https://lab.abj.org.br/posts/2021-04-13-stf-controle-concentrado/stf-controle-concentrado_files/figure-html5/grafico_distribuicao_acoes-1.png){#fig-evolution width="600px"}
 
 -   **Robust research**: More legal research beyond metadata is needed. To do that, complex documents must be analyzed in depth. Those documents are often relatively large and full of legal jargon, meaning that legal specialists must also do the analysis or at least oversee it.
 
--   **Natural Language Processing**: NLP is an important tool for handling text as data and providing valuable insights from text documents. However, NLP models often specialize in a single task @vajjala_practical_2020, while a handful of tools are necessary to extract information from such documents. Besides that, the traditional NLP models have little ability to understand larger contexts and follow specific instructions @raschka_build_2024, so large language models would be a better approach to that.[\^Although there is some debate around Small Language Models and Large Language Models, this distinction is not being made here. See also @chen_empowering_2025].
+-   **Natural Language Processing**: NLP is an important tool for handling text as data and providing valuable insights from text documents. However, NLP models often specialize in a single task @vajjala_practical_2020, while a handful of tools are necessary to extract information from such documents. Besides that, the traditional NLP models have little ability to understand larger contexts and follow specific instructions @raschka_build_2024, so large language models would be a better approach to that.^[Although there is some debate around Small Language Models and Large Language Models, this distinction is not being made here. See also @chen_empowering_2025].
 
 -   **Opportunity**: The advent of powerful language models plus the high level of digitization of Brazil's Judiciary branch would allow a new era of empirical research, both from the academic and the practitioner's perspective. It would be possible for a single researcher to study how administrative misconduct law cases were decided in the last few years. Also, it would be possible for a Public Defender to study Local Court decisions to establish a better strategy for new cases.
 
@@ -328,7 +329,69 @@ Also, I have tried to access @instituto_de_pesquisa_economica_aplicada_ipea_perf
 
 ## Overview
 
-Following the suggestion from @OLMEDO, we gathered few hundreds of judicial sentences already annotated and labeled by an expert to be both the measurement of quality of the model and the source of training. It permited to assess how well the models performed and to feed them with  training cases in order to, hopefully, generalize to new cases never seen before. So the methodology was to
+
+Following @OLMEDO's suggestion, we gathered hundreds of judicial sentences already annotated and labeled by an expert to be both the quality measurement of the model and the source of training. The input data permitted us to assess how well the models performed and feed them with training cases to generalize to new cases never seen before.
+
+After the processes to gather and clean the data discussed before, the steps were the following:  1) build a prompt and data schema, 2) pipeline to run commercial models; 3) parsing algorithm, 4) evaluation algorithm; 5) pipeline to test open-source models and 6) pipeline to fine-tune models.
+
+Within this framework, choosing the more suitable LLMs for the task would be possible. As discussed further, 12 models were tested with the test dataset (containing 39 judicial sentences). 
+
+## 1. Prompt and data schema
+
+Since the chosen models worked based on instructions, carefully explaining the extraction task would be necessary. So, a comprehensive prompt was written, explaining the general task, its subtasks, and how each column should be filled out. 
+
+The prompt, written in Portuguese, explained the model that it would receive a judicial decision ("sentença") related to criminal cases in Brazil—specifically, drug trafficking. It also provided some context about the general structure of the document (e.g., the head, report, legal reasoning, dispositive part) and how to fill out each of the columns. 
+
+The steps to answering the questions were carefully explained (such as reading the whole document, using *None* when something is not mentioned, and interpreting the boolean columns in the whole document context). Also, the prompt details how the answers should be, i.e., the amount of a given drug should be a numerical answer in grams, the place of detention should be picked among several options, and so on.
+
+Specific instructions were provided regarding the output. Since the date could not vary in its format—otherwise, it would not be possible to transform it into a structured data frame—the model received specific instructions to provide the answer in a valid JSON format, following a given data schema.
+
+## 2. Pipeline to run commercial models
+
+Although the scope of this research is to understand and asses if and how open-source models would extract information, it was important to establish a benchmark. OpenAI models were chosen since they represent state of the art in many evaluations and are the most widespread platform ^[https://techcrunch.com/2025/04/01/chatgpt-isnt-the-only-chatbot-thats-gaining-users/?utm_source=chatgpt.com]^[Also, there was the availability of using OpenAI platform through Hertie School's Data Science Lab account.].
+
+To access the models in OpenAI's platform, one must use an API. This API offered the option to generate the outputs in batch mode, where the whole test dataset was sent with the prompts in an asynchronous mode. Batching allowed for a 50% reduction in costs and the receipt of data in a single file containing all the responses generated.
+
+So, to run each desired model, a batch was prepared, and the model and the parameters were chosen. The file was uploaded, a batch generation was started, and the results were downloaded back when they were ready. Regarding the parameters, all OpenAI models were run with temperature at 0 level, specifying the max tokens to be generated in 1.000, except with the reasoning models without this option.
+
+## 3. Parsing algorithm
+
+The model's output will only be helpful if coerced into a tabular format structured in a dataset object. If the model yields an answer in an unstructured format, it cannot be evaluated or used in further analysis—even if this answer is perfectly correct regarding its content.
+
+For instance, by taking the example below in [@REF TABLE], we can see the correct values in the desired JSON format. 
+[TABLE 1]
+
+The following examples include several cases of outputs that are materially correct but in the wrong format. As we can see, we would have problems parsing them in a structured data frame.
+
+[TABLE 2]
+
+OpenAI (and other commercial models) offers a feature called JSON mode, where it is possible to make sure that the answer will match the valid schema offered. The open-source models, however, do not have this feature out of the box. In the initial tests, giving only the models the proper instructions and schema was insufficient. 
+
+The solution to this challenge was using the libraries PyDantic [**REFERENCE**] and LangChain [**REFERENCE**]. The first allows the generation of a class with the valid object and its respective data types. The second offers a parsing structure to constrain the result into a valid schema when possible. Naturally, when the response is too different from the expected result, the answer will be considered invalid in the evaluation phase.
+
+## 4. Evaluation algorithm
+
+Evaluating is a key aspect of this research since it is relevant to understand whether and how much the answers are correct. Establishing a coherent strategy to evaluate the distinct models is also relevant.
+
+The first step is to parse the results from the responses generated and transform them into a data frame (called 'responses dataset') with the lawsuit number (column **processo**) as its identifier. Notably, when a response is invalid, the algorithm generates a row when only the ID is filled out and the remaining columns are empty. 
+
+Then, we have different evaluation functions according to the respective data type (numeric, categorical, boolean, or open textual fields). The different data types change the pre-processing step, but, in the end,  the model's response is compared with the ground truth answer. The functions were split also due to an attempt to establish different tolerance thresholds. However, in this work, all limits were stuck to zero, meaning there was no tolerance. The values obtained might be slightly higher according to the level of tolerable differences.
+
+From this comparison, we will have a matrix with all answers and a value of 0 if they do not match or 1 if they are right. Then, the sum of correct answers will be divided by the total answers expected to assess the accuracy. 
+
+[[formula]] 
+
+Therefore, each model would achieve a value between 0 and 1 according to itsto its capabilities to generate correct answers. This strategy also allows evaluating the accuracy in specific columns, groups of columns, and other combinations, as needed. 
+
+## 5. Pipeline to run open-source models
+
+--- challenging - lack of computational resources
+
+
+## 6. Pipeline to fine-tune models
+
+lorem
+
 
 -- different tasks, that's why NLP technichs were not feasible -- @vajjala_practical_2020: "Recently, large transformers have been used for transfer learning with smaller down‐stream tasks. Transfer learning is a technique in AI where the knowledge gained while solving one problem is applied to a different but related problem. With transformers, the idea is to train a very large transformer mode in an unsupervised manner (known as pre-training) to predict a part of a sentence given the rest of the content so that it can encode the high-level nuances of the language in it. " --\> pick some basemodel and use it to the specific task
 
@@ -336,7 +399,7 @@ Following the suggestion from @OLMEDO, we gathered few hundreds of judicial sent
 
 -- context window: at least 16k is needed; <list context window of the open source models> were insufficient. tryied rope-scaling and yarn but lacked computational resources. @daniel_han_unsloth_2023 was a good and functional option, but it only worked with newer infrastructure.
 
--- @raschka_build_2024, Lora 
+-- @raschka_build_2024, Lora - 'A rank and alpha of 16 are good default choices'
 -- @daniel_han_unsloth_2023 enabled using the models
 
 We used 12 models in this research. OpenAI models were considered commercial, and the others were open source. Also, OpenAI does not disclose its architectures, so it is impossible to know its number of parameters beforehand.
@@ -434,15 +497,6 @@ readr::read_csv('../../evaluate_results/model_metadata.csv') |> knitr::kable() |
 
 <!--TODO: change the tasks from data type to NLP task (extraction, question answering, NER) -->
 
-![fig1](../../evaluate_results/model_metadata_table.png){width="100%"}
-
-bla bla
-
-![fig2](../../evaluate_results/accuracy_heatmap.png)
-
-bla bla
-
-![fig3](../../evaluate_results/finetune_impact_table.png)
 
 After 17 experiments[^1], the metrics above regarding accuracy were gathered. By accuracy, we are considering the proportion of exact answers relative to the total answers. Below, we can see the performance of the base models before fine-tuning.
 
