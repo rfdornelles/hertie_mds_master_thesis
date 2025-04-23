@@ -144,11 +144,12 @@ sns.barplot(
     data=df_experiments_score_comparison,
     x="model", y="overall_accuracy",
     hue="status",
+    palette={"base model": "#b8ccba", "finetuned": "#346e39"},
     ax=ax
 )
 ax.set_xlabel("Model")
 ax.set_ylabel("Overall accuracy")
-ax.set_title("Base vs Finetuned accuracy", weight="bold")
+ax.set_title("Basemodel vs Fine-tuned accuracy", weight="bold")
 ax.set_ylim(0, 1.0)
 ## add a line using gpt 4o-mini as reference
 gpt_4o_mini_acc = df_experiments_score_comparison[
@@ -156,8 +157,9 @@ gpt_4o_mini_acc = df_experiments_score_comparison[
 ]["overall_accuracy"].values[0]
 ax.axhline(y=gpt_4o_mini_acc, color='r', linestyle='--')
 ax.text(
-    x=0.5, y=gpt_4o_mini_acc + 0.02,
-    s="GPT 4o-mini", color='r', ha='center', va='bottom'
+    x=0.7, y=gpt_4o_mini_acc + 0.02,
+    s="GPT 4o-mini benchmark", color='red', ha='center', va='bottom',
+    fontsize=9
 )
 # add legend
 ax.legend(loc="upper center")
@@ -165,9 +167,12 @@ ax.legend(loc="upper center")
 ax.grid(axis='y', linestyle='--', alpha=0.7)
 # add text to each bar
 for p in ax.patches:
+    h = p.get_height()
+    if h == 0:
+        continue
     ax.annotate(
-        f"{p.get_height():.3f}",
-        (p.get_x() + p.get_width() / 2., p.get_height()),
+        f"{h:.3f}",
+        (p.get_x() + p.get_width() / 2., h),
         ha='center', va='bottom',
         fontsize=10,
         color='black',
@@ -220,9 +225,14 @@ for i, task in enumerate(tasks):
     ax.grid(axis='y', linestyle='--', alpha=0.7)
     # Annotate each bar with its value
     for p in ax.patches:
+        h = p.get_height()
+        
+        if h == 0:
+            continue
+        
         ax.annotate(
-            f"{p.get_height():.3f}",
-            (p.get_x() + p.get_width()/2., p.get_height()),
+            f"{h:.3f}",
+            (p.get_x() + p.get_width()/2., h),
             ha='center', va='bottom',
             fontsize=9,
             color='black',
@@ -271,12 +281,22 @@ plt.show()
 task_cols = ["overall_accuracy", "numeric", "boolean", "categorical", "open_textual"]
 heat_data = (
     df_tasks_metrics_accuracy
-    .set_index("model")[task_cols]
+    .set_index("model")[["status"] + task_cols]
     .sort_values("overall_accuracy", ascending=False)
 )
 
 # remove accuracy 0
 heat_data = heat_data[heat_data["overall_accuracy"] > 0]
+
+
+# rename gpt 4o-mini to indicate if it is finetuned or not
+heat_data = heat_data.reset_index()
+heat_data.loc[
+    heat_data["model"] == "GPT 4o-mini", "model"
+] = heat_data.loc[heat_data["model"] == "GPT 4o-mini", "status"].apply(
+    lambda s: "GPT 4o-mini (Fine-tuned)" if s == "finetuned" else "GPT 4o-mini (base)"
+)
+heat_data = heat_data.drop(columns="status").set_index("model")
 
 
 fig, ax = plt.subplots(figsize=(12, 0.5 + 0.4 * len(heat_data)))
@@ -332,11 +352,14 @@ def radar_factory(num_vars, frame="circle"):
     return theta
 df_tasks_metrics_accuracy_clean = df_tasks_metrics_accuracy[df_tasks_metrics_accuracy["overall_accuracy"] > 0].copy()
 
+# rename open_textual to put a \n in the column name
+df_tasks_metrics_accuracy_clean["open\ntextual"] = df_tasks_metrics_accuracy_clean["open_textual"]
 
-labels = ["numeric", "boolean", "categorical", "open_textual"]
+
+labels = ["numeric", "boolean", "categorical", "open\ntextual"]
 theta = radar_factory(len(labels))
 
-N = len(df_tasks_metrics_accuracy)
+N = len(df_tasks_metrics_accuracy_clean)
 cols = 3
 rows = int(np.ceil(N / cols))
 fig = plt.figure(figsize=(cols * 4, rows * 4))
@@ -350,7 +373,7 @@ for idx, row in df_tasks_metrics_accuracy_clean.iterrows():
     title = "\n".join(textwrap.wrap(f"{row['model']}-{row['status']}", width=20))
     ax.set_title(title, size=9, weight="bold", pad=15)
 
-fig.suptitle("Per‑task accuracy radar – each experiment", weight="bold", y=1.02)
+fig.suptitle("Per task accuracy radar – each experiment", weight="bold", y=1.02)
 plt.tight_layout()
 plt.savefig("radar_charts_per_experiment.png", dpi=900, transparent=True)
 plt.show()
