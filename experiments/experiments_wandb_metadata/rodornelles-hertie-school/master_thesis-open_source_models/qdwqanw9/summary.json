@@ -1,0 +1,20 @@
+{
+  "metric__runtime": 1606.942918976,
+  "metric__step": 165,
+  "metric__timestamp": 1744574122.6483834,
+  "metric__wandb": "{'runtime': 1606}",
+  "metric_eval/loss": 0.03882725536823273,
+  "metric_eval/runtime": 15.0554,
+  "metric_eval/samples_per_second": 2.192,
+  "metric_eval/steps_per_second": 2.192,
+  "metric_total_flos": 70157805150136320,
+  "metric_train/epoch": 3.193548387096774,
+  "metric_train/global_step": 150,
+  "metric_train/grad_norm": 0.99609375,
+  "metric_train/learning_rate": 1.3670329670329672e-05,
+  "metric_train/loss": 0.0278,
+  "metric_train_loss": 0.03041409684655567,
+  "metric_train_runtime": 1603.5844,
+  "metric_train_samples_per_second": 1.16,
+  "metric_train_steps_per_second": 0.287
+}

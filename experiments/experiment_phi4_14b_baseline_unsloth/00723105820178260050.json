@@ -1,0 +1,80 @@
+Aqui está o array JSON extraído das informações da sentença judicial fornecida:
+
+```json
+[
+    {
+        "processo": "0072310-58.2017.8.26.0050",
+        "juiz": "Júlio Alexandre Felix de Faria",
+        "sexo_juiz": "Masculino",
+        "nome": "Gabriel Matos de Paula",
+        "local": "Via Pública",
+        "maconha": true,
+        "maconha_g": 41.5,
+        "maconha_outras": false,
+        "cocaina": true,
+        "cocaina_g": 24.1,
+        "crack": true,
+        "crack_g": 6.8,
+        "ecstasy": true,
+        "ecstasy_g": 41.5,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "5a",
+        "tot_pen": "2a 6m",
+        "tot_pen_meses": 30,
+        "outras_drogas": false,
+        "resultado_art_28": false,
+        "resultado_art_33": true,
+        "resultado_art_34": false,
+        "resultado_art_35": false,
+        "denuncia_art_33": true,
+        "denuncia_art_34": false,
+        "denuncia_art_35": false,
+        "flag_local_de_trafico": true,
+        "flag_preso_no_momento_da_sentenca": true,
+        "flag_confissao_informal": false,
+        "flag_confissao": true,
+        "flag_denuncia_anonima": false,
+        "flag_denuncia": true,
+        "flag_atitude_suspeita": false,
+        "flag_divergencias_nos_relatos_dos_policiais": false,
+        "flag_investigacao": true,
+        "flag_interceptacao": false,
+        "flag_mandado": false,
+        "aval_antecedentes": true,
+        "aval_conduta": true,
+        "aval_personalidade": false,
+        "aval_natureza": true,
+        "aval_quantidade": true,
+        "aval_variedade": true,
+        "aval_circunstancias": true,
+        "aval_consequencias": false,
+        "aval_culpabilidade": true
+    }
+]
+```
+
+### Explicação dos Campos:
+
+- **processo**: O número do processo judicial.
+- **juiz**: Nome do juiz responsável.
+- **sexo_juiz**: Gênero do juiz.
+- **nome**: Nome completo do réu.
+- **local**: Local do crime, identificado como "Via Pública".
+- **maconha, cocaina, crack, ecstasy, lsd**: Booleanos indicando a apreensão de cada substância.
+- **maconha_g, cocaina_g, crack_g, ecstasy_g, lsd_g**: Quantidades em gramas das substâncias apreendidas.
+- **sentenca**: Resultado da sentença.
+- **pena_base**: Pena-base em anos.
+- **tot_pen**: Pena total em anos e meses.
+- **tot_pen_meses**: Pena total convertida em meses.
+- **outras_drogas**: Booleano indicando a presença de outras drogas além das listadas.
+- **resultado_art_28, resultado_art_33, resultado_art_34, resultado_art_35**: Booleanos indicando a aplicação de artigos específicos da lei.
+- **denuncia_art_33, denuncia_art_34, denuncia_art_35**: Booleanos indicando alegações na denúncia.
+- **flag_local_de_trafico**: Indica se houve menção a local associado ao tráfico.
+- **flag_preso_no_momento_da_sentenca**: Indica se o réu estava preso no momento da sentença.
+- **flag_confissao_informal, flag_confissao**: Indicam a presença de confissões.
+- **flag_denuncia_anonima, flag_denuncia**: Indicam a presença de denúncias.
+- **flag_atitude_suspeita, flag_divergencias_nos_relatos_dos_policiais**: Indicam atitudes suspeitas ou divergências nos relatos.
+- **flag_investigacao, flag_interceptacao, flag_mandado**: Indicam investigações, interceptações ou mandados.
+- **aval_antecedentes, aval_conduta, aval_personalidade, aval_natureza, aval

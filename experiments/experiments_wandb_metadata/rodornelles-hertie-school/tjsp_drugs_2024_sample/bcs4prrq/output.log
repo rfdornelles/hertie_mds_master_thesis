@@ -1,0 +1,107 @@
+Loading checkpoint shards: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00<00:00, 37.57it/s]
+Device set to use cpu
+Batches:  10%|███████████████▋                                                                                                                                             | 30/300 [09:18<1:23:44, 18.61s/it]
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/experiments_inference/run_llama_ft_3.2_3B_sample_tjsp.py", line 192, in <module>
+    outputs = pipe(messages,
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 286, in __call__
+    return super().__call__(list(chats), **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1360, in __call__
+    outputs = list(final_iterator)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/pt_utils.py", line 124, in __next__
+    item = next(self.iterator)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/pt_utils.py", line 125, in __next__
+    processed = self.infer(item, **self.params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1286, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 385, in _forward
+    output = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2465, in generate
+    result = self._sample(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 3434, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 821, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 571, in forward
+    layer_outputs = decoder_layer(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 318, in forward
+    hidden_states, self_attn_weights = self.self_attn(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 274, in forward
+    attn_output, attn_weights = attention_interface(
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/experiments_inference/run_llama_ft_3.2_3B_sample_tjsp.py", line 192, in <module>
+    outputs = pipe(messages,
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 286, in __call__
+    return super().__call__(list(chats), **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1360, in __call__
+    outputs = list(final_iterator)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/pt_utils.py", line 124, in __next__
+    item = next(self.iterator)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/pt_utils.py", line 125, in __next__
+    processed = self.infer(item, **self.params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1286, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 385, in _forward
+    output = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2465, in generate
+    result = self._sample(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 3434, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 821, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 571, in forward
+    layer_outputs = decoder_layer(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 318, in forward
+    hidden_states, self_attn_weights = self.self_attn(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 274, in forward
+    attn_output, attn_weights = attention_interface(
+KeyboardInterrupt

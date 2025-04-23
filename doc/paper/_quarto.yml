@@ -1,0 +1,56 @@
+project:
+  type: manuscript
+  render:
+    - index.qmd
+  # output-dir: ..
+
+manuscript:
+  article: index.qmd
+
+format:
+  # html:
+  #   comments:
+  #     hypothesis: true
+  # docx: default
+  # jats: default
+
+  # (other formats)
+  pdf:
+    output-file: Dornelles_Rodrigo_master_thesis.pdf
+    notebook-links: false
+    include-in-header:
+      text: |
+        \usepackage{setspace}
+        \usepackage{changepage}
+        \doublespacing
+        \usepackage{ragged2e}
+    latex-engine: "lualatex"
+    documentclass: article
+    titlepage: false
+    geometry: "margin=1in"
+    fontsize: "12pt"
+    highlight-style: "github"
+    colorlinks: true
+    keep-tex: true
+    fig-pos: "H"
+    # source: null
+    # pandoc-args: ["--metadata=source="]
+# # filters: [remove_title.lua]
+# editor: "visual"
+
+execute:
+  freeze: auto
+  echo: false
+  warning: false
+  error: false
+
+toc: false
+number-sections: false
+link-citations: true
+figure-caption: true
+cap-location: bottom
+bibliography: ../Hertie Master Thesis.bib
+csl: ../apa.csl
+
+
+

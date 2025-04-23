@@ -1,0 +1,61 @@
+Starting fine-tuning....
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 2
+   \\   /|    Num examples = 186 | Num Epochs = 10 | Total steps = 460
+O^O/ \_/ \    Batch size per device = 1 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (1 x 4 x 1) = 4
+ "-____-"     Trainable parameters = 34,228,224/12,000,000,000 (0.29% trained)
+  0%|                                                                                                                                                            | 0/460 [00:00<?, ?it/s]`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+Unsloth: Will smartly offload gradients to save VRAM!
+  1%|█▌                                                                                                                                                | 5/460 [05:53<8:10:17, 64.65s/it]Traceback (most recent call last):
+{'loss': 0.3279, 'grad_norm': 0.5165809988975525, 'learning_rate': 0.0, 'epoch': 0.02}
+{'loss': 0.2857, 'grad_norm': 0.5064294338226318, 'learning_rate': 4.000000000000001e-06, 'epoch': 0.04}
+{'loss': 0.2104, 'grad_norm': 0.45124801993370056, 'learning_rate': 8.000000000000001e-06, 'epoch': 0.06}
+{'loss': 0.3217, 'grad_norm': 0.5944819450378418, 'learning_rate': 1.2e-05, 'epoch': 0.09}
+{'loss': 0.2143, 'grad_norm': 0.5378153324127197, 'learning_rate': 1.6000000000000003e-05, 'epoch': 0.11}
+  File "/workspace/master_thesis/master_thesis/open_source_models/ft_unsloth_gemma_3_12b.py", line 168, in <module>
+    trainer_stats = trainer.train()
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 315, in _fast_inner_training_loop
+  File "<string>", line 77, in _unsloth_training_step
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 2454, in backward
+    loss.backward(**kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 307, in apply
+    return user_fn(self, *args)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth_zoo/gradient_checkpointing.py", line 577, in backward
+    torch.autograd.backward(outputs_with_grad, args_with_grad)
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 10.50 GiB. GPU 1 has a total capacity of 39.39 GiB of which 9.80 GiB is free. Process 3998208 has 29.55 GiB memory in use. Of the allocated memory 28.85 GiB is allocated by PyTorch, and 202.36 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/open_source_models/ft_unsloth_gemma_3_12b.py", line 168, in <module>
+    trainer_stats = trainer.train()
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 315, in _fast_inner_training_loop
+  File "<string>", line 77, in _unsloth_training_step
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 2454, in backward
+    loss.backward(**kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/function.py", line 307, in apply
+    return user_fn(self, *args)
+  File "/usr/local/lib/python3.10/dist-packages/unsloth_zoo/gradient_checkpointing.py", line 577, in backward
+    torch.autograd.backward(outputs_with_grad, args_with_grad)
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 10.50 GiB. GPU 1 has a total capacity of 39.39 GiB of which 9.80 GiB is free. Process 3998208 has 29.55 GiB memory in use. Of the allocated memory 28.85 GiB is allocated by PyTorch, and 202.36 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

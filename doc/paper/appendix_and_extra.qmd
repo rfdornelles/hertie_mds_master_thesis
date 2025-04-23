@@ -1,0 +1,27 @@
+# Appendix I - Lacerda's Dataset
+
+
+```{r}
+#| label: tbl-lacerda
+#| tbl-cap: "Lacerda's dataset"
+#| echo: false
+#| warning: false
+lacerda_example |>
+  skimr::skim()
+```
+
+# Appendix II - Prompt
+
+Lorem ipsum
+
+# Appendix III - Fine tune performance
+
+Lorem ipsum
+
+# Appendix IV - Plots and tables
+
+Lorem ipsum
+
+# Appendix V - Acknowledgments
+
+Vetor Brasil, ChancenEg. Marina Lacerda Silva, Lynn Kaack, Huy Dang, Sascha. Prof. Susana Henriques da Costa, José Jesus Filho, Associação Brasileira de Jurimetria e Jusbrasil. MDS classes of 2023 and 2025, the Latin-American Club specially the Brazilians. Special thanks to João Vitor Krieger, Renan Barbosa. Also, a grateful to Fernanda Horn, Vitor Moneo, Orisha, Meirelles.

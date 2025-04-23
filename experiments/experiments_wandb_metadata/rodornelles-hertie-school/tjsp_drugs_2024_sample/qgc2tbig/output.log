@@ -1,0 +1,2 @@
+Batches:  10%|█         | 10/96 [22:55<3:10:40, 133.03s/it]You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Batches:  15%|█▍        | 14/96 [33:04<3:13:42, 141.74s/it]

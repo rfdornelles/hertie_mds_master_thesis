@@ -1,0 +1,15 @@
+{
+  "metric__runtime": 82.502742396,
+  "metric__step": 3,
+  "metric__timestamp": 1744564252.1418684,
+  "metric__wandb": "{'runtime': 82}",
+  "metric_eval/loss": "NaN",
+  "metric_eval/runtime": 24.8592,
+  "metric_eval/samples_per_second": 1.327,
+  "metric_eval/steps_per_second": 1.327,
+  "metric_train/epoch": 0.043010752688172046,
+  "metric_train/global_step": 2,
+  "metric_train/grad_norm": 0.2835017144680023,
+  "metric_train/learning_rate": 4.000000000000001e-06,
+  "metric_train/loss": 0.2302
+}

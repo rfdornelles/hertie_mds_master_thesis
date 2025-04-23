@@ -1,0 +1,37 @@
+Starting training....
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 4
+   \\   /|    Num examples = 186 | Num Epochs = 10 | Total steps = 460
+O^O/ \_/ \    Batch size per device = 1 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (1 x 4 x 1) = 4
+ "-____-"     Trainable parameters = 12,156,928/3,000,000,000 (0.41% trained)
+  1%|█▏                                                                                                             | 5/460 [00:37<47:54,  6.32s/it]Unsloth: Not an error, but LlamaForCausalLM does not accept `num_items_in_batch`.
+Unsloth: Will smartly offload gradients to save VRAM!
+{'loss': 0.2435, 'grad_norm': 0.1596265584230423, 'learning_rate': 0.0, 'epoch': 0.02}
+{'loss': 0.2302, 'grad_norm': 0.20695634186267853, 'learning_rate': 4e-05, 'epoch': 0.04}
+{'loss': 0.1837, 'grad_norm': 0.1859850436449051, 'learning_rate': 8e-05, 'epoch': 0.06}
+{'loss': 0.2201, 'grad_norm': 0.17859767377376556, 'learning_rate': 0.00012, 'epoch': 0.09}
+{'loss': 0.2109, 'grad_norm': 0.25014933943748474, 'learning_rate': 0.00016, 'epoch': 0.11}
+Using gradient accumulation will be very slightly less accurate.
+Read more on gradient accumulation issues here: https://unsloth.ai/blog/gradient
+  4%|████▋                                                                                                       | 20/460 [03:35<1:19:10, 10.80s/it]
+                                                                                                                                                    
+{'eval_loss': nan, 'eval_runtime': 21.8081, 'eval_samples_per_second': 1.513, 'eval_steps_per_second': 1.513, 'epoch': 0.11}
+{'loss': 1.889, 'grad_norm': 1.068399429321289, 'learning_rate': 0.0002, 'epoch': 0.13}
+{'loss': 0.194, 'grad_norm': 0.21869365870952606, 'learning_rate': 0.00019956043956043958, 'epoch': 0.15}
+{'loss': 1.7408, 'grad_norm': 1.499096155166626, 'learning_rate': 0.00019912087912087913, 'epoch': 0.17}
+{'loss': 1.2634, 'grad_norm': 2.199493646621704, 'learning_rate': 0.0001986813186813187, 'epoch': 0.19}
+{'loss': 0.1361, 'grad_norm': 0.21557137370109558, 'learning_rate': 0.00019824175824175827, 'epoch': 0.22}
+{'eval_loss': nan, 'eval_runtime': 18.7367, 'eval_samples_per_second': 1.761, 'eval_steps_per_second': 1.761, 'epoch': 0.22}
+{'loss': 0.8751, 'grad_norm': 1.8681808710098267, 'learning_rate': 0.0001978021978021978, 'epoch': 0.24}
+{'loss': 0.1204, 'grad_norm': 0.27923792600631714, 'learning_rate': 0.00019736263736263738, 'epoch': 0.26}
+{'loss': 0.1035, 'grad_norm': 0.25519534945487976, 'learning_rate': 0.00019692307692307696, 'epoch': 0.28}
+{'loss': 0.0911, 'grad_norm': 0.18675103783607483, 'learning_rate': 0.00019648351648351647, 'epoch': 0.3}
+{'loss': 0.0792, 'grad_norm': 0.17666015028953552, 'learning_rate': 0.00019604395604395604, 'epoch': 0.32}
+{'eval_loss': nan, 'eval_runtime': 19.0815, 'eval_samples_per_second': 1.729, 'eval_steps_per_second': 1.729, 'epoch': 0.32}
+{'loss': 0.0916, 'grad_norm': 0.17708544433116913, 'learning_rate': 0.00019560439560439562, 'epoch': 0.34}
+{'loss': 0.1471, 'grad_norm': 0.9428409934043884, 'learning_rate': 0.00019516483516483516, 'epoch': 0.37}
+{'loss': 0.6156, 'grad_norm': 2.546602487564087, 'learning_rate': 0.00019472527472527473, 'epoch': 0.39}
+{'loss': 0.0443, 'grad_norm': 0.16660277545452118, 'learning_rate': 0.0001942857142857143, 'epoch': 0.41}
+{'loss': 0.0732, 'grad_norm': 0.22276903688907623, 'learning_rate': 0.00019384615384615385, 'epoch': 0.43}
+{'eval_loss': nan, 'eval_runtime': 19.2307, 'eval_samples_per_second': 1.716, 'eval_steps_per_second': 1.716, 'epoch': 0.43}
+{'train_runtime': 215.9533, 'train_samples_per_second': 8.613, 'train_steps_per_second': 2.13, 'train_loss': 0.4276341201737523, 'epoch': 0.43}

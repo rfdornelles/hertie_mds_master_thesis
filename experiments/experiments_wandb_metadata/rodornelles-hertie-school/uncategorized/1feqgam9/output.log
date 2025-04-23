@@ -1,0 +1,8 @@
+Starting fine-tuning....
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 186 | Num Epochs = 20 | Total steps = 920
+O^O/ \_/ \    Batch size per device = 1 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (1 x 4 x 1) = 4
+ "-____-"     Trainable parameters = 21,135,360/2,465,763,840 (0.86% trained)
+Could not locate the best model at /content/drive/MyDrive/master_thesis/ft_unsloth_lora_Tucano-2b4-Instruct_v1_2025-04-18_20-43-31/checkpoint-1140/pytorch_model.bin, if you are running a distributed training on multiple nodes, you should activate `--save_on_each_node`.
+TrainOutput(global_step=1150, training_loss=0.0, metrics={'train_runtime': 0.0287, 'train_samples_per_second': 129691.63, 'train_steps_per_second': 32074.274, 'total_flos': 4.213768579667251e+17, 'train_loss': 0.0})

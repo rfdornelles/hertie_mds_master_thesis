@@ -1,0 +1,18 @@
+experiment,accuracy,model,family,parameters,status,type
+open_ai_test_gpt-4.1-2025-04-14,0.7545008183306056,GPT 4.1,OpenAI,unknown,base model,commercial
+open_ai_test_gpt4.1mini,0.6966721222040371,GPT 4.1-mini,OpenAI,unknown,base model,commercial
+open_ai_test_gpt-4.1-nano,0.6590289143480633,GPT 4.1-nano,OpenAI,unknown,base model,commercial
+4_open_ai_test_4o,0.7877795962902346,GPT 4o,OpenAI,unknown,base model,commercial
+3_open_ai_test_4o-mini,0.7114020731042008,GPT 4o-mini,OpenAI,unknown,base model,commercial
+6_open_ai_test-o3-mini,0.7637752318603382,o3-mini,OpenAI,unknown,base model,commercial
+gemma3_27b_it_baseline_v2,0.8199672667757774,Gemma 3,Gemma,27 B,base model,open-source
+gemma3_12b_it_baseline_v2,0.762684124386252,Gemma 3,Gemma,12 B,base model,open-source
+gemma3_1b_it_baseline,0.0,Gemma 3,Gemma,1 B,base model,open-source
+llama_3.1_8b_baseline,0.7354064375340971,Llama 3.1,Llama,8 B,base model,open-source
+llama_3.2_3b_baseline,0.5422804146208402,Llama 3.2,Llama,3 B,base model,open-source
+phi4_14b_baseline_unsloth,0.7474086197490453,Phi 4,Phi,14 B,base model,open-source
+7_open_ai_test_ft_4o_mini,0.9345335515548282,GPT 4o-mini,OpenAI,unknown,finetuned,commercial
+unsloth_ft_lora_master_thesis_lawma8b_ft_v1,0.0,Lawma 8B,Lawma,8 B,finetuned,open-source
+llama_3.2_3B_ft_unsloth_2025-04-13_17-52-07,0.7839607201309329,Llama 3.2,Llama,3 B,finetuned,open-source
+phi4_14b_finetune_unsloth,0.9279869067103108,Phi 4,Phi,14 B,finetuned,open-source
+finetune_lora_master_thesis_tucanobr_2b4_ft_v1,0.0,Tucano,Tucano,2.4 B,finetuned,open-source
