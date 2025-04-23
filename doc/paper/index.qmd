@@ -51,7 +51,7 @@
 \singlespacing
 \justifying
 \textit{\fontsize{10}{12}\selectfont
-"On a more positive note, if artificial intelligence were used to promote integral human development, it could introduce important innovations in agriculture, education and culture, an improved level of life for entire nations and peoples, and the growth of human fraternity and social friendship. In the end, the way we use it to include the least of our brothers and sisters, the vulnerable and those most in need, will be the true measure of our humanity."
+"(...) if artificial intelligence were used to promote integral human development, it could introduce important innovations in agriculture, education and culture, an improved level of life for entire nations and peoples, and the growth of human fraternity and social friendship. In the end, the way we use it to include the least of our brothers and sisters, the vulnerable and those most in need, will be the true measure of our humanity."
 }
 
 \vspace{1ex}
@@ -92,6 +92,8 @@ ft_experiments <- c("3_open_ai_test_4o-mini",
 
 Lorem ipsum dolor
 
+{{< pagebreak >}}
+
 # Introduction
 
 ```{=latex}
@@ -102,8 +104,7 @@ Lorem ipsum dolor
 \singlespacing
 \justifying
 
-\textit{\fontsize{10}{12}\selectfont
-"I promise to practice law with dignity and independence, to observe ethics, professional duties and prerogatives and to defend the Constitution, the legal order of the Democratic State, human rights, social justice, the proper application of laws, the rapid administration of justice and \textbf{the improvement of legal culture and institutions}."
+\textit{\fontsize{10}{12}\selectfont"I promise to practice Law with dignity and independence, to observe ethics, professional duties and prerogatives and to defend the Constitution, the legal order of the Democratic State, human rights, social justice, the proper application of laws, the rapid administration of justice and \textbf{the improvement of legal culture and institutions}."
 }
 \vspace{1ex}
 \begin{flushright}
@@ -115,7 +116,7 @@ Lorem ipsum dolor
 
 \vspace*{\fill}
 
-````
+```
 
 <!--
 
