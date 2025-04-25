@@ -24,6 +24,7 @@ format:
         \usepackage{changepage}
         \doublespacing
         \usepackage{ragged2e}
+        \usepackage[table]{xcolor}
     latex-engine: "lualatex"
     documentclass: article
     titlepage: false
@@ -45,7 +46,7 @@ execute:
   error: false
 
 toc: false
-number-sections: false
+number-sections: true
 link-citations: true
 figure-caption: true
 cap-location: bottom
