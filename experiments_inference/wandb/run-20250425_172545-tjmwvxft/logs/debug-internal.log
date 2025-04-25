@@ -1,0 +1,19 @@
+{"time":"2025-04-25T17:25:45.616673115Z","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"/workspace/master_thesis/master_thesis/experiments_inference/wandb/run-20250425_172545-tjmwvxft/logs/debug-core.log"}
+{"time":"2025-04-25T17:25:46.104794386Z","level":"INFO","msg":"created new stream","id":"tjmwvxft"}
+{"time":"2025-04-25T17:25:46.104898241Z","level":"INFO","msg":"stream: started","id":"tjmwvxft"}
+{"time":"2025-04-25T17:25:46.104955248Z","level":"INFO","msg":"writer: Do: started","stream_id":"tjmwvxft"}
+{"time":"2025-04-25T17:25:46.105006103Z","level":"INFO","msg":"handler: started","stream_id":"tjmwvxft"}
+{"time":"2025-04-25T17:25:46.105024408Z","level":"INFO","msg":"sender: started","stream_id":"tjmwvxft"}
+{"time":"2025-04-25T17:25:46.340357357Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-25T17:25:56.808691482Z","level":"INFO","msg":"sender: sendAlert: notified scriptable run alert","data":{"notifyScriptableRunAlert":{"success":true}}}
+{"time":"2025-04-25T17:25:57.117218392Z","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-04-25T17:27:00.706045816Z","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-04-25T17:27:00.748736038Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-25T17:27:00.748858007Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-25T17:27:01.654759256Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-25T17:27:01.722798652Z","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading summary","runtime_seconds":0.067877432}],"total_operations":1}}
+{"time":"2025-04-25T17:27:01.946504058Z","level":"INFO","msg":"stream: closing","id":"tjmwvxft"}
+{"time":"2025-04-25T17:27:01.946551957Z","level":"INFO","msg":"handler: closed","stream_id":"tjmwvxft"}
+{"time":"2025-04-25T17:27:01.946577616Z","level":"INFO","msg":"writer: Close: closed","stream_id":"tjmwvxft"}
+{"time":"2025-04-25T17:27:01.946615687Z","level":"INFO","msg":"sender: closed","stream_id":"tjmwvxft"}
+{"time":"2025-04-25T17:27:01.946678495Z","level":"INFO","msg":"stream: closed","id":"tjmwvxft"}
