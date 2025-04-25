@@ -1,0 +1,16 @@
+{"time":"2025-04-19T19:57:02.798614955+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"hf_tjsp2024_phi4_14B-ft-inferencee/wandb/run-20250419_195702-rftdajuj/logs/debug-core.log"}
+{"time":"2025-04-19T19:57:03.081517556+02:00","level":"INFO","msg":"created new stream","id":"rftdajuj"}
+{"time":"2025-04-19T19:57:03.081581636+02:00","level":"INFO","msg":"stream: started","id":"rftdajuj"}
+{"time":"2025-04-19T19:57:03.081634435+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"rftdajuj"}
+{"time":"2025-04-19T19:57:03.081687464+02:00","level":"INFO","msg":"sender: started","stream_id":"rftdajuj"}
+{"time":"2025-04-19T19:57:03.081763156+02:00","level":"INFO","msg":"handler: started","stream_id":"rftdajuj"}
+{"time":"2025-04-19T19:57:03.361348737+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-19T19:57:04.658313047+02:00","level":"INFO","msg":"sender: sendAlert: notified scriptable run alert","data":{"notifyScriptableRunAlert":{"success":true}}}
+{"time":"2025-04-19T19:57:04.864617763+02:00","level":"INFO","msg":"stream: closing","id":"rftdajuj"}
+{"time":"2025-04-19T19:57:04.864670051+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-19T19:57:04.864747587+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-19T19:57:05.774732594+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-19T19:57:06.002909715+02:00","level":"INFO","msg":"handler: closed","stream_id":"rftdajuj"}
+{"time":"2025-04-19T19:57:06.002940593+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"rftdajuj"}
+{"time":"2025-04-19T19:57:06.002948748+02:00","level":"INFO","msg":"sender: closed","stream_id":"rftdajuj"}
+{"time":"2025-04-19T19:57:06.003052453+02:00","level":"INFO","msg":"stream: closed","id":"rftdajuj"}

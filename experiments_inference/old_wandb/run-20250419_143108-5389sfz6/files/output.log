@@ -1,0 +1,2 @@
+Device set to use cuda:0
+Batches:   1%|          | 2/300 [05:47<13:59:15, 168.98s/it]

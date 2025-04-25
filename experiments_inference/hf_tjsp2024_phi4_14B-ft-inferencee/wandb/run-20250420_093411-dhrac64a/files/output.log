@@ -1,0 +1,5 @@
+Filter: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 898/898 [00:00<00:00, 26040.95 examples/s]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:08<00:00,  1.42s/it]
+Some parameters are on the meta device because they were offloaded to the cpu.
+Device set to use cuda:0
+Rodando exemplos:   0%|                                                                                                                          | 0/726 [00:00<?, ?it/s]

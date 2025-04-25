@@ -1,0 +1,7 @@
+{"time":"2025-04-19T17:05:41.619895465Z","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"/workspace/master_thesis/master_thesis/experiments_inference/wandb/run-20250419_170541-qnlpanf1/logs/debug-core.log"}
+{"time":"2025-04-19T17:05:42.036669728Z","level":"INFO","msg":"created new stream","id":"qnlpanf1"}
+{"time":"2025-04-19T17:05:42.036718199Z","level":"INFO","msg":"stream: started","id":"qnlpanf1"}
+{"time":"2025-04-19T17:05:42.037642512Z","level":"INFO","msg":"handler: started","stream_id":"qnlpanf1"}
+{"time":"2025-04-19T17:05:42.037708256Z","level":"INFO","msg":"sender: started","stream_id":"qnlpanf1"}
+{"time":"2025-04-19T17:05:42.03773192Z","level":"INFO","msg":"writer: Do: started","stream_id":"qnlpanf1"}
+{"time":"2025-04-19T17:05:42.280094542Z","level":"INFO","msg":"Starting system monitor"}

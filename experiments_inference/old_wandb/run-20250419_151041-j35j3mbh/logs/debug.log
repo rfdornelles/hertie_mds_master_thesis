@@ -1,0 +1,27 @@
+2025-04-19 15:10:41,092 INFO    MainThread:1934899 [wandb_setup.py:_flush():67] Current SDK version is 0.19.9
+2025-04-19 15:10:41,092 INFO    MainThread:1934899 [wandb_setup.py:_flush():67] Configure stats pid to 1934899
+2025-04-19 15:10:41,092 INFO    MainThread:1934899 [wandb_setup.py:_flush():67] Loading settings from /root/.config/wandb/settings
+2025-04-19 15:10:41,092 INFO    MainThread:1934899 [wandb_setup.py:_flush():67] Loading settings from /workspace/master_thesis/master_thesis/experiments_inference/wandb/settings
+2025-04-19 15:10:41,092 INFO    MainThread:1934899 [wandb_setup.py:_flush():67] Loading settings from environment variables
+2025-04-19 15:10:41,092 INFO    MainThread:1934899 [wandb_init.py:setup_run_log_directory():662] Logging user logs to /workspace/master_thesis/master_thesis/experiments_inference/wandb/run-20250419_151041-j35j3mbh/logs/debug.log
+2025-04-19 15:10:41,092 INFO    MainThread:1934899 [wandb_init.py:setup_run_log_directory():663] Logging internal logs to /workspace/master_thesis/master_thesis/experiments_inference/wandb/run-20250419_151041-j35j3mbh/logs/debug-internal.log
+2025-04-19 15:10:41,093 INFO    MainThread:1934899 [wandb_init.py:monkeypatch_ipython():581] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x7fde5ddbabc0>
+2025-04-19 15:10:41,093 INFO    MainThread:1934899 [wandb_init.py:init():781] calling init triggers
+2025-04-19 15:10:41,093 INFO    MainThread:1934899 [wandb_init.py:init():786] wandb.init called with sweep_config: {}
+config: {'model': 'rfdornelles/master_thesis_phi4_tb_finetune', 'max_new_tokens': 1000, 'device_map': 'auto', 'batch_size': 2, '_wandb': {}}
+2025-04-19 15:10:41,093 INFO    MainThread:1934899 [wandb_init.py:init():809] starting backend
+2025-04-19 15:10:41,093 INFO    MainThread:1934899 [wandb_init.py:init():813] sending inform_init request
+2025-04-19 15:10:41,097 INFO    MainThread:1934899 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-04-19 15:10:41,097 INFO    MainThread:1934899 [wandb_init.py:init():823] backend started and connected
+2025-04-19 15:10:41,105 INFO    MainThread:1934899 [wandb_run.py:_label_probe_notebook():1267] probe notebook
+2025-04-19 15:10:41,105 INFO    MainThread:1934899 [wandb_run.py:_label_probe_notebook():1277] Unable to probe notebook: Expecting value: line 1 column 1 (char 0)
+2025-04-19 15:10:41,106 INFO    MainThread:1934899 [wandb_init.py:init():915] updated telemetry
+2025-04-19 15:10:41,114 INFO    MainThread:1934899 [wandb_init.py:init():939] communicating run to backend with 90.0 second timeout
+2025-04-19 15:10:41,617 INFO    MainThread:1934899 [wandb_init.py:init():1014] starting run threads in backend
+2025-04-19 15:10:41,918 INFO    MainThread:1934899 [wandb_run.py:_console_start():2454] atexit reg
+2025-04-19 15:10:41,919 INFO    MainThread:1934899 [wandb_run.py:_redirect():2306] redirect: wrap_raw
+2025-04-19 15:10:41,919 INFO    MainThread:1934899 [wandb_run.py:_redirect():2371] Wrapping output streams.
+2025-04-19 15:10:41,919 INFO    MainThread:1934899 [wandb_run.py:_redirect():2394] Redirects installed.
+2025-04-19 15:10:41,922 INFO    MainThread:1934899 [wandb_init.py:init():1056] run started, returning control to user process
+2025-04-19 15:10:42,321 INFO    MainThread:1934899 [jupyter.py:save_ipynb():384] [no run ID] not saving jupyter notebook
+2025-04-19 15:10:42,321 INFO    MainThread:1934899 [wandb_init.py:_pause_backend():546] [no run ID] pausing backend

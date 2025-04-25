@@ -1,0 +1,16 @@
+{"time":"2025-04-25T17:03:43.930783631Z","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"/workspace/master_thesis/master_thesis/experiments_inference/wandb/run-20250425_170343-ykva2cps/logs/debug-core.log"}
+{"time":"2025-04-25T17:03:44.413111569Z","level":"INFO","msg":"created new stream","id":"ykva2cps"}
+{"time":"2025-04-25T17:03:44.413205915Z","level":"INFO","msg":"stream: started","id":"ykva2cps"}
+{"time":"2025-04-25T17:03:44.413304881Z","level":"INFO","msg":"sender: started","stream_id":"ykva2cps"}
+{"time":"2025-04-25T17:03:44.413297808Z","level":"INFO","msg":"writer: Do: started","stream_id":"ykva2cps"}
+{"time":"2025-04-25T17:03:44.413366296Z","level":"INFO","msg":"handler: started","stream_id":"ykva2cps"}
+{"time":"2025-04-25T17:03:44.698196031Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-25T17:04:07.477300082Z","level":"INFO","msg":"sender: sendAlert: notified scriptable run alert","data":{"notifyScriptableRunAlert":{"success":true}}}
+{"time":"2025-04-25T17:04:07.863179862Z","level":"INFO","msg":"stream: closing","id":"ykva2cps"}
+{"time":"2025-04-25T17:04:07.863224666Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-25T17:04:07.863281353Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-25T17:04:08.500960049Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-25T17:04:08.867800898Z","level":"INFO","msg":"handler: closed","stream_id":"ykva2cps"}
+{"time":"2025-04-25T17:04:08.867857495Z","level":"INFO","msg":"writer: Close: closed","stream_id":"ykva2cps"}
+{"time":"2025-04-25T17:04:08.868006203Z","level":"INFO","msg":"sender: closed","stream_id":"ykva2cps"}
+{"time":"2025-04-25T17:04:08.8680257Z","level":"INFO","msg":"stream: closed","id":"ykva2cps"}

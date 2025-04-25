@@ -1,0 +1,16 @@
+{"time":"2025-04-25T16:45:25.508658625Z","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"/workspace/master_thesis/master_thesis/experiments_inference/wandb/run-20250425_164525-kiv66uls/logs/debug-core.log"}
+{"time":"2025-04-25T16:45:26.595041148Z","level":"INFO","msg":"created new stream","id":"kiv66uls"}
+{"time":"2025-04-25T16:45:26.595143059Z","level":"INFO","msg":"stream: started","id":"kiv66uls"}
+{"time":"2025-04-25T16:45:26.595245401Z","level":"INFO","msg":"sender: started","stream_id":"kiv66uls"}
+{"time":"2025-04-25T16:45:26.595242245Z","level":"INFO","msg":"writer: Do: started","stream_id":"kiv66uls"}
+{"time":"2025-04-25T16:45:26.595339518Z","level":"INFO","msg":"handler: started","stream_id":"kiv66uls"}
+{"time":"2025-04-25T16:45:26.870513977Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-25T17:00:27.268968813Z","level":"INFO","msg":"stream: closing","id":"kiv66uls"}
+{"time":"2025-04-25T17:00:27.269058331Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-25T17:00:27.269189347Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-25T17:00:27.471705349Z","level":"INFO","msg":"sender: sendAlert: notified scriptable run alert","data":{"notifyScriptableRunAlert":{"success":true}}}
+{"time":"2025-04-25T17:00:28.114142488Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-25T17:00:28.337027576Z","level":"INFO","msg":"handler: closed","stream_id":"kiv66uls"}
+{"time":"2025-04-25T17:00:28.337097877Z","level":"INFO","msg":"sender: closed","stream_id":"kiv66uls"}
+{"time":"2025-04-25T17:00:28.337084883Z","level":"INFO","msg":"writer: Close: closed","stream_id":"kiv66uls"}
+{"time":"2025-04-25T17:00:28.337253479Z","level":"INFO","msg":"stream: closed","id":"kiv66uls"}

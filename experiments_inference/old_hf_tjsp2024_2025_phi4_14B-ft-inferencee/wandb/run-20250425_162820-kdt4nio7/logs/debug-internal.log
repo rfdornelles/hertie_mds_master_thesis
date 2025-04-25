@@ -1,0 +1,16 @@
+{"time":"2025-04-25T16:28:20.795517275Z","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"hf_tjsp2024_2025_phi4_14B-ft-inferencee/wandb/run-20250425_162820-kdt4nio7/logs/debug-core.log"}
+{"time":"2025-04-25T16:28:21.673841333Z","level":"INFO","msg":"created new stream","id":"kdt4nio7"}
+{"time":"2025-04-25T16:28:21.673913759Z","level":"INFO","msg":"stream: started","id":"kdt4nio7"}
+{"time":"2025-04-25T16:28:21.673942473Z","level":"INFO","msg":"writer: Do: started","stream_id":"kdt4nio7"}
+{"time":"2025-04-25T16:28:21.673981897Z","level":"INFO","msg":"sender: started","stream_id":"kdt4nio7"}
+{"time":"2025-04-25T16:28:21.674084118Z","level":"INFO","msg":"handler: started","stream_id":"kdt4nio7"}
+{"time":"2025-04-25T16:28:22.041381895Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-25T16:29:19.828450119Z","level":"INFO","msg":"sender: sendAlert: notified scriptable run alert","data":{"notifyScriptableRunAlert":{"success":true}}}
+{"time":"2025-04-25T16:29:20.246260064Z","level":"INFO","msg":"stream: closing","id":"kdt4nio7"}
+{"time":"2025-04-25T16:29:20.246302514Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-25T16:29:20.246397662Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-25T16:29:20.849786579Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-25T16:29:21.062306601Z","level":"INFO","msg":"handler: closed","stream_id":"kdt4nio7"}
+{"time":"2025-04-25T16:29:21.062370591Z","level":"INFO","msg":"sender: closed","stream_id":"kdt4nio7"}
+{"time":"2025-04-25T16:29:21.062355552Z","level":"INFO","msg":"writer: Close: closed","stream_id":"kdt4nio7"}
+{"time":"2025-04-25T16:29:21.062516765Z","level":"INFO","msg":"stream: closed","id":"kdt4nio7"}
