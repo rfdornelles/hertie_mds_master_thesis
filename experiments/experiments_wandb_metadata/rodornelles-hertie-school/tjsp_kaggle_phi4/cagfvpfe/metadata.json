@@ -1,0 +1,14 @@
+{
+  "entity": "rodornelles-hertie-school",
+  "project": "tjsp_kaggle_phi4",
+  "run_id": "cagfvpfe",
+  "run_name": "phi4_4bit_inference_kaggle",
+  "created_at": "2025-04-19T21:20:11Z",
+  "state": "finished",
+  "tags": [],
+  "url": "https://wandb.ai/rodornelles-hertie-school/tjsp_kaggle_phi4/runs/cagfvpfe",
+  "param_model": "rfdornelles/master_thesis_phi4_tb_finetune",
+  "param_batch_size": 2,
+  "param_quantization": "bnb-4bit",
+  "param_max_new_tokens": 1000
+}

@@ -1,0 +1,14 @@
+{
+  "entity": "rodornelles-hertie-school",
+  "project": "hf_tjsp_drugs_2024_sample",
+  "run_id": "xr4qdjfb",
+  "run_name": "hf_tjsp2024_phi4_14B-ft-inferencee_2025-04-19_21-50-41",
+  "created_at": "2025-04-19T19:59:51Z",
+  "state": "failed",
+  "tags": [],
+  "url": "https://wandb.ai/rodornelles-hertie-school/hf_tjsp_drugs_2024_sample/runs/xr4qdjfb",
+  "param_model": "rfdornelles/master_thesis_phi4_tb_finetune",
+  "param_batch_size": 2,
+  "param_device_map": "auto",
+  "param_max_new_tokens": 1000
+}

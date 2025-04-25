@@ -1,0 +1,306 @@
+Starting fine-tuning....
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 186 | Num Epochs = 10 | Total steps = 460
+O^O/ \_/ \    Batch size per device = 1 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (1 x 4 x 1) = 4
+ "-____-"     Trainable parameters = 39,976,960/6,778,392,576 (0.59% trained)
+  0%|                                                                                                                                                               | 0/460 [00:00<?, ?it/s]`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+Unsloth: Will smartly offload gradients to save VRAM!
+  2%|███▏                                                                                                                                                | 10/460 [02:58<1:48:36, 14.48s/it]Unsloth: Not an error, but LlamaForCausalLM does not accept `num_items_in_batch`.
+{'loss': 6.4242, 'grad_norm': 49.68378829956055, 'learning_rate': 0.0, 'epoch': 0.02}
+{'loss': 6.7606, 'grad_norm': 54.38606262207031, 'learning_rate': 4.000000000000001e-06, 'epoch': 0.04}
+{'loss': 7.061, 'grad_norm': 54.727359771728516, 'learning_rate': 8.000000000000001e-06, 'epoch': 0.06}
+{'loss': 6.0966, 'grad_norm': 53.742122650146484, 'learning_rate': 1.2e-05, 'epoch': 0.09}
+{'loss': 6.9739, 'grad_norm': 48.36918640136719, 'learning_rate': 1.6000000000000003e-05, 'epoch': 0.11}
+{'loss': 7.4218, 'grad_norm': 11.285082817077637, 'learning_rate': 2e-05, 'epoch': 0.13}
+{'loss': 6.9232, 'grad_norm': 12.972972869873047, 'learning_rate': 1.9956043956043957e-05, 'epoch': 0.15}
+{'loss': 7.1598, 'grad_norm': 6.722417831420898, 'learning_rate': 1.9912087912087913e-05, 'epoch': 0.17}
+{'loss': 7.0647, 'grad_norm': 11.780885696411133, 'learning_rate': 1.986813186813187e-05, 'epoch': 0.19}
+{'loss': 6.1823, 'grad_norm': 4.519646644592285, 'learning_rate': 1.9824175824175825e-05, 'epoch': 0.22}
+Using gradient accumulation will be very slightly less accurate.
+Read more on gradient accumulation issues here: https://unsloth.ai/blog/gradient
+                                                                                                                                                                                            
+                                                                                                                                                                                            
+{'eval_loss': 6.482843399047852, 'eval_runtime': 58.876, 'eval_samples_per_second': 0.56, 'eval_steps_per_second': 0.56, 'epoch': 0.22}
+{'loss': 6.7002, 'grad_norm': 2.289257764816284, 'learning_rate': 1.9780219780219784e-05, 'epoch': 0.24}
+{'loss': 6.0233, 'grad_norm': 2.0762109756469727, 'learning_rate': 1.973626373626374e-05, 'epoch': 0.26}
+{'loss': 6.7372, 'grad_norm': 3.157528877258301, 'learning_rate': 1.9692307692307696e-05, 'epoch': 0.28}
+{'loss': 6.6493, 'grad_norm': 2.4459404945373535, 'learning_rate': 1.9648351648351648e-05, 'epoch': 0.3}
+{'loss': 6.5489, 'grad_norm': 2.783632278442383, 'learning_rate': 1.9604395604395604e-05, 'epoch': 0.32}
+{'loss': 5.7827, 'grad_norm': 1.6233950853347778, 'learning_rate': 1.9560439560439563e-05, 'epoch': 0.34}
+{'loss': 6.4883, 'grad_norm': 2.568803310394287, 'learning_rate': 1.951648351648352e-05, 'epoch': 0.37}
+{'loss': 6.4773, 'grad_norm': 2.574626922607422, 'learning_rate': 1.9472527472527475e-05, 'epoch': 0.39}
+{'loss': 6.0725, 'grad_norm': 1.9553263187408447, 'learning_rate': 1.942857142857143e-05, 'epoch': 0.41}
+{'loss': 5.9124, 'grad_norm': 1.5873126983642578, 'learning_rate': 1.9384615384615386e-05, 'epoch': 0.43}
+{'eval_loss': 6.017409324645996, 'eval_runtime': 73.297, 'eval_samples_per_second': 0.45, 'eval_steps_per_second': 0.45, 'epoch': 0.43}
+{'loss': 6.9944, 'grad_norm': 2.865116834640503, 'learning_rate': 1.9340659340659342e-05, 'epoch': 0.45}
+{'loss': 5.8724, 'grad_norm': 1.7120780944824219, 'learning_rate': 1.9296703296703298e-05, 'epoch': 0.47}
+{'loss': 5.88, 'grad_norm': 1.7102960348129272, 'learning_rate': 1.9252747252747254e-05, 'epoch': 0.49}
+{'loss': 5.324, 'grad_norm': 1.4289556741714478, 'learning_rate': 1.920879120879121e-05, 'epoch': 0.52}
+{'loss': 6.0392, 'grad_norm': 1.8112224340438843, 'learning_rate': 1.916483516483517e-05, 'epoch': 0.54}
+{'loss': 5.5745, 'grad_norm': 1.1079400777816772, 'learning_rate': 1.9120879120879124e-05, 'epoch': 0.56}
+{'loss': 5.3035, 'grad_norm': 1.1083811521530151, 'learning_rate': 1.907692307692308e-05, 'epoch': 0.58}
+{'loss': 5.6468, 'grad_norm': 1.3509262800216675, 'learning_rate': 1.9032967032967033e-05, 'epoch': 0.6}
+{'loss': 5.9844, 'grad_norm': 1.716816782951355, 'learning_rate': 1.8989010989010988e-05, 'epoch': 0.62}
+{'loss': 5.9946, 'grad_norm': 1.7425669431686401, 'learning_rate': 1.8945054945054947e-05, 'epoch': 0.65}
+{'eval_loss': 5.579472541809082, 'eval_runtime': 74.4861, 'eval_samples_per_second': 0.443, 'eval_steps_per_second': 0.443, 'epoch': 0.65}
+{'loss': 6.2124, 'grad_norm': 1.9533573389053345, 'learning_rate': 1.8901098901098903e-05, 'epoch': 0.67}
+{'loss': 5.3557, 'grad_norm': 1.565022587776184, 'learning_rate': 1.885714285714286e-05, 'epoch': 0.69}
+{'loss': 4.9607, 'grad_norm': 1.291032075881958, 'learning_rate': 1.8813186813186815e-05, 'epoch': 0.71}
+{'loss': 5.2549, 'grad_norm': 1.0511692762374878, 'learning_rate': 1.876923076923077e-05, 'epoch': 0.73}
+{'loss': 6.0082, 'grad_norm': 1.7757121324539185, 'learning_rate': 1.8725274725274726e-05, 'epoch': 0.75}
+{'loss': 5.0508, 'grad_norm': 0.9803357124328613, 'learning_rate': 1.8681318681318682e-05, 'epoch': 0.77}
+{'loss': 5.5191, 'grad_norm': 0.9672062397003174, 'learning_rate': 1.8637362637362638e-05, 'epoch': 0.8}
+{'loss': 5.0985, 'grad_norm': 0.9414640665054321, 'learning_rate': 1.8593406593406594e-05, 'epoch': 0.82}
+{'loss': 5.0836, 'grad_norm': 0.8888263702392578, 'learning_rate': 1.8549450549450553e-05, 'epoch': 0.84}
+{'loss': 5.1549, 'grad_norm': 0.8490520119667053, 'learning_rate': 1.850549450549451e-05, 'epoch': 0.86}
+{'eval_loss': 5.254295349121094, 'eval_runtime': 62.0869, 'eval_samples_per_second': 0.532, 'eval_steps_per_second': 0.532, 'epoch': 0.86}
+{'loss': 5.151, 'grad_norm': 0.9445522427558899, 'learning_rate': 1.8461538461538465e-05, 'epoch': 0.88}
+{'loss': 6.69, 'grad_norm': 2.7095212936401367, 'learning_rate': 1.8417582417582417e-05, 'epoch': 0.9}
+{'loss': 5.4325, 'grad_norm': 1.5058612823486328, 'learning_rate': 1.8373626373626373e-05, 'epoch': 0.92}
+{'loss': 4.9011, 'grad_norm': 0.9122262001037598, 'learning_rate': 1.8329670329670332e-05, 'epoch': 0.95}
+{'loss': 5.1782, 'grad_norm': 0.8727416396141052, 'learning_rate': 1.8285714285714288e-05, 'epoch': 0.97}
+{'loss': 5.3571, 'grad_norm': 0.9801092743873596, 'learning_rate': 1.8241758241758244e-05, 'epoch': 0.99}
+{'loss': 5.2291, 'grad_norm': 0.9036779403686523, 'learning_rate': 1.81978021978022e-05, 'epoch': 1.0}
+{'loss': 5.3214, 'grad_norm': 0.9514796137809753, 'learning_rate': 1.8153846153846155e-05, 'epoch': 1.02}
+{'loss': 5.1373, 'grad_norm': 0.8707005381584167, 'learning_rate': 1.810989010989011e-05, 'epoch': 1.04}
+{'loss': 4.9255, 'grad_norm': 0.8229247331619263, 'learning_rate': 1.8065934065934067e-05, 'epoch': 1.06}
+{'eval_loss': 5.009244441986084, 'eval_runtime': 71.4672, 'eval_samples_per_second': 0.462, 'eval_steps_per_second': 0.462, 'epoch': 1.06}
+{'loss': 4.7945, 'grad_norm': 0.8564292788505554, 'learning_rate': 1.8021978021978023e-05, 'epoch': 1.09}
+{'loss': 5.121, 'grad_norm': 1.0621098279953003, 'learning_rate': 1.797802197802198e-05, 'epoch': 1.11}
+{'loss': 5.0604, 'grad_norm': 0.8522555232048035, 'learning_rate': 1.7934065934065938e-05, 'epoch': 1.13}
+{'loss': 5.4135, 'grad_norm': 1.5081448554992676, 'learning_rate': 1.7890109890109893e-05, 'epoch': 1.15}
+{'loss': 4.7423, 'grad_norm': 0.8322963118553162, 'learning_rate': 1.784615384615385e-05, 'epoch': 1.17}
+{'loss': 4.7287, 'grad_norm': 0.8513709902763367, 'learning_rate': 1.78021978021978e-05, 'epoch': 1.19}
+{'loss': 5.7818, 'grad_norm': 2.972464084625244, 'learning_rate': 1.7758241758241757e-05, 'epoch': 1.22}
+{'loss': 4.5571, 'grad_norm': 0.8945667743682861, 'learning_rate': 1.7714285714285717e-05, 'epoch': 1.24}
+{'loss': 5.6111, 'grad_norm': 2.4900267124176025, 'learning_rate': 1.7670329670329672e-05, 'epoch': 1.26}
+{'loss': 4.722, 'grad_norm': 0.925164520740509, 'learning_rate': 1.7626373626373628e-05, 'epoch': 1.28}
+{'eval_loss': 4.765469074249268, 'eval_runtime': 64.9142, 'eval_samples_per_second': 0.508, 'eval_steps_per_second': 0.508, 'epoch': 1.28}
+{'loss': 5.2735, 'grad_norm': 0.8984516263008118, 'learning_rate': 1.7582417582417584e-05, 'epoch': 1.3}
+{'loss': 4.93, 'grad_norm': 0.8103232383728027, 'learning_rate': 1.753846153846154e-05, 'epoch': 1.32}
+{'loss': 4.507, 'grad_norm': 0.8951500058174133, 'learning_rate': 1.7494505494505495e-05, 'epoch': 1.34}
+{'loss': 4.3936, 'grad_norm': 0.8501767516136169, 'learning_rate': 1.745054945054945e-05, 'epoch': 1.37}
+{'loss': 4.9342, 'grad_norm': 2.025747776031494, 'learning_rate': 1.7406593406593407e-05, 'epoch': 1.39}
+{'loss': 5.2902, 'grad_norm': 1.2834638357162476, 'learning_rate': 1.7362637362637363e-05, 'epoch': 1.41}
+{'loss': 4.3646, 'grad_norm': 0.8878648281097412, 'learning_rate': 1.7318681318681322e-05, 'epoch': 1.43}
+{'loss': 4.4319, 'grad_norm': 0.8411272168159485, 'learning_rate': 1.7274725274725278e-05, 'epoch': 1.45}
+{'loss': 4.6607, 'grad_norm': 0.8381407856941223, 'learning_rate': 1.7230769230769234e-05, 'epoch': 1.47}
+{'loss': 4.7327, 'grad_norm': 0.8253262042999268, 'learning_rate': 1.7186813186813186e-05, 'epoch': 1.49}
+{'eval_loss': 4.514462471008301, 'eval_runtime': 65.0718, 'eval_samples_per_second': 0.507, 'eval_steps_per_second': 0.507, 'epoch': 1.49}
+{'loss': 4.1115, 'grad_norm': 0.9010019898414612, 'learning_rate': 1.7142857142857142e-05, 'epoch': 1.52}
+{'loss': 4.6493, 'grad_norm': 0.8403998613357544, 'learning_rate': 1.70989010989011e-05, 'epoch': 1.54}
+{'loss': 4.3782, 'grad_norm': 0.8350999355316162, 'learning_rate': 1.7054945054945057e-05, 'epoch': 1.56}
+{'loss': 4.7226, 'grad_norm': 0.8079264163970947, 'learning_rate': 1.7010989010989013e-05, 'epoch': 1.58}
+{'loss': 4.5653, 'grad_norm': 0.8359436988830566, 'learning_rate': 1.696703296703297e-05, 'epoch': 1.6}
+{'loss': 3.9771, 'grad_norm': 0.7973592281341553, 'learning_rate': 1.6923076923076924e-05, 'epoch': 1.62}
+{'loss': 4.9776, 'grad_norm': 0.9860880374908447, 'learning_rate': 1.687912087912088e-05, 'epoch': 1.65}
+{'loss': 4.8986, 'grad_norm': 1.0237566232681274, 'learning_rate': 1.6835164835164836e-05, 'epoch': 1.67}
+{'loss': 4.1696, 'grad_norm': 0.7487401962280273, 'learning_rate': 1.679120879120879e-05, 'epoch': 1.69}
+{'loss': 3.8906, 'grad_norm': 0.7422436475753784, 'learning_rate': 1.674725274725275e-05, 'epoch': 1.71}
+{'eval_loss': 4.268306732177734, 'eval_runtime': 66.7591, 'eval_samples_per_second': 0.494, 'eval_steps_per_second': 0.494, 'epoch': 1.71}
+{'loss': 4.111, 'grad_norm': 0.7206971645355225, 'learning_rate': 1.6703296703296707e-05, 'epoch': 1.73}
+{'loss': 3.9523, 'grad_norm': 0.7191250324249268, 'learning_rate': 1.6659340659340662e-05, 'epoch': 1.75}
+{'loss': 4.8774, 'grad_norm': 1.3325694799423218, 'learning_rate': 1.6615384615384618e-05, 'epoch': 1.77}
+{'loss': 4.1211, 'grad_norm': 0.7414523363113403, 'learning_rate': 1.6571428571428574e-05, 'epoch': 1.8}
+{'loss': 4.0588, 'grad_norm': 0.6669771671295166, 'learning_rate': 1.6527472527472526e-05, 'epoch': 1.82}
+{'loss': 4.2036, 'grad_norm': 0.6962862014770508, 'learning_rate': 1.6483516483516486e-05, 'epoch': 1.84}
+{'loss': 4.4389, 'grad_norm': 0.7887211441993713, 'learning_rate': 1.643956043956044e-05, 'epoch': 1.86}
+{'loss': 3.9529, 'grad_norm': 0.7038562893867493, 'learning_rate': 1.6395604395604397e-05, 'epoch': 1.88}
+{'loss': 4.1761, 'grad_norm': 0.6679680347442627, 'learning_rate': 1.6351648351648353e-05, 'epoch': 1.9}
+{'loss': 3.8065, 'grad_norm': 0.7072843909263611, 'learning_rate': 1.630769230769231e-05, 'epoch': 1.92}
+{'eval_loss': 4.0489702224731445, 'eval_runtime': 65.9536, 'eval_samples_per_second': 0.5, 'eval_steps_per_second': 0.5, 'epoch': 1.92}
+{'loss': 4.4875, 'grad_norm': 0.8712683320045471, 'learning_rate': 1.6263736263736265e-05, 'epoch': 1.95}
+{'loss': 3.6653, 'grad_norm': 0.6960321664810181, 'learning_rate': 1.621978021978022e-05, 'epoch': 1.97}
+{'loss': 4.2143, 'grad_norm': 0.7224685549736023, 'learning_rate': 1.6175824175824176e-05, 'epoch': 1.99}
+{'loss': 4.5573, 'grad_norm': 0.8916630744934082, 'learning_rate': 1.6131868131868135e-05, 'epoch': 2.0}
+{'loss': 4.437, 'grad_norm': 1.4002310037612915, 'learning_rate': 1.608791208791209e-05, 'epoch': 2.02}
+{'loss': 3.7665, 'grad_norm': 0.7315264344215393, 'learning_rate': 1.6043956043956047e-05, 'epoch': 2.04}
+{'loss': 3.7263, 'grad_norm': 0.7051776647567749, 'learning_rate': 1.6000000000000003e-05, 'epoch': 2.06}
+{'loss': 4.2845, 'grad_norm': 1.1479501724243164, 'learning_rate': 1.595604395604396e-05, 'epoch': 2.09}
+{'loss': 3.7243, 'grad_norm': 0.6878781318664551, 'learning_rate': 1.591208791208791e-05, 'epoch': 2.11}
+{'loss': 3.8936, 'grad_norm': 0.6989081501960754, 'learning_rate': 1.586813186813187e-05, 'epoch': 2.13}
+    trainer_stats = unsloth_train(trainer) # trainer.train() #
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/trainer.py", line 45, in unsloth_train
+    return trainer.train(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 382, in _fast_inner_training_loop
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3096, in _maybe_log_save_evaluate
+    metrics = self._evaluate(trial, ignore_keys_for_eval)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3045, in _evaluate
+    metrics = self.evaluate(ignore_keys=ignore_keys_for_eval)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4154, in evaluate
+    output = eval_loop(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4348, in evaluation_loop
+    losses, logits, labels = self.prediction_step(model, inputs, prediction_loss_only, ignore_keys=ignore_keys)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4564, in prediction_step
+    loss, outputs = self.compute_loss(model, inputs, return_outputs=True)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/UnslothSFTTrainer.py", line 748, in compute_loss
+    outputs = super().compute_loss(
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/_utils.py", line 1029, in _unsloth_pre_compute_loss
+    outputs = self._old_compute_loss(model, inputs, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3801, in compute_loss
+    outputs = model(**inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 814, in forward
+    return model_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 802, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/usr/local/lib/python3.10/dist-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/peft/peft_model.py", line 1756, in forward
+    return self.base_model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/peft/tuners/tuners_utils.py", line 193, in forward
+    return self.model.forward(*args, **kwargs)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/unsloth_compiled_module_llama.py", line 588, in forward
+    return LlamaForCausalLM_forward(self, input_ids, attention_mask, position_ids, past_key_values, inputs_embeds, labels, use_cache, output_attentions, output_hidden_states, cache_position, logits_to_keep, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/unsloth_compiled_module_llama.py", line 411, in LlamaForCausalLM_forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 571, in forward
+    layer_outputs = decoder_layer(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 334, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/unsloth_compiled_module_llama.py", line 223, in forward
+    return LlamaMLP_forward(self, x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 574, in _fn
+    return fn(*args, **kwargs)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/unsloth_compiled_module_llama.py", line 206, in LlamaMLP_forward
+    @torch.compile(fullgraph = False, dynamic = True, options = torch_compile_options)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/aot_autograd.py", line 1184, in forward
+    return compiled_fn(full_args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 323, in runtime_wrapper
+    all_outs = call_func_at_runtime_with_args(
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/utils.py", line 126, in call_func_at_runtime_with_args
+    out = normalize_as_list(f(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 672, in inner_fn
+    outs = compiled_fn(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 490, in wrapper
+    return compiled_fn(runtime_args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/output_code.py", line 466, in __call__
+    return self.current_callable(inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/utils.py", line 2128, in run
+    return model(new_inputs)
+  File "/tmp/torchinductor_root/ez/cezavh6mvmw3gaq6z3ypdn4ebixzekzascciouypn4mxjaqlppdd.py", line 224, in call
+    pool4 = empty_strided_cuda((s0, 11008), (11008, 1), torch.bfloat16)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 392.00 MiB. GPU 0 has a total capacity of 39.39 GiB of which 103.31 MiB is free. Process 4180159 has 23.90 GiB memory in use. Process 35874 has 15.33 GiB memory in use. Of the allocated memory 23.23 GiB is allocated by PyTorch, and 148.94 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/open_source_models/ft_unsloth_sabia8b.py", line 212, in <module>
+    trainer_stats = unsloth_train(trainer) # trainer.train() #
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/trainer.py", line 45, in unsloth_train
+    return trainer.train(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "<string>", line 382, in _fast_inner_training_loop
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3096, in _maybe_log_save_evaluate
+    metrics = self._evaluate(trial, ignore_keys_for_eval)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3045, in _evaluate
+    metrics = self.evaluate(ignore_keys=ignore_keys_for_eval)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4154, in evaluate
+    output = eval_loop(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4348, in evaluation_loop
+    losses, logits, labels = self.prediction_step(model, inputs, prediction_loss_only, ignore_keys=ignore_keys)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 4564, in prediction_step
+    loss, outputs = self.compute_loss(model, inputs, return_outputs=True)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/UnslothSFTTrainer.py", line 748, in compute_loss
+    outputs = super().compute_loss(
+  File "/usr/local/lib/python3.10/dist-packages/unsloth/models/_utils.py", line 1029, in _unsloth_pre_compute_loss
+    outputs = self._old_compute_loss(model, inputs, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/trainer.py", line 3801, in compute_loss
+    outputs = model(**inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 814, in forward
+    return model_forward(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/utils/operations.py", line 802, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/usr/local/lib/python3.10/dist-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/peft/peft_model.py", line 1756, in forward
+    return self.base_model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/peft/tuners/tuners_utils.py", line 193, in forward
+    return self.model.forward(*args, **kwargs)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/unsloth_compiled_module_llama.py", line 588, in forward
+    return LlamaForCausalLM_forward(self, input_ids, attention_mask, position_ids, past_key_values, inputs_embeds, labels, use_cache, output_attentions, output_hidden_states, cache_position, logits_to_keep, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/unsloth_compiled_module_llama.py", line 411, in LlamaForCausalLM_forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 571, in forward
+    layer_outputs = decoder_layer(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/models/llama/modeling_llama.py", line 334, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/unsloth_compiled_module_llama.py", line 223, in forward
+    return LlamaMLP_forward(self, x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 574, in _fn
+    return fn(*args, **kwargs)
+  File "/workspace/master_thesis/master_thesis/open_source_models/unsloth_compiled_cache/unsloth_compiled_module_llama.py", line 206, in LlamaMLP_forward
+    @torch.compile(fullgraph = False, dynamic = True, options = torch_compile_options)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/aot_autograd.py", line 1184, in forward
+    return compiled_fn(full_args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 323, in runtime_wrapper
+    all_outs = call_func_at_runtime_with_args(
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/utils.py", line 126, in call_func_at_runtime_with_args
+    out = normalize_as_list(f(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 672, in inner_fn
+    outs = compiled_fn(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 490, in wrapper
+    return compiled_fn(runtime_args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/output_code.py", line 466, in __call__
+    return self.current_callable(inputs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_inductor/utils.py", line 2128, in run
+    return model(new_inputs)
+  File "/tmp/torchinductor_root/ez/cezavh6mvmw3gaq6z3ypdn4ebixzekzascciouypn4mxjaqlppdd.py", line 224, in call
+    pool4 = empty_strided_cuda((s0, 11008), (11008, 1), torch.bfloat16)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 392.00 MiB. GPU 0 has a total capacity of 39.39 GiB of which 103.31 MiB is free. Process 4180159 has 23.90 GiB memory in use. Process 35874 has 15.33 GiB memory in use. Of the allocated memory 23.23 GiB is allocated by PyTorch, and 148.94 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

@@ -1,0 +1,12 @@
+Filter: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 898/898 [00:00<00:00, 26545.85 examples/s]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:31<00:00,  5.24s/it]
+Device set to use cuda:0
+Batches:   0%|                                                                                                                                                   | 0/449 [03:28<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/228446@hertie-school.lan/workspace/master_thesis/experiments_inference/run_HF_phi4_4B_sample_tjsp.py", line 121, in <module>
+    text = out["generated_text"]
+TypeError: list indices must be integers or slices, not str
+Traceback (most recent call last):
+  File "/home/228446@hertie-school.lan/workspace/master_thesis/experiments_inference/run_HF_phi4_4B_sample_tjsp.py", line 121, in <module>
+    text = out["generated_text"]
+TypeError: list indices must be integers or slices, not str

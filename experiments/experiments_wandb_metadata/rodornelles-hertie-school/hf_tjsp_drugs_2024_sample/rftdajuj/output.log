@@ -1,0 +1,37 @@
+Filter: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 898/898 [00:00<00:00, 26013.61 examples/s]
+Traceback (most recent call last):
+  File "/home/228446@hertie-school.lan/workspace/master_thesis/experiments_inference/run_HF_phi4_4B_sample_tjsp.py", line 62, in <module>
+    pipe = pipeline(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/__init__.py", line 942, in pipeline
+    framework, model = infer_framework_load_model(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/base.py", line 291, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+    return func(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4336, in from_pretrained
+    config = cls._autoset_attn_implementation(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2109, in _autoset_attn_implementation
+    cls._check_and_enable_flash_attn_2(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2252, in _check_and_enable_flash_attn_2
+    raise ImportError(f"{preface} the package flash_attn seems to be not installed. {install_message}")
+ImportError: FlashAttention2 has been toggled on, but it cannot be used due to the following error: the package flash_attn seems to be not installed. Please refer to the documentation of https://huggingface.co/docs/transformers/perf_infer_gpu_one#flashattention-2 to install Flash Attention 2.
+Traceback (most recent call last):
+  File "/home/228446@hertie-school.lan/workspace/master_thesis/experiments_inference/run_HF_phi4_4B_sample_tjsp.py", line 62, in <module>
+    pipe = pipeline(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/__init__.py", line 942, in pipeline
+    framework, model = infer_framework_load_model(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/base.py", line 291, in infer_framework_load_model
+    model = model_class.from_pretrained(model, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+    return func(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4336, in from_pretrained
+    config = cls._autoset_attn_implementation(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2109, in _autoset_attn_implementation
+    cls._check_and_enable_flash_attn_2(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2252, in _check_and_enable_flash_attn_2
+    raise ImportError(f"{preface} the package flash_attn seems to be not installed. {install_message}")
+ImportError: FlashAttention2 has been toggled on, but it cannot be used due to the following error: the package flash_attn seems to be not installed. Please refer to the documentation of https://huggingface.co/docs/transformers/perf_infer_gpu_one#flashattention-2 to install Flash Attention 2.

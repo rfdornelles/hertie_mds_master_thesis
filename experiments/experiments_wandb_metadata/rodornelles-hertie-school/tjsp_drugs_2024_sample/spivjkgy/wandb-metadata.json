@@ -1,0 +1,60 @@
+{
+  "os": "Linux-5.15.0-113-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.12",
+  "startedAt": "2025-04-25T17:18:45.812540Z",
+  "program": "/workspace/master_thesis/master_thesis/experiments_inference/run_phi4_4B_sample_tjsp.py",
+  "codePath": "experiments_inference/run_phi4_4B_sample_tjsp.py",
+  "git": {
+    "remote": "https://github.com/rfdornelles/hertie_mds_master_thesis",
+    "commit": "adc3ec9a37059eee31ff3fbe1420779176886d70"
+  },
+  "email": "rodornelles@gmail.com",
+  "root": "/workspace/master_thesis/master_thesis/experiments_inference",
+  "host": "7783fa843c9d",
+  "executable": "/usr/bin/python3",
+  "codePathLocal": "run_phi4_4B_sample_tjsp.py",
+  "cpu_count": 64,
+  "cpu_count_logical": 128,
+  "gpu": "NVIDIA A100-PCIE-40GB",
+  "gpu_count": 4,
+  "disk": {
+    "/": {
+      "total": "3778808184832",
+      "used": "3614663950336"
+    }
+  },
+  "memory": {
+    "total": "540662902784"
+  },
+  "cpu": {
+    "count": 64,
+    "countLogical": 128
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA A100-PCIE-40GB",
+      "memoryTotal": "42949672960",
+      "cudaCores": 6912,
+      "architecture": "Ampere"
+    },
+    {
+      "name": "NVIDIA A100-PCIE-40GB",
+      "memoryTotal": "42949672960",
+      "cudaCores": 6912,
+      "architecture": "Ampere"
+    },
+    {
+      "name": "NVIDIA A100-PCIE-40GB",
+      "memoryTotal": "42949672960",
+      "cudaCores": 6912,
+      "architecture": "Ampere"
+    },
+    {
+      "name": "NVIDIA A100-PCIE-40GB",
+      "memoryTotal": "42949672960",
+      "cudaCores": 6912,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.2"
+}
