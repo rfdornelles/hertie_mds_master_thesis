@@ -363,7 +363,7 @@ accuracy_metadata |>
 ## Overview 
 Following @dominguez-olmedo_lawma_2024 conclusion, we gathered hundreds of judicial sentences already annotated and labeled by an expert to be both the quality measurement of the model and the source of training. The input data permitted us to assess how well the models performed and feed them with training cases to generalize to new cases never seen before.
 
-![Illustration of the extraction of information from a judicial decision. There are multiple tasks that depend on understanding the text and following rules](images/schema-extraction.png){#fig-schema-extraction}
+![Illustration of the extraction of information from a judicial decision. There are multiple tasks that depend on understanding the text and following rules](images/schema-extraction.png){#fig-schema-extraction width="500px"}
 
 After the processes to gather and clean the data discussed before, the steps were the following:  1) build a prompt and data schema, 2) pipeline to run commercial models; 3) parsing algorithm, 4) evaluation algorithm; 5) pipeline to test open-source models and 6) pipeline to fine-tune models.
 
