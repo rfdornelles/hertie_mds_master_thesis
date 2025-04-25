@@ -65,5 +65,5 @@ df_drug_cases_sample <- df_drug_cases |>
 df_drug_cases_sample |> 
   dplyr::count(ano)
 
-arrow::write_parquet(df_drug_cases, "data/sample_454_tjsp_drug_cases_2024-2025_v1.parquet")
+arrow::write_parquet(df_drug_cases_sample, "data/sample_454_tjsp_drug_cases_2024-2025_v1.parquet")
 
