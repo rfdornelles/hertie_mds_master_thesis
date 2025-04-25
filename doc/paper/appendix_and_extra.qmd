@@ -10,18 +10,97 @@ lacerda_example |>
   skimr::skim()
 ```
 
-# Appendix II - Prompt
+# Appendix - Prompt {#sec-annex-prompt}
 
 Lorem ipsum
 
-# Appendix III - Fine tune performance
+# Appendix - Fine tune performance {#sec-ft-performance}
 
 Lorem ipsum
 
-# Appendix IV - Plots and tables
+# Appendix - Plots and tables {#sec-plots-tables}
 
 Lorem ipsum
 
-# Appendix V - Acknowledgments
+# Appendix - Acknowledgments {#sec-thank-you}
 
 Vetor Brasil, ChancenEg. Marina Lacerda Silva, Lynn Kaack, Huy Dang, Sascha. Prof. Susana Henriques da Costa, José Jesus Filho, Associação Brasileira de Jurimetria e Jusbrasil. MDS classes of 2023 and 2025, the Latin-American Club specially the Brazilians. Special thanks to João Vitor Krieger, Renan Barbosa. Also, a grateful to Fernanda Horn, Vitor Moneo, Orisha, Meirelles.
+
+# Appendix - Description of NLP Tasks {#sec-nlp-tasks}
+
+```{r}
+#| label: tbl-nlp-task
+#| tbl-cap: Mapping of columns to traditional NLP tasks
+
+tibble::tribble(
+  ~column,                             ~data_type_task,          ~nlp_task,                    ~explanation,
+  # numeric QA
+  "maconha_g",                         "numeric",               "numeric_qa",                 "extract numeric value",
+  "cocaina_g",                         "numeric",               "numeric_qa",                 "extract numeric value",
+  "crack_g",                           "numeric",               "numeric_qa",                 "extract numeric value",
+  "ecstasy_g",                         "numeric",               "numeric_qa",                 "extract numeric value",
+  "lsd_g",                             "numeric",               "numeric_qa",                 "extract numeric value",
+  "tot_pen_meses",                     "numeric",               "numeric_qa",                 "extract numeric value",
+  
+  # binary classification flags
+  "aval_antecedentes",                 "boolean",               "binary_classification",      "binary classification flag",
+  "aval_conduta",                      "boolean",               "binary_classification",      "binary classification flag",
+  "aval_personalidade",                "boolean",               "binary_classification",      "binary classification flag",
+  "aval_natureza",                     "boolean",               "binary_classification",      "binary classification flag",
+  "aval_quantidade",                   "boolean",               "binary_classification",      "binary classification flag",
+  "aval_variedade",                    "boolean",               "binary_classification",      "binary classification flag",
+  "aval_circunstancias",               "boolean",               "binary_classification",      "binary classification flag",
+  "aval_consequencias",                "boolean",               "binary_classification",      "binary classification flag",
+  "aval_culpabilidade",                "boolean",               "binary_classification",      "binary classification flag",
+  "resultado_art_28",                  "boolean",               "binary_classification",      "binary classification flag",
+  "resultado_art_33",                  "boolean",               "binary_classification",      "binary classification flag",
+  "resultado_art_34",                  "boolean",               "binary_classification",      "binary classification flag",
+  "resultado_art_35",                  "boolean",               "binary_classification",      "binary classification flag",
+  "denuncia_art_33",                   "boolean",               "binary_classification",      "binary classification flag",
+  "denuncia_art_34",                   "boolean",               "binary_classification",      "binary classification flag",
+  "denuncia_art_35",                   "boolean",               "binary_classification",      "binary classification flag",
+  
+  # yes/no QA flags
+  "maconha",                           "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "maconha_outras",                    "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "cocaina",                           "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "crack",                             "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "ecstasy",                           "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "lsd",                               "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "outras_drogas",                     "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "flag_local_de_trafico",             "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "flag_preso_no_momento_da_sentenca", "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "flag_confissao_informal",           "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "flag_confissao",                    "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "flag_denuncia_anonima",             "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "flag_denuncia",                     "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "flag_atitude_suspeita",             "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "flag_divergencias_nos_relatos_dos_policiais", "boolean",        "yesno_qa",                   "yes/no QA flag",
+  "flag_investigacao",                 "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "flag_interceptacao",                "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "flag_mandado",                      "boolean",               "yesno_qa",                   "yes/no QA flag",
+  
+  # multiclass classification
+  "local",                             "categorical",           "multiclass_classification",  "multi-class classification",
+  "sentenca",                          "categorical",           "multiclass_classification",  "multi-class classification",
+  
+  # open-text normalization
+  "juiz",                              "open_textual",          "open_text_normalization",    "normalize text field",
+  "nome",                              "open_textual",          "open_text_normalization",    "normalize text field",
+  
+  # span extraction (NER)
+  "pena_base",                         "span",                  "named_entity_recognition",   "extract text span",
+  "tot_pen",                           "span",                  "named_entity_recognition",   "extract text span"
+) |>
+  knitr::kable() |>
+  kableExtra::kable_paper(
+    latex_options = "striped",
+    full_width = FALSE,
+    font_size = 7
+  ) |>
+  kableExtra::column_spec(1, width = "15em") |>
+  kableExtra::column_spec(2, width = "17em") |>
+  kableExtra::column_spec(3, width = "17em") |>
+  kableExtra::column_spec(4, width = "20em")
+
+```
