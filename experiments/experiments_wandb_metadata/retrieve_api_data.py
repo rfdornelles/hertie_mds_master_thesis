@@ -125,21 +125,18 @@ print("\n✅ Final table saved as: wandb_runs_table.csv")
 print(df.head())
 
 # filter only finished runs
-filtered_df = df[df['state'] == 'finished']
+# filtered_df = df[df['state'] == 'finished']
 # only relative to ft not containing inference
-filtered_df = filtered_df[~filtered_df['run_name'].str.contains(r'inference')]
-filtered_df = filtered_df[filtered_df['run_name'].str.contains(r'ft|finetune')]
-# order by metric_eval/runtime
-filtered_df = filtered_df.sort_values(by='metric_eval/runtime', ascending=False)
 
 interest_experiment = [
     'ft_hf_lora_Phi-4_v1_2025-04-15_14-00-56',
     'ft_lora_sabia-7b_v1_2025-04-25_17-01-57',
+    'ft_lora_sabia-7b_v1_2025-04-25_16-23-11',
     'ft_unsloth__Llama-3.2-3B-Instruct_v1_2025-04-13_17-52-07'
 ]
 
 ## retrieve the run_ids of the interest_experiment
-run_ids = filtered_df[filtered_df['run_name'].isin(interest_experiment)]['run_id'].tolist()
+run_ids = df[df['run_name'].isin(interest_experiment)]['run_id'].tolist()
 
 # collect all per-step rows here
 rows = []
@@ -147,7 +144,7 @@ rows = []
 
 ENTITY   = "rodornelles-hertie-school"
 PROJECT  = "master_thesis-open_source_models"
-SAMPLES  = 10_000
+SAMPLES  = 100000
 
 
 TRAIN_KEYS = ["train/loss", "loss_train", "metric_loss_train"]
@@ -182,14 +179,6 @@ for run_id in run_ids:
     df.loc[df["loss_eval"]  == 0, "loss_eval"]  = np.nan
     df[["loss_train", "loss_eval"]] = df[["loss_train", "loss_eval"]].ffill()
 
-    # Normalize loss values into the range 0 to 1 for each column
-    for col in ["loss_train", "loss_eval"]:
-        if col in df:
-            min_val = df[col].min()
-            max_val = df[col].max()
-            if pd.notnull(min_val) and pd.notnull(max_val) and (max_val - min_val) > 0:
-                df[col] = (df[col] - min_val) / (max_val - min_val)
-
     # 5) append every step of this run
     for _, r in df.iterrows():
         rows.append({
@@ -219,3 +208,5 @@ per_step_df = pd.concat([per_step_df, df_openai], ignore_index=True)
 out_path    = "losses_per_step_all_models.csv"
 per_step_df.to_csv(out_path, index=False)
 print(f"✅ Saved per-step losses to {os.path.abspath(out_path)}")
+
+# per_step_df.value_counts('model')
