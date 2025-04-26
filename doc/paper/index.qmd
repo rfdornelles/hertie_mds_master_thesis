@@ -1,41 +1,36 @@
-<!-- TODO: repo https://github.com/rfdornelles/hertie_mds_master_thesis/ -->
-
 <!-- TODO: statement of autorship -->
-
 <!-- TODO: statement of AI -->
-
 <!-- TODO: credit Steve Kerr https://github.com/smkerr/mpox-wiki-analysis/tree/main/7-paper/LaTeX%20template https://github.com/tecosaur/BMC -->
 
 ```{=latex}
 \begin{titlepage}
-    \centering
-    \includegraphics[width=0.75\textwidth]{images/hertie-school-logo.jpg}
-    \vspace*{\fill}
-    
-    \textbf{Jurimetrics in the Age of LLMs: Deploying Open‑Source Language Models for Empirical Insights into Brazilian Courts}\\
+  \centering
+  \includegraphics[width=0.75\textwidth]{images/hertie-school-logo.jpg}
+  \vspace*{\fill}
+  
+  \textbf{Jurimetrics in the Age of LLMs: Deploying Open‑Source Language Models for Empirical Insights into Brazilian Courts}\\
 
-    \vspace{2.5cm}
+  \vspace{2.5cm}
 
-    Rodrigo Filippi Dornelles
+  Rodrigo Filippi Dornelles
 
-    \vspace{1cm}
-    
-    Master of Data Science for Public Policy, Class of 2025\\
-    
-    \vspace{0.5cm}
+  \vspace{1cm}
+  
+  Master of Data Science for Public Policy, Class of 2025\\
+  
+  \vspace{0.5cm}
 
-    Berlin, April 28, 2025\\
+  Berlin, April 28, 2025\\
 
-    \vspace*{\fill}
+  \vspace*{\fill}
 
-    Supervised by Prof. Lynn Kaack, PhD
-    \vspace{0.5cm}
-    
-    Word count: 7,000 words
-
+  Supervised by Prof. Lynn Kaack, PhD
+  \vspace{0.5cm}
+  
+  Word count: 7,000 words
 \end{titlepage}
-```
 
+```
 <!-- TODO: add word count -->
 
 ```{=latex}
@@ -66,7 +61,6 @@
 \footnotetext{Message for the LVII World Day of Peace, 1 January 2024}
 \vspace*{0pt}
 \newpage
-
 ```
 
 ```{r}
@@ -92,41 +86,15 @@ ft_experiments <- c("3_open_ai_test_4o-mini",
 
 ```
 
-# Executive Summary {#sec-executive-summary}
+# Executive Summary^[The content of this research is available at: [https://github.com/rfdornelles/hertie_mds_master_thesis](https://github.com/rfdornelles/hertie_mds_master_thesis)] {#sec-executive-summary}
 
 <!-- 1 page -->
 
-Lorem ipsum dolor
+In this research we aim to analyze technichs that could leverage the empirical legal research in Brazil by applying machine learning technichs. After navigating through the empirical research landscape, we will define a research question and test it by applying several large language models.
 
-{{< pagebreak >}}
+We have a special interest in open-source models and we assume that is important to go beyond the current availability of commercial models to find a ideal setting that could benefit academia and the public sector. 
 
-# Introduction {#sec-introduction}
-
-```{=latex}
-\vspace*{\fill}
-
-\noindent\hfill
-\begin{minipage}{0.50\textwidth}
-\singlespacing
-\justifying
-
-\textit{\fontsize{10}{12}\selectfont"I promise to practice Law with dignity and independence, to observe ethics, professional duties and prerogatives and to defend the Constitution, the legal order of the Democratic State, human rights, social justice, the proper application of laws, the rapid administration of justice and \textbf{the improvement of legal culture and institutions}."
-}
-\vspace{1ex}
-\begin{flushright}
-\textit{Oath of the Legal Profession\footnotemark}
-\end{flushright}
-\end{minipage}
-
-\footnotetext{\mbox{Art.} 20, General Regulation of the Statute of the Lawyer Professorship, Brazilian Bar Association}
-
-\vspace*{\fill}
-
-```
-
-## Context
 <!--
-
 -   context:
     -   law is a fundamental aspect in governance and, therefore, to well being
     -   however, law is heavely dogmatic and there is little empirical legal research in the country.
@@ -136,15 +104,42 @@ Lorem ipsum dolor
     -   relevant to a policy school; in a data science program it's specially relevant to point out solutions to improve this field and offer policy recommendations in the light of the state of the art
 -   contribution: pipeline, analyse, at least 1 os model trained
 
+
 -->
+
+{{< pagebreak >}}
+
+# Introduction {#sec-introduction}
+```{=latex}
+\vspace*{\fill}
+\noindent\hfill
+\begin{minipage}{0.50\textwidth}
+\singlespacing
+\justifying
+\textit{\fontsize{10}{12}\selectfont"I promise to practice Law with dignity and independence, to observe ethics, professional duties and prerogatives and to defend the Constitution, the legal order of the Democratic State, human rights, social justice, the proper application of laws, the rapid administration of justice and \textbf{the improvement of legal culture and institutions}."
+}
+\vspace{1ex}
+\begin{flushright}
+\textit{Oath of the Legal Profession\footnotemark}
+\end{flushright}
+\end{minipage}
+
+\footnotetext{\mbox{Art.} 20, General Regulation of the Statute of the Lawyer Professorship, Brazilian Bar Association}
+\vspace*{\fill}
+```
+
+
+## Context
 
 -   **The lack of legal empirical research:** In Brazil, empirical legal research remains limited. However, it has recently become increasingly common to find studies based on this approach as demonstrated by @cabrera_de_bonito_pesquisa_2025.
 
--   **SOTA of legal research**: Those studies, however, still use little data from lawsuits and judicial precedents. Some of them use more qualitative/observational methods. In order to achieve a deeper and broader analysis, it is necessary to have a high level of financial resources and a big and highly qualified research team. <!--TODO: move to lit review --> Examples of outstanding and important empirical research that showed the relevance of this staff: @associacao_brasileira_de_jurimetria_avaliacao_2019, @costa_eficacia_2011, @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023.
+-   **SOTA of legal research**: Those studies, however, still use little data from lawsuits and judicial precedents. Some of them use more qualitative/observational methods. In order to achieve a deeper and broader analysis, it is necessary to have a high level of financial resources and a big and highly qualified research team.
+ <!--TODO: move to lit review --> 
+ 
+ Examples of outstanding and important empirical research that showed the relevance of this staff: @associacao_brasileira_de_jurimetria_avaliacao_2019, @costa_eficacia_2011, @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023.
 
 -   **Exploratory legal data analysis**: It is possible to analyze the metadata of legal cases. Doing this would be helpful for exploratory analysis and formulating a hypothesis. Data from lawsuits are also used, as some examples show. In @dornelles_o_2021, data extracted from the Brazilian Supreme Court were used to describe the volume of new actions in the Court during Bolsonaro's administration:
 
-<!-- TODO: pick Susana's plot --> 
 ![Evolution of new lawsuits each year in the Brazilian Supreme Court. Markers indicate the different presidential periods. @dornelles_o_2021.](images/grafico_distribuicao_acoes.png){#fig-evolution width="600px"}
 
 -   **Robust research**: More legal research beyond metadata is needed. To do that, complex documents must be analyzed in depth. Those documents are often relatively large and full of legal jargon, meaning that legal specialists must also do the analysis or at least oversee it.
@@ -159,82 +154,31 @@ Lorem ipsum dolor
 
 
 ## Contributions
-<!-- LLM as a way towards jurimetrics-->
 
-<!-- 
-  * context:
-    - law is a fundamental aspect in governance and, therefore, to well being
-    - however, law is heavely dogmatic and there is little empirical legal research in the country. 
-    - to do empirical research on law the data mining process is specially complicated, not because the lack of material -- Judiciary in BR is full digitalized -- but to analyze a large volume of data, with it's specific linguo
-    - the first obstacle to a data-driving analysis in law is how to manage text data in large scale and extract structured information from it: one could easily take months to properly analyze few dozens of complex documents. 
-    - one side-hipothesis: our legal studies and legislative production is suboptimal, due the lack of evidence based decisions
-    - relevant to a policy school; in a data science program it's specially relevant to point out solutions to improve this field and offer policy recommendations in the light of the state of the art
-  * research gap: lack of empirical legal research in Brazil; very few studies based on empirical research but, when they happen, they may high impact
-  * research opportunity: natural language processing, specially the advent of LLMs
-  * RQ: is possible to deploy LLMs to analyze legal documents and extract structured information from they? and -- assuming that academia and public service would refrain using commercial models -- are open source models a feasible tool?
-  * contribution: pipeline, analyse, at least 1 os model trained
-  * literature: lawma, tucano, marina lacerda, rayssa, abj drogas,
-  
-  * method:
-    - gathered data from judicial sentences in São Paulo
-    - received access from dataset from Lacerda: ± 400 judicial sentences labelled
-    - cleaned data
-    - prompt engeneering
-    - used commercial OS (OpenAI) as baseline
-    - tryied the OS models
-      - llama
-      - gemma
-      - tucano
-      - lawma
-      - lola
-    - libraries HF and unsloth
-    - ft models
-    - compared their performance
-    - limitations: 
-      - drug traffic, sao paulo
-      - 2017/2018
-      - only models that were possible to access
-      - small sample to ft and test
-      - tucano, lawma:
-        - context window was too short to legal docs;
-        - tried with no success to apply rope scaling or yarn
-        - tried RAG to retrieve relevant parts; tried rag to squish the text
-        - possibility: try a task-based prompt -- still limited window, but might be sufficient to many documents
-        - lack of computational resources
-  * results
-      - os: 
-        - cons: difficult to manage, several have short context window; computationaly intensive;
-        - pro: privacy; costs; fast paced; adaptability; full control;
-      - comercial:
-        - cons: privacy; costs; 
-        - pro: reliability; easiness; credibility
-      - indeed, specialization is a good strategy
-      - have good potential, altough more testing is needed 
-    - future research:
-      - quantization; prunning; distillation;
-      - task-based approach
-    - policy recs:
-      - academia: open the data from the empirical studies -\-\-> corpus of legal label
-      - os community: larger context windows, more light models
-      - judiciary branch: improve metadata recollection and open access to judicial decisoms
-    
-    * conclusions:
-      - llms are good tools to leverage empirical legal research in BR
-      - commercial models: still up to date a good strategy, despite of its costs and privacy issues
-        - pre-process to anonymize is an option
-      - os models: feasible and decent baseline performances in certain models; ft is a good strategy that increases a lot performance
+* test the method
+* models
+* dataset
 
-    
--->
+# Related Work
 
-# Literature Review
+lorem
 
-Examples of outstanding and important empirical research that showed the relevance of this staff: @associacao_brasileira_de_jurimetria_avaliacao_2019, @costa_eficacia_2011, @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023.
+## Teorethical Framework {#sec-teorethical-framework}
 
--   **Brazilian legal research landscape**: @alves_da_silva_aspectos_2022, @cabrera_de_bonito_pesquisa_2025
--   **LLMs applied to legal field**: @junior_juru_2024, @katz_natural_2023, @bertalan_predicting_nodate
--   **LLMs in Portuguese**: @niklaus_multilegalpile_2023, @almeida_sabia-2_2024, @pires_sabia_2023
--   **Specialization in Legal Tasks**: This is the paper that most gave actionable inputs to this research: @dominguez-olmedo_lawma_2024. Also @junior_juru_2024 
+-   **Natural Language Processing**
+-   **LLMs**
+-   **Fine tuning**: Using @dominguez-olmedo_lawma_2024 strategy.
+-   **LoRA**: @daniel_han_unsloth_2023
+-   I'm assuming that the the main contribution would be in the first stage of the data science cicle @wickham_r_2023
+    ![Data science cicle [@wickham_r_2023]](images/r4ds_data_science_cicle.png){.Fig width="624"}
+-   NLP: @vajjala_practical_2020: tasks such as "text classification, information extraction, information retrieval, conversational agent, text summarization, question anserwing, machine translation"
+    !['NLP tasks organized according to their relative difficulty' [@vajjala_practical_2020]](images/vajjala-2020_nlp_complexity.png){width="441"}
+-   LLMs: 'ushered in a new era for natural language processing (NLP)'; "are deep neural networks models; developed over the past few years", 'NLP models performed well in many tasks' -- they focused on specific tasks; 'failed on follow complex instructions, contextual analysis and creating coherent and contextually appropriate original text'. @raschka_build_2024
+-   chose sota models, both commercial and open source
+-   gathered data, cleaned and adapted: @lacerda_e_silva_punindo_2021
+
+## Empircal Legal Research
+
 <!--
 @alves_da_silva_aspectos_2022 paulo: 'O que se entende por pesquisa empírica em direito? A pesquisa empírica em direito é uma pesquisa que toma por objeto não exclusivamente leis e normas, mas principalmente o fenômeno jurídico em sua manifestação concreta' Não olha somente a lei posta, positivada, mas os modos como a lei atua na vida das pessoas e no funcionamento das instituições. A pesquisa empírica em direito, em resumo, analisa o fenômeno jurídico em um sentido mais amplo do que normalmente se lhe atribui na dinâmica de suas manifestações concretas.
 
@@ -262,7 +206,11 @@ jurimetrics @ribeiro_jurimetria_2022 <!--The application of statistics to law, a
 
 <!-- There is currently a major technological revolution underway in the Brazilian judiciary. Cases are undergoing a phase of computerization and digitization, and the Electronic Judicial Process presents, on the one hand, challenges for lawyers who have been forced to update and relearn how to file petitions in a digital environment and, on the other hand, challenges for the Judiciary itself in implementing secure and cohesive systems. Although all cases are now digital, much work remains to achieve data uniformity, which makes research—especially quantitative research—more difficult. A basic example: case numbers should be standardized across all branches of the judiciary throughout Brazil, in accordance with the determinations of CNJ Resolution No. 65/2008. However, there are still ongoing cases that do not follow this rule, hindering the tracking of cases.
 -->
+
 -   literature: lawma, tucano, marina lacerda, rayssa, abj drogas @dominguez-olmedo_lawma_2024, @correa_tucano_2024, @lacerda_e_silva_punindo_2021, @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023, @associacao_brasileira_de_jurimetria_avaliacao_2019, @costa_eficacia_2011, @benatti_gender_2024
+
+
+## Large Language Models Applied to the Legal Field
 
 <!---
 The primary focus is the lack of empirical research in the legal field and the costly, time-consuming nature of conducting such studies. While traditional legal research, like that of the Brazilian Applied Economics Institute, and jurimetrics research using data-driven techniques exist, they are limited. In contrast, recent advancements in the application of LLMs to the legal field in the U.S. (e.g., Dominguez-Olmedo et al., Lawma: The Power of Specialization for Legal Tasks) show promise. My thesis will explore the role of open-source models, techniques for their specialization in legal tasks, and the costs of their deployment.
@@ -274,85 +222,125 @@ The primary focus is the lack of empirical research in the legal field and the c
 @junior_juru_2024: 'In this study, we presented the Juru model, a large language model specialized for the Brazilian legal domain using 3.7 billion tokens. Despite its smaller size and limited data, we observed an expressive improvement in the model’s ability to resolve multiple-choice questions within the Brazilian legal domain. Our primary finding highlights the effectiveness of domain specialization in improving LLM performance with fewer data, thus reducing pretraining costs, at the expense of the model’s performance degradation in other knowledge domains within the target language.'
 --->
 
+## Large Language Models in Portuguese
+
+## Specialization in Legal Tasks
+Examples of outstanding and important empirical research that showed the relevance of this staff: @associacao_brasileira_de_jurimetria_avaliacao_2019, @costa_eficacia_2011, @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023.
+
+-   **Brazilian legal research landscape**: @alves_da_silva_aspectos_2022, @cabrera_de_bonito_pesquisa_2025
+-   **LLMs applied to legal field**: @junior_juru_2024, @katz_natural_2023, @bertalan_predicting_nodate
+-   **LLMs in Portuguese**: @niklaus_multilegalpile_2023, @almeida_sabia-2_2024, @pires_sabia_2023
+-   **Specialization in Legal Tasks**: This is the paper that most gave actionable inputs to this research: @dominguez-olmedo_lawma_2024. Also @junior_juru_2024 
+
+## The research gap
+
+<!--> At one hand, we recognize a research gap regarding the lack of empirical legal research mainly in Brazil. On the other hand, we see an opportunity to apply the findings of the fast-paced field of natural language processing, empowered by the modern technichs from deep learning. Giving this setting, the research questions relies on: 1. How can large language models be deployed in the Brazilian legal context to accurately extract information, recognize entities, and summarize complex legal documents, considering factors such as cost, computational eﬀiciency, and the specific challenges of legal language and document structure?
+
+---> 
+
 # Research Question {#sec-research_question}
 
 Can open-source large language models be deployed in the Brazilian legal context to accurately extract information, recognize entities, and draw conclusions from complex legal documents, compared to leading proprietary systems?
 
+<!--
 -- what is complex
 -- legal context in BR
 -- accurately -- high leavel of accuracy
 
-At one hand, we recognize a research gap regarding the lack of empirical legal research mainly in Brazil. On the other hand, we see an opportunity to apply the findings of the fast-paced field of natural language processing, empowered by the modern technichs from deep learning. Giving this setting, the research questions relies on: 1. How can large language models be deployed in the Brazilian legal context to accurately extract information, recognize entities, and summarize complex legal documents, considering factors such as cost, computational eﬀiciency, and the specific challenges of legal language and document structure?
-
 This question implies: - is possible to use commercial llms in similar tasks - the new releases on open-source models might reached a point when those are also a <empolgante> perspective
-
+---> 
 <!-- * research gap: lack of empirical legal research in Brazil; very few studies based on empirical research but, when they happen, they may high impact
   * research opportunity: natural language processing, specially the advent of LLMs
   * RQ: is possible to deploy LLMs to analyze legal documents and extract structured information from they? and -- assuming that academia and public service would refrain using commercial models -- are open source models a feasible tool?
   
   -->
-<!-- TODO: bias and fairness --> 
 
-<!--- 
-# Teorethical Framework {#sec-teorethical-framework}
-
--   **Natural Language Processing**
-
--   **LLMs**
-
--   **Fine tuning**: Using @dominguez-olmedo_lawma_2024 strategy.
-
--   **LoRA**: @daniel_han_unsloth_2023
-
--   I'm assuming that the the main contribution would be in the first stage of the data science cicle @wickham_r_2023
-
-    ![Data science cicle [@wickham_r_2023]](images/r4ds_data_science_cicle.png){.Fig width="624"}
-
--   NLP: @vajjala_practical_2020: tasks such as "text classification, information extraction, information retrieval, conversational agent, text summarization, question anserwing, machine translation"
-
-    !['NLP tasks organized according to their relative difficulty' [@vajjala_practical_2020]](images/vajjala-2020_nlp_complexity.png){width="441"}
-
--   LLMs: 'ushered in a new era for natural language processing (NLP)'; "are deep neural networks models; developed over the past few years", 'NLP models performed well in many tasks' -- they focused on specific tasks; 'failed on follow complex instructions, contextual analysis and creating coherent and contextually appropriate original text'. @raschka_build_2024
-
--   chose sota models, both commercial and open source
-
--   gathered data, cleaned and adapted: @lacerda_e_silva_punindo_2021
-
--   design a prompt to extract the same features, according with Lacerda e Silva's dictionary. prompting relies on the ability of the model 'understand' specific instructions and act accordingly. So with several iterations, it was possible to guide the model on how to perform the task
-
--   run models
-
--   fine tuned
-
--   test again
-
--   deep dive in the results
-
-<!-- * method: - gathered data from judicial sentences in São Paulo - received access from dataset from Lacerda: ± 400 judicial sentences labelled - cleaned data - prompt engeneering - used commercial OS (OpenAI) as baseline - tryied the OS models - llama - gemma - tucano - lawma - lola - libraries HF and unsloth - ft models - compared their performance - limitations: - drug traffic, sao paulo - 2017/2018 - only models that were possible to access - small sample to ft and test - tucano, lawma: - context window was too short to legal docs; - tried with no success to apply rope scaling or yarn - tried RAG to retrieve relevant parts; tried rag to squish the text - possibility: try a task-based prompt -- still limited window, but might be sufficient to many documents - lack of computational resources
---->
 # Data Sources and Models {#sec-data_sources_models}
 
 ## Datasets {#sec-datasets}
 
--   **Lacerda Dataset**: @lacerda_e_silva_punindo_2021 A comprehensive empirical analysis was conducted on over 400 legal cases related to drug trafficking. The researcher collected these cases from the São Paulo State Court of Justice (TJSP), focusing on a sample that covered the years 2017 and 2018. Approximately 35 features were manually annotated and labeled for each case. Access to the dataset was obtained by contacting the researcher, who provided it for further adaptation to meet the specific requirements of this research. Some of the original features also referred to other documents rather than the judicial decision, and, therefore, they were excluded (since it would not be reasonable that the model inferred that). Features related to biological data were also excluded for ethical reasons.
+Given the goals of this research, it would be necessary to gather a dataset containing judicial decisions and annotations over the features of interest. Theoretically, this deep learning method could be applied to any setting of judicial decisions as long as enough data and labels were available to represent the chosen features. The better the amount and quality of the data, the better the performance of the models over it. 
 
-Also, I have tried to access @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023 micro data to build a golden dataset since they have about 3.5k data points labelled. I have filled a freedom of information request and, although it is possible now to access the [general dataset](https://www.gov.br/mj/pt-br/assuntos/sua-protecao/politicas-sobre-drogas/pesquisa-e-informacao-3/pesquisa%20IPEA/pesquisa-ipea-perfil-processado-e-producao-de-provas), they have not provided the lawsuit identifier, so it was not possible to match each row in their dataset to a legal case and, therefore, to a specific document.
+With the digitalization of the Brazilian Judiciary branch, extracting this data from the source is not a significant technical challenge. However, obtaining labels and annotations to complement the raw text of the judicial decisions is a precondition for applying this method. 
 
--   **Judicial Decisions**: The documents relative to each decision case analyzed by the Lacerda Dataset were extracted automatically from the TJSP website. Since there is no API to that, the process was done using @filho_coleta_2020 package called {tjsp}. It gathered metadata of each case and the decision in string format in an R data frame. Some cases were collected by its .pdf files and read automatically.
+The primary data needed for this research is a comprehensive amount of judicial decisions. Given the Brazilian Judiciary branch's digitalization, scrapping this data from the source is not a huge technical challenge. However, obtaining labels and annotations in addition to the raw text of judicial decisions was fundamental. In testing and fine-tuning models, we should have a set of decisions and the features already extracted from them.
 
--   **Final dataset**: After cleaning, some duplications were excluded, and some documents were not collected; the final result was a dataset with 258 cases. Also, the final dataset contained 50 columns, which was due to some categorical features being transformed into a boolean. For instance, the column *DenDrogas* contained information about the most common articles of Law in the accusation. It was transformed into the columns *denuncia_art_33*, *denuncia_art_34*, and *denuncia_art_35*.
+Given the scope of this research and the need for at least a few hundred observations, the manual label was not feasible. So, instead of doing manual work to build a new dataset, the decision was to try to obtain data from other legal empirical researchers, such as @COSTA, which was not available.  
 
--   data from legal experts -- @lacerda_e_silva_punindo_2021
+Also, I have tried to access @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023 microdata to build a golden dataset since they have about 3.5k data points labeled through a filing a freedom of information request. It would have been a unique asset since the data was comprehensive regarding virtually all Common Justice Courts in Brazil, and, given the large size, it would be possible to try different training datasets and have a more comprehensive test dataset. 
+
+Due this request, is now possible to access the [general dataset](https://www.gov.br/mj/pt-br/assuntos/sua-protecao/politicas-sobre-drogas/pesquisa-e-informacao-3/pesquisa%20IPEA/pesquisa-ipea-perfil-processado-e-producao-de-provas). Nevertheless, despite many attempts to convince the provider, they have not provided the lawsuit identifier, so it was not possible to match each row in their dataset to a legal case and, therefore, to a specific document.
+
+### Lacerda's Dataset
+
+It was possible to reach out to the researcher in charge of a very carefully annotated dataset, @lacerda_e_silva_punindo_2021, which was used in her master's thesis. In this research, despite focusing only on São Paulo's Court of Justice (which is, by its turn, the biggest Court in Latin America), annotations were made in about  400 legal cases related to drug trafficking. Access to the dataset was obtained by contacting the researcher, who provided it for further adaptation to this research.
+
+The researcher collected these cases from the São Paulo State Court of Justice (TJSP), focusing on a sample covering 2017 and 2018. Approximately 35 features were manually annotated and labeled for each case. Some of the original features also referred to other documents rather than the judicial decision, and, therefore, they were excluded (since it would not be reasonable that the model inferred that). Features related to biological data were also excluded for ethical reasons.
+
+The documents used initially for each decision case analyzed by the Lacerda Dataset were extracted automatically from the TJSP database. We decided to re-collect data since, besides relevant parts of the original documents being only available in PDF, they also contained pieces of the political investigation collected from primary sources and were not available to the public. Also, this choice was relevant to respect privacy and be closer to real-life settings, where the data would likely come from the Court's public website.
+
+Since no official API exists to collect data, the process used the @filho_coleta_2020 R package called {tjsp}. It gathered metadata of each case and the judicial decision text in string format in an R data frame. In some circumstances, when the respective decision was not available on the public consultation website, it was manually re-collected in PDF format and read automatically using R^[Through the package pdftools].
+
+After transformation and data wrangling^[Mainly using the packages dplyr and tidyr in R], the final dataset contained 50 columns to adapt the data to this research. The different number of columns was due to some categorical features being transformed into boolean so that the model could extract it easier and less likely to lose information. For instance, the column *DenDrogas* contained information about the most common articles of Law in the accusation. It was transformed into the columns *denuncia_art_33*, *denuncia_art_34*, and *denuncia_art_35*.
+
+In addition, some duplicates and redundancies were excluded, and some documents were not collected due to missingness in the original dataset; the final result was a dataset with 258 cases, which were split into training (186 cases), test (39 cases), and validation (33 cases). 
+
+Finally, we decided to store the data in the .parquet format. This choice preserved the original column types and allowed seamless data interchange between Python and R.
+
 
 ## Models {#sec-models}
 
-<!--
-* name
-* family
-* parameters
-* release date
-* window context
---->
+In choosing the models, we tried to blend those that are specific to use cases (@dominguez-olmedo_lawma_2024), in Portuguese (@correa_tucano_2024, @pires_sabia_2023), or representative of the state-of-the-art (@openai_gpt-4_2024, @abdin_phi-4_2024, @team_gemma_2025). Of course, there were very high-quality models such as DeepSeek, Mistral, and many others, but it was not possible to experiment with them all. In @tbl-metadata, we have the list of the models applied in this study.  
+
+```{r}
+#| label: tbl-metadata
+#| tbl-cap: "Basemodels used"
+#| tbl-loc: "H"
+
+tbl_models <- tibble::tribble(
+  ~Model,         ~Family,    ~Param, ~Type,         ~Context,  ~Date,      ~URL,
+  "Sabiá",        "Sabiá",     "7 B", "open-source",   2048,     "2023-04-16","https://huggingface.co/papers/2304.07880",
+  "GPT 4o",       "OpenAI",    "unk.", "commercial",  128000,    "2024-05-13","https://openai.com/index/hello-gpt-4o/",
+  "GPT 4o-mini",  "OpenAI",    "unk.", "commercial",  128000,    "2024-07-18","https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
+  "Llama 3.1",    "Llama",     "8 B",  "open-source",  128000,    "2024-07-23","https://ai.meta.com/blog/meta-llama-3-1/",
+  "Lawma",        "Lawma",     "8 B",  "open-source",   8192,     "2024-07-23","https://huggingface.co/papers/2407.16615",
+  "Llama 3.2",    "Llama",     "3 B",  "open-source",  128000,    "2024-09-25","https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/",
+  "Tucano",       "Tucano",   "2.4 B","open-source",   2048,     "2024-11-12","https://nkluge-correa.github.io/Tucano/",
+  "Phi 4",        "Phi",      "14 B", "open-source",   16000,    "2024-12-13","https://techcommunity.microsoft.com/blog/aiplatformblog/introducing-phi-4-microsoft%E2%80%99s-newest-small-language-model-specializing-in-comple/4357090",
+  "o3-mini",      "OpenAI",    "unk.", "commercial",  200000,    "2025-01-31","https://platform.openai.com/docs/models/o3-mini",
+  "Gemma 3 (27B)","Gemma",    "27 B", "open-source",  128000,    "2025-03-12","https://huggingface.co/google/gemma-3-27b-it",
+  "Gemma 3 (12B)","Gemma",    "12 B", "open-source",  128000,    "2025-03-13","https://huggingface.co/google/gemma-3-12b-it",
+  "Gemma 3 (1B)", "Gemma",     "1 B",  "open-source",  128000,    "2025-03-14","https://huggingface.co/google/gemma-3-1b-it",
+  "GPT 4.1",      "OpenAI",    "unk.", "commercial", 1047576,    "2025-04-14","https://openai.com/index/gpt-4-1/",
+  "GPT 4.1-mini", "OpenAI",    "unk.", "commercial", 1047576,    "2025-04-15","https://platform.openai.com/docs/models/gpt-4.1-mini",
+  "GPT 4.1-nano", "OpenAI",    "unk.", "commercial", 1047576,    "2025-04-16","https://platform.openai.com/docs/models/gpt-4.1-nano"
+)
+
+tbl_models |>
+  dplyr::mutate(
+    Ref = paste0("\\href{", URL, "}{link}")
+  ) |>
+  dplyr::select(-URL) |>
+  knitr::kable(
+    format       = "latex",
+    booktabs     = TRUE,
+    escape       = FALSE,
+    col.names    = c("Model","Family","Param","Type","Context","Release Date","Ref"),
+  ) |>
+  kableExtra::kable_styling(
+    latex_options = c("striped", "hold_position"),
+    font_size     = 9,
+    full_width    = FALSE
+  ) |>
+  kableExtra::column_spec(1, width = "2.5cm") |>
+  kableExtra::column_spec(2, width = "1.5cm") |>
+  kableExtra::column_spec(3, width = "1cm") |>
+  kableExtra::column_spec(4, width = "2cm") |>
+  kableExtra::column_spec(5, width = "1.5cm") |>
+  kableExtra::column_spec(6, width = "2cm") |>
+  kableExtra::column_spec(7, width = "2cm")
+
+```
 
 
 ```{r}
@@ -368,17 +356,16 @@ Also, I have tried to access @instituto_de_pesquisa_economica_aplicada_ipea_perf
 #| label: tbl-models-description
 #| tbl-cap: Description of the models used in this research.
 #| 
-accuracy_metadata |> 
-  dplyr::filter(status == "base model") |>
-  dplyr::select(family, type, model, parameters) |>
-  knitr::kable() |>
-  kableExtra::kable_paper(
-   # latex_options = c("hold_position"),
-    latex_options = 'striped')
+# accuracy_metadata |> 
+#   dplyr::filter(status == "base model") |>
+#   dplyr::select(family, type, model, parameters) |>
+#   knitr::kable() |>
+#   kableExtra::kable_paper(
+#    # latex_options = c("hold_position"),
+#     latex_options = 'striped')
 
 ```
 
-<!--TODO: describe the tasks -->
 
 # Methodology {#sec-methods}
 
@@ -422,7 +409,6 @@ So, to run each desired model, a batch was prepared, and the model and the param
 The model's output will only be helpful if coerced into a tabular format structured in a dataset object. If the model yields an answer in an unstructured format, it cannot be evaluated or used in further analysis—even if this answer is perfectly correct regarding its content.
 
 For instance, by taking the example below in [@tbl-good-json-output], we can see the correct values in the desired JSON format. 
-
 
 ```{r}
 #| label: tbl-good-json-output
@@ -557,31 +543,10 @@ To make it possible to fine-tune, we relied on the Unsloth framework^[@daniel_ha
 
 After several attempts and errors, we decided to fine-tune Llama 3.2 (3B) and Phi-4. Although we had tried many other models (like those from the Gemma3 family), they were not possible to fine-tune due to a lack of memory and/or incompatibility with libraries.
 
-
-
-<!---
--   etl
--   prompt engeneenering, build schema
--   generation in OpenAI's models
--   evaluation pipeline
--   generation with commercial models
-    -   window context: rope scaling, yarn, rag, chuncking
-    -   structured output
-    -   base model generation
--   finetune commercial and open source models
-    -   OpenAI's API
-    -   Unsloth
-      - ft details
--   final evaluation
-
---->
-
-
 # Results {#sec-results}
 
 ## Baseline performance
 <!--TODO: explain the evaluation metric -->
-
 <!--TODO: change the tasks from data type to NLP task (extraction, question answering, NER) -->
 
 To answer the research question [@REF-RQ], we need to understand how commercial and open-source models perform in a zero-shot setting and the impact of fine-tuning on their performance.
@@ -732,15 +697,17 @@ readr::read_csv("../../evaluate_results/summary_costs.csv") |>
 ## Limitations {#sec-limitations}
 
 <!-- TODO: LIMITATIONS!!!! -->
+<!-- TODO: bias and fairness --> 
 -- little samples, altough high quality 
-
 -- only used one field of law, only São Paulo 
-
 -- prompt very large -- might be some overfitting --
-
 -- do not work to too much complex decisions, such as constitutional courts
 
 # Discussion {#sec-discussion}
+
+## Key Findings {#sec-key-findinds}
+
+-   results - os: - cons: difficult to manage, several have short context window; computationaly intensive; - pro: privacy; costs; fast paced; adaptability; full control; - comercial: - cons: privacy; costs; - pro: reliability; easiness; credibility - indeed, specialization is a good strategy - have good potential, altough more testing is needed
 
 After the fine-tuning, we could see a significant improvement in the results, confirming the 'power of specialization' as suggested by @dominguez-olmedo_lawma_2024. 
 
@@ -756,10 +723,6 @@ After the fine-tuning, we could see a significant improvement in the results, co
 -- instruction following
 -- json output
 
-## Key Findings {#sec-key-findinds}
-
--   results - os: - cons: difficult to manage, several have short context window; computationaly intensive; - pro: privacy; costs; fast paced; adaptability; full control; - comercial: - cons: privacy; costs; - pro: reliability; easiness; credibility - indeed, specialization is a good strategy - have good potential, altough more testing is needed
-
 ## Policy Recommendations {#sec-policy-recommendations}
 
 -   Academia: Disclose data from empirical legal research as much as possible, as it would be a valuable resource for fine-tuning models. If IPEA released the data from @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023, would it be possible to achieve even better results.
@@ -772,7 +735,6 @@ After the fine-tuning, we could see a significant improvement in the results, co
 
 -   Law schools: invest in data literacy for legal students and practitioners.
 
--   
 
 ## Future Research {#sec-future-research}
          
@@ -782,17 +744,14 @@ After the fine-tuning, we could see a significant improvement in the results, co
   - more diverse training, trying to have a more flexible model (and therefore easy the training)
 
 
-
 # Conclusion {#sec-conclusion}
 
-<!-- contribution --> 
-```         
+<!-- contribution -->   
 * conclusions:
   - llms are good tools to leverage empirical legal research in BR
   - commercial models: still up to date a good strategy, despite of its costs and privacy issues
     - pre-process to anonymize is an option
   - os models: feasible and decent baseline performances in certain models; ft is a good strategy that increases a lot performance
-```
 
 
 {{< pagebreak >}}
