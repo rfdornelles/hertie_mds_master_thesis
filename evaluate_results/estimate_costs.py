@@ -75,7 +75,7 @@ for model, path in csv_paths.items():
         "Total Energy (kWh)": round(e_kwh, 3),
         "Total Cost (€)":     round(cost_total, 2),
         "Energy/Sample (Wh)": round(e_wh_samp, 2),
-        "Cost/Sample (€)":    round(cost_samp, 4)
+        # "Cost/Sample (€)":    round(cost_samp, 4)
     })
 
 # Add GPT row
@@ -86,7 +86,7 @@ records.append({
     "Total Energy (kWh)": "unknown",
     "Total Cost (€)":     round(gpt_cost_total, 2),
     "Energy/Sample (Wh)": "unknown",
-    "Cost/Sample (€)":    round(gpt_cost_per_sample, 4)
+    # "Cost/Sample (€)":    round(gpt_cost_per_sample, 4)
 })
 
 # create summary DataFrame
