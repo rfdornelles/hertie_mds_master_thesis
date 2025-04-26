@@ -572,11 +572,9 @@ After several attempts and errors, we decided to fine-tune Llama 3.2 (3B) and Ph
 <!--TODO: explain the evaluation metric -->
 
 <!--TODO: change the tasks from data type to NLP task (extraction, question answering, NER) -->
+After roughly 20 experiments[^1], the metrics above regarding accuracy^[By accuracy, we consider the proportion of exact answers relative to the total answers. It is better explained in @REF-ACCURACY] were gathered. Below, we can see the performance of the base models before fine-tuning.
 
-
-After 17 experiments[^1], the metrics above regarding accuracy were gathered. By accuracy, we are considering the proportion of exact answers relative to the total answers. Below, we can see the performance of the base models before fine-tuning.
-
-[^1]: Ignoring validation tests and the experiences to try to overcome the limitations regarding context windows. Also, in this count there were the fine tune.
+[^1]: Ignoring validation tests and experiences to overcome the limitations regarding context windows or out-of-memory problems. 
 
 ```{r}
 #| label: tbl-accuracy-metadata
@@ -590,23 +588,31 @@ After 17 experiments[^1], the metrics above regarding accuracy were gathered. By
    # latex_options = c("hold_position"),)
 ```
 
-The model Gemma 3-1B achieved 0.0 accuracy due to its inability to yield valid structured JSON output and because in many cases the answers were only repeating the schema's example.
+The model Gemma 3-1B achieved 0.0 accuracy due to its inability to yield valid structured JSON output and because, in many cases, the answers only repeated the schema's example. The same happened with Lawma 8B, Sabiá 7B, and Tucano 2B4: even after fine-tuning under the Unsloth framework that applied Rope-scaling to enlarge the context windows, this step was not enough to allow those models to generate valid results for this research. 
 
-The model that best performed in a zero-shot approach was the Gemma 3-27B parameters, which, surprisingly, also beat the benchmark commercial models, even GPT-4o. Also, the Gemma 3 family likely yields accurate results since the lighter version with the 12B parameter performed very well and was better than the newly released GPT-4.1. The model Phi-4 also performed very well, betting OpenAI's smaller models. Regarding the Llama family, the 3.1 version performed better than the 4o-mini and the smaller GPT 4.1-mini and GPT 4.1-nano. On the other hand, Llama 3.2 had a bad performance.
+The model that performed best in a zero-shot approach was the Gemma 3-27B parameters, which surprisingly also beat the benchmark commercial models, even GPT-4o. Also, the Gemma 3 family likely yields accurate results since the lighter version with the 12B parameter performed very well and was better than the newly released GPT-4.1. 
 
-Trying to understand a more fine-grained analysis, breaking the results by the kind of tasks was possible. The *numeric* tasks are those related to extracting and calculating the amount of drugs or prison time in months: those tasks involved not only recognizing the numbers (entities) but also 'calculating' the final value. The *boolean* tasks are generally in the realm of question answering in a TRUE/FALSE/None style (for instance, if art. 33 was the basis of the sentence or if there were confessions by the defendant). The *categorical* tasks are those closely related to classification tasks, such as the case's outcome (conviction, acquittal, etc.). The *open textual* tasks are more likely to be similar to named entity recognition: the name of the Judge and the defendant in this case.
+The model Phi-4 also performed very well, beating OpenAI's smaller models. Regarding the Llama family, the 3.1 version performed better than the 4o-mini and the smaller GPT 4.1-mini and GPT 4.1-nano. On the other hand, Llama 3.2 had an inferior performance in this setting. 
 
+Trying to understand a more fine-grained analysis, breaking the results by the kind of tasks was possible. The *numeric* tasks are those related to extracting and calculating the number of drugs or prison time in months: those tasks involved not only recognizing the numbers (entities) but also 'calculating' the final value. The *boolean* tasks are generally in the realm of question answering in a TRUE/FALSE/None style (for instance, if art. 33 was the basis of the sentence or if there were confessions by the defendant). The *categorical* tasks are those closely related to classification tasks, such as the case's outcome (conviction, acquittal, etc). In this case, the *open textual* tasks are more likely to be similar to named entity recognition: the name of the Judge and the defendant.
+
+<!--TODO: REMOVE FT MODEL ---> 
 ![Tasks by accuracy](../../evaluate_results/task_accuracy_heatmap.png){#fig-base_model}
 
-We can see that the *open textual* tasks have a very high level of performance in nearly all models, while the *boolean* and *categorical* tasks were more diverse performance-wise. We can also see some differences in numeric tasks, but in general, they all performed very well.
-
-
-Also, we can breakdown better by NLP task @sec-nlp-tasks
-
+In nearly all models, the open textual tasks performed very well, while the performance of boolean and categorical tasks varied more significantly. Some differences were noted in numeric tasks, although they all performed well overall. Also, we can breakdown better by NLP task @sec-nlp-tasks
 
 <!--TODO: explain the columns, their task, show the number of tasks in each  --->
 
-Those results suggested that continuing to work with open-source models was a promising strategy. So, fine-tuning was performed with the models OpenAI 4o-mini (which is the recommended model by OpenAI), Llama 3.2 (3B), and Phi4. No resources were available to perform fine-tuning on other models. After the fine-tuning, we could see a big improvement in the results.
+## Fine-tuned results
+
+Those results suggested that continuing to work with open-source models was a promising strategy. So, fine-tuning was performed with the models OpenAI 4o-mini (which is the recommended model by OpenAI), Llama 3.2 (3B), and Phi4. No resources were available to perform fine-tuning on other models. Despite many attempts, some of them, mainly from the Gemma family, lacked full library support. 
+
+![Evolution in loss during fine-tuning](../../evaluate_results/finetune_losses.png){#fig-ft_loss_evolution}
+
+
+
+
+After the fine-tuning, we could see a big improvement in the results.
 
 ![Models after fine-tuning](../../evaluate_results/base_vs_finetuned_accuracy.png){#fig-finetune}
 
@@ -670,7 +676,7 @@ df_tasks_metrics_accuracy |>
 
 As @tbl-finetune-delta shows, Llama 3.2(3B) had the most significant change in its performance, especially with the categorical tasks. Specifically, with this task, we could see a performance degradation of GPT 4o-mini. Phi4, [^2] though they had the second-best performance, learned less than Llama, which suggests a ceiling. Assuming that, in those architectures, the number of parameters is the critical factor, fewer parameters than 14B and more than 3B would be ideal.
 
-[^2]: There is the [mini version of Phi-4](https://huggingface.co/microsoft/Phi-4-mini-instruct), however it was not possible to run or fine-tune it with the actual computational resources and due a lack of support from the Unsloth framework. Ref: https://github.com/unslothai/unsloth/issues/2359
+[^2]: There is the [mini version of Phi-4](https://huggingface.co/microsoft/Phi-4-mini-instruct). However, it was impossible to run or fine-tune it with the current computational resources due to insufficient support from the Unsloth framework. Ref: https://github.com/unslothai/unsloth/issues/2359
 
 ## Limitations {#sec-limitations}
 
