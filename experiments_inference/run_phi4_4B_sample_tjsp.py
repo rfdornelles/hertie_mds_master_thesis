@@ -33,7 +33,7 @@ run = wandb.init(
         "model": model_name,
         "max_new_tokens": 1000,
         "device_map": "auto",
-        "batch_size": 1,
+        "batch_size": 2,
         "cuda_visible_devices": CUDA_VISIBLE_DEVICES,
     }
 )

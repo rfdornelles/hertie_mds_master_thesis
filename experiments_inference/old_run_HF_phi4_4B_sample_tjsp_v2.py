@@ -36,10 +36,10 @@ run = wandb.init(
         "model": model_name,
         "max_new_tokens": 1000,
         "device_map": "auto",
-        # "batch_size": 1,
+        "batch_size": 2,
     }
 )
-# batch_size = run.config.batch_size
+batch_size = run.config.batch_size
 
 # -----------------------------------------------------------------------------
 # 2. LOAD DATA & PROMPT
@@ -84,7 +84,7 @@ try:
         torch_dtype=torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16,
         device_map="auto",
         # model_kwargs={"attn_implementation": "flash_attention_2"},
-        # batch_size=batch_size,
+        batch_size=batch_size,
     )
 except Exception as e:
     wandb.alert(title="🚨 Model load failed", text=str(e))
