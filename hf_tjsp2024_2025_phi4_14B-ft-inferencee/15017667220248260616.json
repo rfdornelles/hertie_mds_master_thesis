@@ -1,0 +1,74 @@
+Para extrair as informações da sentença judicial fornecida e preencher o formato JSON solicitado, vamos analisar o texto e identificar os dados relevantes para cada réu mencionado. A sentença trata de dois réus: THAYNA FERRAZ LEAL e AGATHA MARINA SILVA SILVEIRA. Vamos preencher os campos para cada um deles.
+
+### Análise do Texto
+
+1. **Processo**: O número do processo é "1501766-72.2024.8.26.0616".
+2. **Juiz**: O juiz responsável é "Dr. Davi de Castro Pereira".
+3. **Sexo do Juiz**: Não é especificado no texto, então usaremos **None**.
+4. **Nome dos Réus**: THAYNA FERRAZ LEAL e AGATHA MARINA SILVA SILVEIRA.
+5. **Local**: O local do crime é um bar na Rua Antonio Candido Vieira, nº 316, Mogi das Cruzes/SP.
+6. **Drogas Apreendidas**:
+   - Maconha: Não mencionada.
+   - Cocaína: 92,7g de substância entorpecente (lista F1).
+   - Crack, Ecstasy, LSD: Não mencionadas.
+7. **Sentença**: As réus foram condenadas, então a sentença é "Procedente".
+8. **Pena Base**: Não especificada, então usaremos **None**.
+9. **Pena Total**: 03 anos, 10 meses e 20 dias de reclusão.
+10. **Pena Total em Meses**: 46 meses.
+11. **Outras Drogas**: Não mencionadas.
+12. **Artigos Aplicados**:
+    - Art. 28: Não aplicado.
+    - Art. 33: Aplicado.
+    - Art. 34: Não aplicado.
+    - Art. 35: Não aplicado.
+13. **Denúncia**:
+    - Art. 33: Alegado.
+    - Art. 34: Não alegado.
+    - Art. 35: Não alegado.
+14. **Flags**:
+    - Local de tráfico: True (bar notoriamente conhecido pelo tráfico).
+    - Preso no momento da sentença: Não mencionado, então False.
+    - Confissão informal: THAYNA negou, AGATHA confessou.
+    - Confissão formal: AGATHA confessou.
+    - Denúncia anônima: Não mencionada, então False.
+    - Denúncia formal: True.
+    - Atitude suspeita: True (THAYNA gritou "molhou").
+    - Divergências nos relatos: Não mencionadas, então False.
+    - Investigação: True (provas produzidas em juízo).
+    - Interceptação: Não mencionada, então False.
+    - Mandado: Não mencionado, então False.
+15. **Avaliações**:
+    - Antecedentes: Não mencionada, então False.
+    - Conduta: Não mencionada, então False.
+    - Personalidade: Não mencionada, então False.
+    - Natureza: True (natureza do delito discutida).
+    - Quantidade: True (quantidade de drogas discutida).
+    - Variedade: Não mencionada, então False.
+    - Circunstâncias: True (circunstâncias do crime discutidas).
+    - Consequências: Não mencionada, então False.
+    - Culpabilidade: Não mencionada, então False.
+
+### JSON Resultante
+
+```json
+[
+    {
+        "processo": "1501766-72.2024.8.26.0616",
+        "juiz": "Dr. Davi de Castro Pereira",
+        "sexo_juiz": "None",
+        "nome": "THAYNA FERRAZ LEAL",
+        "local": "Bar",
+        "maconha": false,
+        "maconha_g": 0,
+        "maconha_outras": false,
+        "cocaina": true,
+        "cocaina_g": 92.7,
+        "crack": false,
+        "crack_g": 0,
+        "ecstasy": false,
+        "ecstasy_g": 0,
+        "lsd": false,
+        "lsd_g": 0,
+        "sentenca": "Procedente",
+        "pena_base": "None",
+        "tot_pen
