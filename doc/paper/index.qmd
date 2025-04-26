@@ -569,9 +569,13 @@ After several attempts and errors, we decided to fine-tune Llama 3.2 (3B) and Ph
 
 # Results {#sec-results}
 
+## Baseline performance
 <!--TODO: explain the evaluation metric -->
 
 <!--TODO: change the tasks from data type to NLP task (extraction, question answering, NER) -->
+
+To answer the research question [@REF-RQ], we need to understand how commercial and open-source models perform in a zero-shot setting and the impact of fine-tuning on their performance.
+
 After roughly 20 experiments[^1], the metrics above regarding accuracy^[By accuracy, we consider the proportion of exact answers relative to the total answers. It is better explained in @REF-ACCURACY] were gathered. Below, we can see the performance of the base models before fine-tuning.
 
 [^1]: Ignoring validation tests and experiences to overcome the limitations regarding context windows or out-of-memory problems. 
@@ -580,11 +584,11 @@ After roughly 20 experiments[^1], the metrics above regarding accuracy^[By accur
 #| label: tbl-accuracy-metadata
 #| tbl-cap: "Accuracy of base models"
  accuracy_metadata |> 
-  dplyr::filter(status == "base model") |>
-  dplyr::select(family, type, model, parameters, accuracy) |> 
-  dplyr::arrange(-accuracy) |> 
-  knitr::kable(digits = 3) |>
-  kableExtra::kable_paper(latex_options  = c("striped"))
+ dplyr::filter(status == "base model") |>
+ dplyr::select(family, type, model, parameters, accuracy) |> 
+ dplyr::arrange(-accuracy) |> 
+ knitr::kable(digits = 3) |>
+ kableExtra::kable_paper(latex_options = c("striped"))
    # latex_options = c("hold_position"),)
 ```
 
@@ -596,46 +600,42 @@ The model Phi-4 also performed very well, beating OpenAI's smaller models. Regar
 
 Trying to understand a more fine-grained analysis, breaking the results by the kind of tasks was possible. The *numeric* tasks are those related to extracting and calculating the number of drugs or prison time in months: those tasks involved not only recognizing the numbers (entities) but also 'calculating' the final value. The *boolean* tasks are generally in the realm of question answering in a TRUE/FALSE/None style (for instance, if art. 33 was the basis of the sentence or if there were confessions by the defendant). The *categorical* tasks are those closely related to classification tasks, such as the case's outcome (conviction, acquittal, etc). In this case, the *open textual* tasks are more likely to be similar to named entity recognition: the name of the Judge and the defendant.
 
-<!--TODO: REMOVE FT MODEL ---> 
 ![Tasks by accuracy](../../evaluate_results/task_accuracy_heatmap.png){#fig-base_model}
 
-In nearly all models, the open textual tasks performed very well, while the performance of boolean and categorical tasks varied more significantly. Some differences were noted in numeric tasks, although they all performed well overall. Also, we can breakdown better by NLP task @sec-nlp-tasks
-
-<!--TODO: explain the columns, their task, show the number of tasks in each  --->
+In nearly all models, the open textual tasks performed very well, while the performance of boolean and categorical tasks varied more significantly. Some differences were noted in numeric tasks, although they all performed well overall.
 
 ## Fine-tuned results
 
-Those results suggested that continuing to work with open-source models was a promising strategy. So, fine-tuning was performed with the models OpenAI 4o-mini (which is the recommended model by OpenAI), Llama 3.2 (3B), and Phi4. No resources were available to perform fine-tuning on other models. Despite many attempts, some of them, mainly from the Gemma family, lacked full library support. 
+Those results suggested that continuing to work with open-source models was a promising strategy. So, fine-tuning was performed with the models OpenAI 4o-mini (which is the recommended model by OpenAI), Llama 3.2 (3B), and Phi4. No resources were available to perform fine-tuning on other models. Despite many attempts, some of them, mainly from the Gemma family, lacked full Unsloth library support during the experiments. 
+
+We fine-tuned the three selected models using a relatively small dataset of 186 cases, always setting the temperature to the lowest value possible. The model was trained in up to 3 epochs in OpenAI and 10 in the open-source pipeline. In OpenAI, they ran 1 case per batch, while in the open-source flow, the batches were 4 cases per step, with early stopping set to up to 5 evaluation steps.
 
 ![Evolution in loss during fine-tuning](../../evaluate_results/finetune_losses.png){#fig-ft_loss_evolution}
 
+As @fig-ft_loss_evolution shows, all models showed improvements in the loss even with a small dataset and within not so many epochs. The early stopping parameter in the open-source models^[OpenAI has no such an option.] made Llama 3.2 (3B) stop around epoch 9.8 and the Phi-4 model around 7.02. In all cases, the plots suggest there would be some room to stop even earlier to make the process more efficient. 
 
-
-
-After the fine-tuning, we could see a big improvement in the results.
+After the fine-tuning, we could see a significant improvement in the results, confirming the 'power of specialization' as suggested by @dominguez-olmedo_lawma_2024. 
 
 ![Models after fine-tuning](../../evaluate_results/base_vs_finetuned_accuracy.png){#fig-finetune}
 
-The process of fine-tuning, even with a small dataset with 186 cases, highly improved the performance of the models, confirming the 'power of specialization' as suggested by @dominguez-olmedo_lawma_2024. As @fig-finetune showed, model Phi4 tied with GPT 4o-mini and the much smaller Llama 3.2 (3B) learned very easily, even with both models being trained with the same 10 epochs. With a richer dataset and/or more epochs, it would be possible to reach or even surpass GPT 4o-mini performance.
-
-<!--TODO: add data from the training -->
+As @fig-finetune showed, model Phi4 tied with GPT 4o-mini and the much smaller Llama 3.2 (3B) learned very easily, even with both models being trained with the same 10 epochs.^[With a richer dataset and/or more epochs, it would be possible to reach or even surpass GPT 4o-mini performance.]
 
 ```{r}
 #| label: tbl-finetune-delta
-#| tbl-cap: "Fine tuned models: change in accuracy (absolute value Δ and relative value %)"
+#| tbl-cap: "Fine-tuned models: change in accuracy (absolute value Δ and relative value %)"
 df_tasks_metrics_accuracy |> 
-  dplyr::filter(experiment %in% ft_experiments) |> 
-  dplyr::select(-experiment, -accuracy, -type, -family, -parameters) |> 
-  dplyr::relocate(model, status) |> 
-  dplyr::arrange(model, status) |> 
-  dplyr::mutate(
+ dplyr::filter(experiment %in% ft_experiments) |> 
+ dplyr::select(-experiment, -accuracy, -type, -family, -parameters) |> 
+ dplyr::relocate(model, status) |> 
+ dplyr::arrange(model, status) |> 
+ dplyr::mutate(
     status = stringr::str_replace(status, "base model", "basemodel")) |>
-  tidyr::pivot_wider(
+ tidyr::pivot_wider(
     names_from = status,
     values_from = c(overall_accuracy, boolean, categorical, numeric, open_textual),
     names_sep = "_"
-  ) |>
-  dplyr::mutate(
+ ) |>
+ dplyr::mutate(
   #   `Δ accuracy` = overall_accuracy_finetuned - overall_accuracy_basemodel,
   #   `Δ_boolean` = boolean_finetuned - boolean_basemodel,
   #   `Δ_categorical` = categorical_finetuned - categorical_basemodel,
@@ -659,24 +659,28 @@ df_tasks_metrics_accuracy |>
     
     # dplyr::across(.cols = where(is.numeric),
     #               .fns = ~round(.x, digits = 2))
-  ) |> 
-  dplyr::select(-overall_accuracy_basemodel:-open_textual_finetuned) |> 
-  tidyr::pivot_longer(
+ ) |> 
+ dplyr::select(-overall_accuracy_basemodel:-open_textual_finetuned) |> 
+ tidyr::pivot_longer(
     cols = -model,
     names_to = "metric",
     values_to = "value"
-  ) |> 
-  tidyr::pivot_wider(
+ ) |> 
+ tidyr::pivot_wider(
     names_from = model,
     values_from = value
-  ) |> 
-  knitr::kable(digits = 3) |>
-  kableExtra::kable_paper(latex_options  = c("striped"))
+ ) |> 
+ knitr::kable(digits = 3) |>
+ kableExtra::kable_paper(latex_options = c("striped"))
 ```
 
 As @tbl-finetune-delta shows, Llama 3.2(3B) had the most significant change in its performance, especially with the categorical tasks. Specifically, with this task, we could see a performance degradation of GPT 4o-mini. Phi4, [^2] though they had the second-best performance, learned less than Llama, which suggests a ceiling. Assuming that, in those architectures, the number of parameters is the critical factor, fewer parameters than 14B and more than 3B would be ideal.
 
 [^2]: There is the [mini version of Phi-4](https://huggingface.co/microsoft/Phi-4-mini-instruct). However, it was impossible to run or fine-tune it with the current computational resources due to insufficient support from the Unsloth framework. Ref: https://github.com/unslothai/unsloth/issues/2359
+
+<!--TODO: data from inference -->
+
+
 
 ## Limitations {#sec-limitations}
 
