@@ -1,73 +1,95 @@
 import pandas as pd
 import tiktoken
 import os
+from datetime import timedelta
 
+# ---- 1) Token-based cost for OpenAI GPT-4o-mini FT ------------------------
 
-df = pd.read_parquet("../data/sample_454_tjsp_drug_cases_2024-2025_v1.parquet")
+# Paths and params
+parquet_path       = "../data/sample_454_tjsp_drug_cases_2024-2025_v1.parquet"
+prompt_path        = "../prompt/prompt_v4.md"
+experiment_folder  = "../tjsp_experiment/tjsp_2024_2025_sample_454"
+batch_size         = 454
+cost_input_per_m   = 0.13   # €/million tokens
+cost_output_per_m  = 0.53   # €/million tokens
 
-## length of the tokens using the same as GPT-4 (via tiktoken)
+# Try tiktoken, fallback to whitespace tokens
+try:
+    import tiktoken
+    enc = tiktoken.encoding_for_model("gpt-4")
+    tokenize = lambda txt: len(enc.encode(txt))
+except ImportError:
+    print("tiktoken not installed; using whitespace split as token approx.")
+    tokenize = lambda txt: len(str(txt).split())
 
-encoding = tiktoken.encoding_for_model("gpt-4")
+# Load data and compute input tokens
+df = pd.read_parquet(parquet_path)
+df["tok_data"]  = df["julgado"].apply(tokenize)
+total_tokens    = df["tok_data"].sum()
+prompt_text     = open(prompt_path, "r", encoding="utf-8").read()
+prompt_tokens   = tokenize(prompt_text)
+df["tok_total"] = df["tok_data"] + prompt_tokens
+total_tokens_all = df["tok_total"].sum()
 
-def tokenize_text(text):
-  tokens = encoding.encode(text)
-  return len(tokens)
-
-df['tokens'] = df['julgado'].apply(tokenize_text)
-
-# total tokens
-total_tokens = df['tokens'].sum()
-print(f"Total tokens: {total_tokens}")
-
-# tokenize the prompt
-with open("../prompt/prompt_v4.md", "r") as f:
-  prompt = f.read()
-  
-prompt_tokens = tokenize_text(prompt)
-print(f"Prompt tokens: {prompt_tokens}")
-
-# calculate the number of tokens for each row
-df['tokens_total'] = df['tokens'].apply(lambda x: x + prompt_tokens)
-
-total_tokens_final = df['tokens_total'].sum()
-print(f"Total tokens + prompt: {total_tokens_final}")
-
-### output tokens
-
-# read the files in the experiment folder
-files = os.listdir(f"../tjsp_experiment/tjsp_2024_2025_sample_454")
-  
-# only if the file ends with .json
-files = [f for f in files if f.endswith(".json")]
-
+# Compute output tokens
 output_tokens = 0
-# read and sum the tokens
-for file in files:
-  with open(f"../tjsp_experiment/tjsp_2024_2025_sample_454/{file}", "r") as f:
-    content = f.read()
-    output_tokens += tokenize_text(content)
-    # print(f"Output tokens for {file}: {output_tokens}")
-print(f"Total output tokens: {output_tokens}")
+for fn in os.listdir(experiment_folder):
+    if fn.endswith(".json"):
+        content = open(os.path.join(experiment_folder, fn), "r", encoding="utf-8").read()
+        output_tokens += tokenize(content)
 
-## calculate the cost
+gpt_cost_total      = (total_tokens_all/1e6)*cost_input_per_m + (output_tokens/1e6)*cost_output_per_m
+gpt_cost_per_sample = gpt_cost_total / batch_size
 
-### gpt-4o-mini (batch)
-# input: 0.075 / million
-# output: 0.30 / million
+# ---- 2) Energy-based cost for open-source models -------------------------
 
-## ft
-# input: 0.15 / million
-# output: 0.60 / million
+csv_paths = {
+    "Phi-4":        "phi_4_costs.csv",
+    "Llama 3.2-3B": "llama_3.2_3b_costs.csv"
+}
+# EU price: https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_price_statistics#Electricity_prices_for_household_consumers
+tariff_kwh = 0.2889 #0.3951  # €/kWh (example)
 
-input_tokens = total_tokens_final
-output_tokens = output_tokens
-cost_input = 0.13 # euro in 26/04/2025
-cost_output = 0.53 # euro in 26/04/2025 
+records = []
+for model, path in csv_paths.items():
+    df_log = pd.read_csv(path)
+    # compute total time in seconds and formatted string
+    total_sec = df_log["Relative Time (Process)"].max()
+    time_str  = str(timedelta(seconds=int(round(total_sec))))
+    # sum peak power of all GPUs per instant
+    max_cols = [c for c in df_log.columns if ".powerWatts__MAX" in c]
+    df_log["p_tot_w"] = df_log[max_cols].sum(axis=1)
+    df_log = df_log.sort_values("Relative Time (Process)").reset_index(drop=True)
+    df_log["dt_s"] = df_log["Relative Time (Process)"].diff().fillna(0)
+    e_ws = (df_log["p_tot_w"] * df_log["dt_s"]).sum()
+    e_kwh = e_ws / 3.6e6
+    cost_total = e_kwh * tariff_kwh
+    e_wh_samp  = e_kwh * 1000 / batch_size
+    cost_samp  = cost_total / batch_size
+    time_per_sample = total_sec / batch_size
 
-cost = (input_tokens/1000000) * cost_input + (output_tokens/1000000) * cost_output
-print(f"Total cost (GPT 4o-mini FT batch mode): {cost} EUR")
+    records.append({
+        "Model":              model,
+        "Total Time":         time_str,
+        "Time/Sample (s)":    round(time_per_sample, 2),
+        "Total Energy (kWh)": round(e_kwh, 3),
+        "Total Cost (€)":     round(cost_total, 2),
+        "Energy/Sample (Wh)": round(e_wh_samp, 2),
+        "Cost/Sample (€)":    round(cost_samp, 4)
+    })
 
-## eletricity berlin 
-# https://euenergy.live/electricity-prices/germany/berlin
+# Add GPT row
+records.append({
+    "Model":              "GPT-4o-mini FT",
+    "Total Time":         "unknown",
+    "Time/Sample (s)":    "unknown",
+    "Total Energy (kWh)": "unknown",
+    "Total Cost (€)":     round(gpt_cost_total, 2),
+    "Energy/Sample (Wh)": "unknown",
+    "Cost/Sample (€)":    round(gpt_cost_per_sample, 4)
+})
 
-
+# create summary DataFrame
+df_summary = pd.DataFrame(records)
+df_summary
+df_summary.to_csv("summary_costs.csv", index=False)
