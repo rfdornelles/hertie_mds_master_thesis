@@ -25,14 +25,15 @@ format:
         \doublespacing
         \usepackage{ragged2e}
         \usepackage[table]{xcolor}
+        \usepackage{float}
     latex-engine: "lualatex"
     documentclass: article
-    titlepage: false
+    titlepage: true
     geometry: "margin=1in"
     fontsize: "12pt"
     highlight-style: "github"
     colorlinks: true
-    keep-tex: true
+    keep-tex: false
     fig-pos: "H"
     # source: null
     # pandoc-args: ["--metadata=source="]

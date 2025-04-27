@@ -130,15 +130,9 @@ We have a special interest in open-source models and we assume that is important
 \vspace*{\fill}
 ```
 
-
-## Context
-
 -   **The lack of legal empirical research:** In Brazil, empirical legal research remains limited. However, it has recently become increasingly common to find studies based on this approach as demonstrated by @cabrera_de_bonito_pesquisa_2025.
 
 -   **SOTA of legal research**: Those studies, however, still use little data from lawsuits and judicial precedents. Some of them use more qualitative/observational methods. In order to achieve a deeper and broader analysis, it is necessary to have a high level of financial resources and a big and highly qualified research team.
- <!--TODO: move to lit review --> 
- 
- Examples of outstanding and important empirical research that showed the relevance of this staff: @associacao_brasileira_de_jurimetria_avaliacao_2019, @costa_eficacia_2011, @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023.
 
 -   **Exploratory legal data analysis**: It is possible to analyze the metadata of legal cases. Doing this would be helpful for exploratory analysis and formulating a hypothesis. Data from lawsuits are also used, as some examples show. In @dornelles_o_2021, data extracted from the Brazilian Supreme Court were used to describe the volume of new actions in the Court during Bolsonaro's administration:
 
@@ -157,6 +151,7 @@ We have a special interest in open-source models and we assume that is important
 
 ## Contributions
 
+<!--TODO -->
 * test the method
 * models
 * dataset
@@ -175,15 +170,15 @@ The field of empirical research should be intended as a method of studying law i
 
 As a materialization of this, there were outstanding examples of high-quality data-driven legal research: @costa_eficacia_2011 studied a comprehensive amount of judicial decisions regarding administrative misconduct, concluding the efficiency of the existing legislation. @associacao_brasileira_de_jurimetria_avaliacao_2019 contributed to criminal law, describing how judicial decisions evaluate the line between a drug user and a drug dealer according to the amount of drug seized. 
 
-Still, in drug possession cases, @lacerda_e_silva dived into judicial sentences to identify the effect of gender and race biases in the decisions, in which older Black men often receive harsher sentences. Lately, @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023 has provided the most comprehensive research in the field, analyzing a few thousand judicial cases in depth and giving important insights about how drug legislation is being applied in the whole country.
+Still, in drug possession cases, @lacerda_e_silva_punindo_2021 dived into judicial sentences to identify the effect of gender and race biases in the decisions, in which older Black men often receive harsher sentences. Lately, @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023 has provided the most comprehensive research in the field, analyzing a few thousand judicial cases in depth and giving important insights about how drug legislation is being applied in the whole country.
 
 Although those gold-standards studies, @cabrera_de_bonito_pesquisa_2025 recently mapped the landscape of empirical legal research in Brazil, pointing out that despite relevant developments in the field, quoting @dragoni_combining_2016, 'the results remain unsatisfactory.' 
 
-Jurimetrics (@loevinger) is also, according to @cabrera_de_bonito, an attempt to bring empirical methods to law. However, it remains "little explored in countries with a Roman-Germanic legal tradition, such as Brazil," largely due to methodological gaps from practitioners (Andrade, 2018, quoted by @cabrera_de_bonito).
+Jurimetrics (@loevinger_jurimetricsnext_1948) is also, according to @cabrera_de_bonito_pesquisa_2025, an attempt to bring empirical methods to law. However, it remains "little explored in countries with a Roman-Germanic legal tradition, such as Brazil," largely due to methodological gaps from practitioners (Andrade, 2018, quoted by @cabrera_de_bonito_pesquisa_2025).
 
-@ribeiro_jurimetria pointed to a rise in the field of jurimetrics in Portuguese, although it remains little compared to the USA. In a search in Google Scholar (12. set. 2021), they identify that the Portuguese translation^[Important to mention that in Spanish, the translation would be spelled in the same way]  'jurimetria' is found in 814 results, although 'jurimetrics' results 16.600. Replicating the search (18.04.2025), we have found 2.270 versus 21.800, meaning that the proportion has considerably increased while there is still a relevant gap.
+@ribeiro_jurimetria_2022 pointed to a rise in the field of jurimetrics in Portuguese, although it remains little compared to the USA. In a search in Google Scholar (12. set. 2021), they identify that the Portuguese translation^[Important to mention that in Spanish, the translation would be spelled in the same way]  'jurimetria' is found in 814 results, although 'jurimetrics' results 16.600. Replicating the search (18.04.2025), we have found 2.270 versus 21.800, meaning that the proportion has considerably increased while there is still a relevant gap.
 
-@ribeiro_jurimetria identified an important challenge to the practice of jurimetrics: the lack of uniformity in Legal documents. That is why it makes sense to try LLMs, as they strive for this task due to their flexibility in context understanding.
+Also, @ribeiro_jurimetria_2022 identified an important challenge to the practice of jurimetrics: the lack of uniformity in Legal documents. That is why it makes sense to try LLMs, as they strive for this task due to their flexibility in context understanding.
 
 Representing a more recent study of legal implications, @benatti_gender_2024 shed light on gender inequalities in the legal discourse by applying NLP methods and pointed out the importance of having good-quality data in a reasonable amount. 
 
@@ -201,6 +196,7 @@ On the one hand, we recognize a research gap regarding the lack of empirical leg
 
 # Research Question {#sec-research_question}
 
+<!-- TODO --> 
 Can open-source large language models be deployed in the Brazilian legal context to accurately extract information, recognize entities, and draw conclusions from complex legal documents, compared to leading proprietary systems?
 
 # Data Sources and Models {#sec-data_sources_models}
@@ -213,7 +209,7 @@ With the digitalization of the Brazilian Judiciary branch, extracting this data 
 
 The primary data needed for this research is a comprehensive amount of judicial decisions. Given the Brazilian Judiciary branch's digitalization, scrapping this data from the source is not a huge technical challenge. However, obtaining labels and annotations in addition to the raw text of judicial decisions was fundamental. In testing and fine-tuning models, we should have a set of decisions and the features already extracted from them.
 
-Given the scope of this research and the need for at least a few hundred observations, the manual label was not feasible. So, instead of doing manual work to build a new dataset, the decision was to try to obtain data from other legal empirical researchers, such as @COSTA, which was not available.  
+Given the scope of this research and the need for at least a few hundred observations, the manual label was not feasible. So, instead of doing manual work to build a new dataset, the decision was to try to obtain data from other legal empirical researchers, such as @costa_eficacia_2011, which was not available.  
 
 Also, I have tried to access @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023 microdata to build a golden dataset since they have about 3.5k data points labeled through a filing a freedom of information request. It would have been a unique asset since the data was comprehensive regarding virtually all Common Justice Courts in Brazil, and, given the large size, it would be possible to try different training datasets and have a more comprehensive test dataset. 
 
@@ -238,13 +234,12 @@ Finally, we decided to store the data in the .parquet format. This choice preser
 
 ## Models {#sec-models}
 
-In choosing the models, we tried to blend those that are specific to use cases (@dominguez-olmedo_lawma_2024), in Portuguese (@correa_tucano_2024, @pires_sabia_2023), or representative of the state-of-the-art (@openai_gpt-4_2024, @abdin_phi-4_2024, @team_gemma_2025). Of course, there were very high-quality models such as DeepSeek, Mistral, and many others, but it was not possible to experiment with them all. In @tbl-metadata, we have the list of the models applied in this study.  
+<!--TODO: fix the table--> 
+In choosing the models, we tried to blend those that are specific to use cases [@dominguez-olmedo_lawma_2024], in Portuguese [@correa_tucano_2024, @pires_sabia_2023], or representative of the state-of-the-art [@openai_gpt-4_2024, @abdin_phi-4_2024, @team_gemma_2025]. Of course, there were very high-quality models such as DeepSeek, Mistral, and many others, but it was not possible to experiment with them all. In @tbl-metadata, we have the list of the models applied in this study.  
 
 ```{r}
 #| label: tbl-metadata
 #| tbl-cap: "Basemodels used"
-#| tbl-loc: "H"
-
 tbl_models <- tibble::tribble(
   ~Model,         ~Family,    ~Param, ~Type,         ~Context,  ~Date,      ~URL,
   "Sabiá",        "Sabiá",     "7 B", "open-source",   2048,     "2023-04-16","https://huggingface.co/papers/2304.07880",
@@ -273,10 +268,11 @@ tbl_models |>
     format       = "latex",
     booktabs     = TRUE,
     escape       = FALSE,
+    longtable = TRUE,
     col.names    = c("Model","Family","Param","Type","Context","Release Date","Ref"),
   ) |>
   kableExtra::kable_styling(
-    latex_options = c("striped", "hold_position"),
+    latex_options = c("striped"),
     font_size     = 9,
     full_width    = FALSE
   ) |>
@@ -291,16 +287,16 @@ tbl_models |>
 ```
 
 
-```{r}
+<!--
+{r}
 # | label: tbl-metadata
 # | tbl-cap: "Basemodels used"
 # readr::read_csv('../../evaluate_results/model_metadata.csv') |> 
 #  knitr::kable(digits = 3) |>
 #  kableExtra::kable_paper(latex_options  = c("striped"))
 
-```
 
-```{r}
+{r}
 #| label: tbl-models-description
 #| tbl-cap: Description of the models used in this research.
 #| 
@@ -311,8 +307,7 @@ tbl_models |>
 #   kableExtra::kable_paper(
 #    # latex_options = c("hold_position"),
 #     latex_options = 'striped')
-
-```
+-->
 
 
 # Methodology {#sec-methods}
@@ -321,7 +316,9 @@ tbl_models |>
 <!--- why llm and not ner? -->
 
 ## Overview 
-Following @dominguez-olmedo_lawma_2024 conclusion, we gathered hundreds of judicial sentences already annotated and labeled by an expert to be both the quality measurement of the model and the source of training. The input data permitted us to assess how well the models performed and feed them with training cases to generalize to new cases never seen before.
+
+<!--TODO: review --> 
+Following @dominguez-olmedo_lawma_2024 conclusion, we gathered hundreds of judicial sentences already annotated and labeled by an expert [@lacerda_e_silva_punindo_2021] to be split into the source of training (training dataset) and the quality measurement (test dataset) of the model. The input data permitted us to assess how well the models performed and feed them with training cases to generalize to new cases never seen before.
 
 ![Illustration of the extraction of information from a judicial decision. Multiple tasks depend on understanding the text and following rules](images/schema-extraction.png){#fig-schema-extraction width="500px"}
 
@@ -329,7 +326,7 @@ After the processes to gather and clean the data discussed before, the steps wer
 
 Within this framework, choosing the more suitable LLMs for the task would be possible. As discussed further, 12 models were tested with the test dataset (containing 39 judicial sentences), and five were fine-tuned. 
 
-All scripts were written in Python and R (in this case, the visualizations and some data collection, as described in the @sec-data). 
+All scripts were written in Python and R (in this case, the visualizations and some data collection, as described in the @sec-datasets). 
 
 Regarding hardware, this research relied on Google Colab Pro (A100 GPU), Kaggle (T4 GPU), and the Hertie School's GPU Server^[https://hertie-data-science.gitbook.io/hertie-school-gpu/extras/gpu-server-specs] (4x Nvidia A100, shared with other researchers^[Despite some throttling issues caused by the high number of simultaneous users and the absence of a job management system, this research would not have been possible without the use of the GPU server. Thank you to the Data Science Lab for their support!].). All the relevant experiment runnings were monitored using Weights and Bias API 
 @biewald_experiment_2020.
@@ -426,15 +423,15 @@ tibble::tibble(
 
 OpenAI (and other commercial models) offers a feature called JSON mode, where it is possible to make sure that the answer will match the valid schema offered. The open-source models, however, do not have this feature out of the box. In the initial tests, giving only the models the proper instructions and schema was insufficient. 
 
-The solution to this challenge was using PyDanticˆ[@colvin_pydantic_2025] and LangChainˆ[@chase_langchain_2022] libraries. The first allows the generation of a class with the valid object and its respective data types. The second offers a parsing structure to constrain the result into a valid schema when possible. Naturally, when the response is too different from the expected result, the answer will be considered invalid in the evaluation phase.
+The solution to this challenge was using PyDantic^[@colvin_pydantic_2025] and LangChain^[@chase_langchain_2022] libraries. The first allows the generation of a class with the valid object and its respective data types. The second offers a parsing structure to constrain the result into a valid schema when possible. Naturally, when the response is too different from the expected result, the answer will be considered invalid in the evaluation phase.
 
-## Evaluation algorithm: Accuracy
+## Evaluation algorithm: Accuracy {#sec-accuracy}
 
 Evaluating is a key aspect of this research since it is relevant to understand whether and how much the answers are correct. Establishing a coherent strategy to evaluate the distinct models is also relevant.
 
-The choice to use accuracy as the ideal metric is because the goal is to understand how close the answers are to the ground truth, as used in other papers such as (@dominguez-olmedo_lawma_2024; @junior_juru_2024). While there are some sub-tasks, such as classifying the outcome of a decision or comparing numeric answers, we would require a variety of metrics, such as F1 score or mean squared error. These metrics must be uniformly transformed into a single value to evaluate each model's performance. However, this approach would significantly compromise interpretability without providing clear benefits in understanding the overall performance.
+The choice to use accuracy as the ideal metric is because the goal is to understand how close the answers are to the ground truth, as used in other papers such as [@dominguez-olmedo_lawma_2024; @junior_juru_2024]. While there are some sub-tasks, such as classifying the outcome of a decision or comparing numeric answers, we would require a variety of metrics, such as F1 score or mean squared error. These metrics must be uniformly transformed into a single value to evaluate each model's performance. However, this approach would significantly compromise interpretability without providing clear benefits in understanding the overall performance.
 
-The first step is to parse the results from the responses generated and transform them into a data frame (called 'responses dataset') with the lawsuit number (column **processo**) as its identifier. Notably, when a response is invalid, the algorithm generates a row when only the ID is filled out, and the remaining columns are empty. 
+The first step is to parse the results from the generated responses and transform them into a data frame (called "responses dataset") with the lawsuit number (column **processo**) as its unique identifier^[The Brazilian National Council of Justice (CNJ) regulates that this should be a preformatted and unique identifier for each lawsuit in the country.]. Notably, when a response is invalid, the algorithm generates a row with only the ID filled out, leaving the remaining columns empty.
 
 Then, we have different evaluation functions according to the respective data type (numeric, categorical, boolean, or open textual fields). The different data types change the pre-processing step, but, in the end,  the model's response is compared with the ground truth answer. The functions were split also due to an attempt to establish different tolerance thresholds. However, in this work, all limits were stuck to zero, meaning there was no tolerance. The values obtained might be slightly higher according to the level of tolerable differences.
 
@@ -450,17 +447,15 @@ According to @eq-accuracy, each model would achieve a value between 0 and 1 acco
 
 ### Challenges and strategies
 
-A pipeline is needed to run and evaluate the results of the open-source models [@sec-models]. Their reliability in terms of privacy comes with the cost of setting them up, which brings some challenges regarding the necessary computational resources, the size of the inputs versus the window of context, and the output format (already mentioned in item @sec).
+A pipeline is needed to run and evaluate the results of the open-source models [@sec-models]. Their reliability in terms of privacy comes with the cost of setting them up, which brings some challenges regarding the necessary computational resources, the size of the inputs versus the window of context, and the output format.
 
 Regarding context windows, it is important to consider that judicial sentences might be lengthy documents. In this case, they were close primarily to 8k to 12k tokens (plus the prompt, which has about 4k more), but it is also possible that they are way bigger than that. 
-<!--TODO: REFS ---> 
-Some techniques, such as Yarn ***REFERENCE*** and Rope scaling ***REFERENCE***, were first attempted to enlarge those models' context windows artificially. However, they would demand a heavy processing time, which is outside the scope of this research, and, therefore, were discarded. 
 
-On the other hand, strategies such as chunking or Retrieval Augmented Generation (RAG) (****REFERENCE****) were also attempted, with no good results. Besides their complexity, the model would be unable to understand the document as a whole. Although theoretically, it would be capable of extracting entities, it would fail in tasks such as evaluating whether there are inconsistencies in the police officer's account since it requires a complete understanding of the context. 
+Some techniques, such as Yarn [@peng_yarn_2023] and RoPE scaling [@su_roformer_2023, @tan_extending_2024], were first attempted to enlarge those models' context windows artificially. However, they would demand a heavy processing time, which is outside the scope of this research, and, therefore, were discarded. 
+
+On the other hand, strategies such as chunking or Retrieval Augmented Generation (RAG) [@lewis_retrieval-augmented_2021] were also attempted, with no good results. Besides their complexity, the model would be unable to understand the document as a whole. Although theoretically, it would be capable of extracting entities, it would fail in tasks such as evaluating whether there are inconsistencies in the police officer's account since it requires a complete understanding of the context. 
 
 The solution was to discard models such as LoLA, TucanoBR, and Lawma in favor of more general-use models with larger context windows. Although the last two models were fine-tuned using our training dataset, they could not produce the desired output. It does not mean that these models are inferior to the others; instead, they were not designed to meet this specific use case and, therefore, are unsuitable for this task.
-
-As mentioned, all the output format was forced into a uniform JSON using Langchain [@chase_langchain_2022] and Pydantic [@colvin_pydantic_2025].
 
 ### Running open-source models
 
@@ -472,10 +467,10 @@ This same pipeline was used to run the open-source fine-tuned models, so there w
 
 ## Fine-tuning models
 
-The decision to fine-tune open-source models was due to the possibility of 'teaching' the general-use model how it should perform in a specific task. After picking a model that was trained in billions of tokens, often in a self-supervised way, the whole idea is to adjust some of their layers to be able to reproduce the method of extracting information.^["Recently, large transformers have been used for transfer learning with smaller down‐stream tasks. Transfer learning is a technique in AI where the knowledge gained while solving one problem is applied to a different but related problem. With transformers, the idea is to train a very large transformer mode in an unsupervised manner (known as pre-training) to predict a part of a sentence given the rest of the content so that it can encode the high-level nuances of the language in it." @vajjala_practical_2020]
+The decision to fine-tune open-source models was due to the possibility of 'teaching' the general-use model how it should perform in a specific task. After picking a model that was trained in billions of tokens, often in a self-supervised way, the whole idea is to adjust some of their layers to be able to reproduce the method of extracting information, using transfer learning[@vajjala_practical_2020]^["Recently, large transformers have been used for transfer learning with smaller down‐stream tasks. Transfer learning is a technique in AI where the knowledge gained while solving one problem is applied to a different but related problem. With transformers, the idea is to train a very large transformer mode in an unsupervised manner (known as pre-training) to predict a part of a sentence given the rest of the content so that it can encode the high-level nuances of the language in it."]
 
 ### Fine-tune OpenAI's models
-In the case of OpenAI's models, the training pipeline was generated using the API and run on their servers [https://platform.openai.com/docs/guides/fine-tuning]. 
+In the case of OpenAI's models, the training pipeline was generated using the API and run on their servers^[https://platform.openai.com/docs/guides/fine-tuning]. 
 
 Also, the validation dataset was provided so the API could avoid overfitting and optimize the parameters by itself. The model was trained with auto-selection of parameters, which resulted in 3 epochs, a learning rate multiplier of 1.80, and a batch size of 1.
 
@@ -491,15 +486,15 @@ To make it possible to fine-tune, we relied on the Unsloth framework^[@daniel_ha
 
 After several attempts and errors, we decided to fine-tune Llama 3.2 (3B) and Phi-4. Although we had tried many other models (like those from the Gemma3 family), they were not possible to fine-tune due to a lack of memory and/or incompatibility with libraries.
 
+
 # Results {#sec-results}
 
 ## Baseline performance
-<!--TODO: explain the evaluation metric -->
 <!--TODO: change the tasks from data type to NLP task (extraction, question answering, NER) -->
 
-To answer the research question [@REF-RQ], we need to understand how commercial and open-source models perform in a zero-shot setting and the impact of fine-tuning on their performance.
+To answer the research question [@sec-research_question], we need to understand how commercial and open-source models perform in a zero-shot setting and the impact of fine-tuning on their performance.
 
-After roughly 20 experiments[^1], the metrics above regarding accuracy^[By accuracy, we consider the proportion of exact answers relative to the total answers. It is better explained in @REF-ACCURACY] were gathered. Below, we can see the performance of the base models before fine-tuning.
+After roughly 20 experiments[^1], the metrics above regarding accuracy^[By accuracy, we consider the proportion of exact answers relative to the total answers. It is better explained in @sec-accuracy] were gathered. Below, we can see the performance of the base models before fine-tuning.
 
 [^1]: Ignoring validation tests and experiences to overcome the limitations regarding context windows or out-of-memory problems. 
 
@@ -533,7 +528,7 @@ Those results suggested that continuing to work with open-source models was a pr
 
 We fine-tuned the three selected models using a relatively small dataset of 186 cases, always setting the temperature to the lowest value possible. The model was trained in up to 3 epochs in OpenAI and 10 in the open-source pipeline. In OpenAI, they ran 1 case per batch, while in the open-source flow, the batches were 4 cases per step, with early stopping set to up to 5 evaluation steps.
 
-![Evolution in loss during fine-tuning](../../evaluate_results/finetune_losses.png){#fig-ft_loss_evolution width="600px"}
+![Evolution in loss during fine-tuning](../../evaluate_results/finetune_losses.png){#fig-ft_loss_evolution width="800px"}
 
 As @fig-ft_loss_evolution shows, all models showed improvements in the loss even with a small dataset and within not so many epochs. The early stopping parameter in the open-source models^[OpenAI has no such an option.] made Llama 3.2 (3B) stop around epoch 9.8 and the Phi-4 model around 7.02. In all cases, the plots suggest there would be some room to stop even earlier to make the process more efficient. 
 
@@ -642,10 +637,11 @@ readr::read_csv("../../evaluate_results/summary_costs.csv") |>
     knitr::kable()
 ```
 
-## Limitations {#sec-limitations}
 
+## Limitations {#sec-limitations}
 <!-- TODO: LIMITATIONS!!!! -->
 <!-- TODO: bias and fairness --> 
+<!--
 -- little samples, altough high quality 
 -- only used one field of law, only São Paulo 
 -- prompt very large -- might be some overfitting --
@@ -660,8 +656,8 @@ readr::read_csv("../../evaluate_results/summary_costs.csv") |>
 After the fine-tuning, we could see a significant improvement in the results, confirming the 'power of specialization' as suggested by @dominguez-olmedo_lawma_2024. 
 
 <!-- #sec-research_question Can open-source large language models be deployed in the Brazilian legal context to accurately extract information, recognize entities, and draw conclusions from complex legal documents, compared to leading proprietary systems? --> 
-
--- BR: digitalized judiciary; good offer of portuguese models --> yes
+<!--
+-- BR: digitalized judiciary; good offer of portuguese models yes
 -- we haven't text the summarization 
 
 -- do not dismiss people, it's necessary to have human in the loop
@@ -694,13 +690,13 @@ After the fine-tuning, we could see a significant improvement in the results, co
 
 # Conclusion {#sec-conclusion}
 
-<!-- contribution -->   
+<!-- contribution - 
 * conclusions:
   - llms are good tools to leverage empirical legal research in BR
   - commercial models: still up to date a good strategy, despite of its costs and privacy issues
     - pre-process to anonymize is an option
   - os models: feasible and decent baseline performances in certain models; ft is a good strategy that increases a lot performance
-
+-->
 
 {{< pagebreak >}}
 
