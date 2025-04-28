@@ -58,4 +58,4 @@ plot <- ggplot(df_plot, aes(x = step)) +
   theme_minimal(base_size = 13) +
   theme(legend.position = "bottom")
 
-ggsave(plot = plot, filename = 'evaluate_results/finetune_losses.png', dpi = 900)
+ggsave(plot = plot, filename = 'evaluate_results/finetune_losses.png', dpi = 900, width = 12, height = 16, units = "in")

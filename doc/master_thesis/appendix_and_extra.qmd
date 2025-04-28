@@ -1,47 +1,11 @@
-# Appendix - Lacerda's Dataset
-
-
-```{r}
-#| label: tbl-lacerda
-#| tbl-cap: "Lacerda's dataset"
-#| echo: false
-#| warning: false
-lacerda_example |>
-  skimr::skim()
-```
-
-# Appendix - Prompt {#sec-annex-prompt}
-
-Lorem ipsum
-
-# Appendix - Fine tune performance {#sec-ft-performance}
-
-Lorem ipsum
 
 # Appendix - Plots and tables {#sec-plots-tables}
 
-Lorem ipsum
+![Accuracy comparison - Finetuned models - Kind of datatype](../../evaluate_results/per_task_accuracy_comparison.png){#fig-accuracy-comparison width=100%}
 
-# Appendix - Acknowledgments {#sec-thank-you}
+![Task accuracy heatmap - Fine-tuned models](../../evaluate_results/task_accuracy_heatmap_granular_nlp_finetuned.png){#fig-task-accuracy-heatmap width=100%}
 
-
-*Caminante, no hay camino, se hace camino al andar* (Antonio Machado)^[*"Traveller, there is no path; the path is made by walking."]
-
-This Master's Thesis would not be possible without the dataset carefully annotated and generously provided by Marina Lacerda Silva, who dared to do a jurimetric master's thesis a few years ago. I could put together this work under the supervision of Prof. Lynn Kaack—and thanks for her Deep Learning course—and other brilliant colleagues. Also, there would not be this thesis without the support of Huy Dang and the Hertie School Data Science Lab. Thank you all!
-
-Also, this work is part of a long path initiated way before me. A special thank you to Prof. Susana Henriques da Costa, who first introduced me to the possibilities (and struggles) of legal empirical research and got me excited about doing research. Another important thank you to Prof. Paulo Eduardo Alves da Silva, Prof. José Jesus Filho, and Prof. Julio Tecenti for their contributions to the field.  
-
-Although this thesis is only one more step on this *camino* to a master's degree in Data Science for Public Policy, it allows me to thank those who helped me reach this point. A very heartfelt thank you to Katia and Juares, my parents, who never hesitated to support me even when they did not understand my choices. *Muito obrigado!*
-
-Thank you, Motriz, for the Vetor Brasil Scholarship and to ChancenEg for giving me the financial conditions to enroll in this program! This work benefited largely from time spent with the Berkeley Equity and Access in Algorithms, Mechanisms, and Optimization (BEAAMO) Summer Fellowship Program. Thank you, Prof. Rediet Abebe, and my colleagues Mírian Silva, Rayssa Benatti, and Tainá Turella! It is also a good opportunity to thank my colleagues from Jusbrasil for having many chances to apply data science to the legal context and have inspiring conversations every day.
-
-Also, I would like to thank my colleagues from the MDS classes 2024 and 2025, the Latin-American Club (and the members of the 'Latin Pomodoro'), the Hertie School Digital Verification Corps, and many brilliant colleagues whom I had the chance to share conversations and a good time together in the Makerspace, the Library, and the cafeteria.
-
-Since it's impossible to nominate them all, I will thank you with a deep *muito obrigado* my friends Henrique Motta, João Vítor Krieeger, Paulina Boechat, Renan Fernandes, and the whole Brazilian-Hertian community! This journey in Berlin would not be possible without the presence and support of Francisco Rios, Ana Barros, and the other friends of Urso, who brought some rithm to this journey.
-
-Last but not least, I would like to thank many others who have supported my journey and helped me abroad by being present during many of the steps that I took here. Thank you, Vitor Moneo, Fernanda Horn, Orisha, and Meirelles!
-
-Having said that, a grateful thank you to the reader! I hope this work contributes to better legal research, improves our institutions, and, thus, positively impacts people's lives.
+![Radar charts comparing performance by datatype](../../evaluate_results/radar_charts_per_experiment.png){#fig-radar-charts width=100%}
 
 # Appendix - Description of NLP Tasks {#sec-nlp-tasks}
 
@@ -120,3 +84,36 @@ tibble::tribble(
   kableExtra::column_spec(3, width = "17em")
 
 ```
+
+# Appendix - Lacerda's Original Dataset Description {#sec-lacerda-dataset}
+
+```{r}
+#| label: tbl-lacerda
+#| tbl-cap: "Lacerda's Original Dataset"
+#| echo: false
+#| warning: false
+lacerda_example |>
+  skimr::skim_to_list()
+```
+
+{{< pagebreak >}}
+# Appendix - Acknowledgments {#sec-thank-you}
+
+
+*Caminante, no hay camino, se hace camino al andar* (Antonio Machado)^[*"Traveller, there is no path; the path is made by walking."]
+
+This Master's Thesis would not be possible without the dataset carefully annotated and generously provided by Marina Lacerda Silva, who dared to do a jurimetric master's thesis a few years ago. I could only put together this work under the supervision of Prof. Lynn Kaack — and, also, thanks for her Deep Learning course — and other brilliant colleagues also under her supervision. There would not be possible to conduct many experiments in this thesis without the support of Huy Dang and the Hertie School Data Science Lab. I am also grateful for Maria Utenthal's insights in the first conception of this research idea. Thank you all!
+
+Also, this work is part of a long path initiated way before me. A special thank you to Prof. Susana Henriques da Costa, who first introduced me to the possibilities (and struggles) of legal empirical research and got me excited about doing research. Another important thank you to Prof. Paulo Eduardo Alves da Silva, Prof. José Jesus Filho, and Prof. Julio Tecenti for their contributions to the jurimetric field in Brazil.  
+
+Although this thesis is only one more step on this *camino* to a master's degree in Data Science for Public Policy, it allows me to thank those who helped me reach this point. A very heartfelt thank you to Katia and Juares, my parents, who never hesitated to support me even when they did not understand my choices. *Muito obrigado!*
+
+Thank you, Motriz, for the Vetor Brasil Scholarship and to Chancen Eg for giving me the financial conditions to enroll in this program! This research benefited largely from time spent with the Berkeley Equity and Access in Algorithms, Mechanisms, and Optimization (BEAAMO) Summer Fellowship Program. Thank you, Prof. Rediet Abebe, and my colleagues Mírian Silva, Rayssa Benatti, and Tainá Turella! It is also a good opportunity to thank my colleagues from Jusbrasil (especially the Analytics and the Legal Team) for having many chances to apply data science to the legal context and have inspiring conversations every day.
+
+Also, I would like to thank my colleagues from the MDS classes 2024 and 2025, the Latin-American Club (and the members of the 'Latin Pomodoro'), the Hertie School Digital Verification Corps, and many brilliant colleagues whom I had the chance to share conversations and a good time together in the Makerspace, the Library, and the cafeteria.
+
+Since it's impossible to nominate them all, I will thank you with a deep *muito obrigado* my friends Henrique Motta, João Vítor Krieger, Paulina Boechat, Renan Fernandes, and the whole Brazilian-Hertian community! This journey in Berlin would not be possible without the presence and support of Francisco Rios, Ana Barros, and the other friends from Urso, who brought some rhythm to this journey.
+
+Last but not least, I would like to thank many others who have supported my journey and helped me abroad by being present during many of the steps that I took here. Thank you, Vitor Moneo, Fernanda Horn, Orisha, and Meirelles!
+
+Having said that, a grateful thank you to any eventual reader! I hope this work contributes to better legal research, improves our institutions, and, thus, positively impacts people's lives.

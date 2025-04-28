@@ -232,7 +232,7 @@
   Supervised by Prof. Lynn Kaack, PhD
   \vspace{0.5cm}
   
-  Word count: 7,355 words
+  Word count: 7,642 words
 \end{titlepage}
 
 \section[Executive Summary]{\texorpdfstring{Executive
@@ -251,22 +251,22 @@ A gold-standard corpus of 258 São Paulo drug-trafficking sentences
 (\citeproc{ref-lacerda_e_silva_punindo_2021}{Lacerda e Silva, 2021}) was
 split into training, validation, and test sets. Twelve base
 models---seven open-source, five commercial---were benchmarked
-zero-shot. The best open-source model (Gemma 3-27B) already outperformed
+zero-shot.The best open-source model (Gemma 3-27B) already outperformed
 GPT-4o, achieving 0.82 accuracy versus 0.79 on 39 held-out cases. Three
 models (GPT-4o-mini, Phi-4 14B, and Llama-3 3B) were fine-tuned via LoRA
 and quantization. Fine-tuning raised Phi-4's accuracy to 0.92,
 statistically indistinguishable from the commercial leader yet 25 \%
 cheaper and twice as energy-efficient when labeling a new batch of 454
 cases. Llama-3 3B, with one-fifth the parameters of Phi-4, reached 0.78
-accuracies at less than half the cost and inference time, illustrating
+of accuracy at less than half the cost and inference time, illustrating
 an attractive speed-versus-quality trade-off for large-scale annotation.
 
-These findings confirm the ``power of
-specialization''(\citeproc{ref-dominguez-olmedo_lawma_2024}{Dominguez-Olmedo
-et al., 2024}): modest amounts of high-quality domain data can lift
-open-source LLMs to state-of-the-art performance in legal information
-extraction. The work contributes to an end-to-end pipeline, open-source
-code and evaluation scripts, and practical guidance on model selection,
+These findings confirm the ``power of specialization''
+(\citeproc{ref-dominguez-olmedo_lawma_2024}{Dominguez-Olmedo et al.,
+2024}): modest amounts of high-quality domain data can lift open-source
+LLMs to state-of-the-art performance in legal information extraction.
+The work contributes to an end-to-end pipeline, open-source code and
+evaluation scripts, and practical guidance on model selection,
 fine-tuning, and deployment under tight resource constraints. It
 demonstrates a feasible, transparent, and affordable path toward
 large-scale, data-driven legal research in civil law jurisdictions. It
@@ -299,7 +299,7 @@ training, and investment in public-interest NLP infrastructure.
 \end{minipage}
 \end{flushright}
 
-\footnotetext{Message for the LVII World Day of Peace, 1 January 2024}
+\footnotetext{Message for the LVII World Day of Peace, 1 January 2024.}
 \vspace*{0pt}
 \newpage
 
@@ -329,7 +329,7 @@ evaluate whether a legal system fulfills that role, we must ask not only
 How long does a civil action typically last? What compensation do
 consumers actually receive? Which factors shape sentencing in
 drug-trafficking cases? These eminently empirical questions are still
-surprisingly difficult to answer with precision.
+surprisingly difficult to answer.
 
 More than half a century ago, Lee Loevinger
 (\citeproc{ref-loevinger_jurimetricsnext_1948}{1948}) coined the term
@@ -374,32 +374,22 @@ strengthen the evidentiary foundations of public policy.
 
 \section{Related Work}\label{related-work}
 
-The works most closely related to this thesis are those of
-Dominguez-Olmedo et al.
-(\citeproc{ref-dominguez-olmedo_lawma_2024}{2024}) and Junior et al.
-(\citeproc{ref-junior_juru_2024}{2024}), who concluded that fine-tuning
-models for a specific legal context lead to notable improvements in
-accuracy. From a technical perspective, this research heavily relied on
-Wolf et al. (\citeproc{ref-wolf_transformers_2020}{2020}) and the Daniel
-Han \& team (\citeproc{ref-daniel_han_unsloth_2023}{2023}) libraries,
-which provided the necessary tools for fine-tuning open-source models.
-
 \subsection{Teorethical Framework}\label{sec-teorethical-framework}
 
-This research relies on data science Wickham et al.
-(\citeproc{ref-wickham_r_2023}{2023}) applied to natural language
-processing tasks Vajjala et al.
-(\citeproc{ref-vajjala_practical_2020}{2020}), specifically large
-language models (Raschka (\citeproc{ref-raschka_build_2024}{2024}))
-powered by recent advancements in the field due to deep learning
-techniques Zhang et al. (\citeproc{ref-zhang_dive_2023}{2023}).
+This research relies on data science
+(\citeproc{ref-wickham_r_2023}{Wickham et al., 2023}) applied to natural
+language processing tasks (\citeproc{ref-vajjala_practical_2020}{Vajjala
+et al., 2020}), specifically large language models
+(\citeproc{ref-raschka_build_2024}{Raschka, 2024}) powered by recent
+advancements in the field due to deep learning techniques
+(\citeproc{ref-zhang_dive_2023}{Zhang et al., 2023}).
 
 \subsection{Empirical Legal Research}\label{empirical-legal-research}
 
 The field of empirical research should be intended as a method of
 studying law in which we shift the focus from the normative aspect of
-law to `its concrete manifestation'\,' (Alves da Silva
-(\citeproc{ref-alves_da_silva_aspectos_2022}{2022})).
+law to `its concrete manifestation'
+(\citeproc{ref-alves_da_silva_aspectos_2022}{Alves da Silva, 2022}).
 
 As a materialization of this, there were outstanding examples of
 high-quality data-driven legal research: Costa et al.
@@ -408,9 +398,9 @@ amount of judicial decisions regarding administrative misconduct,
 concluding the efficiency of the existing legislation. Associação
 Brasileira de Jurimetria
 (\citeproc{ref-associacao_brasileira_de_jurimetria_avaliacao_2019}{2019})
-contributed to criminal law, describing how judicial decisions evaluate
-the line between a drug user and a drug dealer according to the amount
-of drug seized.
+contributed to the criminal law field, describing how judicial decisions
+evaluate the line between a drug user and a drug dealer according to the
+amount of drug seized.
 
 Still, in drug possession cases, Lacerda e Silva
 (\citeproc{ref-lacerda_e_silva_punindo_2021}{2021}) dived into judicial
@@ -430,15 +420,14 @@ despite relevant developments in the field, quoting Dragoni et al.
 (\citeproc{ref-dragoni_combining_2016}{2016}), `the results remain
 unsatisfactory.'
 
-Jurimetrics (Loevinger
-(\citeproc{ref-loevinger_jurimetricsnext_1948}{1948})) is also,
-according to Cabrera De Bonito et al.
+Jurimetrics (\citeproc{ref-loevinger_jurimetricsnext_1948}{Loevinger,
+1948}) is also, according to Cabrera De Bonito et al.
 (\citeproc{ref-cabrera_de_bonito_pesquisa_2025}{2025}), an attempt to
 bring empirical methods to law. However, it remains ``little explored in
 countries with a Roman-Germanic legal tradition, such as Brazil,''
-largely due to methodological gaps from practitioners (Andrade, 2018,
-quoted by Cabrera De Bonito et al.
-(\citeproc{ref-cabrera_de_bonito_pesquisa_2025}{2025})).
+largely due to methodological gaps from practitioners (Andrade
+(\citeproc{ref-de_andrade_utilizacao_2018}{2018}) quoted by Cabrera De
+Bonito et al. (\citeproc{ref-cabrera_de_bonito_pesquisa_2025}{2025})).
 
 Ribeiro et al. (\citeproc{ref-ribeiro_jurimetria_2022}{2022}) pointed to
 a rise in the field of jurimetrics in Portuguese, although it remains
@@ -475,8 +464,9 @@ work. The first didactically showed the lack of annotations as a
 `bottleneck for the field of empirical legal studies' and suggested a
 strategy that we adopt here: ``Obtain a few hundred labeled examples,
 fine-tune an open source model, and use the fine-tuned model to annotate
-the remaining cases'' Dominguez-Olmedo et al.
-(\citeproc{ref-dominguez-olmedo_lawma_2024}{2024}).
+the remaining cases''
+(\citeproc{ref-dominguez-olmedo_lawma_2024}{Dominguez-Olmedo et al.,
+2024}).
 
 Junior et al. (\citeproc{ref-junior_juru_2024}{2024}) also identified
 the potential of ``domain specialization'' when they fine-tuned a model
@@ -516,11 +506,6 @@ were available to represent the chosen features. The better the amount
 and quality of the data, the better the performance of the models over
 it.
 
-With the digitalization of the Brazilian Judiciary branch, extracting
-this data from the source is not a significant technical challenge.
-However, obtaining labels and annotations to complement the raw text of
-the judicial decisions is a precondition for applying this method.
-
 The primary data needed for this research is a comprehensive amount of
 judicial decisions. Given the Brazilian Judiciary branch's
 digitalization, scrapping this data from the source is not a huge
@@ -535,7 +520,7 @@ manual work to build a new dataset, the decision was to try to obtain
 data from other legal empirical researchers, such as Costa et al.
 (\citeproc{ref-costa_eficacia_2011}{2011}), which was not available.
 
-Also, I have tried to access Instituto de Pesquisa Econômica Aplicada
+Also, we have tried to access Instituto de Pesquisa Econômica Aplicada
 (Ipea) \& Brasil. Ministério da Justiça e Segurança Pública
 (\citeproc{ref-instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023}{2023})
 microdata to build a golden dataset since they have about 3.5k data
@@ -554,23 +539,20 @@ specific document.
 
 \subsubsection{Lacerda's Dataset}\label{lacerdas-dataset}
 
-It was possible to reach out to the researcher in charge of a very
-carefully annotated dataset, Lacerda e Silva
-(\citeproc{ref-lacerda_e_silva_punindo_2021}{2021}), which was used in
-her master's thesis. In this research, despite focusing only on São
-Paulo's Court of Justice (which is, by its turn, the biggest Court in
-Latin America), annotations were made in about 400 legal cases related
-to drug trafficking. Access to the dataset was obtained by contacting
-the researcher, who provided it for further adaptation to this research.
-
-The researcher collected these cases from the São Paulo State Court of
-Justice (TJSP), focusing on a sample covering 2017 and 2018.
+Lacerda e Silva (\citeproc{ref-lacerda_e_silva_punindo_2021}{2021})
+collected in her master's thesist cases from the São Paulo State Court
+of Justice (TJSP), focusing on a sample covering 2017 and 2018.
 Approximately 35 features were manually annotated and labeled for each
-case. Some of the original features also referred to other documents
-rather than the judicial decision, and, therefore, they were excluded
-(since it would not be reasonable that the model inferred that).
-Features related to biological data were also excluded for ethical
-reasons.
+case. In this research, despite focusing only on São Paulo's Court of
+Justice (which is, by its turn, the biggest Court in Latin America),
+annotations were made in about 400 legal cases related to drug
+trafficking. Access to the dataset was obtained by contacting the
+researcher, who provided it for further adaptation to this research.
+
+Some of the original features also referred to other documents rather
+than the judicial decision, and, therefore, they were excluded (since it
+would not be reasonable that the model inferred that). Features related
+to biological data were also excluded for ethical reasons.
 
 The documents used initially for each decision case analyzed by the
 Lacerda Dataset were extracted automatically from the TJSP database. We
@@ -612,11 +594,14 @@ interchange between Python and R.
 
 In choosing the models, we tried to blend those that are specific to use
 cases (\citeproc{ref-dominguez-olmedo_lawma_2024}{Dominguez-Olmedo et
-al., 2024}), in Portuguese Pires et al.
-(\citeproc{ref-pires_sabia_2023}{2023}), or representative of the
-state-of-the-art Team et al. (\citeproc{ref-team_gemma_2025}{2025}). Of
-course, there were very high-quality models such as DeepSeek, Mistral,
-and many others, but it was not possible to experiment with them all. In
+al., 2024}), in Portuguese (\citeproc{ref-correa_tucano_2024}{Corrêa et
+al., 2024}; \citeproc{ref-pires_sabia_2023}{Pires et al., 2023}), or
+representative of the state-of-the-art
+(\citeproc{ref-abdin_phi-4_2024}{Abdin et al., 2024};
+\citeproc{ref-openai_gpt-4_2024}{OpenAI et al., 2024};
+\citeproc{ref-team_gemma_2025}{Team et al., 2025}). Of course, there
+were very high-quality models such as DeepSeek, Mistral, and many
+others, but it was not possible to experiment with them all. In
 Table~\ref{tbl-metadata}, we have the list of the models applied in this
 study.
 
@@ -697,14 +682,13 @@ visualizations and some data collection, as described in the
 Section~\ref{sec-datasets}).
 
 Regarding hardware, this research relied on Google Colab Pro (A100 GPU),
-Kaggle (T4 GPU), and the Hertie School's GPU Server\footnote{https://hertie-data-science.gitbook.io/hertie-school-gpu/extras/gpu-server-specs}
-(4x Nvidia A100, shared with other researchers\footnote{Despite some
-  throttling issues caused by the high number of simultaneous users and
-  the absence of a job management system, this research would not have
-  been possible without the use of the GPU server. Thank you to the Data
-  Science Lab for their support!}.). All the relevant experiment
-runnings were monitored using Weights and Bias API Biewald
-(\citeproc{ref-biewald_experiment_2020}{2020}).
+Kaggle (T4 GPU), and the Hertie School's GPU Server\footnote{\url{https://hertie-data-science.gitbook.io/hertie-school-gpu/extras/gpu-server-specs}}
+(4x Nvidia A100\footnote{Despite some throttling issues caused by the
+  high number of simultaneous users and the absence of a job management
+  system, this research would not have been possible without the use of
+  the GPU server. Thank you to the Data Science Lab for their support!}).
+All the relevant experiment runnings were monitored using Weights and
+Bias API (\citeproc{ref-biewald_experiment_2020}{Biewald, 2020}).
 
 \subsection{Prompt and data schema}\label{prompt-and-data-schema}
 
@@ -713,12 +697,12 @@ explaining the extraction task would be necessary. So, a comprehensive
 prompt was written, explaining the general task, its subtasks, and how
 each column should be filled out.
 
-The prompt, written in Portuguese, explained the model that it would
-receive a judicial decision (``sentença'') related to criminal cases in
-Brazil---specifically, drug trafficking. It also provided some context
-about the general structure of the document (e.g., the head, report,
-legal reasoning, dispositive part) and how to fill out each of the
-columns.
+The prompt, written in Portuguese, explained the model its role, that it
+would receive a judicial decision (``sentença'') related to criminal
+cases in Brazil---specifically, drug trafficking. It also provided some
+context about the general structure of the document (e.g., the head,
+report, legal reasoning, dispositive part) and how to fill out each of
+the columns.
 
 The steps to answering the questions were carefully explained (such as
 reading the whole document, using \emph{None} when something is not
@@ -740,20 +724,20 @@ Although the scope of this research is to understand and asses if and
 how open-source models would extract information, it was important to
 establish a benchmark. OpenAI models were chosen since they represent
 state of the art in many evaluations and are the most widespread
-platform\footnote{https://techcrunch.com/2025/04/01/chatgpt-isnt-the-only-chatbot-thats-gaining-users/?utm\_source=chatgpt.com}
+platform\footnote{\url{https://techcrunch.com/2025/04/01/chatgpt-isnt-the-only-chatbot-thats-gaining-users/?utm_source=chatgpt.com}}
 \footnote{Also, there was the availability of using OpenAI platform
   through Hertie School's Data Science Lab account.}.
 
 To access the models in OpenAI's platform, one must use an API. This API
 offered the option to generate the outputs in batch mode, where the
 whole test dataset was sent with the prompts in an asynchronous mode.
-Batching allowed for a 50\% reduction in costs and the receipt of data
-in a single file containing all the responses generated.
+Batching allows for a 50\% reduction in costs and the receipt of data in
+a single file containing all the responses generated.
 
-So, to run each desired model, a batch was prepared, and the model and
-the parameters were chosen. The file was uploaded, a batch generation
-was started, and the results were downloaded back when ready. Regarding
-the parameters, all OpenAI models were run with temperature at 0 level,
+To run each desired model, a batch was prepared, and the model and the
+parameters were chosen. The file was uploaded, a batch generation was
+started, and the results were downloaded back when ready. Regarding the
+parameters, all OpenAI models were run with temperature at 0 level,
 specifying the max tokens to be generated in 1.000, except with the
 reasoning models without this option.
 
@@ -763,9 +747,7 @@ The model's output will only be helpful if coerced into a tabular format
 structured in a dataset object. If the model yields an answer in an
 unstructured format, it cannot be evaluated or used in further
 analysis---even if this answer is perfectly correct regarding its
-content.
-
-For instance, by taking the example below in
+content. For instance, by taking the example below in
 Table~\ref{tbl-good-json-output}, we can see the correct values in the
 desired JSON format.
 
@@ -893,18 +875,19 @@ remaining columns empty.
 Then, we have different evaluation functions according to the respective
 data type (numeric, categorical, boolean, or open textual fields). The
 different data types change the pre-processing step, but, in the end,
-the model's response is compared with the ground truth answer. The
-functions were split also due to an attempt to establish different
-tolerance thresholds. However, in this work, all limits were stuck to
-zero, meaning there was no tolerance. The values obtained might be
-slightly higher according to the level of tolerable differences.
+the model's response is compared with the ground truth
+answer.\footnote{The functions were split also due to an attempt to
+  establish different tolerance thresholds. However, in this work, all
+  limits were stuck to zero, meaning there was no tolerance. The
+  accuracy scores obtained might be slightly higher if one increases the
+  level of tolerable differences.}
 
 From this comparison, we will have a matrix with all answers and a value
 of 0 if they do not match or 1 if they are right. Then, the sum of
 correct answers will be divided by the total answers expected to assess
 the accuracy. The accuracy was calculated using scikit-learn's function
 \texttt{metrics.accuracy\_score}, which uses the following
-formula\footnote{https://scikit-learn.org/stable/modules/model\_evaluation.html\#accuracy-score}:
+formula\footnote{\url{https://scikit-learn.org/stable/modules/model_evaluation.html\#accuracy-score}}:
 
 \begin{equation}\phantomsection\label{eq-accuracy}{
 \texttt{accuracy}(y, \hat{y}) = \frac{1}{n_\text{samples}} \sum_{i=0}^{n_\text{samples}-1} 1(\hat{y}_i = y_i) 
@@ -922,15 +905,17 @@ models}\label{pipeline-to-run-open-source-models}
 strategies}\label{challenges-and-strategies}
 
 A pipeline is needed to run and evaluate the results of the open-source
-models Section~\ref{sec-models}. Their reliability in terms of privacy
+models (Section~\ref{sec-models}). Their reliability in terms of privacy
 comes with the cost of setting them up, which brings some challenges
 regarding the necessary computational resources, the size of the inputs
 versus the window of context, and the output format.
 
-Regarding context windows, it is important to consider that judicial
-sentences might be lengthy documents. In this case, they were close
-primarily to 8k to 12k tokens (plus the prompt, which has about 4k
-more), but it is also possible that they are way bigger than that.
+One relevant challenge was the size of context windows. It is important
+to consider that judicial sentences might be lengthy documents. In this
+case, they were close primarily to 8k to 12k tokens (plus the prompt,
+which has about 4k more), but it is also possible that they are way
+bigger than that. Many models, as Table~\ref{tbl-metadata} shows, have
+context windows way smaller than that.
 
 Some techniques, such as Yarn (\citeproc{ref-peng_yarn_2023}{Peng et
 al., 2023}) and RoPE scaling Tan
@@ -939,36 +924,37 @@ enlarge those models' context windows artificially. However, they would
 demand a heavy processing time, which is outside the scope of this
 research, and, therefore, were discarded.
 
-On the other hand, strategies such as chunking or Retrieval Augmented
-Generation (RAG) (\citeproc{ref-lewis_retrieval-augmented_2021}{Lewis et
-al., 2021}) were also attempted, with no good results. Besides their
-complexity, the model would be unable to understand the document as a
-whole. Although theoretically, it would be capable of extracting
-entities, it would fail in tasks such as evaluating whether there are
-inconsistencies in the police officer's account since it requires a
-complete understanding of the context.
+On the other hand, strategies such as chunking\footnote{\url{https://www.ibm.com/think/tutorials/chunking-strategies-for-rag-with-langchain-watsonx-ai}}
+or Retrieval Augmented Generation (RAG)
+(\citeproc{ref-lewis_retrieval-augmented_2021}{Lewis et al., 2021}) were
+also attempted, with no good results. Besides their complexity, the
+model would be unable to fully understand the document as a whole.
+Although theoretically, it could fail in tasks such as evaluating
+whether there are inconsistencies in the police officer's account since
+it requires a complete understanding of the context.
 
-The solution was to discard models such as LoLA, TucanoBR, and Lawma in
-favor of more general-use models with larger context windows. Although
-the last two models were fine-tuned using our training dataset, they
-could not produce the desired output. It does not mean that these models
-are inferior to the others; instead, they were not designed to meet this
-specific use case and, therefore, are unsuitable for this task.
+The solution was to discard models such as LoLA, TucanoBR, Sabiá and
+Lawma in favor of more general-use models with larger context windows.
+Although the last three models were fine-tuned using our training
+dataset, they could not produce the desired output. It does not mean
+that these models are inferior to the others; instead, they were not
+designed to meet this specific use case and, therefore, are unsuitable
+for this specific task.
 
 \subsubsection{Running open-source
 models}\label{running-open-source-models}
 
 After addressing the challenges, the open-source models were run and
-evaluated using pipelines based on the HuggingFace framework
+evaluated using pipelines based on the HuggingFace Python framework
 (\citeproc{ref-wolf_transformers_2020}{Wolf et al., 2020}). All
 executions had the temperature set to 0 to avoid hallucinations as much
 as possible, and the \emph{max\_tokens} value was set to 1.000.
 
 Each model received batches containing the prompt and each of the
-documents in the test dataset Section~\ref{sec-datasets}. The results
+documents in the test dataset (Section~\ref{sec-datasets}). The results
 were saved into individual \texttt{.json} files in the respective folder
 and evaluated according to the parsing and evaluation strategies
-Section~\ref{sec-models}.
+(Section~\ref{sec-models}).
 
 This same pipeline was used to run the open-source fine-tuned models, so
 there was a reliable comparison with them before and after the process.
@@ -977,17 +963,19 @@ there was a reliable comparison with them before and after the process.
 
 The decision to fine-tune open-source models was due to the possibility
 of `teaching' the general-use model how it should perform in a specific
-task. After picking a model that was trained in billions of tokens,
-often in a self-supervised way, the whole idea is to adjust some of
-their layers to be able to reproduce the method of extracting
-information, using transfer
-learning(\citeproc{ref-vajjala_practical_2020}{Vajjala et al., 2020})
+task (\citeproc{ref-dominguez-olmedo_lawma_2024}{Dominguez-Olmedo et
+al., 2024}; \citeproc{ref-junior_juru_2024}{Junior et al., 2024}). After
+picking a model that was trained in billions of tokens, often in a
+self-supervised way, the whole idea is to adjust some of their layers to
+be able to reproduce the method of extracting information, using
+transfer learning (\citeproc{ref-vajjala_practical_2020}{Vajjala et al.,
+2020})
 
 \subsubsection{Fine-tune OpenAI's
 models}\label{fine-tune-openais-models}
 
 In the case of OpenAI's models, the training pipeline was generated
-using the API and run on their servers\footnote{https://platform.openai.com/docs/guides/fine-tuning}.
+using the API and run on their servers\footnote{\url{https://platform.openai.com/docs/guides/fine-tuning}}.
 
 Also, the validation dataset was provided so the API could avoid
 overfitting and optimize the parameters by itself. The model was trained
@@ -996,8 +984,8 @@ learning rate multiplier of 1.80, and a batch size of 1.
 
 The decision was to fine-tune only the GPT 4o-mini, not only because it
 was the recommended option by OpenAI, but also because of the
-costs\footnote{https://openai.com/api/pricing/}: the price of using
-4o-mini was 8.3x lower than fine-tunning 4o.
+costs\footnote{\url{https://openai.com/api/pricing/}}: the price of
+using 4o-mini was 8.3x lower than fine-tunning 4o.
 
 \subsubsection{Fine-tune Open Source
 Models}\label{fine-tune-open-source-models}
@@ -1009,25 +997,28 @@ constraints.
 
 To make it possible to fine-tune, we relied on the Unsloth
 framework\footnote{Daniel Han \& team
-  (\citeproc{ref-daniel_han_unsloth_2023}{2023})}. It provides an
-out-of-the-box method to load models into 4-bit quantization (reducing
-their size and the price of a minor reduction in their precision) and
-applying LoRA to train only the small amount of layers possible, usually
-around 1\%. Following suggestions, we applied a rank and alpha of 16
-Raschka (\citeproc{ref-raschka_build_2024}{2024}), which led to a tiny
+  (\citeproc{ref-daniel_han_unsloth_2023}{2023})}. It provides a to load
+models into 4-bit or 8-bit quantization (reducing their size at the
+price of a minor reduction in their precision) and applying LoRA to
+train only the small amount of layers possible, usually around 1\%.
+Following suggestions, we applied a rank and alpha of 16 Raschka
+(\citeproc{ref-raschka_build_2024}{2024}), which led to a tiny
 percentage of parameters being re-calculated.
 
-After several attempts and errors, we decided to fine-tune Llama 3.2
-(3B) and Phi-4. Although we had tried many other models (like those from
-the Gemma3 family), they were not possible to fine-tune due to a lack of
-memory and/or incompatibility with libraries.
+After several attempts and errors, we decided to fine-tune\footnote{During
+  the first phase of testing the models Lawma, Tucano and Sabiá were
+  also attempted but they were not able to yield valid results.} Llama
+3.2 (3B) and Phi-4. Although we had tried many other models (like those
+from the Gemma3 family), they were not possible to fine-tune due to a
+lack of memory and/or incompatibility with the current version of
+libraries in the hardware.
 
 \section{Results}\label{sec-results}
 
 \subsection{Baseline performance}\label{baseline-performance}
 
-To answer the research question Section~\ref{sec-research_question}, we
-need to understand how commercial and open-source models perform in a
+To answer the research question (Section~\ref{sec-research_question}),
+we need to understand how commercial and open-source models perform in a
 zero-shot setting and the impact of fine-tuning on their performance.
 
 After roughly 20 experiments\footnote{Ignoring validation tests and
@@ -1118,11 +1109,13 @@ consistently matched to canonical forms.
 
 \begin{figure}[H]
 
-{\centering \pandocbounded{\includegraphics[keepaspectratio]{../../evaluate_results/task_accuracy_heatmap_granular_nlp.png}}
+\centering{
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{../../evaluate_results/task_accuracy_heatmap_granular_nlp.png}
 
 }
 
-\caption{Tasks by accuracy}
+\caption{\label{fig-model_accuracy_nlp_tasks}Tasks by accuracy}
 
 \end{figure}%
 
@@ -1136,7 +1129,7 @@ compared to straightforward entity extraction.
 \subsection{Fine-tuned results}\label{fine-tuned-results}
 
 Those results suggested that continuing to work with open-source models
-was a promising strategy. So, fine-tuning was performed with the models
+was a promising strategy. Fine-tuning was performed with the models
 OpenAI 4o-mini (which is the recommended model by OpenAI), Llama 3.2
 (3B), and Phi4. No resources were available to perform fine-tuning on
 other models. Despite many attempts, some of them, mainly from the Gemma
@@ -1153,7 +1146,7 @@ stopping set to up to 5 evaluation steps.
 
 \centering{
 
-\includegraphics[width=6.25in,height=\textheight,keepaspectratio]{../../evaluate_results/finetune_losses.png}
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{../../evaluate_results/finetune_losses.png}
 
 }
 
@@ -1182,11 +1175,11 @@ process more efficient.
 
 \end{figure}%
 
-As Figure~\ref{fig-finetune} showed, model Phi4 tied with GPT 4o-mini
-and the much smaller Llama 3.2 (3B) learned very easily, even with both
-models being trained with the same 10 epochs.\footnote{With a richer
-  dataset and/or more epochs, it would be possible to reach or even
-  surpass GPT 4o-mini performance.}
+As Figure~\ref{fig-finetune} showed, model Phi4 practicaly tied with GPT
+4o-mini and the much smaller Llama 3.2 (3B) learned very easily, even
+with both models being trained with the same 10 epochs.\footnote{With a
+  richer dataset and/or more epochs, it would be possible to reach or
+  even surpass GPT 4o-mini performance.}
 
 \begin{table}
 
@@ -1251,11 +1244,11 @@ degradation of GPT 4o-mini. Phi4, \footnote{There is the
   version of Phi-4}. However, it was impossible to run or fine-tune it
   with the current computational resources due to insufficient support
   from the Unsloth framework. Ref:
-  https://github.com/unslothai/unsloth/issues/2359} though they had the
-second-best performance, learned less than Llama, which suggests a
-ceiling. Assuming that, in those architectures, the number of parameters
-is the critical factor, fewer parameters than 14B and more than 3B would
-be ideal.
+  \url{https://github.com/unslothai/unsloth/issues/2359}} though they
+had the second-best performance, learned less than Llama, which suggests
+a ceiling. Assuming that, in those architectures, the number of
+parameters is the critical factor, fewer parameters than 14B and more
+than 3B would be ideal.
 
 \subsection{Inference performance}\label{inference-performance}
 
@@ -1271,17 +1264,18 @@ projected to reach 3,841,695 tokens. On average, we estimate this will
 yield 252,029 output tokens with the max\_tokens parameter set to 1,000.
 
 Regarding inference time, the Llama model required roughly 1 hour, 54
-minutes for the entire batch (equating to about 16 seconds per sample),
-while Phi-4 took 4 hours, 7 minutes to process the same batch, resulting
-in significantly longer individual sample times. When considering costs,
-we can compare the three models by examining the energy expenditures of
-the open-source models\footnote{Estimated energy costs: €0.2889 per KWh,
-  EU average price in the first half of 2024, according to
-  https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity\_price\_statistics\#Electricity\_prices\_for\_household\_consumers}
+minutes for the entire batch, while Phi-4 took 4 hours, 7 minutes to
+process the same batch, resulting in significantly longer individual
+sample times. When considering costs, we can compare the three models by
+examining the energy expenditures of the open-source models\footnote{Estimated
+  energy costs: €0.2889 per KWh, EU average price in the first half of
+  2024, according to
+  \url{https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_price_statistics\#Electricity_prices_for_household_consumers}}
 and contrasting these with the inferred costs associated with OpenAI's
 fine-tuned models\footnote{Assuming batch prices, which are the most
   economical, on April 26, 2025,
-  https://platform.openai.com/docs/pricing. Assuming 1 USD = 0.88 EUR}.
+  \url{https://platform.openai.com/docs/pricing}. Assuming 1 USD = 0.88
+  EUR}.
 
 Below is a comparison detailing each model's performance in terms of
 time, resource consumption, and associated costs to highlight the
@@ -1317,7 +1311,6 @@ decisions in the dataset were from São Paulo's Court of Justice between
 2017 and 2018 and only relative to drug possession cases: the size
 constraints might limit the ability of the models to generalize in
 judicial decisions from other areas of law or, even, from other Courts.
-Also, we cannot affirm that the same.
 
 The size of the testing dataset also might have been insufficient to
 assess if the fine-tuned models were overfitting to its context. In
@@ -1350,21 +1343,23 @@ perspectives and is not neutral (as it is impossible to be).
 
 \subsection{Key Findings}\label{sec-key-findinds}
 
-We have found \textbf{?@fig-base\_model} that commercial and open-source
-models can potentially enable jurimetric research. Many of them achieve
+We have found (Table~\ref{tbl-accuracy-metadata} and
+Figure~\ref{fig-model_accuracy_nlp_tasks}) that commercial and
+open-source models can enable jurimetric research. Many of them achieve
 \textgreater{} 0.7 points of accuracy in a zero-shot setting, and GPT
 4o-mini and Phi-4 achieve \textgreater{} 0.92 after fine-tuning. This
-learning happens in all kinds of tasks (Table~\ref{tbl-finetune-delta}).
+learning happens in all kinds of tasks (Table~\ref{tbl-finetune-delta}
+and Table~\ref{tbl-finetune-delta}).
 
 Even with a small dataset of 186 cases, applying LoRA and Quantization
-through (\citeproc{ref-unsloth}{\textbf{unsloth?}}) enabled the
-open-source models to learn the patterns quite well, as
-Figure~\ref{fig-ft_loss_evolution} shows an important decrease in the
-validation loss. Results suggest that even fewer epochs could have been
-used.
+through Unsloth (\citeproc{ref-daniel_han_unsloth_2023}{Daniel Han \&
+team, 2023}) enabled the open-source models to learn the patterns quite
+well, as Figure~\ref{fig-ft_loss_evolution} shows an important decrease
+in the validation loss. Results suggest that even fewer epochs could
+have been used.
 
 When generating a dataset out of 454 new cases, fine-tuned versions of
-GPT 4o-mini and Phi-4 -- that practically tied in their accuracy, the
+GPT 4o-mini and Phi-4 -- that practically tied in their accuracy --, the
 open-source model was 25\% cheaper than the commercial version
 (Table~\ref{tbl-inference-costs}). Results show that open-source Phi-4
 is cost-beneficial in similar settings. However, considering the
@@ -1374,7 +1369,7 @@ future. Although Phi-4 had an outstanding performance, it has a 16k
 window context, which might be unfeasible in some contexts.
 
 The fine-tuned version of LLama 3.2 (3B) was barely half the price and
-inference time, at the cost of 20\% percent points of accuracy. It would
+inference time, at the cost of 20 percent points of accuracy. It would
 be ideal to improve this model's accuracy through more complex training,
 which may be achieved by tweaking the LoRA training factors or, ideally,
 by a more comprehensive dataset. The efficient inference with far fewer
@@ -1388,7 +1383,7 @@ they are promising architectures.
 
 There are important avenues to derive from this work. Having a larger
 and more diverse high-quality dataset is key to the evolution of new
-deployments. It would be ideal to have a few thousand judicial sentences
+deployments. It would be ideal to have a few hundred judicial sentences
 annotated in diverse fields from different Courts and even different
 levels of jurisdiction.
 
@@ -1413,11 +1408,14 @@ fine-tuning. More data would enable more testing in this aspect, leading
 to an optimization of the generation prompt, making it easier to adapt
 to other contexts.
 
-Efficiency is another important future path of work. Trying techniques
+Efficiency is another essential future path of work. Trying techniques
 to prune models and distill their content would lead to lighter and more
-efficient models. Once models such as Tucano or Sabiá have larger
-windows of context and are optimized for instruction tuning, they might
-be tested as well.
+efficient models. If models such as Tucano or Sabiá have larger context
+windows optimized for instruction tuning, they might also be tested.
+Also, as Figure~\ref{fig-finetune} suggests, some tests could be
+conducted to make fine-tuning more efficient;
+Table~\ref{tbl-finetune-delta} indicates that experiments with models
+having 4B to 10B parameters could achieve an optimal efficiency.
 
 Once we have a larger and more diverse dataset, it would not be a bad
 idea to try to obtain a more flexible model that could generalize to
@@ -1425,27 +1423,42 @@ other legal contexts. This would allow researchers to spend less time
 adapting existing models rather than just prompt engineering, which
 tends to be faster and easier.
 
-Lastly, although the results are specific to the Brazilian context,
-similar approaches might be attempted in other jurisdictions and even
-with different languages as long as the base models have idiomatic
-support and there is enough training data in the legal task.
+Although the results are specific to the Brazilian context, similar
+approaches might be attempted in other jurisdictions and even with
+different languages as long as the base models have idiomatic support
+and there is enough training data in the legal task.
 
-\subsection{Human in the loop}\label{human-in-the-loop}
+\subsection{Policy implications}\label{policy-implications}
 
-However, it would be strongly advisable not to shorten or cut research
-job positions in favor of ``substituting'' human labor with a large
-language model.
+It was clear the role that high-quality annotated data plays and the
+potential that fine-tuning an LLM could have to accelerate empirical
+legal research, easing the execution of data-driven research.
 
-Domain knowledge was a key factor in success throughout the process. To
-believe that it could be simply `automated' would be a big mistake since
-the conception and design need a deep understanding of the legal field
-under analysis. Not having enough human oversight during operation would
-lead to mistakes being massively replicated and more subtle biases not
-being identified.
+Our work's approach would allow the design of new research and the
+update of other work that, due to the time-lapse, might not be as
+informative as before. For instance, the models trained here would be
+relevant to replicating Lacerda e Silva
+(\citeproc{ref-lacerda_e_silva_punindo_2021}{2021}) work in recent
+years, especially after the Brazilian Supreme Court decided on drug
+decriminalization\footnote{https://www.conectas.org/en/noticias/nine-years-into-the-case-the-brazilian-federal-supreme-court-stf-decriminalizes-possession-of-marijuana-for-personal-use/}.
 
-This work shows that models should not replace legal work and that legal
-experts should not be reduced to data annotations but rather be involved
-in the whole process.
+Regular analyses of topics such as civil compensations, labor claim
+awards, consumer law, and others would also benefit legal practitioners
+and public officials, enabling the identification of latent trends. A
+rising success rate in a particular area could signal a forthcoming
+surge in cases, as it would create incentives for litigants.
+Anticipating such developments would be particularly important for the
+administration of justice, especially regarding workforce allocation.
+
+Legal firms, prosecutors, public defenders, and public attorneys might
+apply a jurimetric approach to evaluate their own success rates,
+understand which legal arguments are more relevant to their (in)success,
+etc.
+
+In academia, it would allow for a more comprehensive analysis of cases,
+allowing researchers to have bigger samples, freeing them from the
+intensive labor of annotating data, and allowing them to devote more
+time to the substantive analysis itself.
 
 \section{Conclusion}\label{sec-conclusion}
 
@@ -1483,8 +1496,8 @@ In order for this work to benefit the community most, we provide a few
 recommendations aimed at strengthening data-driven empirical legal
 research.
 
-Academia: Disclose data from empirical legal research as much as
-possible, as it would be a valuable resource for further fine-tuning
+\textbf{Academia}: Disclose data from empirical legal research as much
+as possible, as it would be a valuable resource for further fine-tuning
 models. Obtaining data from past work and ensuring that the new research
 data is available would accelerate the generation of new datasets,
 benefiting the whole community. For instance, IPEA released the data
@@ -1493,26 +1506,44 @@ Ministério da Justiça e Segurança Pública
 (\citeproc{ref-instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023}{2023}),
 which would provide a larger and more diverse dataset.
 
-Judiciary branch: The judiciary branch should ensure data and lawsuit
-documents are available digitally for research while maintaining high
-privacy standards. Even if anonymized, keeping the data open in robust
-systems such as DataJud\footnote{https://www.cnj.jus.br/sistemas/datajud/}
-and the TJ-SP Judicial Decisions Database\footnote{https://esaj.tjsp.jus.br/cjpg/}
+\textbf{Judiciary branch}: Ensure data and lawsuit documents are
+available digitally for research while maintaining high privacy
+standards. Even if anonymized, keeping the data open in robust systems
+such as DataJud\footnote{\url{https://www.cnj.jus.br/sistemas/datajud/}}
+and the TJ-SP Judicial Decisions Database\footnote{\url{https://esaj.tjsp.jus.br/cjpg/}}
 would ease access to legal documents and allow further research.
 
-Law schools: Adapt the Law curriculum so scholars are data literate.
-Future professionals should be aware of technology but especially
-empowered by the new tools that artificial intelligence and data science
-can already provide them.
+\textbf{Law schools}: Adapt the Law curriculum so scholars are data
+literate. Future professionals should be aware of technology but
+especially empowered by the new tools that artificial intelligence and
+data science can already provide them.
 
-Think tanks and research networks: Invest in jurimetric research,
-gathering legal professionals and data scientists to strengthen
-methodology and empirical evidence as much as possible.
+\textbf{Think tanks and research networks}: Invest in jurimetric
+research, gathering legal professionals and data scientists to
+strengthen methodology and empirical evidence as much as possible.
 
-Open-source community: Keep offering high-quality frameworks such as
-Torch, HuggingFace, and Unsloth. The deployment of new LLMs would be
-ideal if they maintained larger context windows (at least 20k tokens)
-and efficient inference.
+\textbf{Open-source community}: Keep offering high-quality frameworks
+such as Torch, HuggingFace, and Unsloth. The deployment of new LLMs
+would be ideal if they maintained larger context windows (at least 20k
+tokens) and efficient inference.
+
+\textbf{Brazilian Ministry of Science and Technology}: Offer
+computational resources, with a robust GPU framework, to accelerate
+empirical research in the country and to reduce the dependency on
+external cloud providers.
+
+Lastly, it remains clear that domain knowledge was a key factor in
+success throughout the process. So, it is strongly advisable not to
+shorten or cut research job positions in favor of ``substituting'' human
+labor with a large language model. To believe that it could be simply
+`automated' would be a big mistake since the conception and design need
+a deep understanding of the legal field under analysis. Not having
+enough human oversight during operation would lead to mistakes being
+massively replicated and more subtle biases not being identified.
+
+This work shows that models should not replace legal work and that legal
+experts should not be reduced to data annotations but rather be involved
+in the whole process.
 
 \newpage{}
 
@@ -1537,6 +1568,13 @@ Almeida, T. S., Abonizio, H., Nogueira, R., \& Pires, R. (2024).
 Alves da Silva, P. E. (2022). Aspectos metodológicos da pesquisa
 empírica em {Direito} com processos judiciais físicos e eletrônicos. In
 \emph{Estudos empíricos em processo e organização judiciária}. Expert.
+
+\bibitem[\citeproctext]{ref-de_andrade_utilizacao_2018}
+Andrade, M. D. de. (2018). A utilização do sistema {R}-studio e da
+jurimetria como ferramentas complementares à pesquisa jurídica / {The}
+use of the {R}-studio system and jurimetrics as complementary tools for
+the legal research. \emph{REVISTA QUAESTIO IURIS}, \emph{11}(2),
+680--692. \url{https://doi.org/10.12957/rqi.2018.29221}
 
 \bibitem[\citeproctext]{ref-associacao_brasileira_de_jurimetria_avaliacao_2019}
 Associação Brasileira de Jurimetria. (2019). \emph{Avaliação do
@@ -1718,178 +1756,46 @@ into {Deep} {Learning}}. arXiv.
 \clearpage
 \appendix
 
-\section{Appendix - Lacerda's
-Dataset}\label{appendix---lacerdas-dataset}
-
-\begin{longtable}[]{@{}ll@{}}
-
-\toprule\noalign{}
-\endfirsthead
-\endhead
-\bottomrule\noalign{}
-\tabularnewline
-\caption{Data summary}\tabularnewline
-\endlastfoot
-Name & lacerda\_example \\
-Number of rows & 420 \\
-Number of columns & 35 \\
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
-Column type frequency: & \\
-character & 35 \\
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
-Group variables & None \\
-
-
-\caption{\label{tbl-lacerda}Lacerda's dataset}
-
-\tabularnewline
-\end{longtable}
-
-\textbf{Variable type: character}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.2658}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1266}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1772}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0506}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0506}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0759}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1139}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1392}}@{}}
-
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-skim\_variable
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-n\_missing
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-complete\_rate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-min
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-max
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-empty
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-n\_unique
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-whitespace
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Processo & 0 & 1 & 20 & 26 & 0 & 352 & 0 \\
-DtDisp & 0 & 1 & 5 & 10 & 0 & 210 & 0 \\
-Juiz & 0 & 1 & 13 & 49 & 0 & 79 & 0 \\
-Vara & 0 & 1 & 16 & 17 & 0 & 32 & 0 \\
-Nome & 0 & 1 & 11 & 39 & 0 & 419 & 0 \\
-Local & 0 & 1 & 7 & 19 & 0 & 10 & 0 \\
-Sexo & 0 & 1 & 8 & 9 & 0 & 2 & 0 \\
-DN & 0 & 1 & 5 & 28 & 0 & 411 & 0 \\
-Cutis & 0 & 1 & 5 & 7 & 0 & 5 & 0 \\
-Cabelo & 0 & 1 & 4 & 16 & 0 & 8 & 0 \\
-Objetos & 0 & 1 & 4 & 159 & 0 & 261 & 0 \\
-Maconha & 0 & 1 & 1 & 41 & 0 & 255 & 0 \\
-Cocaína & 0 & 1 & 1 & 38 & 0 & 274 & 0 \\
-Crack & 1 & 1 & 1 & 40 & 0 & 138 & 0 \\
-Ecstasy & 0 & 1 & 1 & 24 & 0 & 12 & 0 \\
-LSD & 0 & 1 & 1 & 18 & 0 & 6 & 0 \\
-Outras & 0 & 1 & 1 & 61 & 0 & 33 & 0 \\
-DenDrog & 0 & 1 & 7 & 25 & 0 & 4 & 0 \\
-DenOutros & 0 & 1 & 3 & 51 & 0 & 13 & 0 \\
-Aspectos & 0 & 1 & 6 & 122 & 0 & 156 & 0 \\
-Sentença & 0 & 1 & 10 & 23 & 0 & 5 & 0 \\
-ResDrogas & 0 & 1 & 2 & 25 & 0 & 6 & 0 \\
-ResOutros & 0 & 1 & 2 & 45 & 0 & 16 & 0 \\
-AvalNegPB & 0 & 1 & 2 & 50 & 0 & 28 & 0 \\
-PenaBase & 0 & 1 & 2 & 12 & 0 & 18 & 0 \\
-Agravantes33 & 0 & 1 & 2 & 12 & 0 & 3 & 0 \\
-Atenuantes33 & 0 & 1 & 2 & 21 & 0 & 5 & 0 \\
-Aumento33 & 0 & 1 & 2 & 26 & 0 & 8 & 0 \\
-§4º & 0 & 1 & 2 & 13 & 0 & 5 & 0 \\
-Pena33 & 0 & 1 & 2 & 10 & 0 & 46 & 0 \\
-PenaDrogas & 0 & 1 & 2 & 5 & 0 & 7 & 0 \\
-PenaOutros & 0 & 1 & 2 & 9 & 0 & 15 & 0 \\
-TotPen & 0 & 1 & 2 & 11 & 0 & 59 & 0 \\
-Substituição da pena & 0 & 1 & 2 & 3 & 0 & 3 & 0 \\
-Regime inicial & 0 & 1 & 2 & 10 & 0 & 4 & 0 \\
-
-
-\caption{\label{tbl-lacerda}Lacerda's dataset}
-
-\tabularnewline
-\end{longtable}
-
-\section{Appendix - Prompt}\label{sec-annex-prompt}
-
-Lorem ipsum
-
-\section{Appendix - Fine tune performance}\label{sec-ft-performance}
-
-Lorem ipsum
-
 \section{Appendix - Plots and tables}\label{sec-plots-tables}
 
-Lorem ipsum
+\begin{figure}[H]
 
-\section{Appendix - Acknowledgments}\label{sec-thank-you}
+\centering{
 
-\emph{Caminante, no hay camino, se hace camino al andar} (Antonio
-Machado)\footnote{*``Traveller, there is no path; the path is made by
-  walking.''}
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{../../evaluate_results/per_task_accuracy_comparison.png}
 
-This Master's Thesis would not be possible without the dataset carefully
-annotated and generously provided by Marina Lacerda Silva, who dared to
-do a jurimetric master's thesis a few years ago. I could put together
-this work under the supervision of Prof.~Lynn Kaack---and thanks for her
-Deep Learning course---and other brilliant colleagues. Also, there would
-not be this thesis without the support of Huy Dang and the Hertie School
-Data Science Lab. Thank you all!
+}
 
-Also, this work is part of a long path initiated way before me. A
-special thank you to Prof.~Susana Henriques da Costa, who first
-introduced me to the possibilities (and struggles) of legal empirical
-research and got me excited about doing research. Another important
-thank you to Prof.~Paulo Eduardo Alves da Silva, Prof.~José Jesus Filho,
-and Prof.~Julio Tecenti for their contributions to the field.
+\caption{\label{fig-accuracy-comparison}Accuracy comparison - Finetuned
+models - Kind of datatype}
 
-Although this thesis is only one more step on this \emph{camino} to a
-master's degree in Data Science for Public Policy, it allows me to thank
-those who helped me reach this point. A very heartfelt thank you to
-Katia and Juares, my parents, who never hesitated to support me even
-when they did not understand my choices. \emph{Muito obrigado!}
+\end{figure}%
 
-Thank you, Motriz, for the Vetor Brasil Scholarship and to ChancenEg for
-giving me the financial conditions to enroll in this program! This work
-benefited largely from time spent with the Berkeley Equity and Access in
-Algorithms, Mechanisms, and Optimization (BEAAMO) Summer Fellowship
-Program. Thank you, Prof.~Rediet Abebe, and my colleagues Mírian Silva,
-Rayssa Benatti, and Tainá Turella! It is also a good opportunity to
-thank my colleagues from Jusbrasil for having many chances to apply data
-science to the legal context and have inspiring conversations every day.
+\begin{figure}[H]
 
-Also, I would like to thank my colleagues from the MDS classes 2024 and
-2025, the Latin-American Club (and the members of the `Latin Pomodoro'),
-the Hertie School Digital Verification Corps, and many brilliant
-colleagues whom I had the chance to share conversations and a good time
-together in the Makerspace, the Library, and the cafeteria.
+\centering{
 
-Since it's impossible to nominate them all, I will thank you with a deep
-\emph{muito obrigado} my friends Henrique Motta, João Vítor Krieeger,
-Paulina Boechat, Renan Fernandes, and the whole Brazilian-Hertian
-community! This journey in Berlin would not be possible without the
-presence and support of Francisco Rios, Ana Barros, and the other
-friends of Urso, who brought some rithm to this journey.
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{../../evaluate_results/task_accuracy_heatmap_granular_nlp_finetuned.png}
 
-Last but not least, I would like to thank many others who have supported
-my journey and helped me abroad by being present during many of the
-steps that I took here. Thank you, Vitor Moneo, Fernanda Horn, Orisha,
-and Meirelles!
+}
 
-Having said that, a grateful thank you to the reader! I hope this work
-contributes to better legal research, improves our institutions, and,
-thus, positively impacts people's lives.
+\caption{\label{fig-task-accuracy-heatmap}Task accuracy heatmap -
+Fine-tuned models}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{../../evaluate_results/radar_charts_per_experiment.png}
+
+}
+
+\caption{\label{fig-radar-charts}Radar charts comparing performance by
+datatype}
+
+\end{figure}%
 
 \section{Appendix - Description of NLP Tasks}\label{sec-nlp-tasks}
 
@@ -1965,6 +1871,150 @@ tasks}
 \end{longtable}
 
 \endgroup{}
+
+\section{Appendix - Lacerda's Original Dataset
+Description}\label{sec-lacerda-dataset}
+
+\textbf{Variable type: character}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.2658}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1266}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1772}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0506}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0506}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0759}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1139}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1392}}@{}}
+
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+min
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+max
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+empty
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_unique
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+whitespace
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Processo & 0 & 1 & 20 & 26 & 0 & 352 & 0 \\
+DtDisp & 0 & 1 & 5 & 10 & 0 & 210 & 0 \\
+Juiz & 0 & 1 & 13 & 49 & 0 & 79 & 0 \\
+Vara & 0 & 1 & 16 & 17 & 0 & 32 & 0 \\
+Nome & 0 & 1 & 11 & 39 & 0 & 419 & 0 \\
+Local & 0 & 1 & 7 & 19 & 0 & 10 & 0 \\
+Sexo & 0 & 1 & 8 & 9 & 0 & 2 & 0 \\
+DN & 0 & 1 & 5 & 28 & 0 & 411 & 0 \\
+Cutis & 0 & 1 & 5 & 7 & 0 & 5 & 0 \\
+Cabelo & 0 & 1 & 4 & 16 & 0 & 8 & 0 \\
+Objetos & 0 & 1 & 4 & 159 & 0 & 261 & 0 \\
+Maconha & 0 & 1 & 1 & 41 & 0 & 255 & 0 \\
+Cocaína & 0 & 1 & 1 & 38 & 0 & 274 & 0 \\
+Crack & 1 & 1 & 1 & 40 & 0 & 138 & 0 \\
+Ecstasy & 0 & 1 & 1 & 24 & 0 & 12 & 0 \\
+LSD & 0 & 1 & 1 & 18 & 0 & 6 & 0 \\
+Outras & 0 & 1 & 1 & 61 & 0 & 33 & 0 \\
+DenDrog & 0 & 1 & 7 & 25 & 0 & 4 & 0 \\
+DenOutros & 0 & 1 & 3 & 51 & 0 & 13 & 0 \\
+Aspectos & 0 & 1 & 6 & 122 & 0 & 156 & 0 \\
+Sentença & 0 & 1 & 10 & 23 & 0 & 5 & 0 \\
+ResDrogas & 0 & 1 & 2 & 25 & 0 & 6 & 0 \\
+ResOutros & 0 & 1 & 2 & 45 & 0 & 16 & 0 \\
+AvalNegPB & 0 & 1 & 2 & 50 & 0 & 28 & 0 \\
+PenaBase & 0 & 1 & 2 & 12 & 0 & 18 & 0 \\
+Agravantes33 & 0 & 1 & 2 & 12 & 0 & 3 & 0 \\
+Atenuantes33 & 0 & 1 & 2 & 21 & 0 & 5 & 0 \\
+Aumento33 & 0 & 1 & 2 & 26 & 0 & 8 & 0 \\
+§4º & 0 & 1 & 2 & 13 & 0 & 5 & 0 \\
+Pena33 & 0 & 1 & 2 & 10 & 0 & 46 & 0 \\
+PenaDrogas & 0 & 1 & 2 & 5 & 0 & 7 & 0 \\
+PenaOutros & 0 & 1 & 2 & 9 & 0 & 15 & 0 \\
+TotPen & 0 & 1 & 2 & 11 & 0 & 59 & 0 \\
+Substituição da pena & 0 & 1 & 2 & 3 & 0 & 3 & 0 \\
+Regime inicial & 0 & 1 & 2 & 10 & 0 & 4 & 0 \\
+
+
+\caption{\label{tbl-lacerda}Lacerda's Original Dataset}
+
+\tabularnewline
+\end{longtable}
+
+\newpage{}
+
+\section{Appendix - Acknowledgments}\label{sec-thank-you}
+
+\emph{Caminante, no hay camino, se hace camino al andar} (Antonio
+Machado)\footnote{*``Traveller, there is no path; the path is made by
+  walking.''}
+
+This Master's Thesis would not be possible without the dataset carefully
+annotated and generously provided by Marina Lacerda Silva, who dared to
+do a jurimetric master's thesis a few years ago. I could only put
+together this work under the supervision of Prof.~Lynn Kaack --- and,
+also, thanks for her Deep Learning course --- and other brilliant
+colleagues also under her supervision. There would not be possible to
+conduct many experiments in this thesis without the support of Huy Dang
+and the Hertie School Data Science Lab. I am also grateful for Maria
+Utenthal's insights in the first conception of this research idea. Thank
+you all!
+
+Also, this work is part of a long path initiated way before me. A
+special thank you to Prof.~Susana Henriques da Costa, who first
+introduced me to the possibilities (and struggles) of legal empirical
+research and got me excited about doing research. Another important
+thank you to Prof.~Paulo Eduardo Alves da Silva, Prof.~José Jesus Filho,
+and Prof.~Julio Tecenti for their contributions to the jurimetric field
+in Brazil.
+
+Although this thesis is only one more step on this \emph{camino} to a
+master's degree in Data Science for Public Policy, it allows me to thank
+those who helped me reach this point. A very heartfelt thank you to
+Katia and Juares, my parents, who never hesitated to support me even
+when they did not understand my choices. \emph{Muito obrigado!}
+
+Thank you, Motriz, for the Vetor Brasil Scholarship and to Chancen Eg
+for giving me the financial conditions to enroll in this program! This
+research benefited largely from time spent with the Berkeley Equity and
+Access in Algorithms, Mechanisms, and Optimization (BEAAMO) Summer
+Fellowship Program. Thank you, Prof.~Rediet Abebe, and my colleagues
+Mírian Silva, Rayssa Benatti, and Tainá Turella! It is also a good
+opportunity to thank my colleagues from Jusbrasil (especially the
+Analytics and the Legal Team) for having many chances to apply data
+science to the legal context and have inspiring conversations every day.
+
+Also, I would like to thank my colleagues from the MDS classes 2024 and
+2025, the Latin-American Club (and the members of the `Latin Pomodoro'),
+the Hertie School Digital Verification Corps, and many brilliant
+colleagues whom I had the chance to share conversations and a good time
+together in the Makerspace, the Library, and the cafeteria.
+
+Since it's impossible to nominate them all, I will thank you with a deep
+\emph{muito obrigado} my friends Henrique Motta, João Vítor Krieger,
+Paulina Boechat, Renan Fernandes, and the whole Brazilian-Hertian
+community! This journey in Berlin would not be possible without the
+presence and support of Francisco Rios, Ana Barros, and the other
+friends from Urso, who brought some rhythm to this journey.
+
+Last but not least, I would like to thank many others who have supported
+my journey and helped me abroad by being present during many of the
+steps that I took here. Thank you, Vitor Moneo, Fernanda Horn, Orisha,
+and Meirelles!
+
+Having said that, a grateful thank you to any eventual reader! I hope
+this work contributes to better legal research, improves our
+institutions, and, thus, positively impacts people's lives.
 
 
 

@@ -318,6 +318,7 @@ sns.heatmap(
     linewidths=0.5,
     ax=ax,
     cmap="viridis", #"YlGnBu",
+    annot_kws={'fontsize': 18},
     vmin=0.0, vmax=1,
 )
 # x axis in the top
@@ -361,6 +362,7 @@ sns.heatmap(
     ax=ax,
     cmap="viridis", #"YlGnBu",
     vmin=0.0, vmax=1,
+    annot_kws={'fontsize': 18}
     # change the direction of the color bar
     
 )
@@ -412,7 +414,7 @@ heat_data = heat_data.drop(columns=["parameters"]).set_index("model")
 # heat_data = heat_data.drop(columns="status").set_index("model")
 
 
-fig, ax = plt.subplots(figsize=(18, 0.5 + 0.6 * len(heat_data)))
+fig, ax = plt.subplots(figsize=(20, 0.5 + 0.6 * len(heat_data)))
 sns.heatmap(
     heat_data,
     annot=True,
@@ -422,12 +424,12 @@ sns.heatmap(
     ax=ax,
     cmap="viridis",  # "RdYlGn", #"YlGnBu", #"viridis", #"YlGnBu",
     vmin=0.5, vmax=1,
+    annot_kws={'fontsize': 20, 'weight': 'bold'}
 )
-# x axis in the top
 ax.tick_params(axis='y', labelsize=16)
 ax.tick_params(axis='x', labelsize=16)
 ax.xaxis.set_ticks_position("top")
-ax.set_title("Model Accuracy – NLP Task Breakdown (Pre Fine-Tuning)", weight="bold", pad=12, fontsize=25)
+ax.set_title("Model Accuracy – NLP Task Breakdown (Before Fine-Tuning)", weight="bold", pad=12, fontsize=25)
 ax.set_xlabel("")
 ax.set_ylabel("")
 plt.tight_layout()
@@ -481,6 +483,7 @@ sns.heatmap(
     ax=ax,
     cmap="viridis",  # "RdYlGn", #"YlGnBu", #"viridis", #"YlGnBu",
     vmin=0.5, vmax=1,
+    annot_kws={'fontsize': 20}
 )
 # x axis in the top
 ax.xaxis.set_ticks_position("top")
