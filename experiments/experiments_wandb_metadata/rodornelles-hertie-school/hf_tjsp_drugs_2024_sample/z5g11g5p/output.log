@@ -1,0 +1,109 @@
+Filter: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 898/898 [00:00<00:00, 25772.60 examples/s]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:15<00:00,  2.54s/it]
+Device set to use cuda:0
+Batches:   0%|                                                                                                                                   | 0/439 [00:00<?, ?it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (19478 > 18432). Running this sequence through the model will result in indexing errors
+Batches:   0%|                                                                                                                                   | 0/439 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/228446@hertie-school.lan/workspace/master_thesis/experiments_inference/run_HF_phi4_4B_sample_tjsp.py", line 122, in <module>
+    outputs = pipe(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/text_generation.py", line 287, in __call__
+    return super().__call__(text_inputs, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/base.py", line 1360, in __call__
+    outputs = list(final_iterator)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/pt_utils.py", line 124, in __next__
+    item = next(self.iterator)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/pt_utils.py", line 125, in __next__
+    processed = self.infer(item, **self.params)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/base.py", line 1286, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/text_generation.py", line 385, in _forward
+    output = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/generation/utils.py", line 2465, in generate
+    result = self._sample(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/generation/utils.py", line 3431, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 821, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 527, in forward
+    inputs_embeds = self.embed_tokens(input_ids)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/sparse.py", line 190, in forward
+    return F.embedding(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/functional.py", line 2551, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 762.00 MiB. GPU 0 has a total capacity of 39.39 GiB of which 1.31 MiB is free. Including non-PyTorch memory, this process has 26.52 GiB memory in use. Process 411389 has 12.85 GiB memory in use. Of the allocated memory 26.04 GiB is allocated by PyTorch, and 3.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/home/228446@hertie-school.lan/workspace/master_thesis/experiments_inference/run_HF_phi4_4B_sample_tjsp.py", line 122, in <module>
+    outputs = pipe(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/text_generation.py", line 287, in __call__
+    return super().__call__(text_inputs, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/base.py", line 1360, in __call__
+    outputs = list(final_iterator)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/pt_utils.py", line 124, in __next__
+    item = next(self.iterator)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/pt_utils.py", line 125, in __next__
+    processed = self.infer(item, **self.params)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/base.py", line 1286, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/pipelines/text_generation.py", line 385, in _forward
+    output = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/generation/utils.py", line 2465, in generate
+    result = self._sample(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/generation/utils.py", line 3431, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 821, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 965, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 527, in forward
+    inputs_embeds = self.embed_tokens(input_ids)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/modules/sparse.py", line 190, in forward
+    return F.embedding(
+  File "/home/228446@hertie-school.lan/.local/lib/python3.10/site-packages/torch/nn/functional.py", line 2551, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 762.00 MiB. GPU 0 has a total capacity of 39.39 GiB of which 1.31 MiB is free. Including non-PyTorch memory, this process has 26.52 GiB memory in use. Process 411389 has 12.85 GiB memory in use. Of the allocated memory 26.04 GiB is allocated by PyTorch, and 3.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

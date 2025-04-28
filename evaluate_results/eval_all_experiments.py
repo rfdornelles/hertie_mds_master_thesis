@@ -51,6 +51,59 @@ boolean_fields = ['maconha', 'maconha_outras','cocaina', 'crack', 'ecstasy',
 categorical_fields = ['sexo_juiz', 'local',  'sentenca', 'pena_base', 'tot_pen']
 open_textual_fields = ['juiz', 'nome']
 
+## evaluation according with the NLP task
+ner_fields = [
+    "juiz",      # judge's full name
+    "nome",      # defendant's full name
+    "pena_base", # e.g. "8a" / "9a 6m"
+    "tot_pen"    # e.g. "10a 2m"
+]
+
+# Numeric QA fields (number + unit)
+numeric_qa_fields = [
+    "maconha_g", "cocaina_g", "crack_g", "ecstasy_g", "lsd_g",
+    "tot_pen_meses"
+]
+
+# Boolean flags split into two modeling paradigms:
+classification_boolean = [
+    # judicial evaluations
+    'aval_antecedentes','aval_conduta','aval_personalidade','aval_natureza',
+    'aval_quantidade','aval_variedade','aval_circunstancias','aval_consequencias','aval_culpabilidade',
+    # procedural outcomes
+    'resultado_art_28','resultado_art_33','resultado_art_34','resultado_art_35',
+    'denuncia_art_33','denuncia_art_34','denuncia_art_35'
+]
+qa_boolean = [
+    # drug‐seizure facts
+    'maconha','maconha_outras','cocaina','crack','ecstasy','lsd','outras_drogas',
+    # situational facts
+    'flag_local_de_trafico','flag_preso_no_momento_da_sentenca',
+    'flag_confissao_informal','flag_confissao',
+    'flag_denuncia_anonima','flag_denuncia',
+    'flag_atitude_suspeita','flag_divergencias_nos_relatos_dos_policiais',
+    'flag_investigacao','flag_interceptacao','flag_mandado'
+]
+
+# Multiclass classification fields
+multiclass_classification_fields = [
+    "local",     # 9 possible locais
+    "sentenca"   # {“Absolvição”,“Desclassificação”,“Parcialmente Procedente”,“Procedente”}
+]
+
+# Open‐text normalization fields
+open_textual_fields = ['juiz', 'nome']
+
+# Build the canonical NLP‐task mapping
+nlp_task_fields = {
+    "named_entity_recognition": ner_fields,
+    "numeric_qa":               numeric_qa_fields,
+    "binary_classification":    classification_boolean,
+    "yesno_qa":                 qa_boolean,
+    "multiclass_classification":multiclass_classification_fields,
+    "open_text_normalization":  open_textual_fields
+}
+
 ### auxiliary functions
 # clean processo
 def clean_processo(processo):
@@ -371,12 +424,49 @@ df_tasks_metrics_accuracy = df_tasks_metrics_accuracy[["experiment", "overall_ac
 # Order the dataframe by overall_accuracy in descending order
 df_tasks_metrics_accuracy = df_tasks_metrics_accuracy.sort_values("overall_accuracy", ascending=False)
 
+####### calculate also the NLP task-based metrics
 
+df_nlp_task_metrics = pd.DataFrame(columns=[
+    "experiment", "column_type",
+    "accuracy", "f1_macro"
+])
+
+nlp_task_metrics_list = []
+
+for experiment, group in df_experiments_score.groupby("experiment"):
+  
+    # for each task type
+    for task_type, expected_fields in nlp_task_fields.items():
+      
+      # filter the group by task type
+      pred_cols = [field for field in expected_fields if field in group.columns]
+      gt_cols = [f"gt_{field}" for field in pred_cols if f"gt_{field}" in group.columns]
+      
+      y_pred = group[pred_cols].to_numpy().flatten()
+      y_true = np.ones_like(y_pred)
+
+      acc = accuracy_score(y_true, y_pred)
+          
+      nlp_task_metrics_list.append({
+        "experiment": experiment,
+        "column_type": task_type,
+        "score_accuracy": acc
+    })
+
+df_nlp_task_metrics = pd.DataFrame(nlp_task_metrics_list)
+# pivot
+df_nlp_task_metrics_accuracy = df_nlp_task_metrics.pivot(index="experiment", columns="column_type", values="score_accuracy").reset_index()
+
+# add the overall metrics to the tasks metrics
+df_nlp_task_metrics_accuracy = df_nlp_task_metrics_accuracy.merge(
+  df_all_metrics[['experiment', 'accuracy']], on="experiment", how="left"
+).rename(columns={"accuracy": "overall_accuracy"})
+ 
  
 ######## save results
 df_tasks_metrics_accuracy.to_csv("tasks_metrics_accuracy.csv", index=False)
 # df_tasks_metrics_f1.to_csv("tasks_metrics_f1.csv", index=False)
 df_experiments_score.to_csv("experiments_score.csv", index=False)
 df_all_metrics.to_csv("all_metrics.csv", index=False)
-
+df_nlp_task_metrics_accuracy.to_csv("nlp_tasks_metrics_accuracy.csv", index=False)
  

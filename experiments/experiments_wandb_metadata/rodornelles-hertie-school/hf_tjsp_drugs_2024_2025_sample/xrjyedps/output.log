@@ -1,0 +1,48 @@
+Filter: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 20781/20781 [00:00<00:00, 43462.96 examples/s]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:18<00:00,  3.10s/it]
+Device set to use cuda:0
+Rodando exemplos:   0%|                                                                                                            | 0/20781 [00:37<?, ?it/s]
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/experiments_inference/run_HF_phi4_4B_sample_tjsp_v2.py", line 121, in <module>
+    output = pipe(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 287, in __call__
+    return super().__call__(text_inputs, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1379, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1386, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1286, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 385, in _forward
+    output = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2465, in generate
+    result = self._sample(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 3422, in _sample
+    while self._has_unfinished_sequences(this_peer_finished, synced_gpus, device=input_ids.device):
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2616, in _has_unfinished_sequences
+    elif this_peer_finished:
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/workspace/master_thesis/master_thesis/experiments_inference/run_HF_phi4_4B_sample_tjsp_v2.py", line 121, in <module>
+    output = pipe(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 287, in __call__
+    return super().__call__(text_inputs, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1379, in __call__
+    return self.run_single(inputs, preprocess_params, forward_params, postprocess_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1386, in run_single
+    model_outputs = self.forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/base.py", line 1286, in forward
+    model_outputs = self._forward(model_inputs, **forward_params)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/pipelines/text_generation.py", line 385, in _forward
+    output = self.model.generate(input_ids=input_ids, attention_mask=attention_mask, **generate_kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2465, in generate
+    result = self._sample(
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 3422, in _sample
+    while self._has_unfinished_sequences(this_peer_finished, synced_gpus, device=input_ids.device):
+  File "/usr/local/lib/python3.10/dist-packages/transformers/generation/utils.py", line 2616, in _has_unfinished_sequences
+    elif this_peer_finished:
+KeyboardInterrupt

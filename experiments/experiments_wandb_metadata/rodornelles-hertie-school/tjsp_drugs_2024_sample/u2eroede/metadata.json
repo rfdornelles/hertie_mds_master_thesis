@@ -1,0 +1,14 @@
+{
+  "entity": "rodornelles-hertie-school",
+  "project": "tjsp_drugs_2024_sample",
+  "run_id": "u2eroede",
+  "run_name": "hf_tjsp2024_2025_phi4_14B-ft-inferencee_2025-04-25_17-05-17",
+  "created_at": "2025-04-25T17:14:55Z",
+  "state": "failed",
+  "tags": [],
+  "url": "https://wandb.ai/rodornelles-hertie-school/tjsp_drugs_2024_sample/runs/u2eroede",
+  "param_model": "rfdornelles/master_thesis_phi4_tb_finetune",
+  "param_batch_size": 2,
+  "param_device_map": "auto",
+  "param_max_new_tokens": 1000
+}

@@ -1,0 +1,39 @@
+\contentsline {section}{\numberline {1}Executive Summary}{1}{section.1}%
+\contentsline {section}{\numberline {2}Introduction}{6}{section.2}%
+\contentsline {section}{\numberline {3}Related Work}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Teorethical Framework}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Empirical Legal Research}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}The research gap}{9}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Research Question}{10}{section.4}%
+\contentsline {section}{\numberline {5}Data Sources and Models}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Datasets}{10}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Lacerda's Dataset}{11}{subsubsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.2}Models}{12}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Methodology}{13}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Overview}{13}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Prompt and data schema}{15}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Pipeline to run commercial models}{16}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Parsing algorithm}{16}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Evaluation algorithm: Accuracy}{18}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Pipeline to run open-source models}{20}{subsection.6.6}%
+\contentsline {subsubsection}{\numberline {6.6.1}Challenges and strategies}{20}{subsubsection.6.6.1}%
+\contentsline {subsubsection}{\numberline {6.6.2}Running open-source models}{21}{subsubsection.6.6.2}%
+\contentsline {subsection}{\numberline {6.7}Fine-tuning models}{21}{subsection.6.7}%
+\contentsline {subsubsection}{\numberline {6.7.1}Fine-tune OpenAI's models}{22}{subsubsection.6.7.1}%
+\contentsline {subsubsection}{\numberline {6.7.2}Fine-tune Open Source Models}{22}{subsubsection.6.7.2}%
+\contentsline {section}{\numberline {7}Results}{23}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Baseline performance}{23}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Fine-tuned results}{26}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Inference performance}{29}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Limitations}{30}{subsection.7.4}%
+\contentsline {section}{\numberline {8}Discussion}{31}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Key Findings}{31}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Future Work}{32}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Policy implications}{33}{subsection.8.3}%
+\contentsline {section}{\numberline {9}Conclusion}{34}{section.9}%
+\contentsline {section}{\numberline {10}Policy Recommendations}{35}{section.10}%
+\contentsline {section}{\numberline {11}References}{37}{section.11}%
+\contentsline {section}{\numberline {A}Appendix - Plots and tables}{41}{appendix.A}%
+\contentsline {section}{\numberline {B}Appendix - Description of NLP Tasks}{43}{appendix.B}%
+\contentsline {section}{\numberline {C}Appendix - Lacerda's Original Dataset Description}{44}{appendix.C}%
+\contentsline {section}{\numberline {D}Appendix - Acknowledgments}{46}{appendix.D}%

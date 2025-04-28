@@ -1,0 +1,8 @@
+\contentsline {table}{\numberline {1}{\ignorespaces Basemodels used}}{13}{table.1}%
+\contentsline {table}{\numberline {2}{\ignorespaces Example of correct output (simplified version).}}{17}{table.caption.5}%
+\contentsline {table}{\numberline {3}{\ignorespaces Examples of semantically correct but structurally invalid outputs extracted from legal sentences.}}{17}{table.3}%
+\contentsline {table}{\numberline {4}{\ignorespaces Accuracy of base models}}{23}{table.4}%
+\contentsline {table}{\numberline {5}{\ignorespaces Fine-tuned models: change in accuracy (absolute value Δ and relative value \%)}}{28}{table.caption.11}%
+\contentsline {table}{\numberline {6}{\ignorespaces Fine-tuned models: estimation on inference time and costs}}{30}{table.6}%
+\contentsline {table}{\numberline {7}{\ignorespaces Mapping of columns to traditional NLP tasks}}{44}{table.7}%
+\contentsline {table}{\numberline {8}{\ignorespaces Lacerda's Original Dataset}}{45}{table.8}%

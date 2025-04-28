@@ -169,9 +169,7 @@ save_table_png(unique_models, "model_metadata_table.png", "Model catalogue – d
 # ----------------------------------------------------------------------------
 # 4. Table 2 – Overall accuracy heat‑map (all models, 3 d.p.)
 # ----------------------------------------------------------------------------
-acc_df = (
-    df_all.groupby(["model"])["accuracy"].mean().reset_index()
-)
+acc_df = df_all[df_all["status"] == "base model"][["model", "accuracy"]]
 acc_df["accuracy"] = acc_df["accuracy"].round(3)
 acc_df = acc_df.sort_values("accuracy", ascending=False).reset_index(drop=True)
 heat_df = acc_df.set_index("model")[["accuracy"]]

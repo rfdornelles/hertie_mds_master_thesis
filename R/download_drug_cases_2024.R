@@ -69,10 +69,6 @@ df_drug_cases_clean <- df_drug_cases_clean |>
   dplyr::filter(group != "limbo") |> 
   dplyr::select(-pagina:-duplicado)
 
-# save the clean
-arrow::write_parquet(df_drug_cases_clean, 
-                     "data/clean_tjsp_drug_cases_2024.parquet")
-
 df_drug_cases_clean |> 
   dplyr::count(processo, sort = TRUE)
 
@@ -104,6 +100,10 @@ df_drug_cases_clean <- df_drug_cases_clean |>
   dplyr::ungroup() |> 
   dplyr::select(-cd_doc) |> 
   dplyr::distinct()
+
+# save the clean
+arrow::write_parquet(df_drug_cases_clean, 
+                     "data/clean_tjsp_drug_cases_2024.parquet")
 
 df_drug_cases_clean |> 
   dplyr::count(group)
