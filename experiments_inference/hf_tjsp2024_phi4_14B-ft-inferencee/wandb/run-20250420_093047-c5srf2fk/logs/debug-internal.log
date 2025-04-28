@@ -1,9 +1,0 @@
-{"time":"2025-04-20T09:30:47.233638084+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"hf_tjsp2024_phi4_14B-ft-inferencee/wandb/run-20250420_093047-c5srf2fk/logs/debug-core.log"}
-{"time":"2025-04-20T09:30:48.642017737+02:00","level":"INFO","msg":"created new stream","id":"c5srf2fk"}
-{"time":"2025-04-20T09:30:48.642081326+02:00","level":"INFO","msg":"stream: started","id":"c5srf2fk"}
-{"time":"2025-04-20T09:30:48.642138503+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"c5srf2fk"}
-{"time":"2025-04-20T09:30:48.642202924+02:00","level":"INFO","msg":"sender: started","stream_id":"c5srf2fk"}
-{"time":"2025-04-20T09:30:48.642204246+02:00","level":"INFO","msg":"handler: started","stream_id":"c5srf2fk"}
-{"time":"2025-04-20T09:30:48.953663296+02:00","level":"INFO","msg":"Starting system monitor"}
-{"time":"2025-04-20T09:31:10.867870307+02:00","level":"INFO","msg":"Pausing system monitor"}
-{"time":"2025-04-20T09:31:27.167532358+02:00","level":"INFO","msg":"Resuming system monitor"}

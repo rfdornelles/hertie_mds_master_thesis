@@ -1,7 +1,0 @@
-Filter: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 454/454 [00:00<00:00, 22149.23 examples/s]
-Loading checkpoint shards: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:37<00:00,  6.20s/it]
-Device set to use cuda:0
-Rodando exemplos:   0%|                                                                                                                                                               | 0/438 [00:00<?, ?it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (40978 > 18432). Running this sequence through the model will result in indexing errors
-This is a friendly reminder - the current text generation call will exceed the model's predefined maximum length (18432). Depending on the model, you may observe exceptions, performance degradation, or nothing at all.
-Rodando exemplos: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 438/438 [03:04<00:00,  2.37it/s]
-[34m[1mwandb[0m: Adding directory to artifact (./hf_tjsp2024_2025_phi4_14B-ft-inferencee)... Done. 0.0s

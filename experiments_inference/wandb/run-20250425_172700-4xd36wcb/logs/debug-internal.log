@@ -1,8 +1,0 @@
-{"time":"2025-04-25T17:27:01.98912577Z","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"/workspace/master_thesis/master_thesis/experiments_inference/wandb/run-20250425_172700-4xd36wcb/logs/debug-core.log"}
-{"time":"2025-04-25T17:27:02.642690055Z","level":"INFO","msg":"created new stream","id":"4xd36wcb"}
-{"time":"2025-04-25T17:27:02.642739178Z","level":"INFO","msg":"stream: started","id":"4xd36wcb"}
-{"time":"2025-04-25T17:27:02.642798398Z","level":"INFO","msg":"writer: Do: started","stream_id":"4xd36wcb"}
-{"time":"2025-04-25T17:27:02.642826511Z","level":"INFO","msg":"sender: started","stream_id":"4xd36wcb"}
-{"time":"2025-04-25T17:27:02.64285225Z","level":"INFO","msg":"handler: started","stream_id":"4xd36wcb"}
-{"time":"2025-04-25T17:27:02.91451331Z","level":"INFO","msg":"Starting system monitor"}
-{"time":"2025-04-25T17:27:51.983542943Z","level":"INFO","msg":"sender: sendAlert: notified scriptable run alert","data":{"notifyScriptableRunAlert":{"success":true}}}

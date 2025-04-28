@@ -1,7 +1,0 @@
-Filter: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 898/898 [00:00<00:00, 15985.76 examples/s]
-Loading checkpoint shards: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:08<00:00,  1.40s/it]
-Device set to use cuda:0
-Batches:   0%|▍                                                                                                                                                           | 1/414 [03:14<22:17:36, 194.33s/it]Token indices sequence length is longer than the specified maximum sequence length for this model (20826 > 18432). Running this sequence through the model will result in indexing errors
-This is a friendly reminder - the current text generation call will exceed the model's predefined maximum length (18432). Depending on the model, you may observe exceptions, performance degradation, or nothing at all.
-Batches:   2%|███▋                                                                                                                                                       | 10/414 [23:01<16:06:03, 143.47s/it]You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
-Batches:   3%|████                                                                                                                                                       | 11/414 [24:19<13:49:17, 123.47s/it]
