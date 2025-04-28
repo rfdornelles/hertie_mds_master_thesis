@@ -6,7 +6,7 @@ import seaborn as sns
 import numpy as np
 import textwrap
 import pandas as pd
-from IPython.display import display, HTML
+from matplotlib.colors import TwoSlopeNorm, Normalize
 
 sns.set_theme(style="whitegrid", palette="pastel")
 
@@ -118,6 +118,15 @@ df_tasks_metrics_accuracy = df_tasks_metrics_accuracy.merge(
     how="left"
 )
 
+df_granular_tasks_accuracy = pd.read_csv("nlp_tasks_metrics_accuracy.csv")
+df_granular_tasks_accuracy = df_granular_tasks_accuracy.merge(
+    df_experiments,
+    on="experiment",
+    how="left"
+)
+
+
+
 
 ## pairs of experiments base - finetuned
 # 3_open_ai_test_4o-mini - 7_open_ai_test_ft_4o_mini
@@ -149,7 +158,7 @@ sns.barplot(
 )
 ax.set_xlabel("Model")
 ax.set_ylabel("Overall accuracy")
-ax.set_title("Basemodel vs Fine-tuned accuracy", weight="bold")
+ax.set_title("Basemodel vs Fine-tuned accuracy",fontsize=20,  weight="bold")
 ax.set_ylim(0, 1.0)
 ## add a line using gpt 4o-mini as reference
 gpt_4o_mini_acc = df_experiments_score_comparison[
@@ -268,7 +277,7 @@ sns.barplot(
 )
 ax.set_xlabel("Overall accuracy")
 ax.set_ylabel("Experiment")
-ax.set_title("Overall accuracy by experiment", weight="bold")
+ax.set_title("Overall accuracy by experiment", fontsize=20, weight="bold")
 ax.set_xlim(0, 1.0)
 plt.tight_layout()
 plt.savefig("overall_accuracy_barplot.png", dpi=900, transparent=True)
@@ -280,8 +289,9 @@ plt.show()
 # Use only the four task columns + overall
 task_cols = ["overall_accuracy", "numeric", "boolean", "categorical", "open_textual"]
 heat_data = (
-    df_tasks_metrics_accuracy
-    .set_index("model")[["status"] + task_cols]
+    df_tasks_metrics_accuracy[df_tasks_metrics_accuracy["status"] == "base model"]
+    .copy()
+    .set_index("model")[task_cols]
     .sort_values("overall_accuracy", ascending=False)
 )
 
@@ -289,14 +299,14 @@ heat_data = (
 heat_data = heat_data[heat_data["overall_accuracy"] > 0]
 
 
-# rename gpt 4o-mini to indicate if it is finetuned or not
-heat_data = heat_data.reset_index()
-heat_data.loc[
-    heat_data["model"] == "GPT 4o-mini", "model"
-] = heat_data.loc[heat_data["model"] == "GPT 4o-mini", "status"].apply(
-    lambda s: "GPT 4o-mini (Fine-tuned)" if s == "finetuned" else "GPT 4o-mini (base)"
-)
-heat_data = heat_data.drop(columns="status").set_index("model")
+# # rename gpt 4o-mini to indicate if it is finetuned or not
+# heat_data = heat_data.reset_index()
+# heat_data.loc[
+#     heat_data["model"] == "GPT 4o-mini", "model"
+# ] = heat_data.loc[heat_data["model"] == "GPT 4o-mini", "status"].apply(
+#     lambda s: "GPT 4o-mini (Fine-tuned)" if s == "finetuned" else "GPT 4o-mini (base)"
+# )
+# heat_data = heat_data.drop(columns="status").set_index("model")
 
 
 fig, ax = plt.subplots(figsize=(12, 0.5 + 0.4 * len(heat_data)))
@@ -307,17 +317,185 @@ sns.heatmap(
     cbar=False,
     linewidths=0.5,
     ax=ax,
-    cmap="YlGnBu",
-    vmin=0.3, vmax=0.95,
+    cmap="viridis", #"YlGnBu",
+    vmin=0.0, vmax=1,
 )
 # x axis in the top
 ax.xaxis.set_ticks_position("top")
-ax.set_title("Accuracy by model and experiment", weight="bold", pad=12)
+ax.set_title("Accuracy by model and experiment (before fine-tune)", weight="bold",fontsize=20, pad=12)
 ax.set_xlabel("")
 ax.set_ylabel("")
 plt.tight_layout()
 plt.savefig("task_accuracy_heatmap.png", dpi=900, transparent=True)
 plt.show()
+
+##### heatmpat to fine-tuned models
+heat_data = (
+    df_tasks_metrics_accuracy[df_tasks_metrics_accuracy["status"] == "finetuned"]
+    .copy()
+    .set_index("model")[task_cols]
+    .sort_values("overall_accuracy", ascending=False)
+)
+
+# remove accuracy 0
+heat_data = heat_data[heat_data["overall_accuracy"] > 0]
+
+
+# # rename gpt 4o-mini to indicate if it is finetuned or not
+# heat_data = heat_data.reset_index()
+# heat_data.loc[
+#     heat_data["model"] == "GPT 4o-mini", "model"
+# ] = heat_data.loc[heat_data["model"] == "GPT 4o-mini", "status"].apply(
+#     lambda s: "GPT 4o-mini (Fine-tuned)" if s == "finetuned" else "GPT 4o-mini (base)"
+# )
+# heat_data = heat_data.drop(columns="status").set_index("model")
+
+
+fig, ax = plt.subplots(figsize=(12, 0.5 + 0.4 * len(heat_data)))
+sns.heatmap(
+    heat_data,
+    annot=True,
+    fmt=".2f",
+    cbar=False,
+    linewidths=0.5,
+    ax=ax,
+    cmap="viridis", #"YlGnBu",
+    vmin=0.0, vmax=1,
+    # change the direction of the color bar
+    
+)
+# x axis in the top
+ax.xaxis.set_ticks_position("top")
+ax.set_title("Accuracy by model and experiment (fine-tuned models)", weight="bold",fontsize=20, pad=12)
+ax.set_xlabel("")
+ax.set_ylabel("")
+plt.tight_layout()
+plt.savefig("task_accuracy_heatmap_finetuned.png", dpi=900, transparent=True)
+plt.show()
+
+
+########### break down by granular taks
+
+# repeat the same process as above
+
+nlp_task_columns = [
+    "named_entity_recognition",
+    "numeric_qa",
+    "binary_classification",
+    "yesno_qa",
+    "multiclass_classification",
+    "open_text_normalization"
+]
+
+heat_data = (
+    df_granular_tasks_accuracy[df_granular_tasks_accuracy["status"] == "base model"]
+    .copy()
+    .set_index("model")[["overall_accuracy", "parameters"] + nlp_task_columns]
+    .sort_values("overall_accuracy", ascending=False)
+)
+
+# remove accuracy 0
+heat_data = heat_data[heat_data["overall_accuracy"] > 0]
+
+
+# # rename gpt 4o-mini to indicate if it is finetuned or not
+heat_data = heat_data.reset_index()
+heat_data.loc[
+    heat_data["model"] == "Gemma 3", "model"
+] = heat_data.loc[heat_data["model"] == "Gemma 3", "parameters"].apply(
+    lambda p: f"Gemma 3 ({p})"
+)
+
+heat_data = heat_data.drop(columns=["parameters"]).set_index("model")
+#     lambda s: "GPT 4o-mini (Fine-tuned)" if s == "finetuned" else "GPT 4o-mini (base)"
+# )
+# heat_data = heat_data.drop(columns="status").set_index("model")
+
+
+fig, ax = plt.subplots(figsize=(18, 0.5 + 0.6 * len(heat_data)))
+sns.heatmap(
+    heat_data,
+    annot=True,
+    fmt=".3f",
+    cbar=False,
+    linewidths=0.5,
+    ax=ax,
+    cmap="viridis",  # "RdYlGn", #"YlGnBu", #"viridis", #"YlGnBu",
+    vmin=0.5, vmax=1,
+)
+# x axis in the top
+ax.tick_params(axis='y', labelsize=16)
+ax.tick_params(axis='x', labelsize=16)
+ax.xaxis.set_ticks_position("top")
+ax.set_title("Model Accuracy – NLP Task Breakdown (Pre Fine-Tuning)", weight="bold", pad=12, fontsize=25)
+ax.set_xlabel("")
+ax.set_ylabel("")
+plt.tight_layout()
+plt.savefig("task_accuracy_heatmap_granular_nlp.png", dpi=900, transparent=True)
+plt.show()
+
+
+## finetuned models
+
+nlp_task_columns = [
+    "named_entity_recognition",
+    "numeric_qa",
+    "binary_classification",
+    "yesno_qa",
+    "multiclass_classification",
+    "open_text_normalization"
+]
+
+heat_data = (
+    df_granular_tasks_accuracy[df_granular_tasks_accuracy["status"] == "finetuned"]
+    .copy()
+    .set_index("model")[["overall_accuracy", "parameters"] + nlp_task_columns]
+    .sort_values("overall_accuracy", ascending=False)
+)
+
+# remove accuracy 0
+heat_data = heat_data[heat_data["overall_accuracy"] > 0]
+
+
+# # rename gpt 4o-mini to indicate if it is finetuned or not
+heat_data = heat_data.reset_index()
+heat_data.loc[
+    heat_data["model"] == "Gemma 3", "model"
+] = heat_data.loc[heat_data["model"] == "Gemma 3", "parameters"].apply(
+    lambda p: f"Gemma 3 ({p})"
+)
+
+heat_data = heat_data.drop(columns=["parameters"]).set_index("model")
+#     lambda s: "GPT 4o-mini (Fine-tuned)" if s == "finetuned" else "GPT 4o-mini (base)"
+# )
+# heat_data = heat_data.drop(columns="status").set_index("model")
+
+
+fig, ax = plt.subplots(figsize=(18, 0.5 + 0.6 * len(heat_data)))
+sns.heatmap(
+    heat_data,
+    annot=True,
+    fmt=".3f",
+    cbar=False,
+    linewidths=0.5,
+    ax=ax,
+    cmap="viridis",  # "RdYlGn", #"YlGnBu", #"viridis", #"YlGnBu",
+    vmin=0.5, vmax=1,
+)
+# x axis in the top
+ax.xaxis.set_ticks_position("top")
+ax.tick_params(axis='y', labelsize=16)
+ax.tick_params(axis='x', labelsize=16)
+ax.xaxis.set_ticks_position("top")
+ax.set_title("Model Accuracy – NLP Task Breakdown (Post Fine-Tuning)", weight="bold", pad=12, fontsize=25)
+ax.set_xlabel("")
+ax.set_ylabel("")
+plt.tight_layout()
+plt.savefig("task_accuracy_heatmap_granular_nlp_finetuned.png", dpi=900, transparent=True)
+plt.show()
+
+
+
 
 ###############################################################################
 # 3. Radar charts – one subplot per experiment
@@ -371,7 +549,7 @@ for idx, row in df_tasks_metrics_accuracy_clean.iterrows():
     ax.fill(theta, values, alpha=0.25)
     ax.set_ylim(0, 1)
     title = "\n".join(textwrap.wrap(f"{row['model']}-{row['status']}", width=20))
-    ax.set_title(title, size=9, weight="bold", pad=15)
+    ax.set_title(title, fontsize=20, weight="bold", pad=15)
 
 fig.suptitle("Per task accuracy radar – each experiment", weight="bold", y=1.02)
 plt.tight_layout()
@@ -394,7 +572,7 @@ def save_table_png(df, filename, title=""):
         cellLoc="center",
     )
     tbl.auto_set_font_size(False)
-    tbl.set_fontsize(9)
+    tbl.set_fontsize(20)
     tbl.scale(1, 1.4)
     if title:
         ax.set_title(title, weight="bold", pad=12)

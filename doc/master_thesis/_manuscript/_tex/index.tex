@@ -1143,22 +1143,41 @@ tasks, such as the case's outcome (conviction, acquittal, etc). In this
 case, the \emph{open textual} tasks are more likely to be similar to
 named entity recognition: the name of the Judge and the defendant.
 
+Trying to achieve a more fine-grained analysis, we restructured the
+evaluation to group tasks by their underlying type. The named entity
+recognition tasks involve identifying and extracting specific spans from
+the decision, such as the names of judges or defendants. The numeric
+question answering tasks require not just identifying numerical
+information, but also performing basic calculations, for example,
+summing prison times expressed in months.
+
+Binary classification tasks correspond to simple two-way decisions ---
+for instance, whether a legal basis like Article 33 was invoked.
+Meanwhile, yes/no question answering tasks allow for slightly more
+nuance (yes, no, or unclear), such as determining if the defendant
+confessed during proceedings. Multiclass classification tasks involve
+selecting the appropriate label among several possible outcomes, such as
+the final decision in the case (conviction, acquittal, plea, etc.).
+Finally, open text normalization tasks deal with normalizing free-text
+fields, ensuring, for example, that variations of party names are
+consistently matched to canonical forms.
+
 \begin{figure}[H]
 
-\centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{../../evaluate_results/task_accuracy_heatmap.png}}
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{../../evaluate_results/task_accuracy_heatmap_granular_nlp.png}}
 
 }
 
-\caption{\label{fig-base_model}Tasks by accuracy}
+\caption{Tasks by accuracy}
 
 \end{figure}%
 
-In nearly all models, the open textual tasks performed very well, while
-the performance of boolean and categorical tasks varied more
-significantly. Some differences were noted in numeric tasks, although
-they all performed well overall.
+Across nearly all models, open text normalization and named entity
+recognition tasks showed strong performance, while binary
+classification, yes/no question answering, and multiclass classification
+tasks presented greater variability. Numeric question answering tasks
+generally performed well, although they demanded more complex reasoning
+compared to straightforward entity extraction.
 
 \subsection{Fine-tuned results}\label{fine-tuned-results}
 
@@ -1377,12 +1396,11 @@ perspectives and is not neutral (as it is impossible to be).
 
 \subsection{Key Findings}\label{sec-key-findinds}
 
-We have found Figure~\ref{fig-base_model} that commercial and
-open-source models can potentially enable jurimetric research. Many of
-them achieve \textgreater{} 0.7 points of accuracy in a zero-shot
-setting, and GPT 4o-mini and Phi-4 achieve \textgreater{} 0.92 after
-fine-tuning. This learning happens in all kinds of tasks
-(Table~\ref{tbl-finetune-delta}).
+We have found \textbf{?@fig-base\_model} that commercial and open-source
+models can potentially enable jurimetric research. Many of them achieve
+\textgreater{} 0.7 points of accuracy in a zero-shot setting, and GPT
+4o-mini and Phi-4 achieve \textgreater{} 0.92 after fine-tuning. This
+learning happens in all kinds of tasks (Table~\ref{tbl-finetune-delta}).
 
 Even with a small dataset of 186 cases, applying LoRA and Quantization
 through (\citeproc{ref-unsloth}{\textbf{unsloth?}}) enabled the
