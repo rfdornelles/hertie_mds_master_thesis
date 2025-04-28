@@ -210,7 +210,7 @@
 
 \begin{titlepage}
   \centering
-  \includegraphics[width=0.75\textwidth]{images/hertie-school-logo.jpg}
+  \includegraphics[width=1\textwidth]{images/hertie-school-logo.jpg}
   \vspace*{\fill}
   
   \textbf{Enabling Jurimetrics: Deploying Open‑Source Large Language Models for Empirical Insights into Brazilian Courts}\\
@@ -232,8 +232,48 @@
   Supervised by Prof. Lynn Kaack, PhD
   \vspace{0.5cm}
   
-  Word count: 7,000 words
+  Word count: 7,355 words
 \end{titlepage}
+
+\section[Executive Summary]{\texorpdfstring{Executive
+Summary\footnote{The GitHub repositiry of this research is available at:
+  \url{https://github.com/rfdornelles/hertie_mds_master_thesis}}}{Executive Summary}}\label{sec-executive-summary}
+
+Empirical analyses of court decisions---jurimetrics---remain rare in
+Brazil. Recent advances in open-source large language models (LLMs)
+create an opportunity to automate the extraction of structured data from
+these decisions at a fraction of the cost of proprietary systems while
+preserving privacy and reproducibility. This thesis asks whether
+open-source LLMs can match or surpass leading commercial models when
+deployed end-to-end on Brazilian judicial cases.
+
+A gold-standard corpus of 258 São Paulo drug-trafficking sentences
+(\citeproc{ref-lacerda_e_silva_punindo_2021}{Lacerda e Silva, 2021}) was
+split into training, validation, and test sets. Twelve base
+models---seven open-source, five commercial---were benchmarked
+zero-shot. The best open-source model (Gemma 3-27B) already outperformed
+GPT-4o, achieving 0.82 accuracy versus 0.79 on 39 held-out cases. Three
+models (GPT-4o-mini, Phi-4 14B, and Llama-3 3B) were fine-tuned via LoRA
+and quantization. Fine-tuning raised Phi-4's accuracy to 0.92,
+statistically indistinguishable from the commercial leader yet 25 \%
+cheaper and twice as energy-efficient when labeling a new batch of 454
+cases. Llama-3 3B, with one-fifth the parameters of Phi-4, reached 0.78
+accuracies at less than half the cost and inference time, illustrating
+an attractive speed-versus-quality trade-off for large-scale annotation.
+
+These findings confirm the ``power of
+specialization''(\citeproc{ref-dominguez-olmedo_lawma_2024}{Dominguez-Olmedo
+et al., 2024}): modest amounts of high-quality domain data can lift
+open-source LLMs to state-of-the-art performance in legal information
+extraction. The work contributes to an end-to-end pipeline, open-source
+code and evaluation scripts, and practical guidance on model selection,
+fine-tuning, and deployment under tight resource constraints. It
+demonstrates a feasible, transparent, and affordable path toward
+large-scale, data-driven legal research in civil law jurisdictions. It
+also supports policy calls for greater data openness, interdisciplinary
+training, and investment in public-interest NLP infrastructure.
+
+\newpage{}
 
 \tableofcontents
 \newpage
@@ -263,64 +303,6 @@
 \vspace*{0pt}
 \newpage
 
-\section[Executive Summary]{\texorpdfstring{Executive
-Summary\footnote{The content of this research is available at:
-  \url{https://github.com/rfdornelles/hertie_mds_master_thesis}}}{Executive Summary}}\label{sec-executive-summary}
-
-\textbf{Executive Summary}
-
-Brazil's courts are almost entirely digital, yet legal scholarship still
-advances case-by-case, slowed by manual reading and tiny samples. This
-thesis shows that \emph{open-source} large-language models (LLMs) can
-break that bottleneck. With a carefully engineered prompt and a few
-hundred labelled examples, an open model can extract fifty legal
-features from full-text judgments with \textbf{over 90 \%
-accuracy}---performance once thought to require expensive proprietary
-APIs.
-
-With modest compute and a few hundred labels, open-source LLMs make
-large-scale, evidence-based legal
-research---\textbf{jurimetrics}---practical for Brazil's academic,
-public-sector, and civil-society communities.
-
-\textbf{Why it matters}\\
-Millions of judicial decisions already sit online, but turning them into
-structured data is labour-intensive. Universities, watchdog NGOs, and
-public agencies need low-cost, privacy-preserving tools; commercial LLM
-services remain pricey and opaque.
-
-\textbf{What we did}\\
-- Adapt a \textbf{gold-standard corpus} of 258 São Paulo
-drug-trafficking sentences, each originally hand-labelled with 50
-attributes.\\
-- Benchmarked \textbf{twelve leading models} (GPT-4 variants, Gemma 3,
-Phi-4, Llama 3, etc.) on extraction accuracy.\\
-- Applied \textbf{few-shot fine-tuning} (≈200 labelled cases, 4-bit LoRA
-via the Unsloth framework) to the most promising open models.
-
-\textbf{Key findings}\\
-Fine-tuning boosts open-source accuracy by \textbf{+20 percentage
-points}: Phi-4 climbs to 0.92, effectively matching GPT-4o-mini while
-cutting inference cost by 25 \%. A 3 billion-parameter Llama reaches
-0.75 accuracy, runs twice as fast, and costs half as much as
-GPT-4o-mini---ideal for rapid screening at scale.
-
-\textbf{Contributions}\\
-1. A \textbf{reproducible R + Python pipeline} for scraping, prompting,
-parsing, and scoring legal texts.\\
-2. A \textbf{demonstration dataset} of 454 fresh São Paulo judgments
-processed by fine-tuned models, proving scalability.\\
-3. A \textbf{policy roadmap} urging courts to publish structured data,
-law schools to teach data literacy, and funders to support open corpora.
-
-\textbf{Bottom line}\\
-With modest compute and a few hundred labels, open-source LLMs make
-large-scale, evidence-based legal
-research---\textbf{jurimetrics}---practical for Brazil's academic,
-public-sector, and civil-society communities.
-
-\newpage{}
-
 \section{Introduction}\label{sec-introduction}
 
 \vspace*{\fill}
@@ -339,76 +321,56 @@ public-sector, and civil-society communities.
 \footnotetext{\mbox{Art.} 20, General Regulation of the Statute of the Lawyer Professorship, Brazilian Bar Association}
 \vspace*{\fill}
 
-\subsection{Introduction}\label{sec-introduction}
+Law, in every modern democracy, is more than a set of abstract norms; it
+is a living institutional mechanism through which policy choices are
+translated into concrete incentives, constraints, and remedies. To
+evaluate whether a legal system fulfills that role, we must ask not only
+\textbf{what} the statutes prescribe but \textbf{how} they are applied:
+How long does a civil action typically last? What compensation do
+consumers actually receive? Which factors shape sentencing in
+drug-trafficking cases? These eminently empirical questions are still
+surprisingly difficult to answer with precision.
 
-\begin{quote}
-\emph{``Give me the data, and I will give you the law.''}\\
---- \emph{adapted from the scholastic motto} \textbf{da mihi data, dabo
-tibi ius}
-\end{quote}
+More than half a century ago, Lee Loevinger
+(\citeproc{ref-loevinger_jurimetricsnext_1948}{1948}) coined the term
+\emph{jurimetrics} to describe the systematic, quantitative study of
+law. While the movement gained traction in the United States, it has
+remained underutilized in civil-law jurisdictions like Brazil. Recent
+initiatives---for example, the Associação Brasileira de
+Jurimetria\footnote{\url{https://abj.org.br/}} and the Rede de Estudos
+Empíricos em Direito\footnote{\url{https://reedpesquisa.org/}}---have
+begun to fill the gap, yet the volume and heterogeneity of judicial
+documents continue to deter large-scale analysis.
 
-Law shapes public policy, fuels political debate, and touches the daily
-lives of Brazilians.\\
-Yet empirical legal research remains surprisingly scarce.\\
-Although recent work by Cabrera de Bonito
-(\citeproc{ref-cabrera_de_bonito_pesquisa_2025}{Cabrera De Bonito et
-al., 2025}) maps a growing interest in data-driven methods, most studies
-still rely on close reading, modest samples, and painstaking human
-coding.
+The arrival of large language models (LLMs) changes that calculus. Since
+the public debut of GPT-3.5 and ChatGPT, the natural language processing
+community has released a stream of increasingly capable---and
+increasingly efficient---models. Crucially, many cutting-edge
+architectures are now open-source: Llama-3, Gemma-3, Phi-4, and kindred
+efforts come with permissive licenses that suit academic and
+public-sector deployment. Coupled with parameter-efficient fine-tuning
+techniques and low-bit quantization, these models can, in principle,
+extract structured data from thousands of judgments on commodity
+hardware.
 
-Paradoxically, the raw material is abundant. Since 2010 Brazilian courts
-have been fully digital: every petition, ruling, and vote leaves a
-machine-readable trail. Exploratory projects that mine only metadata
-have already yielded insight. Dornelles
-(\citeproc{ref-dornelles_o_2021}{Dornelles, 2021}), for example, charted
-the surge of new actions filed at the Supreme Court across presidential
-terms ((\citeproc{ref-ref}{\textbf{ref?}})(fig-evolution)). But metadata
-sketches only the shoreline. To sail further---asking \emph{why} cases
-swing one way or another, or probing subtle patterns of
-bias---researchers must dive into the dense, jargon-laden text of
-judicial opinions. Doing so at scale traditionally requires either a
-small army of lawyers or brittle NLP pipelines that break whenever the
-template shifts.
+This thesis explores whether that promise holds for Brazilian courts. It
+pursues three objectives. First, it benchmarks leading commercial LLMs
+on information extraction from complex judicial sentences, establishing
+a performance and cost baseline. Second, it evaluates a portfolio of
+open-source models, addressing practical hurdles such as limited context
+windows and the absence of native JSON output. Third, it fine-tunes the
+most promising open-source candidates on a modest, expert-annotated
+corpus to test the ``power of specialization'' hypothesis advanced by
+Dominguez-Olmedo et al.
+(\citeproc{ref-dominguez-olmedo_lawma_2024}{2024}). The comparative
+results are analyzed regarding accuracy, inference time, energy
+consumption, and monetary cost, yielding evidence-based recommendations
+for researchers, courts, and policy-makers.
 
-Large-language models (LLMs) promise a way out. Unlike traditional NLP
-tools that master a single trick, modern LLMs handle long contexts,
-follow intricate instructions, and juggle multiple tasks
-(\citeproc{ref-raschka_build_2024}{Raschka, 2024};
-\citeproc{ref-vajjala_practical_2020}{Vajjala et al., 2020}). Crucially,
-their power is no longer locked behind proprietary APIs: a new wave of
-\emph{open-source} models---\textbf{Phi-4}, \textbf{Gemma 3}, and a
-family of nimble \textbf{Llamas}---offers comparable capability with
-full local control over data, cost, and fine-tuning.
-
-To test this, I assemble a gold-standard corpus of 258 São Paulo
-drug-trafficking sentences annotated by legal experts
-(\citeproc{ref-lacerda_e_silva_punindo_2021}{Lacerda e Silva, 2021}),
-benchmark twelve leading models, fine-tune the most promising ones on a
-few hundred labelled examples, and evaluate performance across numeric,
-categorical, boolean, and free-text tasks.
-
-\subsubsection{Contributions}\label{contributions}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \textbf{Reproducible pipeline} -- an R + Python workflow that scrapes,
-  structures, and scores legal texts, ready for other courts or
-  languages.\\
-\item
-  \textbf{Empirical evidence} -- showing that fine-tuning on ≈200 cases
-  can push an open-source model beyond 90 \% accuracy, closing the gap
-  with GPT 4o-mini while cutting inference costs by \textasciitilde25
-  \%.\\
-\item
-  \textbf{Public assets} -- a released dataset and codebase to lower the
-  barrier for future data-driven legal studies.
-\end{enumerate}
-
-In short, this thesis aims to move Brazilian legal scholarship from
-isolated close readings to scalable, evidence-rich analysis---bringing
-the promise of jurimetrics a decisive step closer to reality.
+By demonstrating a reproducible, affordable pipeline for large-scale
+jurimetric studies, the project aims to move empirical legal research in
+Brazil from the margins to the mainstream---and, in doing so, to
+strengthen the evidentiary foundations of public policy.
 
 \section{Related Work}\label{related-work}
 
@@ -1019,15 +981,7 @@ task. After picking a model that was trained in billions of tokens,
 often in a self-supervised way, the whole idea is to adjust some of
 their layers to be able to reproduce the method of extracting
 information, using transfer
-learning(\citeproc{ref-vajjala_practical_2020}{Vajjala et al.,
-2020})\footnote{``Recently, large transformers have been used for
-  transfer learning with smaller down‐stream tasks. Transfer learning is
-  a technique in AI where the knowledge gained while solving one problem
-  is applied to a different but related problem. With transformers, the
-  idea is to train a very large transformer mode in an unsupervised
-  manner (known as pre-training) to predict a part of a sentence given
-  the rest of the content so that it can encode the high-level nuances
-  of the language in it.''}
+learning(\citeproc{ref-vajjala_practical_2020}{Vajjala et al., 2020})
 
 \subsubsection{Fine-tune OpenAI's
 models}\label{fine-tune-openais-models}
@@ -1059,7 +1013,7 @@ framework\footnote{Daniel Han \& team
 out-of-the-box method to load models into 4-bit quantization (reducing
 their size and the price of a minor reduction in their precision) and
 applying LoRA to train only the small amount of layers possible, usually
-less than 1\%. Following suggestions, we applied a rank and alpha of 16
+around 1\%. Following suggestions, we applied a rank and alpha of 16
 Raschka (\citeproc{ref-raschka_build_2024}{2024}), which led to a tiny
 percentage of parameters being re-calculated.
 
@@ -1476,37 +1430,6 @@ similar approaches might be attempted in other jurisdictions and even
 with different languages as long as the base models have idiomatic
 support and there is enough training data in the legal task.
 
-\subsection{Policy implications}\label{policy-implications}
-
-It was clear the role that high-quality annotated data plays and the
-potential that fine-tuning an LLM could have to accelerate empirical
-legal research, easing the execution of data-driven research.
-
-Our work's approach would allow the design of new research and the
-update of other work that, due to the time-lapse, might not be as
-informative as before. For instance, the models trained here would be
-relevant to replicating (\citeproc{ref-lacerda}{\textbf{lacerda?}})'s
-work in recent years, especially after the Brazilian Supreme Court
-decided on drug decriminalization\footnote{https://www.conectas.org/en/noticias/nine-years-into-the-case-the-brazilian-federal-supreme-court-stf-decriminalizes-possession-of-marijuana-for-personal-use/}.
-
-Regular analyses of topics such as civil compensations, labor claim
-awards, consumer law, and others would also benefit legal practitioners
-and public officials, enabling the identification of latent trends. A
-rising success rate in a particular area could signal a forthcoming
-surge in cases, as it would create incentives for litigants.
-Anticipating such developments would be particularly important for the
-administration of justice, especially regarding workforce allocation.
-
-Legal firms, prosecutors, public defenders, and public attorneys might
-apply a jurimetric approach to evaluate their own success rates,
-understand which legal arguments are more relevant to their (in)success,
-etc.
-
-In academia, it would allow for a more comprehensive analysis of cases,
-allowing researchers to have bigger samples, freeing them from the
-intensive labor of annotating data, and allowing them to devote more
-time to the substantive analysis itself.
-
 \subsection{Human in the loop}\label{human-in-the-loop}
 
 However, it would be strongly advisable not to shorten or cut research
@@ -1672,11 +1595,6 @@ Frankenreiter, J., Gummadi, K., Hardt, M., \& Livermore, M. (2024).
 \emph{Lawma: {The} {Power} of {Specialization} for {Legal} {Tasks}}.
 arXiv. \url{http://arxiv.org/abs/2407.16615}
 
-\bibitem[\citeproctext]{ref-dornelles_o_2021}
-Dornelles, R. F. (2021). O {STF}, o controle concentrado e a pandemia.
-In \emph{Associação Brasileira de Jurimetria}.
-\url{https://lab.abj.org.br/posts/2021-04-13-stf-controle-concentrado/}
-
 \bibitem[\citeproctext]{ref-dragoni_combining_2016}
 Dragoni, M., Villata, S., Rizzi, W., \& Governatori, G. (2016,
 December). Combining {NLP} {Approaches} for {Rule} {Extraction} from
@@ -1800,8 +1718,8 @@ into {Deep} {Learning}}. arXiv.
 \clearpage
 \appendix
 
-\section{Appendix I - Lacerda's
-Dataset}\label{appendix-i---lacerdas-dataset}
+\section{Appendix - Lacerda's
+Dataset}\label{appendix---lacerdas-dataset}
 
 \begin{longtable}[]{@{}ll@{}}
 
@@ -1917,77 +1835,126 @@ Lorem ipsum
 
 \section{Appendix - Acknowledgments}\label{sec-thank-you}
 
-Vetor Brasil, ChancenEg. Marina Lacerda Silva, Lynn Kaack, Huy Dang,
-Sascha. Prof.~Susana Henriques da Costa, José Jesus Filho, Associação
-Brasileira de Jurimetria e Jusbrasil. MDS classes of 2023 and 2025, the
-Latin-American Club specially the Brazilians. Special thanks to João
-Vitor Krieger, Renan Barbosa. Also, a grateful to Fernanda Horn, Vitor
-Moneo, Orisha, Meirelles.
+\emph{Caminante, no hay camino, se hace camino al andar} (Antonio
+Machado)\footnote{*``Traveller, there is no path; the path is made by
+  walking.''}
+
+This Master's Thesis would not be possible without the dataset carefully
+annotated and generously provided by Marina Lacerda Silva, who dared to
+do a jurimetric master's thesis a few years ago. I could put together
+this work under the supervision of Prof.~Lynn Kaack---and thanks for her
+Deep Learning course---and other brilliant colleagues. Also, there would
+not be this thesis without the support of Huy Dang and the Hertie School
+Data Science Lab. Thank you all!
+
+Also, this work is part of a long path initiated way before me. A
+special thank you to Prof.~Susana Henriques da Costa, who first
+introduced me to the possibilities (and struggles) of legal empirical
+research and got me excited about doing research. Another important
+thank you to Prof.~Paulo Eduardo Alves da Silva, Prof.~José Jesus Filho,
+and Prof.~Julio Tecenti for their contributions to the field.
+
+Although this thesis is only one more step on this \emph{camino} to a
+master's degree in Data Science for Public Policy, it allows me to thank
+those who helped me reach this point. A very heartfelt thank you to
+Katia and Juares, my parents, who never hesitated to support me even
+when they did not understand my choices. \emph{Muito obrigado!}
+
+Thank you, Motriz, for the Vetor Brasil Scholarship and to ChancenEg for
+giving me the financial conditions to enroll in this program! This work
+benefited largely from time spent with the Berkeley Equity and Access in
+Algorithms, Mechanisms, and Optimization (BEAAMO) Summer Fellowship
+Program. Thank you, Prof.~Rediet Abebe, and my colleagues Mírian Silva,
+Rayssa Benatti, and Tainá Turella! It is also a good opportunity to
+thank my colleagues from Jusbrasil for having many chances to apply data
+science to the legal context and have inspiring conversations every day.
+
+Also, I would like to thank my colleagues from the MDS classes 2024 and
+2025, the Latin-American Club (and the members of the `Latin Pomodoro'),
+the Hertie School Digital Verification Corps, and many brilliant
+colleagues whom I had the chance to share conversations and a good time
+together in the Makerspace, the Library, and the cafeteria.
+
+Since it's impossible to nominate them all, I will thank you with a deep
+\emph{muito obrigado} my friends Henrique Motta, João Vítor Krieeger,
+Paulina Boechat, Renan Fernandes, and the whole Brazilian-Hertian
+community! This journey in Berlin would not be possible without the
+presence and support of Francisco Rios, Ana Barros, and the other
+friends of Urso, who brought some rithm to this journey.
+
+Last but not least, I would like to thank many others who have supported
+my journey and helped me abroad by being present during many of the
+steps that I took here. Thank you, Vitor Moneo, Fernanda Horn, Orisha,
+and Meirelles!
+
+Having said that, a grateful thank you to the reader! I hope this work
+contributes to better legal research, improves our institutions, and,
+thus, positively impacts people's lives.
 
 \section{Appendix - Description of NLP Tasks}\label{sec-nlp-tasks}
 
 \begingroup\fontsize{7}{9}\selectfont
 
-\begin{longtable}[t]{>{\raggedright\arraybackslash}p{15em}>{\raggedright\arraybackslash}p{17em}>{\raggedright\arraybackslash}p{17em}>{\raggedright\arraybackslash}p{20em}}
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{15em}>{\raggedright\arraybackslash}p{17em}>{\raggedright\arraybackslash}p{17em}}
 
 \toprule
-column & data\_type\_task & nlp\_task & explanation\\
+column & data\_type\_task & nlp\_task\\
 \midrule
-\cellcolor{gray!10}{maconha\_g} & \cellcolor{gray!10}{numeric} & \cellcolor{gray!10}{numeric\_qa} & \cellcolor{gray!10}{extract numeric value}\\
-cocaina\_g & numeric & numeric\_qa & extract numeric value\\
-\cellcolor{gray!10}{crack\_g} & \cellcolor{gray!10}{numeric} & \cellcolor{gray!10}{numeric\_qa} & \cellcolor{gray!10}{extract numeric value}\\
-ecstasy\_g & numeric & numeric\_qa & extract numeric value\\
-\cellcolor{gray!10}{lsd\_g} & \cellcolor{gray!10}{numeric} & \cellcolor{gray!10}{numeric\_qa} & \cellcolor{gray!10}{extract numeric value}\\
+\cellcolor{gray!10}{maconha\_g} & \cellcolor{gray!10}{numeric} & \cellcolor{gray!10}{numeric\_qa}\\
+cocaina\_g & numeric & numeric\_qa\\
+\cellcolor{gray!10}{crack\_g} & \cellcolor{gray!10}{numeric} & \cellcolor{gray!10}{numeric\_qa}\\
+ecstasy\_g & numeric & numeric\_qa\\
+\cellcolor{gray!10}{lsd\_g} & \cellcolor{gray!10}{numeric} & \cellcolor{gray!10}{numeric\_qa}\\
 \addlinespace
-tot\_pen\_meses & numeric & numeric\_qa & extract numeric value\\
-\cellcolor{gray!10}{aval\_antecedentes} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification} & \cellcolor{gray!10}{binary classification flag}\\
-aval\_conduta & boolean & binary\_classification & binary classification flag\\
-\cellcolor{gray!10}{aval\_personalidade} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification} & \cellcolor{gray!10}{binary classification flag}\\
-aval\_natureza & boolean & binary\_classification & binary classification flag\\
+tot\_pen\_meses & numeric & numeric\_qa\\
+\cellcolor{gray!10}{aval\_antecedentes} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification}\\
+aval\_conduta & boolean & binary\_classification\\
+\cellcolor{gray!10}{aval\_personalidade} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification}\\
+aval\_natureza & boolean & binary\_classification\\
 \addlinespace
-\cellcolor{gray!10}{aval\_quantidade} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification} & \cellcolor{gray!10}{binary classification flag}\\
-aval\_variedade & boolean & binary\_classification & binary classification flag\\
-\cellcolor{gray!10}{aval\_circunstancias} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification} & \cellcolor{gray!10}{binary classification flag}\\
-aval\_consequencias & boolean & binary\_classification & binary classification flag\\
-\cellcolor{gray!10}{aval\_culpabilidade} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification} & \cellcolor{gray!10}{binary classification flag}\\
+\cellcolor{gray!10}{aval\_quantidade} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification}\\
+aval\_variedade & boolean & binary\_classification\\
+\cellcolor{gray!10}{aval\_circunstancias} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification}\\
+aval\_consequencias & boolean & binary\_classification\\
+\cellcolor{gray!10}{aval\_culpabilidade} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification}\\
 \addlinespace
-resultado\_art\_28 & boolean & binary\_classification & binary classification flag\\
-\cellcolor{gray!10}{resultado\_art\_33} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification} & \cellcolor{gray!10}{binary classification flag}\\
-resultado\_art\_34 & boolean & binary\_classification & binary classification flag\\
-\cellcolor{gray!10}{resultado\_art\_35} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification} & \cellcolor{gray!10}{binary classification flag}\\
-denuncia\_art\_33 & boolean & binary\_classification & binary classification flag\\
+resultado\_art\_28 & boolean & binary\_classification\\
+\cellcolor{gray!10}{resultado\_art\_33} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification}\\
+resultado\_art\_34 & boolean & binary\_classification\\
+\cellcolor{gray!10}{resultado\_art\_35} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification}\\
+denuncia\_art\_33 & boolean & binary\_classification\\
 \addlinespace
-\cellcolor{gray!10}{denuncia\_art\_34} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification} & \cellcolor{gray!10}{binary classification flag}\\
-denuncia\_art\_35 & boolean & binary\_classification & binary classification flag\\
-\cellcolor{gray!10}{maconha} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa} & \cellcolor{gray!10}{yes/no QA flag}\\
-maconha\_outras & boolean & yesno\_qa & yes/no QA flag\\
-\cellcolor{gray!10}{cocaina} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa} & \cellcolor{gray!10}{yes/no QA flag}\\
+\cellcolor{gray!10}{denuncia\_art\_34} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{binary\_classification}\\
+denuncia\_art\_35 & boolean & binary\_classification\\
+\cellcolor{gray!10}{maconha} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa}\\
+maconha\_outras & boolean & yesno\_qa\\
+\cellcolor{gray!10}{cocaina} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa}\\
 \addlinespace
-crack & boolean & yesno\_qa & yes/no QA flag\\
-\cellcolor{gray!10}{ecstasy} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa} & \cellcolor{gray!10}{yes/no QA flag}\\
-lsd & boolean & yesno\_qa & yes/no QA flag\\
-\cellcolor{gray!10}{outras\_drogas} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa} & \cellcolor{gray!10}{yes/no QA flag}\\
-flag\_local\_de\_trafico & boolean & yesno\_qa & yes/no QA flag\\
+crack & boolean & yesno\_qa\\
+\cellcolor{gray!10}{ecstasy} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa}\\
+lsd & boolean & yesno\_qa\\
+\cellcolor{gray!10}{outras\_drogas} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa}\\
+flag\_local\_de\_trafico & boolean & yesno\_qa\\
 \addlinespace
-\cellcolor{gray!10}{flag\_preso\_no\_momento\_da\_sentenca} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa} & \cellcolor{gray!10}{yes/no QA flag}\\
-flag\_confissao\_informal & boolean & yesno\_qa & yes/no QA flag\\
-\cellcolor{gray!10}{flag\_confissao} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa} & \cellcolor{gray!10}{yes/no QA flag}\\
-flag\_denuncia\_anonima & boolean & yesno\_qa & yes/no QA flag\\
-\cellcolor{gray!10}{flag\_denuncia} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa} & \cellcolor{gray!10}{yes/no QA flag}\\
+\cellcolor{gray!10}{flag\_preso\_no\_momento\_da\_sentenca} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa}\\
+flag\_confissao\_informal & boolean & yesno\_qa\\
+\cellcolor{gray!10}{flag\_confissao} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa}\\
+flag\_denuncia\_anonima & boolean & yesno\_qa\\
+\cellcolor{gray!10}{flag\_denuncia} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa}\\
 \addlinespace
-flag\_atitude\_suspeita & boolean & yesno\_qa & yes/no QA flag\\
-\cellcolor{gray!10}{flag\_divergencias\_nos\_relatos\_dos\_policiais} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa} & \cellcolor{gray!10}{yes/no QA flag}\\
-flag\_investigacao & boolean & yesno\_qa & yes/no QA flag\\
-\cellcolor{gray!10}{flag\_interceptacao} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa} & \cellcolor{gray!10}{yes/no QA flag}\\
-flag\_mandado & boolean & yesno\_qa & yes/no QA flag\\
+flag\_atitude\_suspeita & boolean & yesno\_qa\\
+\cellcolor{gray!10}{flag\_divergencias\_nos\_relatos\_dos\_policiais} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa}\\
+flag\_investigacao & boolean & yesno\_qa\\
+\cellcolor{gray!10}{flag\_interceptacao} & \cellcolor{gray!10}{boolean} & \cellcolor{gray!10}{yesno\_qa}\\
+flag\_mandado & boolean & yesno\_qa\\
 \addlinespace
-\cellcolor{gray!10}{local} & \cellcolor{gray!10}{categorical} & \cellcolor{gray!10}{multiclass\_classification} & \cellcolor{gray!10}{multi-class classification}\\
-sentenca & categorical & multiclass\_classification & multi-class classification\\
-\cellcolor{gray!10}{juiz} & \cellcolor{gray!10}{open\_textual} & \cellcolor{gray!10}{open\_text\_normalization} & \cellcolor{gray!10}{normalize text field}\\
-nome & open\_textual & open\_text\_normalization & normalize text field\\
-\cellcolor{gray!10}{pena\_base} & \cellcolor{gray!10}{span} & \cellcolor{gray!10}{named\_entity\_recognition} & \cellcolor{gray!10}{extract text span}\\
+\cellcolor{gray!10}{local} & \cellcolor{gray!10}{categorical} & \cellcolor{gray!10}{multiclass\_classification}\\
+sentenca & categorical & multiclass\_classification\\
+\cellcolor{gray!10}{juiz} & \cellcolor{gray!10}{open\_textual} & \cellcolor{gray!10}{open\_text\_normalization}\\
+nome & open\_textual & open\_text\_normalization\\
+\cellcolor{gray!10}{pena\_base} & \cellcolor{gray!10}{span} & \cellcolor{gray!10}{named\_entity\_recognition}\\
 \addlinespace
-tot\_pen & span & named\_entity\_recognition & extract text span\\
+tot\_pen & span & named\_entity\_recognition\\
 \bottomrule
 
 

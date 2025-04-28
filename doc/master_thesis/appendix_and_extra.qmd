@@ -1,4 +1,4 @@
-# Appendix I - Lacerda's Dataset
+# Appendix - Lacerda's Dataset
 
 
 ```{r}
@@ -24,7 +24,24 @@ Lorem ipsum
 
 # Appendix - Acknowledgments {#sec-thank-you}
 
-Vetor Brasil, ChancenEg. Marina Lacerda Silva, Lynn Kaack, Huy Dang, Sascha. Prof. Susana Henriques da Costa, José Jesus Filho, Associação Brasileira de Jurimetria e Jusbrasil. MDS classes of 2023 and 2025, the Latin-American Club specially the Brazilians. Special thanks to João Vitor Krieger, Renan Barbosa. Also, a grateful to Fernanda Horn, Vitor Moneo, Orisha, Meirelles.
+
+*Caminante, no hay camino, se hace camino al andar* (Antonio Machado)^[*"Traveller, there is no path; the path is made by walking."]
+
+This Master's Thesis would not be possible without the dataset carefully annotated and generously provided by Marina Lacerda Silva, who dared to do a jurimetric master's thesis a few years ago. I could put together this work under the supervision of Prof. Lynn Kaack—and thanks for her Deep Learning course—and other brilliant colleagues. Also, there would not be this thesis without the support of Huy Dang and the Hertie School Data Science Lab. Thank you all!
+
+Also, this work is part of a long path initiated way before me. A special thank you to Prof. Susana Henriques da Costa, who first introduced me to the possibilities (and struggles) of legal empirical research and got me excited about doing research. Another important thank you to Prof. Paulo Eduardo Alves da Silva, Prof. José Jesus Filho, and Prof. Julio Tecenti for their contributions to the field.  
+
+Although this thesis is only one more step on this *camino* to a master's degree in Data Science for Public Policy, it allows me to thank those who helped me reach this point. A very heartfelt thank you to Katia and Juares, my parents, who never hesitated to support me even when they did not understand my choices. *Muito obrigado!*
+
+Thank you, Motriz, for the Vetor Brasil Scholarship and to ChancenEg for giving me the financial conditions to enroll in this program! This work benefited largely from time spent with the Berkeley Equity and Access in Algorithms, Mechanisms, and Optimization (BEAAMO) Summer Fellowship Program. Thank you, Prof. Rediet Abebe, and my colleagues Mírian Silva, Rayssa Benatti, and Tainá Turella! It is also a good opportunity to thank my colleagues from Jusbrasil for having many chances to apply data science to the legal context and have inspiring conversations every day.
+
+Also, I would like to thank my colleagues from the MDS classes 2024 and 2025, the Latin-American Club (and the members of the 'Latin Pomodoro'), the Hertie School Digital Verification Corps, and many brilliant colleagues whom I had the chance to share conversations and a good time together in the Makerspace, the Library, and the cafeteria.
+
+Since it's impossible to nominate them all, I will thank you with a deep *muito obrigado* my friends Henrique Motta, João Vítor Krieeger, Paulina Boechat, Renan Fernandes, and the whole Brazilian-Hertian community! This journey in Berlin would not be possible without the presence and support of Francisco Rios, Ana Barros, and the other friends of Urso, who brought some rithm to this journey.
+
+Last but not least, I would like to thank many others who have supported my journey and helped me abroad by being present during many of the steps that I took here. Thank you, Vitor Moneo, Fernanda Horn, Orisha, and Meirelles!
+
+Having said that, a grateful thank you to the reader! I hope this work contributes to better legal research, improves our institutions, and, thus, positively impacts people's lives.
 
 # Appendix - Description of NLP Tasks {#sec-nlp-tasks}
 
@@ -33,64 +50,64 @@ Vetor Brasil, ChancenEg. Marina Lacerda Silva, Lynn Kaack, Huy Dang, Sascha. Pro
 #| tbl-cap: Mapping of columns to traditional NLP tasks
 
 tibble::tribble(
-  ~column,                             ~data_type_task,          ~nlp_task,                    ~explanation,
+  ~column,                             ~data_type_task,          ~nlp_task,
   # numeric QA
-  "maconha_g",                         "numeric",               "numeric_qa",                 "extract numeric value",
-  "cocaina_g",                         "numeric",               "numeric_qa",                 "extract numeric value",
-  "crack_g",                           "numeric",               "numeric_qa",                 "extract numeric value",
-  "ecstasy_g",                         "numeric",               "numeric_qa",                 "extract numeric value",
-  "lsd_g",                             "numeric",               "numeric_qa",                 "extract numeric value",
-  "tot_pen_meses",                     "numeric",               "numeric_qa",                 "extract numeric value",
+  "maconha_g",                         "numeric",               "numeric_qa",
+  "cocaina_g",                         "numeric",               "numeric_qa",
+  "crack_g",                           "numeric",               "numeric_qa",
+  "ecstasy_g",                         "numeric",               "numeric_qa",
+  "lsd_g",                             "numeric",               "numeric_qa",
+  "tot_pen_meses",                     "numeric",               "numeric_qa",
   
   # binary classification flags
-  "aval_antecedentes",                 "boolean",               "binary_classification",      "binary classification flag",
-  "aval_conduta",                      "boolean",               "binary_classification",      "binary classification flag",
-  "aval_personalidade",                "boolean",               "binary_classification",      "binary classification flag",
-  "aval_natureza",                     "boolean",               "binary_classification",      "binary classification flag",
-  "aval_quantidade",                   "boolean",               "binary_classification",      "binary classification flag",
-  "aval_variedade",                    "boolean",               "binary_classification",      "binary classification flag",
-  "aval_circunstancias",               "boolean",               "binary_classification",      "binary classification flag",
-  "aval_consequencias",                "boolean",               "binary_classification",      "binary classification flag",
-  "aval_culpabilidade",                "boolean",               "binary_classification",      "binary classification flag",
-  "resultado_art_28",                  "boolean",               "binary_classification",      "binary classification flag",
-  "resultado_art_33",                  "boolean",               "binary_classification",      "binary classification flag",
-  "resultado_art_34",                  "boolean",               "binary_classification",      "binary classification flag",
-  "resultado_art_35",                  "boolean",               "binary_classification",      "binary classification flag",
-  "denuncia_art_33",                   "boolean",               "binary_classification",      "binary classification flag",
-  "denuncia_art_34",                   "boolean",               "binary_classification",      "binary classification flag",
-  "denuncia_art_35",                   "boolean",               "binary_classification",      "binary classification flag",
+  "aval_antecedentes",                 "boolean",               "binary_classification",
+  "aval_conduta",                      "boolean",               "binary_classification",
+  "aval_personalidade",                "boolean",               "binary_classification",
+  "aval_natureza",                     "boolean",               "binary_classification",
+  "aval_quantidade",                   "boolean",               "binary_classification",
+  "aval_variedade",                    "boolean",               "binary_classification",
+  "aval_circunstancias",               "boolean",               "binary_classification",
+  "aval_consequencias",                "boolean",               "binary_classification",
+  "aval_culpabilidade",                "boolean",               "binary_classification",
+  "resultado_art_28",                  "boolean",               "binary_classification",
+  "resultado_art_33",                  "boolean",               "binary_classification",
+  "resultado_art_34",                  "boolean",               "binary_classification",
+  "resultado_art_35",                  "boolean",               "binary_classification",
+  "denuncia_art_33",                   "boolean",               "binary_classification",
+  "denuncia_art_34",                   "boolean",               "binary_classification",
+  "denuncia_art_35",                   "boolean",               "binary_classification",
   
   # yes/no QA flags
-  "maconha",                           "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "maconha_outras",                    "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "cocaina",                           "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "crack",                             "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "ecstasy",                           "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "lsd",                               "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "outras_drogas",                     "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "flag_local_de_trafico",             "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "flag_preso_no_momento_da_sentenca", "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "flag_confissao_informal",           "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "flag_confissao",                    "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "flag_denuncia_anonima",             "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "flag_denuncia",                     "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "flag_atitude_suspeita",             "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "flag_divergencias_nos_relatos_dos_policiais", "boolean",        "yesno_qa",                   "yes/no QA flag",
-  "flag_investigacao",                 "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "flag_interceptacao",                "boolean",               "yesno_qa",                   "yes/no QA flag",
-  "flag_mandado",                      "boolean",               "yesno_qa",                   "yes/no QA flag",
+  "maconha",                           "boolean",               "yesno_qa",
+  "maconha_outras",                    "boolean",               "yesno_qa",
+  "cocaina",                           "boolean",               "yesno_qa",
+  "crack",                             "boolean",               "yesno_qa",
+  "ecstasy",                           "boolean",               "yesno_qa",
+  "lsd",                               "boolean",               "yesno_qa",
+  "outras_drogas",                     "boolean",               "yesno_qa",
+  "flag_local_de_trafico",             "boolean",               "yesno_qa",
+  "flag_preso_no_momento_da_sentenca", "boolean",               "yesno_qa",
+  "flag_confissao_informal",           "boolean",               "yesno_qa",
+  "flag_confissao",                    "boolean",               "yesno_qa",
+  "flag_denuncia_anonima",             "boolean",               "yesno_qa",
+  "flag_denuncia",                     "boolean",               "yesno_qa",
+  "flag_atitude_suspeita",             "boolean",               "yesno_qa",
+  "flag_divergencias_nos_relatos_dos_policiais", "boolean",        "yesno_qa",
+  "flag_investigacao",                 "boolean",               "yesno_qa",
+  "flag_interceptacao",                "boolean",               "yesno_qa",
+  "flag_mandado",                      "boolean",               "yesno_qa",
   
   # multiclass classification
-  "local",                             "categorical",           "multiclass_classification",  "multi-class classification",
-  "sentenca",                          "categorical",           "multiclass_classification",  "multi-class classification",
+  "local",                             "categorical",           "multiclass_classification",
+  "sentenca",                          "categorical",           "multiclass_classification",
   
   # open-text normalization
-  "juiz",                              "open_textual",          "open_text_normalization",    "normalize text field",
-  "nome",                              "open_textual",          "open_text_normalization",    "normalize text field",
+  "juiz",                              "open_textual",          "open_text_normalization",
+  "nome",                              "open_textual",          "open_text_normalization",
   
   # span extraction (NER)
-  "pena_base",                         "span",                  "named_entity_recognition",   "extract text span",
-  "tot_pen",                           "span",                  "named_entity_recognition",   "extract text span"
+  "pena_base",                         "span",                  "named_entity_recognition",
+  "tot_pen",                           "span",                  "named_entity_recognition"
 ) |>
   knitr::kable() |>
   kableExtra::kable_paper(
@@ -100,7 +117,6 @@ tibble::tribble(
   ) |>
   kableExtra::column_spec(1, width = "15em") |>
   kableExtra::column_spec(2, width = "17em") |>
-  kableExtra::column_spec(3, width = "17em") |>
-  kableExtra::column_spec(4, width = "20em")
+  kableExtra::column_spec(3, width = "17em")
 
 ```

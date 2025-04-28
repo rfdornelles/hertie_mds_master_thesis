@@ -9,7 +9,7 @@
 ```{=latex}
 \begin{titlepage}
   \centering
-  \includegraphics[width=0.75\textwidth]{images/hertie-school-logo.jpg}
+  \includegraphics[width=1\textwidth]{images/hertie-school-logo.jpg}
   \vspace*{\fill}
   
   \textbf{Enabling Jurimetrics: Deploying Open‑Source Large Language Models for Empirical Insights into Brazilian Courts}\\
@@ -31,11 +31,21 @@
   Supervised by Prof. Lynn Kaack, PhD
   \vspace{0.5cm}
   
-  Word count: 7,700 words
+  Word count: 7,355 words
 \end{titlepage}
 
 ```
 <!-- TODO: add word count -->
+# Executive Summary^[The GitHub repositiry of this research is available at: [https://github.com/rfdornelles/hertie_mds_master_thesis](https://github.com/rfdornelles/hertie_mds_master_thesis)] {#sec-executive-summary}
+
+Empirical analyses of court decisions—jurimetrics—remain rare in Brazil. Recent advances in open-source large language models (LLMs) create an opportunity to automate the extraction of structured data from these decisions at a fraction of the cost of proprietary systems while preserving privacy and reproducibility. This thesis asks whether open-source LLMs can match or surpass leading commercial models when deployed end-to-end on Brazilian judicial cases.
+
+A gold-standard corpus of 258 São Paulo drug-trafficking sentences [@lacerda_e_silva_punindo_2021] was split into training, validation, and test sets. Twelve base models—seven open-source, five commercial—were benchmarked zero-shot. The best open-source model (Gemma 3-27B) already outperformed GPT-4o, achieving 0.82 accuracy versus 0.79 on 39 held-out cases. Three models (GPT-4o-mini, Phi-4 14B, and Llama-3 3B) were fine-tuned via LoRA and quantization. Fine-tuning raised Phi-4’s accuracy to 0.92, statistically indistinguishable from the commercial leader yet 25 % cheaper and twice as energy-efficient when labeling a new batch of 454 cases. Llama-3 3B, with one-fifth the parameters of Phi-4, reached 0.78 accuracies at less than half the cost and inference time, illustrating an attractive speed-versus-quality trade-off for large-scale annotation.
+
+These findings confirm the “power of specialization”[@dominguez-olmedo_lawma_2024]: modest amounts of high-quality domain data can lift open-source LLMs to state-of-the-art performance in legal information extraction. The work contributes to an end-to-end pipeline, open-source code and evaluation scripts, and practical guidance on model selection, fine-tuning, and deployment under tight resource constraints. It demonstrates a feasible, transparent, and affordable path toward large-scale, data-driven legal research in civil law jurisdictions. It also supports policy calls for greater data openness, interdisciplinary training, and investment in public-interest NLP infrastructure.
+
+{{< pagebreak >}}
+
 
 ```{=latex}
 \tableofcontents
@@ -62,10 +72,11 @@
 \end{minipage}
 \end{flushright}
 
-\footnotetext{Message for the LVII World Day of Peace, 1 January 2024}
+\footnotetext{Message for the LVII World Day of Peace, 1 January 2024.}
 \vspace*{0pt}
 \newpage
 ```
+
 
 ```{r}
 #| label: setup 
@@ -90,52 +101,6 @@ ft_experiments <- c("3_open_ai_test_4o-mini",
 
 ```
 
-# Executive Summary^[The GitHub repositiry of this research is available at: [https://github.com/rfdornelles/hertie_mds_master_thesis](https://github.com/rfdornelles/hertie_mds_master_thesis)] {#sec-executive-summary}
-
-<!-- 1 page -->
-
-<!--
-**Executive Summary**
-
-Brazil’s courts are almost entirely digital, yet legal scholarship still advances case-by-case, slowed by manual reading and tiny samples. This thesis shows that *open-source* large-language models (LLMs) can break that bottleneck. With a carefully engineered prompt and a few hundred labelled examples, an open model can extract fifty legal features from full-text judgments with **over 90 % accuracy**—performance once thought to require expensive proprietary APIs.
-
-With modest compute and a few hundred labels, open-source LLMs make large-scale, evidence-based legal research—**jurimetrics**—practical for Brazil’s academic, public-sector, and civil-society communities.
-
-**Why it matters**  
-Millions of judicial decisions already sit online, but turning them into structured data is labour-intensive. Universities, watchdog NGOs, and public agencies need low-cost, privacy-preserving tools; commercial LLM services remain pricey and opaque.
-
-**What we did**  
-- Adapt a **gold-standard corpus** of 258 São Paulo drug-trafficking sentences, each originally hand-labelled with 50 attributes.  
-- Benchmarked **twelve leading models** (GPT-4 variants, Gemma 3, Phi-4, Llama 3, etc.) on extraction accuracy.  
-- Applied **few-shot fine-tuning** (≈200 labelled cases, 4-bit LoRA via the Unsloth framework) to the most promising open models.
-
-**Key findings**  
-Fine-tuning boosts open-source accuracy by **+20 percentage points**: Phi-4 climbs to 0.92, effectively matching GPT-4o-mini while cutting inference cost by 25 %. A 3 billion-parameter Llama reaches 0.75 accuracy, runs twice as fast, and costs half as much as GPT-4o-mini—ideal for rapid screening at scale.
-
-**Contributions**  
-1. A **reproducible R + Python pipeline** for scraping, prompting, parsing, and scoring legal texts.  
-2. A **demonstration dataset** of 454 fresh São Paulo judgments processed by fine-tuned models, proving scalability.  
-3. A **policy roadmap** urging courts to publish structured data, law schools to teach data literacy, and funders to support open corpora.
-
-**Bottom line**  
-With modest compute and a few hundred labels, open-source LLMs make large-scale, evidence-based legal research—**jurimetrics**—practical for Brazil’s academic, public-sector, and civil-society communities.
-
-
-
--   context:
-    -   law is a fundamental aspect in governance and, therefore, to well being
-    -   however, law is heavely dogmatic and there is little empirical legal research in the country.
-    -   to do empirical research on law the data mining process is specially complicated, not because the lack of material -- Judiciary in BR is full digitalized -- but to analyze a large volume of data, with it's specific linguo
-    -   the first obstacle to a data-driving analysis in law is how to manage text data in large scale and extract structured information from it: one could easily take months to properly analyze few dozens of complex documents.
-    -   one side-hipothesis: our legal studies and legislative production is suboptimal, due the lack of evidence based decisions
-    -   relevant to a policy school; in a data science program it's specially relevant to point out solutions to improve this field and offer policy recommendations in the light of the state of the art
--   contribution: pipeline, analyse, at least 1 os model trained
-
-
--->
-
-{{< pagebreak >}}
-
 # Introduction {#sec-introduction}
 ```{=latex}
 \vspace*{\fill}
@@ -154,66 +119,16 @@ With modest compute and a few hundred labels, open-source LLMs make large-scale,
 \footnotetext{\mbox{Art.} 20, General Regulation of the Statute of the Lawyer Professorship, Brazilian Bar Association}
 \vspace*{\fill}
 ```
+Law, in every modern democracy, is more than a set of abstract norms; it is a living institutional mechanism through which policy choices are translated into concrete incentives, constraints, and remedies. To evaluate whether a legal system fulfills that role, we must ask not only **what** the statutes prescribe but **how** they are applied: How long does a civil action typically last? What compensation do consumers actually receive? Which factors shape sentencing in drug-trafficking cases? These eminently empirical questions are still surprisingly difficult to answer.
 
+More than half a century ago, Lee Loevinger -@loevinger_jurimetricsnext_1948 coined the term *jurimetrics* to describe the systematic, quantitative study of law. While the movement gained traction in the United States, it has remained underutilized in civil-law jurisdictions like Brazil. Recent initiatives—for example, the Associação Brasileira de Jurimetria^[[https://abj.org.br/](https://abj.org.br/)] and the Rede de Estudos Empíricos em Direito^[[https://reedpesquisa.org/](https://reedpesquisa.org/)]—have begun to fill the gap, yet the volume and heterogeneity of judicial documents continue to deter large-scale analysis.
 
-<!--TODO:  why llm and not ner? -->
+The arrival of large language models (LLMs) changes that calculus. Since the public debut of GPT-3.5 and ChatGPT, the natural language processing community has released a stream of increasingly capable—and increasingly efficient—models. Crucially, many cutting-edge architectures are now open-source: Llama-3, Gemma-3, Phi-4, and kindred efforts come with permissive licenses that suit academic and public-sector deployment. Coupled with parameter-efficient fine-tuning techniques and low-bit quantization, these models can, in principle, extract structured data from thousands of judgments on commodity hardware.
 
-<!--
--   **The lack of legal empirical research:** In Brazil, empirical legal research remains limited. However, it has recently become increasingly common to find studies based on this approach as demonstrated by @cabrera_de_bonito_pesquisa_2025.
+This thesis explores whether that promise holds for Brazilian courts. It pursues three objectives. First, it benchmarks leading commercial LLMs on information extraction from complex judicial sentences, establishing a performance and cost baseline. Second, it evaluates a portfolio of open-source models, addressing practical hurdles such as limited context windows and the absence of native JSON output. Third, it fine-tunes the most promising open-source candidates on a modest, expert-annotated corpus to test the “power of specialization” hypothesis advanced by @dominguez-olmedo_lawma_2024. The comparative results are analyzed regarding accuracy, inference time, energy consumption, and monetary cost, yielding evidence-based recommendations for researchers, courts, and policy-makers.
 
--   **SOTA of legal research**: Those studies, however, still use little data from lawsuits and judicial precedents. Some of them use more qualitative/observational methods. In order to achieve a deeper and broader analysis, it is necessary to have a high level of financial resources and a big and highly qualified research team.
+By demonstrating a reproducible, affordable pipeline for large-scale jurimetric studies, the project aims to move empirical legal research in Brazil from the margins to the mainstream—and, in doing so, to strengthen the evidentiary foundations of public policy.
 
--   **Exploratory legal data analysis**: It is possible to analyze the metadata of legal cases. Doing this would be helpful for exploratory analysis and formulating a hypothesis. Data from lawsuits are also used, as some examples show. In @dornelles_o_2021, data extracted from the Brazilian Supreme Court were used to describe the volume of new actions in the Court during Bolsonaro's administration:
-
-![Evolution of new lawsuits each year in the Brazilian Supreme Court. Markers indicate the different presidential periods. @dornelles_o_2021.](images/grafico_distribuicao_acoes.png){#fig-evolution width="600px"}
-
--   **Robust research**: More legal research beyond metadata is needed. To do that, complex documents must be analyzed in depth. Those documents are often relatively large and full of legal jargon, meaning that legal specialists must also do the analysis or at least oversee it.
-
--   **Natural Language Processing**: NLP is an important tool for handling text as data and providing valuable insights from text documents. However, NLP models often specialize in a single task @vajjala_practical_2020, while a handful of tools are necessary to extract information from such documents. Besides that, the traditional NLP models have little ability to understand larger contexts and follow specific instructions @raschka_build_2024, so large language models would be a better approach to that.^[Although there is some debate around Small Language Models and Large Language Models, this distinction is not being made here. See also @chen_empowering_2025].
-
--   **Opportunity**: The advent of powerful language models plus the high level of digitization of Brazil's Judiciary branch would allow a new era of empirical research, both from the academic and the practitioner's perspective. It would be possible for a single researcher to study how administrative misconduct law cases were decided in the last few years. Also, it would be possible for a Public Defender to study Local Court decisions to establish a better strategy for new cases.
-
--   **This research**: It aims to understand if and how large language models could be used to leverage legal research by processing judicial decisions and extracting the features of interest. Moreover, the interest is in understanding the feasibility of using open-source large language models in real-world settings.
-
--   **Open-source models**: In academia, in public service, and similar use cases, privacy and costs are limited. Although the terms of use of commercial LLMs suggest a relative degree of confidence about data protection, once inserted in the API, there is no real control over it. Also, commercial models might be expensive (although cheaper than the fair price of human labor to do a similar task), which might block their deployment.
-
-<!--TODO -->
-
-## Introduction {#sec-introduction}
-
-<!--
-> *“Give me the data, and I will give you the law.”*  
-> — *adapted from the scholastic motto* **da mihi data, dabo tibi ius**
-
-Law shapes public policy, fuels political debate, and touches the daily lives of Brazilians.  
-Yet empirical legal research remains surprisingly scarce.  
-Although recent work by Cabrera de Bonito [@cabrera_de_bonito_pesquisa_2025] maps a growing interest in data-driven methods, most studies still rely on close reading, modest samples, and painstaking human coding.  
-
-Paradoxically, the raw material is abundant.  Since 2010 Brazilian courts have been fully digital: every petition, ruling, and vote leaves a machine-readable trail.  Exploratory projects that mine only metadata have already yielded insight.  Dornelles [@dornelles_o_2021], for example, charted the surge of new actions filed at the Supreme Court across presidential terms (@ref(fig-evolution)).  But metadata sketches only the shoreline.  To sail further—asking *why* cases swing one way or another, or probing subtle patterns of bias—researchers must dive into the dense, jargon-laden text of judicial opinions.  Doing so at scale traditionally requires either a small army of lawyers or brittle NLP pipelines that break whenever the template shifts.
-
-Large-language models (LLMs) promise a way out.  Unlike traditional NLP tools that master a single trick, modern LLMs handle long contexts, follow intricate instructions, and juggle multiple tasks [@vajjala_practical_2020; @raschka_build_2024].  Crucially, their power is no longer locked behind proprietary APIs: a new wave of *open-source* models—**Phi-4**, **Gemma 3**, and a family of nimble **Llamas**—offers comparable capability with full local control over data, cost, and fine-tuning.
-
-To test this, I assemble a gold-standard corpus of 258 São Paulo drug-trafficking sentences annotated by legal experts [@lacerda_e_silva_punindo_2021], benchmark twelve leading models, fine-tune the most promising ones on a few hundred labelled examples, and evaluate performance across numeric, categorical, boolean, and free-text tasks.
-
-### Contributions  
-
-1. **Reproducible pipeline** – an R + Python workflow that scrapes, structures, and scores legal texts, ready for other courts or languages.  
-2. **Empirical evidence** – showing that fine-tuning on ≈200 cases can push an open-source model beyond 90 % accuracy, closing the gap with GPT 4o-mini while cutting inference costs by ~25 %.  
-3. **Public assets** – a released dataset and codebase to lower the barrier for future data-driven legal studies.
-
-In short, this thesis aims to move Brazilian legal scholarship from isolated close readings to scalable, evidence-rich analysis—bringing the promise of jurimetrics a decisive step closer to reality.
-
-Brazil’s judiciary is one of the most digitised in the world: every petition, ruling and appellate vote now leaves a machine-readable trail.  Yet empirical legal studies remain the exception rather than the rule.  A recent survey by Cabrera de Bonito [@cabrera_de_bonito_pesquisa_2025] confirms that most scholarship continues to rely on close reading and anecdotal evidence.  When data are used, they are often confined to high-level metadata—filing dates, parties, court divisions—rather than the full text of decisions. 
-
-This gap is not for lack of interest.  Robust empirical projects do appear—analysing drug-possession jurisprudence [@lacerda_e_silva_punindo_2021], or mapping sentencing disparities [@associacao_brasileira_de_jurimetria_avaliacao_2019]—yet each demands a sizeable budget and a dedicated team of lawyers to code thousands of pages by hand.  The result is an uneven landscape: islands of rich analysis surrounded by a sea of untapped digital text.
-
-Natural-Language Processing (NLP) should, in theory, provide a bridge.  Traditional NLP pipelines, however, excel at one task at a time—named-entity recognition, topic modelling—and falter when asked to read an entire judgment, follow intricate legal instructions, and output structured data [@vajjala_practical_2020].  Large-Language Models (LLMs) promise to overcome these limits: they hold longer context, obey layered prompts, and can generalise across tasks [@raschka_build_2024].  Crucially, a new generation of **open-source** models—*Phi-4*, *Gemma 3*, *Llama 3*—offers comparable power without the price tag or privacy concerns of commercial APIs.
-
-To answer, I assemble a gold-standard corpus of 258 São Paulo drug-trafficking sentences with 50 hand-labelled features.  I benchmark twelve leading models, fine-tune the most promising ones on a few hundred examples, and measure performance across categorical, numeric and free-text fields.  The goal is not only technical—achieving > 90 % accuracy—but also pragmatic: testing whether a lone researcher, a public defender, or a watchdog NGO could run the pipeline on a modest GPU and keep all data on-premise.
-
-The remainder of this dissertation unfolds as follows.  Chapter 2 surveys related work at the intersection of law and NLP.  Chapter 3 details the dataset, models and evaluation metrics.  Chapter 4 presents results, contrasting zero-shot, few-shot and fine-tuned performance.  Chapter 5 discusses policy implications—how courts might publish more structured data, how law schools might teach data literacy—and highlights limitations and future directions.  Together, these chapters argue that open-source LLMs can move Brazilian legal studies from isolated close readings to scalable, evidence-based analysis, bringing the long-promised era of jurimetrics decisively closer.
-
---->
 # Related Work
 
 The works most closely related to this thesis are those of @dominguez-olmedo_lawma_2024 and @junior_juru_2024, who concluded that fine-tuning models for a specific legal context lead to notable improvements in accuracy. From a technical perspective, this research heavily relied on @wolf_transformers_2020 and the @daniel_han_unsloth_2023 libraries, which provided the necessary tools for fine-tuning open-source models.
@@ -254,7 +169,6 @@ On the one hand, we recognize a research gap regarding the lack of empirical leg
 
 # Research Question {#sec-research_question}
 
-<!-- TODO --> 
 Can open-source large language models be deployed in the Brazilian legal context to accurately extract information, recognize entities, and draw conclusions from complex legal documents, compared to leading proprietary systems?
 
 # Data Sources and Models {#sec-data_sources_models}
@@ -359,7 +273,7 @@ Within this framework, choosing the more suitable LLMs for the task would be pos
 
 All scripts were written in Python and R (in this case, the visualizations and some data collection, as described in the @sec-datasets). 
 
-Regarding hardware, this research relied on Google Colab Pro (A100 GPU), Kaggle (T4 GPU), and the Hertie School's GPU Server^[https://hertie-data-science.gitbook.io/hertie-school-gpu/extras/gpu-server-specs] (4x Nvidia A100, shared with other researchers^[Despite some throttling issues caused by the high number of simultaneous users and the absence of a job management system, this research would not have been possible without the use of the GPU server. Thank you to the Data Science Lab for their support!].). All the relevant experiment runnings were monitored using Weights and Bias API 
+Regarding hardware, this research relied on Google Colab Pro (A100 GPU), Kaggle (T4 GPU), and the Hertie School's GPU Server^[[https://hertie-data-science.gitbook.io/hertie-school-gpu/extras/gpu-server-specs](https://hertie-data-science.gitbook.io/hertie-school-gpu/extras/gpu-server-specs)] (4x Nvidia A100^[Despite some throttling issues caused by the high number of simultaneous users and the absence of a job management system, this research would not have been possible without the use of the GPU server. Thank you to the Data Science Lab for their support!]). All the relevant experiment runnings were monitored using Weights and Bias API 
 @biewald_experiment_2020.
 
 ## Prompt and data schema
@@ -374,7 +288,7 @@ Specific instructions were provided regarding the output. Since the data could n
 
 ## Pipeline to run commercial models
 
-Although the scope of this research is to understand and asses if and how open-source models would extract information, it was important to establish a benchmark. OpenAI models were chosen since they represent state of the art in many evaluations and are the most widespread platform^[https://techcrunch.com/2025/04/01/chatgpt-isnt-the-only-chatbot-thats-gaining-users/?utm_source=chatgpt.com] ^[Also, there was the availability of using OpenAI platform through Hertie School's Data Science Lab account.].
+Although the scope of this research is to understand and asses if and how open-source models would extract information, it was important to establish a benchmark. OpenAI models were chosen since they represent state of the art in many evaluations and are the most widespread platform^[[https://techcrunch.com/2025/04/01/chatgpt-isnt-the-only-chatbot-thats-gaining-users/?utm_source=chatgpt.com](https://techcrunch.com/2025/04/01/chatgpt-isnt-the-only-chatbot-thats-gaining-users/?utm_source=chatgpt.com)] ^[Also, there was the availability of using OpenAI platform through Hertie School's Data Science Lab account.].
 
 To access the models in OpenAI's platform, one must use an API. This API offered the option to generate the outputs in batch mode, where the whole test dataset was sent with the prompts in an asynchronous mode. Batching allowed for a 50% reduction in costs and the receipt of data in a single file containing all the responses generated.
 
@@ -468,7 +382,7 @@ The first step is to parse the results from the generated responses and transfor
 
 Then, we have different evaluation functions according to the respective data type (numeric, categorical, boolean, or open textual fields). The different data types change the pre-processing step, but, in the end,  the model's response is compared with the ground truth answer. The functions were split also due to an attempt to establish different tolerance thresholds. However, in this work, all limits were stuck to zero, meaning there was no tolerance. The values obtained might be slightly higher according to the level of tolerable differences.
 
-From this comparison, we will have a matrix with all answers and a value of 0 if they do not match or 1 if they are right. Then, the sum of correct answers will be divided by the total answers expected to assess the accuracy. The accuracy was calculated using scikit-learn's function `metrics.accuracy_score`, which uses the following formula^[https://scikit-learn.org/stable/modules/model_evaluation.html#accuracy-score]:
+From this comparison, we will have a matrix with all answers and a value of 0 if they do not match or 1 if they are right. Then, the sum of correct answers will be divided by the total answers expected to assess the accuracy. The accuracy was calculated using scikit-learn's function `metrics.accuracy_score`, which uses the following formula^[[https://scikit-learn.org/stable/modules/model_evaluation.html#accuracy-score](https://scikit-learn.org/stable/modules/model_evaluation.html#accuracy-score)]:
 
 $$
 \texttt{accuracy}(y, \hat{y}) = \frac{1}{n_\text{samples}} \sum_{i=0}^{n_\text{samples}-1} 1(\hat{y}_i = y_i) 
@@ -500,14 +414,14 @@ This same pipeline was used to run the open-source fine-tuned models, so there w
 
 ## Fine-tuning models
 
-The decision to fine-tune open-source models was due to the possibility of 'teaching' the general-use model how it should perform in a specific task. After picking a model that was trained in billions of tokens, often in a self-supervised way, the whole idea is to adjust some of their layers to be able to reproduce the method of extracting information, using transfer learning[@vajjala_practical_2020]^["Recently, large transformers have been used for transfer learning with smaller down‐stream tasks. Transfer learning is a technique in AI where the knowledge gained while solving one problem is applied to a different but related problem. With transformers, the idea is to train a very large transformer mode in an unsupervised manner (known as pre-training) to predict a part of a sentence given the rest of the content so that it can encode the high-level nuances of the language in it."]
+The decision to fine-tune open-source models was due to the possibility of 'teaching' the general-use model how it should perform in a specific task. After picking a model that was trained in billions of tokens, often in a self-supervised way, the whole idea is to adjust some of their layers to be able to reproduce the method of extracting information, using transfer learning[@vajjala_practical_2020]
 
 ### Fine-tune OpenAI's models
-In the case of OpenAI's models, the training pipeline was generated using the API and run on their servers^[https://platform.openai.com/docs/guides/fine-tuning]. 
+In the case of OpenAI's models, the training pipeline was generated using the API and run on their servers^[[https://platform.openai.com/docs/guides/fine-tuning](https://platform.openai.com/docs/guides/fine-tuning)]. 
 
 Also, the validation dataset was provided so the API could avoid overfitting and optimize the parameters by itself. The model was trained with auto-selection of parameters, which resulted in 3 epochs, a learning rate multiplier of 1.80, and a batch size of 1.
 
-The decision was to fine-tune only the GPT 4o-mini, not only because it was the recommended option by OpenAI, but also because of the costs^[https://openai.com/api/pricing/]: the price of using 4o-mini was 8.3x lower than fine-tunning 4o. 
+The decision was to fine-tune only the GPT 4o-mini, not only because it was the recommended option by OpenAI, but also because of the costs^[[https://openai.com/api/pricing/](https://openai.com/api/pricing/)]: the price of using 4o-mini was 8.3x lower than fine-tunning 4o. 
 
 ### Fine-tune Open Source Models
 
@@ -640,7 +554,7 @@ percent_tbl |>
 
 As @tbl-finetune-delta shows, Llama 3.2(3B) had the most significant change in its performance, especially with the categorical tasks. Specifically, with this task, we could see a performance degradation of GPT 4o-mini. Phi4, [^2] though they had the second-best performance, learned less than Llama, which suggests a ceiling. Assuming that, in those architectures, the number of parameters is the critical factor, fewer parameters than 14B and more than 3B would be ideal.
 
-[^2]: There is the [mini version of Phi-4](https://huggingface.co/microsoft/Phi-4-mini-instruct). However, it was impossible to run or fine-tune it with the current computational resources due to insufficient support from the Unsloth framework. Ref: https://github.com/unslothai/unsloth/issues/2359
+[^2]: There is the [mini version of Phi-4](https://huggingface.co/microsoft/Phi-4-mini-instruct). However, it was impossible to run or fine-tune it with the current computational resources due to insufficient support from the Unsloth framework. Ref: [https://github.com/unslothai/unsloth/issues/2359](https://github.com/unslothai/unsloth/issues/2359)
 
 ## Inference performance
 
@@ -648,7 +562,7 @@ We conducted an inference on 454 decisions related to new drug trafficking cases
 
 The dataset encompasses 2,516,015 tokens^[Considering the GPT-4 tokenizer, as referenced in the Tiktoken library]. When accounting for the prompt (approximately 3,000 tokens), the total consumption is projected to reach 3,841,695 tokens. On average, we estimate this will yield 252,029 output tokens with the max_tokens parameter set to 1,000.
 
-Regarding inference time, the Llama model required roughly 1 hour, 54 minutes for the entire batch (equating to about 16 seconds per sample), while Phi-4 took 4 hours, 7 minutes to process the same batch, resulting in significantly longer individual sample times. When considering costs, we can compare the three models by examining the energy expenditures of the open-source models^[Estimated energy costs: €0.2889 per KWh, EU average price in the first half of 2024, according to https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_price_statistics#Electricity_prices_for_household_consumers] and contrasting these with the inferred costs associated with OpenAI's fine-tuned models^[Assuming batch prices, which are the most economical, on April 26, 2025, https://platform.openai.com/docs/pricing. Assuming 1 USD = 0.88 EUR]. 
+Regarding inference time, the Llama model required roughly 1 hour, 54 minutes for the entire batch (equating to about 16 seconds per sample), while Phi-4 took 4 hours, 7 minutes to process the same batch, resulting in significantly longer individual sample times. When considering costs, we can compare the three models by examining the energy expenditures of the open-source models^[Estimated energy costs: €0.2889 per KWh, EU average price in the first half of 2024, according to [https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_price_statistics#Electricity_prices_for_household_consumers](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_price_statistics#Electricity_prices_for_household_consumers)] and contrasting these with the inferred costs associated with OpenAI's fine-tuned models^[Assuming batch prices, which are the most economical, on April 26, 2025, [https://platform.openai.com/docs/pricing](https://platform.openai.com/docs/pricing). Assuming 1 USD = 0.88 EUR]. 
 
 Below is a comparison detailing each model's performance in terms of time, resource consumption, and associated costs to highlight the differences.
 
@@ -718,7 +632,7 @@ Efficiency is another important future path of work. Trying techniques to prune 
 
 Once we have a larger and more diverse dataset, it would not be a bad idea to try to obtain a more flexible model that could generalize to other legal contexts. This would allow researchers to spend less time adapting existing models rather than just prompt engineering, which tends to be faster and easier.
 
-Lastly, although the results are specific to the Brazilian context, similar approaches might be attempted in other jurisdictions and even with different languages as long as the base models have idiomatic support and there is enough training data in the legal task.
+Although the results are specific to the Brazilian context, similar approaches might be attempted in other jurisdictions and even with different languages as long as the base models have idiomatic support and there is enough training data in the legal task.
 
 <!--
 ## Policy implications
@@ -733,13 +647,6 @@ Legal firms, prosecutors, public defenders, and public attorneys might apply a j
 
 In academia, it would allow for a more comprehensive analysis of cases, allowing researchers to have bigger samples, freeing them from the intensive labor of annotating data, and allowing them to devote more time to the substantive analysis itself. 
 --> 
-## Human in the loop
-
-However, it would be strongly advisable not to shorten or cut research job positions in favor of "substituting" human labor with a large language model. 
-
-Domain knowledge was a key factor in success throughout the process. To believe that it could be simply 'automated' would be a big mistake since the conception and design need a deep understanding of the legal field under analysis. Not having enough human oversight during operation would lead to mistakes being massively replicated and more subtle biases not being identified.
-
-This work shows that models should not replace legal work and that legal experts should not be reduced to data annotations but rather be involved in the whole process.  
 
 # Conclusion {#sec-conclusion}
 
@@ -760,7 +667,7 @@ In order for this work to benefit the community most, we provide a few recommend
 
 Academia: Disclose data from empirical legal research as much as possible, as it would be a valuable resource for further fine-tuning models. Obtaining data from past work and ensuring that the new research data is available would accelerate the generation of new datasets, benefiting the whole community. For instance, IPEA released the data from @instituto_de_pesquisa_economica_aplicada_ipea_perfil_2023, which would provide a larger and more diverse dataset.
 
-Judiciary branch: The judiciary branch should ensure data and lawsuit documents are available digitally for research while maintaining high privacy standards. Even if anonymized, keeping the data open in robust systems such as DataJud^[https://www.cnj.jus.br/sistemas/datajud/] and the TJ-SP Judicial Decisions Database^[https://esaj.tjsp.jus.br/cjpg/] would ease access to legal documents and allow further research.
+Judiciary branch: The judiciary branch should ensure data and lawsuit documents are available digitally for research while maintaining high privacy standards. Even if anonymized, keeping the data open in robust systems such as DataJud^[[https://www.cnj.jus.br/sistemas/datajud/](https://www.cnj.jus.br/sistemas/datajud/)] and the TJ-SP Judicial Decisions Database^[[https://esaj.tjsp.jus.br/cjpg/](https://esaj.tjsp.jus.br/cjpg/)] would ease access to legal documents and allow further research.
 
 Law schools: Adapt the Law curriculum so scholars are data literate. Future professionals should be aware of technology but especially empowered by the new tools that artificial intelligence and data science can already provide them. 
 
@@ -768,6 +675,9 @@ Think tanks and research networks: Invest in jurimetric research, gathering lega
 
 Open-source community: Keep offering high-quality frameworks such as Torch, HuggingFace, and Unsloth. The deployment of new LLMs would be ideal if they maintained larger context windows (at least 20k tokens) and efficient inference. 
 
+Lastly, it remains clear that domain knowledge was a key factor in success throughout the process. So, it is strongly advisable not to shorten or cut research job positions in favor of "substituting" human labor with a large language model. To believe that it could be simply 'automated' would be a big mistake since the conception and design need a deep understanding of the legal field under analysis. Not having enough human oversight during operation would lead to mistakes being massively replicated and more subtle biases not being identified.
+
+This work shows that models should not replace legal work and that legal experts should not be reduced to data annotations but rather be involved in the whole process.  
 
 {{< pagebreak >}}
 
