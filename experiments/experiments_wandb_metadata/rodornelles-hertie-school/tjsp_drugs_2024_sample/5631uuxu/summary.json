@@ -1,8 +1,0 @@
-{
-  "metric__runtime": 14.59295743,
-  "metric__step": 0,
-  "metric__timestamp": 1745081666.3391042,
-  "metric__wandb": "{'runtime': 615}",
-  "metric_stratify_by": "group",
-  "metric_total_cases": 832
-}

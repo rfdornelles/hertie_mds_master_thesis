@@ -1,9 +1,0 @@
-{
-  "metric__runtime": 277.178468941,
-  "metric__step": 2,
-  "metric__timestamp": 1745599063.6598313,
-  "metric__wandb": "{'runtime': 277}",
-  "metric_example_inferences": "{'_latest_artifact_path': 'wandb-client-artifact://7nmul2vep3j7wr4px73m26k97fr9x125dw2vwl5d8s885k63xac6aqndb91rz2goda4tcov7bsni8djrjeojo77w61h8y3891oszwqoxi52mxtta0vdvmocarmfiw0pu:latest/example_inferences.table.json', '_type': 'table-file', 'artifact_path': 'wandb-client-artifact://13vyi1sa2146b3uvl10kv13b00626jh2eec9yj61ou0mlihnfkj8ruzrrplw3ag7jxjllf2uemqlvn1p3h4ugwe4ngi7eoaulrmbe5bbr8x7d1plwn0c98hm0w8lhklo/example_inferences.table.json', 'ncols': 3, 'nrows': 1, 'path': 'media/table/example_inferences_2_441c91d4c30f3c502279.table.json', 'sha256': '441c91d4c30f3c5022798ef4c65e407e16905642eb96b7f092e786768ba98364', 'size': 309}",
-  "metric_latency_s": 243.91512942314148,
-  "metric_total_cases": 454
-}

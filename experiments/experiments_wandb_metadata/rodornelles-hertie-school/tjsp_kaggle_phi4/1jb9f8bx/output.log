@@ -1,5 +1,0 @@
-Aux functions loaded
-Starting loop
-Total de exemplos: 898
-Batches:   0%|          | 0/449 [01:12<?, ?it/s]
-Erro no batch 0: OutOfMemoryError — CUDA out of memory. Tried to allocate 906.00 MiB. GPU 1 has a total capacity of 14.74 GiB of which 410.12 MiB is free. Process 2975 has 14.34 GiB memory in use. Of the allocated memory 11.59 GiB is allocated by PyTorch, and 2.62 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

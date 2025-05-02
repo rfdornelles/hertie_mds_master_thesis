@@ -1,3 +1,0 @@
-Device set to use cuda:0
-Batches:   0%|          | 0/454 [00:00<?, ?it/s]
-[34m[1mwandb[0m: [32m[41mERROR[0m The nbformat package was not found. It is required to save notebook history.

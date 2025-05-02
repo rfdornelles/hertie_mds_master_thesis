@@ -1,9 +1,0 @@
-{
-  "metric__runtime": 7762.567645857,
-  "metric__step": 1,
-  "metric__timestamp": 1745008526.2403078,
-  "metric__wandb": "{'runtime': 7767}",
-  "metric_example_inferences": "{'_latest_artifact_path': 'wandb-client-artifact://9vl6c14y9u2jp94jalw4vwmg8x1p5bdkpjlm2e4atqrsaxepprrud5rbahtinnmydptln3ktqn2z0ttgj7lsf45ssn5kq1o5o850mqdjk8pyrb6aocg57rep0fk7je3l:latest/example_inferences.table.json', '_type': 'table-file', 'artifact_path': 'wandb-client-artifact://edhvsm13ccrav0vnivh8zvp9rxxs70fbty4998j6ky4d92papvdca17a9d0ha2juvch1p65ylddrwmsj7g2wfxm3c12vx9qylk6k4kgk5qg065fkab1vnbv2w9qxrmbp/example_inferences.table.json', 'ncols': 3, 'nrows': 0, 'path': 'media/table/example_inferences_1_867bf8c09d1e23804769.table.json', 'sha256': '867bf8c09d1e238047698065999d009c1cb43454e46d7b924ed7e5c71272a807', 'size': 61}",
-  "metric_stratify_by": "group",
-  "metric_total_cases": 641
-}
