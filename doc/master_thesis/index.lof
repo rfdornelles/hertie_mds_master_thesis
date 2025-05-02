@@ -1,8 +1,0 @@
-\contentsline {figure}{\numberline {1}{\ignorespaces Illustration of the extraction of information from a judicial decision. Multiple tasks depend on understanding the text and following rules}}{14}{figure.caption.4}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Example of the evaluation process}}{19}{figure.caption.6}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Tasks by accuracy}}{25}{figure.caption.8}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Evolution in loss during fine-tuning}}{27}{figure.caption.9}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Models after fine-tuning}}{28}{figure.caption.10}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Accuracy comparison - Finetuned models - Kind of datatype}}{41}{figure.caption.13}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Task accuracy heatmap - Fine-tuned models}}{41}{figure.caption.14}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Radar charts comparing performance by datatype}}{42}{figure.caption.15}%
