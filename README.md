@@ -4,8 +4,8 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) ![R ≥ 4.3](https://img.shields.io/badge/R-%E2%89%A54.3-success) ![Python ≥ 3.10](https://img.shields.io/badge/Python-%E2%89%A53.10-success)
 
-Welcome! This repository accompanies my 2025 master thesis at the Hertie School (MDS for Public Policy).
-It contains every script, prompt and artefact needed to reproduce the experiments that test whether **open-source LLMs** can pull structured facts from Brazilian judicial decisions. Since there were potencially sensitive data
+Welcome! This repository accompanies my 2025 master thesis at the [Hertie School](http://www.hertie-school.org) MSc Data Science for Public Policy.
+It contains every script, prompt, and artefact needed to reproduce the experiments that test whether open-source LLMs can pull structured facts from Brazilian judicial decisions. Since the raw data was potentially sensitive, it is not included in this repository. 
 
 ---
 
